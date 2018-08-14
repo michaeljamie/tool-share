@@ -8,8 +8,11 @@ export default class Profile extends Component {
       <div>
         <div className='navBar'></div>
         <div className='profilePage'>
-          <img className='profilePic' src='https://cdn2.iconfinder.com/data/icons/carpenter-1/64/Artboard_19-128.png'></img>
-          <div className='userInfo'></div>
+          <div className='userInfo'>
+            <img className='profilePic' src='https://cdn2.iconfinder.com/data/icons/carpenter-1/64/Artboard_19-128.png'></img>
+            <div className='description'></div>
+          
+          </div>
         </div>
       </div>
     )
