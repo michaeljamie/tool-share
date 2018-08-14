@@ -4,6 +4,7 @@
 /node_modules
 .env
 
+
 # testing
 /coverage
 
@@ -11,6 +12,7 @@
 /build
 
 # misc
+'./src/Main.css'
 .DS_Store
 .env.local
 .env.development.local
