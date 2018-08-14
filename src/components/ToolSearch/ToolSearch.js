@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
-import "./ToolSearch.css";
+import './ToolSearch.css';
 
 class ToolSearch extends Component {
   constructor() {
     super();
-    this.state = {}
+    this.state = {
+      forRent: false,
+      forSale: false,
+      searchTitle: '',
+      searchKeywords: [],
+      maxDistance: 0,
+      maxPrice: 0
+    };
   };
 
   render() {
