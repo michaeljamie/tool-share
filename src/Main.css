@@ -1,4 +1,47 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
+.FAQ-component {
+  width: 100%;
+  height: auto;
+  min-height: 100%; }
+
+.FAQ-header {
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder; }
+
+.FAQ-questions {
+  display: flex;
+  flex-direction: column; }
+
+.FAQ-individual-questions {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px; }
+
+.question-paragraph {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.FAQ-down-arrow {
+  height: 25px;
+  width: 25px; }
+
+.Q {
+  height: 50px;
+  width: 50px; }
+
+.actual-question {
+  height: 80%;
+  width: 60%; }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg); }
