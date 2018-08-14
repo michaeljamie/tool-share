@@ -1,7 +1,3 @@
-@import "components/FAQ/_FAQ.scss";
-@import "components/Home/_Home.scss";
-@import "components/Profile/_Profile.scss";
-
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 $color1: #252525;
@@ -23,6 +19,13 @@ $font1: 'Montserrat', sans-serif;
   align-items: $align;
   flex-direction: $direction
 }
+
+@import "components/FAQ/_FAQ.scss";
+@import "components/Home/_Home.scss";
+@import "components/Profile/_Profile.scss";
+@import "components/ToolSearch/_ToolSearch.scss";
+@import "components/Toolview/_Toolview.scss";
+@import "components/Nav/_Nav.scss";
 
 //implementation
 
