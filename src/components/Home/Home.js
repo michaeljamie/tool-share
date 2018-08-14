@@ -41,18 +41,28 @@ export default class Home extends Component {
                     <div className = 'home-mid'>
                         <div className = 'home-iconBox'>
                             <img src={whiteCard} className = 'home-icon' alt=""/>
+             
+                            
                         </div>
+                        <h3>SAFE PAYMENT</h3>
                     </div>
                     <div className = 'home-mid'>
                         <div className = 'home-iconBox'>
                             <img src={whiteClipboard} className = 'home-icon' alt=""/>
+                            
                         </div>
+                        <h3>USER AGREEMENT</h3>
                     </div>
                     <div className = 'home-mid'>
                         <div className = 'home-iconBox'>
                             <img src={whiteShield} className = 'home-icon' alt=""/>
+                            
                         </div>
+                        <h3>100% SECURE</h3>
                     </div>
+
+                </div>
+                <div className ='home-contact'>
 
                 </div>
                 
