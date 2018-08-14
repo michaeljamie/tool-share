@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Lister from './../Lister/Lister';
 import Calendar from './Calendar';
+import 'react-dates/lib/css/_datepicker.css';
 
 
 class Toolview extends Component {
@@ -18,10 +19,17 @@ class Toolview extends Component {
                     <div className = "toolview-pic"> 
                         <img src="http://cdn1.grizzly.com/pics/jpeg500/g/g0623x-cd1bd439c663c63024eab578fbad1295.jpg" alt="table saw"/>
                     </div>
-                    <div className = "toolview-price">
-                        Price: $10/day
-                        <Calendar/>
-                     
+                    
+                    <div className = "toolview-topright">
+                        <div className = "toolview-price">
+                            Price: $10/day
+                        </div>
+                        <div className = "toolview-calendar">
+                            <Calendar/>
+                        </div>
+                        <div>
+                            <button>Rent</button>
+                        </div>
                     </div>
                 </div>
                 <div className = "toolview-description">
