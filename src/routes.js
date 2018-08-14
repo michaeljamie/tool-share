@@ -7,11 +7,11 @@ import FAQ from './components/FAQ/FAQ';
 import Toolview from './components/Toolview/Toolview';
 
 export default (
-<Switch>
-    <Route component={Home} exact path="/" />
-    <Route component={ToolSearch} path="/search" />
-    <Route component={Profile} path="/profile" />
-    <Route component={FAQ} path="/faq" />
-    <Route component={Toolview} path="/Toolview" />
-</Switch>
+    <Switch>
+        <Route component={Home} exact path="/" />
+        <Route component={ToolSearch} path="/search" />
+        <Route component={Profile} path="/profile" />
+        <Route component={FAQ} path="/faq" />
+        <Route component={Toolview} path="/Toolview" />
+    </Switch>
 )
