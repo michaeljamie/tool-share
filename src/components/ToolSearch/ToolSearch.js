@@ -14,6 +14,14 @@ class ToolSearch extends Component {
     };
   };
 
+  handleChange(e) {
+    this.setState( { [e.target.name]: e.target.value })
+  };
+
+  setBoolean(e) {
+    this.setState( { [e.target.name]: !this.state })
+  }
+
   render() {
     return (
       <div className="tool-search-body">
@@ -23,13 +31,13 @@ class ToolSearch extends Component {
         <div className='search-criteria'>
           <div className='search-criteria-left-box'>
             <div className='search-criteria-minor-box'>
-            <select className='search-criteria-select'>
-              <option value="rental">For Rent</option>
-              <option value="sale">For Sale</option>
-            </select>
+              For Rent
+              <input type="checkbox" name="forRent" />
+              For Sale
+              <input type="checkbox" name="forSale" />
             </div>
             <div className='search-criteria-minor-box'>
-              <select className='search-criteria-select'>
+              <select className='search-criteria-select' onChange={this.handleChange}>
                 <option value="delivery">Delivery</option>
                 <option value="pick-up">Pick-Up</option>
               </select>
@@ -38,22 +46,17 @@ class ToolSearch extends Component {
           <div className='search-criteria-right-box'>
             <div className='search-criteria-minor-box'>
               <div>Max Price</div>
-              <input type="number" name="price" placeholder="Max Price" />
+              <input type="number" name="price" placeholder="Max Price" onChange={this.handleChange}/>
             </div>
             <div className='search-criteria-minor-box'>
               <div>Distance</div>
               <div className='search-criteria-distance-radio'>
-                <input type="radio" id="10miles"
-                name="distance" value="email"/>
-                <label>10mi</label>
-
-                <input type="radio" id="25miles"
-                name="distance" value="phone"/>
-                <label>25mi</label>
-
-                <input type="radio" id="50miles"
-                name="distance" value="mail"/>
-                <label>50mi</label>
+                <input type="radio" id="10miles" name="distance" value="email" onChange={this.handleChange}/>
+                  <label>10mi</label>
+                <input type="radio" id="25miles" name="distance" value="phone" onChange={this.handleChange}/>
+                  <label>25mi</label>
+                <input type="radio" id="50miles" name="distance" value="mail" onChange={this.handleChange}/>
+                  <label>50mi</label>
               </div>
             </div>
           </div>

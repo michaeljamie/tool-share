@@ -5,7 +5,6 @@ import ToolSearch from './components/ToolSearch/ToolSearch';
 import Profile from './components/Profile/Profile';
 import FAQ from './components/FAQ/FAQ';
 
-
 export default (
 <Switch>
     <Route component={Home} exact path="/" />
