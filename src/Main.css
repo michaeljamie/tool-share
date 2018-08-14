@@ -1,4 +1,33 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
+.FAQ_component .FAQ-header {
+  font-size: 48px; }
+
+.navBar {
+  background-color: grey;
+  width: 100%;
+  height: 10vh; }
+
+.profilePage {
+  padding: 12px; }
+
+.userInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
+.profilePic {
+  border: 1px dotted black;
+  height: 125px; }
+
+.bio {
+  border: 1px solid black;
+  background-color: lightgrey;
+  height: 125px;
+  width: 208px; }
+
+.userName {
+  font-size: 19px; }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg); }

@@ -9,7 +9,6 @@ class App extends Component {
       <div className="App">
         Tool Share (Test)
         {Routes}
-        <Profile/>
       </div>
     );
   }
