@@ -3,13 +3,11 @@ import Routes from './routes';
 import logo from './logo.svg';
 import Profile from './components/Profile/Profile';
 
-
-
 class App extends Component {
   render() {
     return (
       <div className="App">
-        Tool Share
+        Tool Share (Test)
         {Routes}
         <Profile/>
       </div>
