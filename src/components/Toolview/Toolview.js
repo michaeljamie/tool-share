@@ -20,20 +20,32 @@ class Toolview extends Component {
                 <div className = "toolview-description">
                     Tool description
                 </div>
-                <div>
-                    <div>
+                <div className = "toolview-lower">
+                    <div className = "toolview-lister">
                        <Lister/>
                     </div>
-                    <div>
-                        Deposit, Condition, Comments
-                        
+                    <div className = "toolview-additional">
+                        <div>
+                        Deposit: $100
+                        </div>
+                        <div>
+                        Condition:
+                        </div>
+                        <div>
+                        Additional:
+                        </div> 
                     </div>
-                    <div>
+                    <div className = "toolview-map">
                         Map
                     </div>
                 </div>
-                <div>
-                    Other Listings    
+                <div className = "toolview-bottom">
+                    Other Listings:  
+                    <div className = "toolview-other">
+                        <div></div>
+                        <div></div>
+                        <div></div>  
+                    </div>
                 </div>
             </div>
         )
