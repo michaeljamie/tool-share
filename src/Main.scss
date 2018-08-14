@@ -1,10 +1,4 @@
 
-@import "components/FAQ/_FAQ.scss";
-@import "components/Home/_Home.scss";
-@import "components/Profile/_Profile.scss";
-@import "components/Toolview/_Toolview.scss";
-@import "components/Lister/_Lister.scss";
-@import "components/ToolSearch/_ToolSearch.scss";
 
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
@@ -45,6 +39,13 @@ $font1: 'Montserrat', sans-serif;
 //   background: $primary-color;
 // }
 
+
+@import "components/FAQ/_FAQ.scss";
+@import "components/Home/_Home.scss";
+@import "components/Profile/_Profile.scss";
+@import "components/Toolview/_Toolview.scss";
+@import "components/Lister/_Lister.scss";
+@import "components/ToolSearch/_ToolSearch.scss";
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
