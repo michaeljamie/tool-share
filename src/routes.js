@@ -6,7 +6,6 @@ import Profile from './components/Profile/Profile';
 import FAQ from './components/FAQ/FAQ';
 import Toolview from './components/Toolview/Toolview';
 
-
 export default (
 <Switch>
     <Route component={Home} exact path="/" />
