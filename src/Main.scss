@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+$color1: #252525;
+$color2: #d5d5d3;
+$color3: #ffffff;
+$color4: #444444;
+$color5: #fdd947;
+
+$font1: 'Montserrat', sans-serif;
+
+@mixin width-height($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin flexSetUp($justify: flex-start, $align: flex-start, $direction: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction
+}
+
+//implementation
+
+// .flex {
+//   @include flexSetUp(space-around, center);
+//   @include width-height(800px, 150px);
+//   background: blue;
+//   margin: auto;
+// }
+
+// .flex-item {
+//   @include width-height(120px, 120px);
+//   background: $primary-color;
+// }
+
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
