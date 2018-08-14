@@ -9,15 +9,15 @@ class Toolview extends Component {
     render(){
         return(
             <div>
-               <div>
-                    <div> 
+               <div className = "toolview-top">
+                    <div className = "toolview-pic"> 
                         <img src="http://cdn1.grizzly.com/pics/jpeg500/g/g0623x-cd1bd439c663c63024eab578fbad1295.jpg" alt="table saw"/>
                     </div>
-                    <div>
-                        Price
+                    <div className = "toolview-price">
+                        Price: $10/day
                     </div>
                 </div>
-                <div>
+                <div className = "toolview-description">
                     Tool description
                 </div>
                 <div>

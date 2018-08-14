@@ -1,0 +1,28 @@
+
+.toolview-top {
+    display: flex;
+    justify-content: space-evenly;
+    
+    
+}
+
+.toolview-pic img {
+    display: flex;
+    width: 180px;
+    
+}
+
+.toolview-price {
+    display: flex;
+    background: gray;
+    width: 180px;
+    height: 200px;
+}
+
+.toolview-description {
+    width: 97vw;
+    height: 100px;
+    background: lightcoral;
+    margin: 0 auto;
+    margin-top: 5px;
+}
