@@ -35,7 +35,7 @@ class ToolSearch extends Component {
     return (
       <div className="tool-search-body">
         <div className='search-bar'>
-          <input placeholder="Search By Title" name='searchTitle' onChange={this.handleChange}/>
+          <input className='search-bar-input' placeholder="Search By Title" name='searchTitle' onChange={this.handleChange}/>
         </div>
         <div className='search-criteria'>
           <div className='search-criteria-left-box'>
@@ -79,6 +79,9 @@ class ToolSearch extends Component {
               </div>
             </div>
           </div>
+        </div>
+        <div className='tool-search-submit-box'>
+          <button className='tool-search-button'>Search</button>
         </div>
         <div className='search-filter-box'>
           <button className='search-filter-button'>Filter</button>
