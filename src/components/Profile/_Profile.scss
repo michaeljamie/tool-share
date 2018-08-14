@@ -1,0 +1,79 @@
+.profile-page {
+  padding: 12px
+}
+.profile-userInfo {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+.profile-userPic {
+  border: 1px dotted black;
+  height: 125px;
+}
+.profile-bio {
+  border: 1px solid black;
+  background: lightgrey;
+  height: 125px;
+  width: 210px;
+}
+.profile-userName {
+  font-size: 20px;
+}
+.profile-edit {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.profile-ratings {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 58px;
+  margin-top: 10px;
+  background: grey
+}
+.profile-listerRating {
+  text-align: center;
+  background: lightgrey;
+  height: 45px;
+  width: 45%;
+}
+.profile-renterRating {
+  text-align: center;
+  background: lightgrey;
+  height: 45px;
+  width: 45%;
+}
+.profile-starContainer {
+  display: flex;
+  justify-content: space-around;
+}
+.profile-star {
+  font-size: 25px;
+  color: yellow;
+}
+.profile-toolsHeader {
+  height: 65px;
+  margin-top: 10px;
+  background: lightgrey;
+  border: 1px solid black;
+}
+.profile-toolsHeader span {
+  font-size: 20px;
+}
+.profile-toolsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  width: 351px;
+  height: 251px;
+  background: darkgrey;
+}
+.profile-tool {
+  margin: 6px;
+  height: 45%;
+  width: 45%;
+  background: grey;
+}
