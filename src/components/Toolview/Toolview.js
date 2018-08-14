@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
 import Lister from './../Lister/Lister';
+import Calendar from './Calendar';
+
 
 class Toolview extends Component {
     constructor(){
         super()
-
     }
+
+
     render(){
+       
+        
         return(
             <div>
                <div className = "toolview-top">
@@ -15,6 +20,8 @@ class Toolview extends Component {
                     </div>
                     <div className = "toolview-price">
                         Price: $10/day
+                        <Calendar/>
+                     
                     </div>
                 </div>
                 <div className = "toolview-description">
