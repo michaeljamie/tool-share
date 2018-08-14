@@ -76,8 +76,14 @@
     background-repeat: none;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    @include flexSetUp(space-around, center, column);
     height: 80vh;
     width: 100%;
+    margin: 0;
+}
+
+.home-contactText {
+    color: $color5;
 }
 // .home-headerText {
 //     font-family: $font1;
