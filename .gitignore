@@ -3,7 +3,7 @@
 # dependencies
 /node_modules
 .env
-
+*.css
 
 # testing
 /coverage
