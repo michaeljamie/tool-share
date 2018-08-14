@@ -10,13 +10,12 @@ class ToolSearch extends Component {
       searchTitle: '',
       searchKeywords: [],
       deliveryOrPickUp: '',
-      maxDistance: 0,
+      maxDistanceMiles: 0,
       maxPrice: 0
     };
     this.handleChange = this.handleChange.bind(this);
     this.setRentalBoolean = this.setRentalBoolean.bind(this);
     this.setSaleBoolean = this.setSaleBoolean.bind(this);
-
   };
 
   handleChange(e) {
@@ -36,7 +35,7 @@ class ToolSearch extends Component {
     return (
       <div className="tool-search-body">
         <div className='search-bar'>
-          <input placeholder="Search By Title" onChange={this.handleChange}/>
+          <input placeholder="Search By Title" name='searchTitle' onChange={this.handleChange}/>
         </div>
         <div className='search-criteria'>
           <div className='search-criteria-left-box'>
@@ -71,11 +70,11 @@ class ToolSearch extends Component {
             <div className='search-criteria-minor-box'>
               <div>Distance</div>
               <div className='search-criteria-distance-radio'>
-                <input type="radio" id="10miles" name="maxDistance" value="email" onChange={this.handleChange}/>
+                <input type="radio" id="10miles" name="maxDistanceMiles" value="10" onChange={this.handleChange}/>
                   <label>10mi</label>
-                <input type="radio" id="25miles" name="maxDistance" value="phone" onChange={this.handleChange}/>
+                <input type="radio" id="25miles" name="maxDistanceMiles" value="25" onChange={this.handleChange}/>
                   <label>25mi</label>
-                <input type="radio" id="50miles" name="maxDistance" value="mail" onChange={this.handleChange}/>
+                <input type="radio" id="50miles" name="maxDistanceMiles" value="50" onChange={this.handleChange}/>
                   <label>50mi</label>
               </div>
             </div>
