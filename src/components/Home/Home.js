@@ -3,6 +3,8 @@ import whiteCard from './../../assets/whiteCard.png';
 import whiteClipboard from './../../assets/whiteClipboard.png';
 import whiteShield from './../../assets/whiteShield.png';
 import { Link } from 'react-router-dom';
+import ex1 from './../../assets/ex1.jpg';
+import ex2 from './../../assets/ex2.jpg';
 
 export default class Home extends Component {
     constructor(){
@@ -27,7 +29,7 @@ export default class Home extends Component {
                 <div className='home-header'>
                     <div className='home-headerText'>
                         <h1>RENT TOOLS</h1>
-                        <h2>FROM YOUR MOTHER</h2>
+                        <h2>FROM YOUR NEIGHBOR</h2>
                     </div>
                     
                     <div>
@@ -38,14 +40,34 @@ export default class Home extends Component {
                     <input type="text" placeholder ='Zip Code'/>
                     <input type="text" placeholder ='ex. Hammer Drill, Jack Hammer, Plate Compactor, etc'/>
                     <button>Search Your Area</button>
-                    <div>Example Item</div>
-                    <div>Example Item</div>
-                    <div>Example Item</div>
-                    <div>Example Item</div>
+                    <div className='home-exampleCard'>
+                        <img src={ex1} className='home-examplePic' alt=""/>
+                    </div>
+                    <div className='home-exampleCard'>
+                        <img src={ex2} className='home-examplePic' alt=""/>
+                    </div>
+                    <div className='home-exampleCard'>
+                        <img src="" className='home-examplePic' alt=""/>
+                    </div>
+                    <div className='home-exampleCard'>
+                        <img src=" " className='home-examplePic' alt=""/>
+                    </div>
 
                 </div>
                 <div className = 'home-steps'>
-                    <h1 className = 'steps-text'>HERE'S HOW IT WORKS</h1>
+                    <h1 className = 'steps-text'>HERE'S HOW IT WORKS:</h1>
+                    <div className = 'steps-section'>
+
+                    </div>
+                    <div className = 'steps-section'>
+
+                    </div>
+                    <div className = 'steps-section'>
+
+                    </div>
+                    <div className = 'steps-section'>
+
+                    </div>
 
                 </div>
                 <div className = 'home-safe'>
