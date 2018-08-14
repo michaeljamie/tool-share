@@ -10,6 +10,7 @@
 .profile-userPic {
   border: 1px dotted black;
   height: 125px;
+  width: 125px;
 }
 .profile-bio {
   border: 1px solid black;
@@ -24,6 +25,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
+  font-size: 16px;
 }
 .profile-ratings {
   display: flex;
@@ -51,7 +53,6 @@
 }
 .profile-star {
   font-size: 25px;
-  color: yellow;
 }
 .profile-toolsHeader {
   height: 65px;
@@ -65,15 +66,18 @@
 .profile-toolsContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  align-content: space-between;
-  width: 351px;
+  justify-content: space-around;
+  align-content: space-around;
+  width: 341px;
   height: 251px;
   background: darkgrey;
+  padding: 5px;
 }
 .profile-tool {
-  margin: 6px;
   height: 45%;
   width: 45%;
   background: grey;
+}
+.profile-timesRented {
+  font-size: 14px;
 }

@@ -1,6 +1,52 @@
 
-.FAQ_component {
-    .FAQ-header {
-        font-size: 48px;
-    }
+.FAQ-component {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+}
+.FAQ-header {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+}
+.FAQ-questions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+.FAQ-individual-questions {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+.FAQ-down-arrow {
+    height: 25px;
+    width: 25px;
+}
+.Q {
+    height: 50px;
+    width: 50px;
+}
+.actual-question {
+    height: 80%;
+    width: 60%;
+}
+.answer-displayed {
+    height: 10%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+.answer-not-displayed {
+    display: none
 }

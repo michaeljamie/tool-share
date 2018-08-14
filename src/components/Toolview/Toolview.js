@@ -9,31 +9,43 @@ class Toolview extends Component {
     render(){
         return(
             <div>
-               <div>
-                    <div> 
+               <div className = "toolview-top">
+                    <div className = "toolview-pic"> 
                         <img src="http://cdn1.grizzly.com/pics/jpeg500/g/g0623x-cd1bd439c663c63024eab578fbad1295.jpg" alt="table saw"/>
                     </div>
-                    <div>
-                        Price
+                    <div className = "toolview-price">
+                        Price: $10/day
                     </div>
                 </div>
-                <div>
+                <div className = "toolview-description">
                     Tool description
                 </div>
-                <div>
-                    <div>
+                <div className = "toolview-lower">
+                    <div className = "toolview-lister">
                        <Lister/>
                     </div>
-                    <div>
-                        Deposit, Condition, Comments
-                        
+                    <div className = "toolview-additional">
+                        <div>
+                        Deposit: $100
+                        </div>
+                        <div>
+                        Condition:
+                        </div>
+                        <div>
+                        Additional:
+                        </div> 
                     </div>
-                    <div>
+                    <div className = "toolview-map">
                         Map
                     </div>
                 </div>
-                <div>
-                    Other Listings    
+                <div className = "toolview-bottom">
+                    Other Listings:  
+                    <div className = "toolview-other">
+                        <div></div>
+                        <div></div>
+                        <div></div>  
+                    </div>
                 </div>
             </div>
         )
