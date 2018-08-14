@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Routes from './routes';
-import logo from './logo.svg';
-import Profile from './components/Profile/Profile';
 
 class App extends Component {
   render() {
@@ -9,10 +7,9 @@ class App extends Component {
       <div className="App">
         Tool Share (Test)
         {Routes}
-        <Profile/>
       </div>
     );
-  }
-}
+  };
+};
 
 export default App;
