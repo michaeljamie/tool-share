@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './ToolSearch.css';
+import './_ToolSearch.scss';
 
 class ToolSearch extends Component {
   constructor() {
@@ -13,10 +13,15 @@ class ToolSearch extends Component {
       maxDistanceMiles: 0,
       maxPrice: 0
     };
+    this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.setRentalBoolean = this.setRentalBoolean.bind(this);
     this.setSaleBoolean = this.setSaleBoolean.bind(this);
   };
+
+  handleSearch() {
+    console.log("Searchin...")
+  }
 
   handleChange(e) {
     this.setState( { [e.target.name]: e.target.value })
@@ -35,7 +40,7 @@ class ToolSearch extends Component {
     return (
       <div className="tool-search-body">
         <div className='search-bar'>
-          <input placeholder="Search By Title" name='searchTitle' onChange={this.handleChange}/>
+          <input className='search-bar-input' placeholder="Search By Title" name='searchTitle' onChange={this.handleChange}/>
         </div>
         <div className='search-criteria'>
           <div className='search-criteria-left-box'>
@@ -79,6 +84,9 @@ class ToolSearch extends Component {
               </div>
             </div>
           </div>
+        </div>
+        <div className='tool-search-submit-box'>
+          <button className='tool-search-button' onClick={this.handleSearch}>Search</button>
         </div>
         <div className='search-filter-box'>
           <button className='search-filter-button'>Filter</button>

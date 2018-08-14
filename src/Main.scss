@@ -1,6 +1,3 @@
-
-
-
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 $color1: #252525;
@@ -46,6 +43,7 @@ $font1: 'Montserrat', sans-serif;
 @import "components/Toolview/_Toolview.scss";
 @import "components/Lister/_Lister.scss";
 @import "components/ToolSearch/_ToolSearch.scss";
+@import "components/Nav/_Nav.scss";
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
