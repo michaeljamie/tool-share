@@ -26,3 +26,42 @@
     margin: 0 auto;
     margin-top: 5px;
 }
+
+.toolview-additional {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 10px;
+}
+
+.toolview-map {
+    display: flex;
+    background: blue;
+    width: 100px;
+    height: 100px;
+}
+
+.toolview-lower {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+.toolview-bottom {
+    margin-top: 30px;
+}
+
+.toolview-other {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.toolview-other div {
+    width: 100px;
+    height: 100px;
+    background: gray;
+    display: flex;
+}
+
+
