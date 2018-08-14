@@ -4,6 +4,7 @@ import Home from './components/Home/Home';
 import ToolSearch from './components/ToolSearch/ToolSearch';
 import Profile from './components/Profile/Profile';
 import FAQ from './components/FAQ/FAQ';
+import Toolview from './components/Toolview/Toolview';
 
 export default (
 <Switch>
@@ -11,5 +12,6 @@ export default (
     <Route component={ToolSearch} path="/search" />
     <Route component={Profile} path="/profile" />
     <Route component={FAQ} path="/faq" />
+    <Route component={Toolview} path="/Toolview" />
 </Switch>
 )
