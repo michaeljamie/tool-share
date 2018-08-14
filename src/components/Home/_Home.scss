@@ -8,9 +8,61 @@
     background-size: cover;
     background-repeat: none;
     background-repeat: no-repeat;
+    @include flexSetUp(space-around, center, column);
     height: 100vh;
     width: 100%;
     color: white;
+    background-attachment: fixed;
+    margin: 0;
+}
+
+.home-searchBar {
+    @include flexSetUp(space-around, center, column);
+    height: 80vh;
+    width: 100%;
+    background: $color1;
+    margin: 0;
+}
+
+.home-steps {
+    @include flexSetUp(space-around, center, column);
+    height: 80vh;
+    width: 100%;
+    background: $color2;
+    margin: 0;
+}
+
+.steps-text {
+    color: $color1;
+    font-size: 20px;
+}
+
+.home-safe {
+    @include flexSetUp(space-around, center, column);
+    height: 80vh;
+    width: 100%;
+    background: $color1;
+    color: $color5;
+}
+
+.home-safeText {
+    font-size: 20px;
+}
+
+.home-mid {
+    @include flexSetUp(space-around, center, row);
+}
+
+.home-iconBox {
+    height: 50px;
+    width: 50px;
+    background: $color5;
+    border-radius: 8px;
+    @include flexSetUp(space-around, center, column);
+}
+
+.home-icon {
+    height: 35px;
 }
 
 // .home-headerText {
