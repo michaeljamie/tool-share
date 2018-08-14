@@ -2,10 +2,22 @@ import React, { Component } from 'react';
 import whiteCard from './../../assets/whiteCard.png';
 import whiteClipboard from './../../assets/whiteClipboard.png';
 import whiteShield from './../../assets/whiteShield.png';
+import { Link } from 'react-router-dom';
 
 export default class Home extends Component {
     constructor(){
         super();
+
+        this.state = {
+            zipCode: '',
+            toolSearch: ''
+        }
+    }
+
+    handleChange = (property, value) => {
+        this.setState({
+      [property]: value
+    })
     }
 
 
@@ -19,7 +31,7 @@ export default class Home extends Component {
                     </div>
                     
                     <div>
-                        <button>Find Tools Now</button>
+                        <Link to= '/search'><button>Find Tools Now</button></Link>
                     </div>
                 </div>
                 <div className = 'home-searchBar'>
@@ -41,18 +53,34 @@ export default class Home extends Component {
                     <div className = 'home-mid'>
                         <div className = 'home-iconBox'>
                             <img src={whiteCard} className = 'home-icon' alt=""/>
+             
+                            
                         </div>
+                        <h3>SAFE PAYMENT</h3>
                     </div>
                     <div className = 'home-mid'>
                         <div className = 'home-iconBox'>
                             <img src={whiteClipboard} className = 'home-icon' alt=""/>
+                            
                         </div>
+                        <h3>USER AGREEMENT</h3>
                     </div>
                     <div className = 'home-mid'>
                         <div className = 'home-iconBox'>
                             <img src={whiteShield} className = 'home-icon' alt=""/>
+                            
                         </div>
+                        <h3>100% SECURE</h3>
                     </div>
+
+                </div>
+                <div className ='home-contact'>
+                    <h3 className ='home-contactText'>CONTACT US:</h3>
+                    <input type="text" placeholder="Name"/>
+                    <input type="text" placeholder="Email"/>
+                    <input type="text" placeholder="Phone Number"/>
+                    <textarea name="Question" id="" cols="30" rows="10" placeholder="Message"></textarea>
+                    <button>Submit</button>
 
                 </div>
                 
