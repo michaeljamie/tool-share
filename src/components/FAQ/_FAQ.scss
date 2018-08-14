@@ -1,6 +1,14 @@
 
 .FAQ_component {
     .FAQ-header {
-        font-size: 48px;
+        font-size: 32px;
+    }
+    .FAQ-questions {
+        display: flex;
+        flex-direction: column;
+        .FAQ-individual-questions {
+            display: flex;
+            justify-content: space-around;
+        }
     }
 }
