@@ -12,7 +12,7 @@
 /build
 
 # misc
-'./src/Main.css'
+/src/Main.css
 .DS_Store
 .env.local
 .env.development.local
