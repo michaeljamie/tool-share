@@ -1,6 +1,6 @@
 .tool-search-body {
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -9,13 +9,11 @@
 }
 
 .search-bar {
-    width: 90%;
-    height: 7%;
+    width: 98%;
+    height: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
     border: 1px solid black;
 }
 
@@ -26,8 +24,8 @@
 }
 
 .search-criteria {
-    width: 100%;
-    height: 25%;
+    width: 98%;
+    height: 25vh;
     display: flex;
     justify-content: space-evenly;
     border: 1px solid black;
@@ -70,8 +68,8 @@
 }
 
 .search-filter-box {
-    width: 100%;
-    height: 5%;
+    width: 98%;
+    height: 5vh;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -86,8 +84,8 @@
 }
 
 .tool-search-submit-box {
-    width: 100%;
-    height: 7%;
+    width: 98%;
+    height: 7vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,9 +99,12 @@
 }
 
 .search-results-container {
-    width: 100%;
+    width: 98%;
+    height: 100vh;
+    overflow: scroll;
+    margin-top: 1%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }

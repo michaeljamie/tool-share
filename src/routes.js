@@ -12,6 +12,6 @@ export default (
         <Route component={ToolSearch} path="/search" />
         <Route component={Profile} path="/profile" />
         <Route component={FAQ} path="/faq" />
-        <Route component={Toolview} path="/Toolview" />
+        <Route component={Toolview} path="/toolview/:id" />
     </Switch>
 )
