@@ -51,7 +51,7 @@ class ToolSearch extends Component {
 
     const all_tools_unfiltered = this.state.searchResults.map( (tool) => {
       return (
-        <ToolSearchCard key={tool.tool_id} id={tool.tool_id} title={tool.tool_name} price={tool.tool_price} condition={tool.tool_condition}/>
+        <ToolSearchCard key={tool.tool_id} id={tool.tool_id} title={tool.tool_name} price={tool.tool_price} image={tool.tool_img} condition={tool.tool_condition}/>
       );
     });
 
@@ -110,7 +110,9 @@ class ToolSearch extends Component {
           <button className='search-filter-button'>Filter</button>
           <button className='search-filter-button'>Sort</button>
         </div>
-        {all_tools_unfiltered}
+        <div className='search-results-container'>
+          {all_tools_unfiltered}
+        </div>
       </div>
     );
   };
