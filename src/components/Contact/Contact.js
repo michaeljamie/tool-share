@@ -44,7 +44,6 @@ export default class Contact extends Component {
                 </div>
             </div>
             { this.state.render ? 
-            
             <div className='contact-form'>
                 <div className='contact-insideForm'>
                     <h2 className='contact-formText'>Contact Us Now:</h2>
