@@ -16,6 +16,14 @@ export default class Home extends Component {
         }
     }
 
+    login = () => {
+        const { REACT_APP_DOMAIN, REACT_APP_CLIENT_ID } = process.env;
+
+        const redirectUri = encodeURIComponent(`${window.origin}/auth/callback`);
+    
+        window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`;
+    }
+
     handleChange = (property, value) => {
         this.setState({
       [property]: value
@@ -68,6 +76,10 @@ export default class Home extends Component {
                     <div className = 'steps-section'>
 
                     </div>
+
+                </div>
+                <div className = 'home-signup'>
+                    <button  onClick={this.login}>SIGN-UP NOW</button>
 
                 </div>
                 <div className = 'home-safe'>
