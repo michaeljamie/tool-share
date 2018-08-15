@@ -37,6 +37,7 @@ $font1: 'Montserrat', sans-serif;
 // }
 
 
+
 @import "components/FAQ/_FAQ.scss";
 @import "components/Home/_Home.scss";
 @import "components/Profile/_Profile.scss";
@@ -46,6 +47,8 @@ $font1: 'Montserrat', sans-serif;
 @import "components/ToolSearchCard/_ToolSearchCard.scss";
 @import "components/Footer/_Footer.scss";
 @import "components/Nav/_Nav.scss";
+@import "components/StarRating/_StarRating.scss";
+@import "components/Contact/_Contact.scss";
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

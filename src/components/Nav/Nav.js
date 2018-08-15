@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import './_Nav.scss';
 import {Link} from 'react-router-dom';
+import { getUserInfo } from './../../ducks/reducer';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
 class Nav extends Component {
     constructor() {
@@ -8,13 +11,17 @@ class Nav extends Component {
     };
 
     changeMenu = () => {
-        // document.getElementById('nav_checkbox').value = "off"
-        // console.log(document.getElementById('nav_checkbox').value)
         const checkbox = document.getElementById('nav_checkbox')
         checkbox.click()
+    componentDidMount = () => {
+        axios.get('/api/user-data').then(res=>{
+            this.props.getUserInfo(res.data)
+           
+        })
     }
 
     render() {
+        console.log(this.props.users.username)
         return (
             <div className="nav-bar">
                 <div id="menuToggle">
@@ -38,4 +45,10 @@ class Nav extends Component {
     };
 };
 
-export default Nav;
+function mapStateToProps (state) {
+    return {
+        users: state.user
+    }
+}
+
+export default connect (mapStateToProps, {getUserInfo})(Nav);

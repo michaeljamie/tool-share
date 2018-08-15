@@ -19,6 +19,7 @@ let {
     SERVER_PORT,
     SESSION_SECRET,
     CONNECTION_STRING,
+    GOOGLE_API,
 } = process.env
 
 app.use(bodyParser.json());
@@ -38,6 +39,7 @@ massive(CONNECTION_STRING).then(db => {
 });
 
 app.get('/auth/callback', async (req, res) => {
+  console.log('start of auth callback')
     // code from auth0 on req.query.code
     let payload = {
       client_id: REACT_APP_CLIENT_ID,
@@ -62,9 +64,11 @@ app.get('/auth/callback', async (req, res) => {
     let { sub, name, picture } = userData.data;
     let userExists = await db.find_user([sub]);
     if (userExists[0]) {
+      console.log(userData.data)
       req.session.user = userExists[0];
       res.redirect(`${process.env.FRONTEND_DOMAIN}/#/profile`);
     } else {
+      console.log(userData.data)
       db.create_user([sub, name, picture]).then(createdUser => {
         req.session.user = createdUser[0];
         res.redirect(`${process.env.FRONTEND_DOMAIN}/#/profile`);
@@ -74,6 +78,7 @@ app.get('/auth/callback', async (req, res) => {
   });
   
 app.get('/api/user-data', ( req, res ) => {
+  
 if (req.session.user) {
     res.status(200).send(req.session.user)
    
@@ -88,10 +93,14 @@ app.get('/api/logout', (req, res) => {
     
 })
 
-
 // Profile Endpoints
 app.get('/api/userinfo', uc.read)
+
+// Tool Endpoints
+app.get('/api/tools', tc.select_all_tools)
+
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on port: ${SERVER_PORT}`)
 })
+
