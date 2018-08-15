@@ -15,8 +15,9 @@
 .toolview-price {
     display: flex;
     background: gray;
+    margin-top: 10px;
     width: 180px;
-    height: 200px;
+    height: 30px;
 }
 
 .toolview-description {
@@ -36,9 +37,8 @@
 
 .toolview-map {
     display: flex;
-    background: blue;
-    width: 100px;
-    height: 100px;
+    margin: 0 auto;
+    margin-top: 10px;
 }
 
 .toolview-lower {
