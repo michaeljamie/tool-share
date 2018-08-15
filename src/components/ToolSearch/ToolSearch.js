@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './_ToolSearch.scss';
 import ToolSearchCard from '../ToolSearchCard/ToolSearchCard';
+import axios from 'axios';
 
 class ToolSearch extends Component {
   constructor() {
@@ -10,6 +11,7 @@ class ToolSearch extends Component {
     this.setRentalBoolean = this.setRentalBoolean.bind(this);
     this.setSaleBoolean = this.setSaleBoolean.bind(this);
     this.state = {
+      searchResults: [],
       forRent: false,
       forSale: false,
       searchTitle: '',
@@ -21,7 +23,11 @@ class ToolSearch extends Component {
   };
 
   componentDidMount() {
-    console.log('ToolSearch Component Mounted')
+    axios.get('/api/tools').then( res => {
+      this.setState({
+        searchResults: res.data
+      });
+    });
   };
 
   handleSearch() {
@@ -41,31 +47,11 @@ class ToolSearch extends Component {
   };
 
   render() {
+    console.log(this.state)
 
-    const dummyTools = [
-      {
-        id: 6,
-        toolTitle: "Hammer",
-        toolPrice: 26,
-        toolCondition: "Good"
-      },
-      {
-        id: 8,
-        toolTitle: "Drildo",
-        toolPrice: 99,
-        toolCondition: "Poor"
-      },
-      {
-        id: 10,
-        toolTitle: "Pipe Layer",
-        toolPrice: 200,
-        toolCondition: "Great ;)"
-      }
-    ]
-
-    const all_tools_unfiltered = dummyTools.map( (tool) => {
+    const all_tools_unfiltered = this.state.searchResults.map( (tool) => {
       return (
-        <ToolSearchCard key={tool.id} id={tool.id} title={tool.toolTitle} price={tool.toolPrice} condition={tool.toolCondition}/>
+        <ToolSearchCard key={tool.tool_id} id={tool.tool_id} title={tool.tool_name} price={tool.tool_price} image={tool.tool_img} condition={tool.tool_condition}/>
       );
     });
 
@@ -124,7 +110,9 @@ class ToolSearch extends Component {
           <button className='search-filter-button'>Filter</button>
           <button className='search-filter-button'>Sort</button>
         </div>
-        {all_tools_unfiltered}
+        <div className='search-results-container'>
+          {all_tools_unfiltered}
+        </div>
       </div>
     );
   };

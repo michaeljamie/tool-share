@@ -74,6 +74,12 @@
 }
 
 .contact-formButton {
+    border: none;
+    border-radius: 6px;
+    background: $color5;
+    color: $color1;
+    height: 35px;
+    width: 160px;
     color: white;
     font-size: 21px;
     transition: 0.3s ease-in-out;
