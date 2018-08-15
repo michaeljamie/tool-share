@@ -23,7 +23,8 @@ class Toolview extends Component {
                 className="toolview-map"
                 display="initial"
                 position="relative"
-                allowFullScreen/>
+                allowFullScreen
+                />
 
         return(
             <div>
