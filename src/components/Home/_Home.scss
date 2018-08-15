@@ -1,4 +1,19 @@
 
+button {
+    border: none;
+    border-radius: 6px;
+    background: $color5;
+    color: $color3;
+    height: 25px;
+    width: 120px;
+}
+
+button:hover {
+    border: 1px solid $color5;
+    background: $color3;
+    color: $color5;
+    cursor: pointer;
+}
 
 .home-main {
     text-align: center;
@@ -18,9 +33,24 @@
     margin: 0;
 }
 
+.home-exampleCard {
+    @include flexSetUp(space-around, center, row);
+    height: 140px;
+    width: 230px;
+    background: $color3;
+    border-radius: 6px;
+}
+
+.home-examplePic {
+    height: 100px;
+    width: 100px;
+    border: 1px solid $color5;
+    border-radius: 6px;
+}
+
 .home-searchBar {
     @include flexSetUp(space-around, center, column);
-    height: 80vh;
+    height: 150vh;
     width: 100%;
     background: $color1;
     margin: 0;
@@ -37,6 +67,10 @@
 .steps-text {
     color: $color1;
     font-size: 20px;
+}
+
+.steps-section {
+    @include flexSetUp(space-around, center, row);
 }
 
 .home-safe {
