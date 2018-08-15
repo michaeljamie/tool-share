@@ -5,6 +5,10 @@ import ToolSearchCard from '../ToolSearchCard/ToolSearchCard';
 class ToolSearch extends Component {
   constructor() {
     super();
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.setRentalBoolean = this.setRentalBoolean.bind(this);
+    this.setSaleBoolean = this.setSaleBoolean.bind(this);
     this.state = {
       forRent: false,
       forSale: false,
@@ -14,19 +18,15 @@ class ToolSearch extends Component {
       maxDistanceMiles: 0,
       maxPrice: 0
     };
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.setRentalBoolean = this.setRentalBoolean.bind(this);
-    this.setSaleBoolean = this.setSaleBoolean.bind(this);
   };
 
   componentDidMount() {
     console.log('ToolSearch Component Mounted')
-  }
+  };
 
   handleSearch() {
     console.log("Searchin...")
-  }
+  };
 
   handleChange(e) {
     this.setState( { [e.target.name]: e.target.value })
