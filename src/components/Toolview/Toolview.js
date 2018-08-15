@@ -2,27 +2,21 @@ import React, {Component} from 'react';
 import Lister from './../Lister/Lister';
 import Calendar from './Calendar';
 import 'react-dates/lib/css/_datepicker.css';
-import Iframe from 'react-iframe'
+import Iframe from 'react-iframe';
+import axios from 'axios';
+
+const {REACT_APP_GOOGLE_API_KEY} = process.env
 
 class Toolview extends Component {
     constructor(){
         super()
-        this.state = {
-            googleKey: null
-        }
-    }
-
-    componentDidMount = () => {
-        axios.get('/api/map').then(res=>{
-            this.setState({googleKey: res.data})
-        })
     }
 
     render(){
-       
+        
         let map = 
-        <Iframe url="https://www.google.com/maps/embed/v1/place?key=API KEY
-        &q=Space+Needle,Seattle+WA"
+        <Iframe url={`https://www.google.com/maps/embed/v1/place?key=${REACT_APP_GOOGLE_API_KEY}
+        &q=Space+Needle,Seattle+WA`}
                 width="300px"
                 height="300px"
                 id="myId"

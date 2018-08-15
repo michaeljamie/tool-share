@@ -19,6 +19,7 @@ let {
     SERVER_PORT,
     SESSION_SECRET,
     CONNECTION_STRING,
+    GOOGLE_API,
 } = process.env
 
 app.use(bodyParser.json());
