@@ -5,6 +5,8 @@ import whiteShield from './../../assets/whiteShield.png';
 import { Link } from 'react-router-dom';
 import ex1 from './../../assets/ex1.jpg';
 import ex2 from './../../assets/ex2.jpg';
+import ex3 from './../../assets/ex3.jpg';
+import ex4 from './../../assets/ex4.jpg';
 
 export default class Home extends Component {
     constructor(){
@@ -50,15 +52,27 @@ export default class Home extends Component {
                     <button>Search Your Area</button>
                     <div className='home-exampleCard'>
                         <img src={ex1} className='home-examplePic' alt=""/>
+                        <div className='home-exampleRight'>
+                            <h3>$25/Day</h3>
+                        </div>
                     </div>
                     <div className='home-exampleCard'>
                         <img src={ex2} className='home-examplePic' alt=""/>
+                        <div className='home-exampleRight'>
+                            <h3>$38/Day</h3>
+                        </div>
                     </div>
                     <div className='home-exampleCard'>
-                        <img src="" className='home-examplePic' alt=""/>
+                        <img src={ex3} className='home-examplePic' alt=""/>
+                        <div className='home-exampleRight'>
+                            <h3>$20/Day</h3>
+                        </div>
                     </div>
                     <div className='home-exampleCard'>
-                        <img src=" " className='home-examplePic' alt=""/>
+                        <img src={ex4} className='home-examplePic' alt=""/>
+                        <div className='home-exampleRight'>
+                            <h3>$7/Day</h3>
+                        </div>
                     </div>
 
                 </div>
@@ -79,6 +93,7 @@ export default class Home extends Component {
 
                 </div>
                 <div className = 'home-signup'>
+                    <h3 className='home-signupText'>Ready to begin?</h3>
                     <button  onClick={this.login}>SIGN-UP NOW</button>
 
                 </div>
