@@ -1,0 +1,21 @@
+.foot-main {
+    height: 18vh;
+    width: 100%;
+    background: $color1;
+    @include flexSetUp(space-around, center, row);
+    color: $color5;
+}
+
+.foot-link {
+    font-size: 15px;
+}
+
+.foot-links {
+    outline: none;
+    text-decoration: none;
+    color: $color5;
+}
+
+.foot-links:hover {
+    cursor: pointer;
+}
