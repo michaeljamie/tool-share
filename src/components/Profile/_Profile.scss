@@ -1,5 +1,5 @@
 .profile-page {
-  padding: 12px
+  padding: 3vw;
 }
 .profile-userInfo {
   position: relative;
@@ -15,8 +15,8 @@
 .profile-bio {
   border: 1px solid black;
   background: lightgrey;
-  height: 125px;
-  width: 210px;
+  height: 19vh;
+  width: 56vw;
 }
 .profile-userName {
   font-size: 20px;
@@ -31,12 +31,12 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 58px;
+  height: 8vh;
   margin-top: 10px;
   background: grey
 }
 .profile-toolsHeader {
-  height: 65px;
+  height: 10vh;
   margin-top: 10px;
   background: lightgrey;
   border: 1px solid black;
@@ -49,8 +49,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-content: space-around;
-  width: 341px;
-  height: 251px;
+  height: 37vh;
   background: darkgrey;
   padding: 5px;
 }

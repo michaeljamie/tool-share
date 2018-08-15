@@ -2,28 +2,37 @@
 .toolview-top {
     display: flex;
     justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
     
+}
+
+.toolview-top-title {
+    display: flex;
     
 }
 
 .toolview-pic img {
     display: flex;
-    width: 180px;
+    width: 80vw;
     
 }
 
-.toolview-price {
+.toolview-price-rent {
     display: flex;
-    background: gray;
+    justify-content: space-evenly;
     margin-top: 10px;
-    width: 180px;
+    width: 80vw;
     height: 30px;
+}
+
+.toolview-calendar {
+    width: 80vw;
 }
 
 .toolview-description {
     width: 97vw;
     height: 100px;
-    background: lightcoral;
     margin: 0 auto;
     margin-top: 5px;
 }
