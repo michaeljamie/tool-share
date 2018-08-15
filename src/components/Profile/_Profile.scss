@@ -9,8 +9,8 @@
 }
 .profile-userPic {
   border: 1px dotted black;
-  height: 125px;
-  width: 125px;
+  height: 19vh;
+  width: 19vh;
 }
 .profile-bio {
   border: 1px solid black;
@@ -27,32 +27,13 @@
   right: 0;
   font-size: 16px;
 }
-.profile-ratings {
+.profile-ratingsContainer {
   display: flex;
   justify-content: space-around;
   align-items: center;
   height: 58px;
   margin-top: 10px;
   background: grey
-}
-.profile-listerRating {
-  text-align: center;
-  background: lightgrey;
-  height: 45px;
-  width: 45%;
-}
-.profile-renterRating {
-  text-align: center;
-  background: lightgrey;
-  height: 45px;
-  width: 45%;
-}
-.profile-starContainer {
-  display: flex;
-  justify-content: space-around;
-}
-.profile-star {
-  font-size: 25px;
 }
 .profile-toolsHeader {
   height: 65px;
