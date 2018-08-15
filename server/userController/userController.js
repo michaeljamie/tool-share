@@ -1,4 +1,5 @@
 module.exports = {
+
     read: ( req, res ) => {
         let { authID } = req.session.user
         req.app.get('db').get_user_info([ authID ])
@@ -8,4 +9,5 @@ module.exports = {
         })
         .catch(console.log)
     },
+
 }

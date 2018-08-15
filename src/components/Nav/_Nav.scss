@@ -12,14 +12,14 @@ body {
  }
  
  .nav-links:hover {
-   color: #fdd947;
+   color: whitesmoke;
  }
 
  .nav-bar {
     top: 0;
     height: 10vh;
     width: 100vw;
-    background-color: rgb(253, 217, 71);
+    background-color: #fdd947;
     position: sticky;
     z-index: 999;
  }
@@ -44,8 +44,8 @@ body {
    
    cursor: pointer;
    
-   opacity: 0; /* hide this */
-   z-index: 2; /* and place it over the hamburger */
+   opacity: 0; 
+   z-index: 2; 
    
    -webkit-touch-callout: none;
  }
@@ -93,18 +93,15 @@ body {
 
  #menu {
    position: absolute;
-   width: 300px;
+   width: 310px;
    margin: -100px 0 0 -50px;
    padding: 50px;
    padding-top: 125px;
    background: #232323;
    list-style-type: none;
    -webkit-font-smoothing: antialiased;
-   /* to stop flickering of text in safari */
-   
    transform-origin: 0% 0%;
-   transform: translate(-100%, 0);
-   
+   transform: translate(-150%, 0);
    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
  }
  
@@ -114,6 +111,6 @@ body {
    color: #fdd947;
  }
 
- #menuToggle input:checked ~ ul {
-   transform: none;
- }
+#menuToggle input:checked ~ ul {
+  transform: none;
+}
