@@ -7,9 +7,16 @@ import Iframe from 'react-iframe'
 class Toolview extends Component {
     constructor(){
         super()
+        this.state = {
+            googleKey: null
+        }
     }
 
-    
+    componentDidMount = () => {
+        axios.get('/api/map').then(res=>{
+            this.setState({googleKey: res.data})
+        })
+    }
 
     render(){
        
