@@ -1,0 +1,13 @@
+.starRating-rating {
+  text-align: center;
+  background: lightgrey;
+  height: 45px;
+  width: 45%;
+}
+.starRating-starContainer {
+  display: flex;
+  justify-content: space-around;
+}
+.starRating-star {
+  font-size: 25px;
+}
