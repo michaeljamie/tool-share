@@ -101,5 +101,8 @@ app.get('/api/tools', tc.select_all_tools);
 app.get('/api/tool/:id', tc.select_tool_and_owner);
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> master
