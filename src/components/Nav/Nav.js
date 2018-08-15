@@ -13,6 +13,7 @@ class Nav extends Component {
     changeMenu = () => {
         const checkbox = document.getElementById('nav_checkbox')
         checkbox.click()
+    }
     componentDidMount = () => {
         axios.get('/api/user-data').then(res=>{
             this.props.getUserInfo(res.data)
@@ -31,9 +32,7 @@ class Nav extends Component {
                     <span></span>
                     <span></span>
 
-                    <ul
-                    
-                    id="menu">
+                    <ul id="menu">
                         <Link to="/" className="nav-links" ><li onClick={ () => this.changeMenu() }>Home</li></Link>
                         <Link to="/profile" className="nav-links" ><li onClick={ () => this.changeMenu() }>Profile</li></Link>
                         <Link to="/search" className="nav-links" ><li onClick={ () => this.changeMenu() }>Search</li></Link>
