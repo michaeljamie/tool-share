@@ -5,17 +5,29 @@ import {Link} from 'react-router-dom';
 class Nav extends Component {
     constructor() {
         super();
-        this.state = {};
+        this.state = {
+            showMenu: false
+        };
     };
 
     render() {
         return (
-            <div className="nav">
-                <Link to='/'><div className='nav-link'>Home</div></Link>
-                <Link to='/profile'><div className='nav-link'>Profile</div></Link>
-                <Link to='/search'><div className='nav-link'>Search</div></Link>
-                <Link to='/faq'><div className='nav-link'>FAQ</div></Link>
-            </div>
+            <div className="nav-bar">
+                <div id="menuToggle">
+                    <input type="checkbox" />
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                    <ul id="menu">
+                        <Link to="/" className="nav-links" ><li>Home</li></Link>
+                        <Link to="/profile" className="nav-links" ><li>Profile</li></Link>
+                        <Link to="/search" className="nav-links" ><li>Search</li></Link>
+                        <Link to="/faq" className="nav-links" ><li>FAQ</li></Link>
+                    </ul>
+                </div>
+            </div>            
         );
     };
 };
