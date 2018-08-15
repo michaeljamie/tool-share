@@ -1,18 +1,18 @@
 
-button {
+.home-button {
     border: none;
     border-radius: 6px;
     background: $color5;
-    color: $color3;
+    color: $color1;
     height: 35px;
     width: 160px;
     font-size: 18px;
 }
 
-button:hover {
+.home-button:hover {
     border: 1px solid $color5;
     background: $color3;
-    color: $color5;
+    color: $color1;
     cursor: pointer;
 }
 
@@ -34,6 +34,23 @@ button:hover {
     margin: 0;
 }
 
+.home-icons {
+    @include flexSetUp(space-around, center, column);
+    animation: float 3.9s ease-in-out infinite;
+}
+
+.home-icon1 {
+    height: 45px;
+    margin-bottom: 5px;
+}
+
+.home-icon2 {
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 7.5px;
+    border: 2px solid $color5;
+    border-radius: 50px;
+}
 .home-exampleCard {
     @include flexSetUp(space-around, center, row);
     height: 140px;
@@ -147,3 +164,18 @@ button:hover {
 // .home-headerText {
 //     font-family: $font1;
 // }
+
+@keyframes float {
+    0% {
+      box-shadow: rgba(0,0,0,0.6);
+      transform: translatey(0px);
+    }
+    50% {
+      box-shadow:  rgba(0,0,0,0.2);
+      transform: translatey(-25px);
+    }
+    100% {
+      box-shadow: rgba(0,0,0,0.6);
+      transform: translatey(0px);
+    }
+  }
