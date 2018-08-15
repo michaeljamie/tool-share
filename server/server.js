@@ -8,10 +8,6 @@ const socket = require('socket.io');
 const uc = require('./userController/userController');
 const tc = require('./toolController/toolController');
 
-const app = express();
-
-app.use( express.static( `${__dirname}/../build` ) );
-
 let {
     REACT_APP_CLIENT_ID,
     REACT_APP_DOMAIN,
@@ -21,6 +17,19 @@ let {
     CONNECTION_STRING,
     GOOGLE_API,
 } = process.env
+
+const app = express()
+    , io = socket(app.listen(SERVER_PORT, () => console.log(`Till ${SERVER_PORT}, I got your back, we can do this! - Childish Gambino`)))
+
+    io.on('connection', socket => {
+        console.log('User Connected');
+    
+
+    socket.on('disconnect', () => {
+        console.log('User Disconnected');
+    })
+})
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -100,7 +109,5 @@ app.get('/api/userinfo', uc.read)
 app.get('/api/tools', tc.select_all_tools)
 
 
-app.listen(SERVER_PORT, () => {
-    console.log(`Server listening on port: ${SERVER_PORT}`)
-})
+
 
