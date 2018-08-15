@@ -64,6 +64,7 @@ class Toolview extends Component {
 
     render() {
         console.log(this.state)
+        console.log(this.props.match.params.id)
         let map = 
         <Iframe url={`https://www.google.com/maps/embed/v1/place?key=${REACT_APP_GOOGLE_API_KEY}&q=Space+Needle,Seattle+WA`}
             width="300px"
