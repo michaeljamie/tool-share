@@ -93,6 +93,13 @@ app.get('/api/logout', (req, res) => {
 // Profile Endpoints
 app.get('/api/userinfo', uc.read)
 
+
+
+
+
+
+
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on port: ${SERVER_PORT}`)
 })
+
