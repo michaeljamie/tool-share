@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import profilePic from '../../assets/defaultProfilePic.png';
+import StarRating from '../StarRating/StarRating';
 
 export default class Profile extends Component {
   constructor() {
@@ -8,8 +9,8 @@ export default class Profile extends Component {
       userName: 'Name Namerson',
       profilePic: profilePic,
       bio: 'This will be where the bio goes.',
-      listerRating: 0,
-      renterRating: 0,
+      listerRating: 3,
+      renterRating: 4,
       rentedTools: [{
         title: 'Hammer',
         img: 'something'
@@ -40,31 +41,13 @@ export default class Profile extends Component {
               <button className='profile-edit'>Edit</button>
             </div>
           </div>
-          <div className='profile-ratings'>
-            <div className='profile-listerRating'>
-              <div className='profile-starContainer'>
-                <div className='profile-star'><i className="fas fa-star"/></div>
-                <div className='profile-star'><i className="fas fa-star"/></div>
-                <div className='profile-star'><i className="fas fa-star"/></div>
-                <div className='profile-star'><i className="fas fa-star"/></div>
-                <div className='profile-star'><i className="fas fa-star"/></div>
-              </div>
-              <span>Lister Rating</span>
-            </div>
-            <div className='profile-renterRating'>
-              <div className='profile-starContainer'>
-                <div className='profile-star'><i className="fas fa-star"/></div>
-                <div className='profile-star'><i className="fas fa-star"/></div>
-                <div className='profile-star'><i className="fas fa-star"/></div>
-                <div className='profile-star'><i className="fas fa-star"/></div>
-                <div className='profile-star'><i className="fas fa-star"/></div>
-              </div>
-              <span>Renter Rating</span>
-            </div>
+          <div className='profile-ratingsContainer'>
+            <StarRating rateType={'Lister'} rating={listerRating}/>
+            <StarRating rateType={'Renter'} rating={renterRating}/>
           </div>
             <div className='profile-rentContainer'>
               <div className='profile-toolsHeader'>
-                <span>Tools your currently renting</span>
+                <span>Tools you're currently renting</span>
               </div>
               <div className='profile-toolsContainer'>
                 <div className='profile-tool'><span>{rentedTools[0].title}</span></div>
@@ -75,7 +58,7 @@ export default class Profile extends Component {
             </div>
             <div className='profile-rentContainer'>
               <div className='profile-toolsHeader'>
-                <span>Tools up for rent</span>
+                <span>Tools listed by you</span>
                 <br/>
                 <select className='profile-timesRented'>
                   <option value='MostToLeast'>Most to Least Rented</option>
