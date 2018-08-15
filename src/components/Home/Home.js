@@ -5,6 +5,10 @@ import whiteShield from './../../assets/whiteShield.png';
 import { Link } from 'react-router-dom';
 import ex1 from './../../assets/ex1.jpg';
 import ex2 from './../../assets/ex2.jpg';
+import ex3 from './../../assets/ex3.jpg';
+import ex4 from './../../assets/ex4.jpg';
+import whiteArrow from './../../assets/whiteArrow.png';
+import whiteHammer from './../../assets/whiteHammer.png';
 
 export default class Home extends Component {
     constructor(){
@@ -38,27 +42,44 @@ export default class Home extends Component {
                     <div className='home-headerText'>
                         <h1>RENT TOOLS</h1>
                         <h2>FROM YOUR NEIGHBOR</h2>
+
                     </div>
                     
                     <div>
-                        <Link to= '/search'><button>Find Tools Now</button></Link>
+                        <Link to= '/search'><button className= 'home-button'>Find Tools Now</button></Link>
+                    </div>
+                    <div className='home-icons'>
+                        {/* <img src={whiteHammer} alt="" className = 'home-icon1'/> */}
+                        <img src={whiteArrow} alt="" className = 'home-icon2'/>
                     </div>
                 </div>
                 <div className = 'home-searchBar'>
                     <input type="text" placeholder ='Zip Code'/>
                     <input type="text" placeholder ='ex. Hammer Drill, Jack Hammer, Plate Compactor, etc'/>
-                    <button>Search Your Area</button>
+                    <button className= 'home-button'>Search Your Area</button>
                     <div className='home-exampleCard'>
                         <img src={ex1} className='home-examplePic' alt=""/>
+                        <div className='home-exampleRight'>
+                            <h3>$25/Day</h3>
+                        </div>
                     </div>
                     <div className='home-exampleCard'>
                         <img src={ex2} className='home-examplePic' alt=""/>
+                        <div className='home-exampleRight'>
+                            <h3>$38/Day</h3>
+                        </div>
                     </div>
                     <div className='home-exampleCard'>
-                        <img src="" className='home-examplePic' alt=""/>
+                        <img src={ex3} className='home-examplePic' alt=""/>
+                        <div className='home-exampleRight'>
+                            <h3>$20/Day</h3>
+                        </div>
                     </div>
                     <div className='home-exampleCard'>
-                        <img src=" " className='home-examplePic' alt=""/>
+                        <img src={ex4} className='home-examplePic' alt=""/>
+                        <div className='home-exampleRight'>
+                            <h3>$7/Day</h3>
+                        </div>
                     </div>
 
                 </div>
@@ -79,7 +100,8 @@ export default class Home extends Component {
 
                 </div>
                 <div className = 'home-signup'>
-                    <button  onClick={this.login}>SIGN-UP NOW</button>
+                    <h3 className='home-signupText'>Ready to begin?</h3>
+                    <button  className= 'home-button' onClick={this.login}>SIGN-UP NOW</button>
 
                 </div>
                 <div className = 'home-safe'>
@@ -114,7 +136,7 @@ export default class Home extends Component {
                     <input type="text" placeholder="Email"/>
                     <input type="text" placeholder="Phone Number"/>
                     <textarea name="Question" id="" cols="30" rows="10" placeholder="Message"></textarea>
-                    <button>Submit</button>
+                    <button className= 'home-button'>Submit</button>
 
                 </div>
                 
