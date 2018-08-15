@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import profilePic from '../../assets/defaultProfilePic.png';
 import StarRating from '../StarRating/StarRating';
+import axios from 'axios';
+import {connect} from 'react-redux';
 
-export default class Profile extends Component {
+class Profile extends Component {
   constructor() {
     super();
     this.state = {
@@ -27,33 +29,40 @@ export default class Profile extends Component {
       toolsForRent: []
     }
   }
+
+
+
+
   render() {
-    var {userName, profilePic, bio, listerRating, renterRating, rentedTools} = this.state;
+    console.log(this.props.users)
+   
+    // var {userName, profilePic, bio, listerRating, renterRating, rentedTools} = this.state;
+    var {bio, fullname, profile_pic, listerrating, renterrating} = this.props.users
     return (
       <div>
         <div className='profile-page'>
           <div className='profile-userInfo'>
-            <img className='profile-userPic' alt='profilePic' src={profilePic}></img>
+            <img className='profile-userPic' alt='profilePic' src={profile_pic}></img>
             <div className='profile-bio'>
-              <span className='profile-userName'>{userName}</span>
+              <span className='profile-userName'>{fullname}</span>
               <br/>
               <span>{bio}</span>
               <button className='profile-edit'>Edit</button>
             </div>
           </div>
           <div className='profile-ratingsContainer'>
-            <StarRating rateType={'Lister'} rating={listerRating}/>
-            <StarRating rateType={'Renter'} rating={renterRating}/>
+            <StarRating rateType={'Lister'} rating={listerrating}/>
+            <StarRating rateType={'Renter'} rating={renterrating}/>
           </div>
             <div className='profile-rentContainer'>
               <div className='profile-toolsHeader'>
                 <span>Tools you're currently renting</span>
               </div>
               <div className='profile-toolsContainer'>
-                <div className='profile-tool'><span>{rentedTools[0].title}</span></div>
-                <div className='profile-tool'><span>{rentedTools[1].title}</span></div>
-                <div className='profile-tool'><span>{rentedTools[2].title}</span></div>
-                <div className='profile-tool'><span>{rentedTools[3].title}</span></div>
+                <div className='profile-tool'></div>
+                <div className='profile-tool'></div>
+                <div className='profile-tool'></div>
+                <div className='profile-tool'></div>
               </div>
             </div>
             <div className='profile-rentContainer'>
@@ -77,3 +86,11 @@ export default class Profile extends Component {
     )
   }
 }
+
+function mapStateToProps (state) {
+  return {
+      users: state.user
+  }
+}
+
+export default connect (mapStateToProps)(Profile);
