@@ -2,17 +2,28 @@ import React, {Component} from 'react';
 import Lister from './../Lister/Lister';
 import Calendar from './Calendar';
 import 'react-dates/lib/css/_datepicker.css';
-
+import Iframe from 'react-iframe'
 
 class Toolview extends Component {
     constructor(){
         super()
     }
 
+    
 
     render(){
        
-        
+        let map = 
+        <Iframe url="https://www.google.com/maps/embed/v1/place?key=API KEY
+        &q=Space+Needle,Seattle+WA"
+                width="300px"
+                height="300px"
+                id="myId"
+                className="toolview-map"
+                display="initial"
+                position="relative"
+                allowFullScreen/>
+
         return(
             <div>
                <div className = "toolview-top">
@@ -50,10 +61,11 @@ class Toolview extends Component {
                         Additional:
                         </div> 
                     </div>
-                    <div className = "toolview-map">
-                        Map
-                    </div>
                 </div>
+                    <div className = "toolview-map">
+                        {map}
+                    </div>
+               
                 <div className = "toolview-bottom">
                     Other Listings:  
                     <div className = "toolview-other">
