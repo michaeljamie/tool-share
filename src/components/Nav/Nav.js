@@ -15,13 +15,13 @@ class Nav extends Component {
 
     componentDidMount = () => {
         axios.get('/api/user-data').then(res=>{
-            // this.props.getUserInfo(res.data)
-            console.log(res)
+            this.props.getUserInfo(res.data)
+           
         })
     }
 
     render() {
-        console.log(this.props)
+        console.log(this.props.users.username)
         return (
             <div className="nav-bar">
                 <div id="menuToggle">
