@@ -5,6 +5,8 @@ const session = require('express-session');
 const massive = require('massive');
 const axios = require('axios');
 const socket = require('socket.io');
+const uc = require('./userController/userController');
+const tc = require('./toolController/toolController');
 
 const app = express();
 
@@ -27,6 +29,9 @@ massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
     console.log('Database ready')
 });
+
+// Profile Endpoints
+app.get('/api/userinfo', uc.read)
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on port: ${SERVER_PORT}`)
