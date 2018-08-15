@@ -5,6 +5,8 @@ const session = require('express-session');
 const massive = require('massive');
 const axios = require('axios');
 const socket = require('socket.io');
+const uc = require('./userController/userController');
+const tc = require('./toolController/toolController');
 
 const app = express();
 
@@ -87,6 +89,8 @@ app.get('/api/logout', (req, res) => {
 })
 
 
+// Profile Endpoints
+app.get('/api/userinfo', uc.read)
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on port: ${SERVER_PORT}`)

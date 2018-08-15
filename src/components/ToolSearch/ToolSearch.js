@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
 import './_ToolSearch.scss';
+import ToolSearchCard from '../ToolSearchCard/ToolSearchCard';
 
 class ToolSearch extends Component {
   constructor() {
     super();
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.setRentalBoolean = this.setRentalBoolean.bind(this);
+    this.setSaleBoolean = this.setSaleBoolean.bind(this);
     this.state = {
       forRent: false,
       forSale: false,
@@ -13,30 +18,57 @@ class ToolSearch extends Component {
       maxDistanceMiles: 0,
       maxPrice: 0
     };
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.setRentalBoolean = this.setRentalBoolean.bind(this);
-    this.setSaleBoolean = this.setSaleBoolean.bind(this);
+  };
+
+  componentDidMount() {
+    console.log('ToolSearch Component Mounted')
   };
 
   handleSearch() {
     console.log("Searchin...")
-  }
+  };
 
   handleChange(e) {
     this.setState( { [e.target.name]: e.target.value })
   };
 
-  setRentalBoolean(e) {
+  setRentalBoolean() {
     this.setState( prevState => ({forRent: !prevState.forRent}) )
   };
 
-  setSaleBoolean(e) {
+  setSaleBoolean() {
     this.setState( prevState => ({forSale: !prevState.forSale}) )
   };
 
   render() {
-    console.log(this.state)
+
+    const dummyTools = [
+      {
+        id: 6,
+        toolTitle: "Hammer",
+        toolPrice: 26,
+        toolCondition: "Good"
+      },
+      {
+        id: 8,
+        toolTitle: "Drildo",
+        toolPrice: 99,
+        toolCondition: "Poor"
+      },
+      {
+        id: 10,
+        toolTitle: "Pipe Layer",
+        toolPrice: 200,
+        toolCondition: "Great ;)"
+      }
+    ]
+
+    const all_tools_unfiltered = dummyTools.map( (tool) => {
+      return (
+        <ToolSearchCard key={tool.id} id={tool.id} title={tool.toolTitle} price={tool.toolPrice} condition={tool.toolCondition}/>
+      );
+    });
+
     return (
       <div className="tool-search-body">
         <div className='search-bar'>
@@ -92,6 +124,7 @@ class ToolSearch extends Component {
           <button className='search-filter-button'>Filter</button>
           <button className='search-filter-button'>Sort</button>
         </div>
+        {all_tools_unfiltered}
       </div>
     );
   };
