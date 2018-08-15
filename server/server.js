@@ -88,9 +88,12 @@ app.get('/api/logout', (req, res) => {
     
 })
 
-
 // Profile Endpoints
 app.get('/api/userinfo', uc.read)
+
+// Tool Endpoints
+app.get('/api/tools', tc.select_all_tools)
+
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on port: ${SERVER_PORT}`)
