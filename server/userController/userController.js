@@ -9,6 +9,7 @@ module.exports = {
         })
         .catch(console.log)
     },
+    
     update: (req, res) => {
         const {id} = req.params;
         const {lat, long} = req.body;
@@ -16,6 +17,11 @@ module.exports = {
         .then( response => {
             res.status(200)
         })
-    }
+    },
+
+    getUserSession: (req, res) => {
+        res.status(200).send(req.session);
+        console.log(req.session)
+    },
 
 }

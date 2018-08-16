@@ -2,23 +2,23 @@ import React, {Component} from 'react';
 import './_ToolSearch.scss';
 import ToolSearchCard from '../ToolSearchCard/ToolSearchCard';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {
+  handleSearchTitle,
+  handleSearchKeywords,
+  handleSearchPickupOption,
+  handleSearchRentOption,
+  handleSearchSaleOption,
+  handleSearchMaxDistance,
+  handleSearchMaxPrice
+} from '../../ducks/reducer';
 
 class ToolSearch extends Component {
   constructor() {
     super();
     this.handleSearch = this.handleSearch.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.setRentalBoolean = this.setRentalBoolean.bind(this);
-    this.setSaleBoolean = this.setSaleBoolean.bind(this);
     this.state = {
       searchResults: [],
-      forRent: false,
-      forSale: false,
-      searchTitle: '',
-      searchKeywords: [],
-      deliveryOrPickUp: '',
-      maxDistanceMiles: 0,
-      maxPrice: 0
     };
   };
 
@@ -31,24 +31,10 @@ class ToolSearch extends Component {
   };
 
   handleSearch() {
-    console.log("Searchin...")
-  };
-
-  handleChange(e) {
-    this.setState( { [e.target.name]: e.target.value })
-  };
-
-  setRentalBoolean() {
-    this.setState( prevState => ({forRent: !prevState.forRent}) )
-  };
-
-  setSaleBoolean() {
-    this.setState( prevState => ({forSale: !prevState.forSale}) )
+    console.log('Searching...')
   };
 
   render() {
-    console.log(this.state)
-
     const all_tools_unfiltered = this.state.searchResults.map( (tool) => {
       return (
         <ToolSearchCard key={tool.tool_id} id={tool.tool_id} title={tool.tool_name} price={tool.tool_price} image={tool.tool_img} condition={tool.tool_condition}/>
@@ -58,13 +44,13 @@ class ToolSearch extends Component {
     return (
       <div className="tool-search-body">
         <div className='search-bar'>
-          <input className='search-bar-input' placeholder="Search By Title" name='searchTitle' onChange={this.handleChange}/>
+          <input className='search-bar-input' placeholder="Search By Title" name='searchTitle' value={this.props.search_title} onChange={(e) => this.props.handleSearchTitle(e.target.value)}/>
         </div>
         <div className='search-criteria'>
           <div className='search-criteria-left-box'>
             <div className='search-criteria-minor-box'>
             Keyword Search
-              <select className='search-criteria-select' name="searchKeywords" onChange={this.handleChange}>
+              <select className='search-criteria-select' name="searchKeywords" value={this.props.search_keywords} onChange={(e) => this.props.handleSearchKeywords(e.target.value)}>
                 <option value="power-tools">Power Tools</option>
                 <option value="gas-tools">Gas Powered</option>
                 <option value="hand-tools">Hand Tools</option>
@@ -72,7 +58,7 @@ class ToolSearch extends Component {
             </div>
             <div className='search-criteria-minor-box'>
               Delivery or Pick-Up
-              <select className='search-criteria-select' name="deliveryOrPickUp" onChange={this.handleChange}>
+              <select className='search-criteria-select' name="deliveryOrPickUp" value={this.props.search_pickup_option} onChange={(e) => this.props.handleSearchPickupOption(e.target.value)}>
                   <option value="pick-up">Pick-Up</option>
                   <option value="delivery">Delivery</option>
                   <option value="both">Delivery & Pick-Up</option>
@@ -83,21 +69,21 @@ class ToolSearch extends Component {
             <div className='search-criteria-minor-box'>
               <div>
                 For Rent
-                <input type="checkbox" name="forRent" onChange={this.setRentalBoolean}/>
+                <input type="checkbox" name="forRent" defaultChecked value={this.props.search_rent_option} onClick={() => this.props.handleSearchRentOption()}/>
                 For Sale
-                <input type="checkbox" name="forSale" onChange={this.setSaleBoolean}/>
+                <input type="checkbox" name="forSale" value={this.props.search_sale_option} onChange={() => this.props.handleSearchSaleOption()}/>
                 <div>Max Price</div>
-                <input type="number" name="maxPrice" placeholder="Max Price" onChange={this.handleChange}/>
+                <input type="number" name="maxPrice" value={this.props.search_max_price} placeholder="Max Price" onChange={(e) => this.props.handleSearchMaxPrice(e.target.value)}/>
               </div>
             </div>
             <div className='search-criteria-minor-box'>
               <div>Distance</div>
               <div className='search-criteria-distance-radio'>
-                <input type="radio" id="10miles" name="maxDistanceMiles" value="10" onChange={this.handleChange}/>
+                <input type="radio" id="10miles" name="maxDistanceMiles" value={5} onChange={(e) => this.props.handleSearchMaxDistance(e.target.value)}/>
                   <label>10mi</label>
-                <input type="radio" id="25miles" name="maxDistanceMiles" value="25" onChange={this.handleChange}/>
+                <input type="radio" id="25miles" name="maxDistanceMiles" value={25} onChange={(e) => this.props.handleSearchMaxDistance(e.target.value)}/>
                   <label>25mi</label>
-                <input type="radio" id="50miles" name="maxDistanceMiles" value="50" onChange={this.handleChange}/>
+                <input type="radio" id="50miles" name="maxDistanceMiles" value={50} onChange={(e) => this.props.handleSearchMaxDistance(e.target.value)}/>
                   <label>50mi</label>
               </div>
             </div>
@@ -118,4 +104,23 @@ class ToolSearch extends Component {
   };
 };
 
-export default ToolSearch;
+function mapStateToProps(state) {
+  return {
+    search_title: state.search_title,
+    search_keywords: state.search_keywords,
+    search_rent_option: state.search_rent_option,
+    search_sale_option: state.search_sale_option,
+    search_pickup_option: state.search_pickup_option,
+    search_max_distance: state.search_max_distance,
+    search_max_price: state.search_max_price
+  }
+};
+
+export default connect(mapStateToProps, {
+  handleSearchTitle, 
+  handleSearchKeywords,   
+  handleSearchPickupOption,
+  handleSearchRentOption,
+  handleSearchSaleOption,
+  handleSearchMaxDistance,
+  handleSearchMaxPrice})(ToolSearch); 

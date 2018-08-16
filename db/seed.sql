@@ -7,9 +7,10 @@ CREATE TABLE users (
 	zipcode VARCHAR(50),
 	profile_pic TEXT,
 	authID TEXT,
-	bio TEXT,
-	listerRating INT,
-	renterRating INT
+	bio VARCHAR(200),
+	listerRating DECIMAL(3, 2),
+	renterRating DECIMAL(3, 2),
+    latLong VARCHAR(100)
 );
 
 CREATE TABLE tools (
@@ -29,5 +30,21 @@ CREATE TABLE tools (
     requires_fuel BOOLEAN,
     fuel_type VARCHAR (50),
     tool_img VARCHAR (250),
-    tool_price INT
+    tool_price INT,
+    renter_id INT REFERENCES users(userID),
+    deposit MONEY,
+    currently_available BOOLEAN
+);
+
+CREATE TABLE messages (
+	message_id TEXT PRIMARY KEY,
+	sender_id INT REFERENCES users(userid),
+	receiver_id INT REFERENCES users(userid)
+);
+
+CREATE TABLE chats (
+	chat_id SERIAL PRIMARY KEY,
+	message_id TEXT REFERENCES messages(message_id),
+	message VARCHAR(200),
+	message_sent_time TIMESTAMP DEFAULT NOW()
 );

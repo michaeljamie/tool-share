@@ -4,8 +4,8 @@ import Calendar from './Calendar';
 import 'react-dates/lib/css/_datepicker.css';
 import Iframe from 'react-iframe';
 import axios from 'axios';
-import {connect} from 'react-redux';
-
+import {Link} from 'react-router-dom';
+import { connect } from "react-redux";
 
 const {REACT_APP_GOOGLE_API_KEY} = process.env
 
@@ -94,7 +94,7 @@ class Toolview extends Component {
     }
 
     render() {
-        console.log(this.state.owner_lat, this.state.owner_long)
+        console.log(this.props)
         let map = 
         <Iframe url={`https://www.google.com/maps/embed/v1/place?key=${REACT_APP_GOOGLE_API_KEY}&q=near+${this.state.owner_zip}&center=${this.state.owner_lat},${this.state.owner_long}&zoom=15`}
             zoom="100"
@@ -106,17 +106,20 @@ class Toolview extends Component {
             position="relative"
             allowFullScreen
         />
+        let editButton = this.state.owner_id === this.props.user.userid ? <button className='toolview-edit-button'>edit</button> : null
 
         return(
             <div>
+                <Link to='/search'><button className='toolview-back-button'>Back to Results</button></Link>
                 <div className = "toolview-top">
+                {editButton}
                     <div className = "toolview-top-title">{`${this.state.tool_name}`}</div>
                     <div className = "toolview-pic"> 
                         <img src={this.state.tool_img} alt="table saw"/>
                     </div>
                         <div className = "toolview-price-rent">
                             <div>Price: ${this.state.tool_price}/day</div>
-                            <button>Rent</button>
+                            <button className='toolview-rent-button'>Rent</button>
                         </div>
                         <div className = "toolview-calendar">
                             Rental Dates
@@ -159,10 +162,10 @@ class Toolview extends Component {
     };
 };
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
     return {
-        users: state.user
-    }
-}
-
-export default connect (mapStateToProps)(Toolview);
+      user: state.user
+    };
+  }
+  
+  export default connect(mapStateToProps)(Toolview);

@@ -95,11 +95,13 @@ app.get('/api/user-data', ( req, res ) => {
   
 app.get('/api/logout', (req, res) => {
   req.session.destroy()
+  res.redirect(`${FRONTEND_DOMAIN}/#`)
 });
 
 // Profile Endpoints
 app.get('/api/userinfo', uc.read);
-app.post('/api/updateUser/:id', uc.update)
+app.get('/api/session', uc.getUserSession);
+app.post('/api/updateUser/:id', uc.update);
 
 // Tool Endpoints
 app.get('/api/tools', tc.select_all_tools);
