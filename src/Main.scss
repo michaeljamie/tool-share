@@ -49,6 +49,9 @@ $font1: 'Montserrat', sans-serif;
 @import "components/Nav/_Nav.scss";
 @import "components/StarRating/_StarRating.scss";
 @import "components/Contact/_Contact.scss";
+@import "components/Chat/_Chat.scss";
+@import "components/Messages/_Messages.scss";
+@import "components/Chat/Chatbox/_Chatbox.scss";
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

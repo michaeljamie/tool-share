@@ -1,5 +1,6 @@
 .profile-page {
   padding: 3vw;
+  background-color: lightslategray;
 }
 .profile-userInfo {
   position: relative;
@@ -8,7 +9,7 @@
   justify-content: space-between
 }
 .profile-userPic {
-  border: 1px dotted black;
+  border: 1px solid black;
   height: 19vh;
   width: 19vh;
 }
@@ -23,26 +24,32 @@
 }
 .profile-edit {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 1px;
+  right: 1px;
   font-size: 16px;
 }
 .profile-ratingsContainer {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 8vh;
-  margin-top: 10px;
-  background: grey
+  margin-top: 12px;
 }
 .profile-toolsHeader {
+  text-align: center;
   height: 10vh;
-  margin-top: 10px;
-  background: lightgrey;
-  border: 1px solid black;
+  margin-top: 12px;
+  background: black;
+  border-top: 5px solid $color4;
+  border-radius: 25px 25px 0 0;
 }
 .profile-toolsHeader span {
-  font-size: 20px;
+  font-family: $font1;
+  font-size: 21px;
+  color: $color5
+}
+.profile-toolsOuterContainer {
+  background: darkgrey;
+  overflow: hidden;
 }
 .profile-toolsContainer {
   display: flex;
@@ -50,8 +57,9 @@
   justify-content: space-around;
   align-content: space-around;
   height: 37vh;
-  background: darkgrey;
+  min-width: 91vw;
   padding: 5px;
+  transition: 400ms;
 }
 .profile-tool {
   height: 45%;

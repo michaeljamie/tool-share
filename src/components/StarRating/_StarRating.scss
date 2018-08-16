@@ -1,13 +1,19 @@
 .starRating-rating {
   text-align: center;
-  background: lightgrey;
+  background: $color2;
   height: 7vh;
-  width: 40vw;
+  width: 44vw;
+  padding: 2px 0;
+  border-radius: 50%;
 }
 .starRating-starContainer {
   display: flex;
   justify-content: space-around;
+  transform: skew(-10deg);
 }
 .starRating-star {
   font-size: 3.7vh;
+}
+.fas {
+  margin: 0px 2px;
 }
