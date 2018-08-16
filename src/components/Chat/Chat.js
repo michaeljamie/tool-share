@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 import Chatbox from './Chatbox/Chatbox';
+import whiteMessage from './../../assets/whiteMessage.png';
+import { connect } from 'react-redux';
 
 const socket = io(`http://localhost:3005`)
 
-export default class Chat extends Component {
+class Chat extends Component {
     constructor(){
       super();
       this.state = {
@@ -27,7 +29,16 @@ export default class Chat extends Component {
     }
 
     sendMessage = () => {
-
+        console.log(this.props)
+        var obj={
+            userid: this.props.user.userid,
+            message: this.refs.message.value,
+            profile_pic: this.props.user.profile_pic,
+            username: this.props.user.username
+        }
+        console.log(obj)
+        socket.emit('message sent', obj)
+        this.refs.message.value = '';
     }
 
     scrollToBottom() {
@@ -51,7 +62,13 @@ export default class Chat extends Component {
             return(
                 <Chatbox
                 key={i}
-                
+                userObj = {e}
+                message = {e.message}
+                messageUserpic = {e.profile_pic}
+                messageUsername = {e.username}
+                currentUser={this.props.user.userid}
+                username={this.props.user.username}
+                userpic={this.props.user.profile_pic}
                 />
             )
         })
@@ -61,10 +78,11 @@ export default class Chat extends Component {
                 <div ref={(div) => { this.messageList = div }} className="chat-messages">
                     { messages[0] ? messages : null}
                 </div>
-                <div className="input">
-                    <input className='chatinput' onKeyDown={this.keyPress} onChange = {(e) => {this.setState ({ message: e.target.value })}} ref = 'message' placeholder = 'Enter Message'/>
-                    
-                    <img className = 'send' onClick={this.sendMessage} src='' alt=""/>
+                <div className="chat-input">
+                    <input className='chat-inputBox' onKeyDown={this.keyPress} ref = 'message' placeholder = 'Enter Message'/>
+                    <div className='chat-button'>
+                        <img className = 'chat-send' onClick={this.sendMessage} src={whiteMessage} alt=""/>
+                    </div>
                 </div>
                 
             </div>
@@ -72,3 +90,11 @@ export default class Chat extends Component {
     }
 
 }
+
+function mapStateToProps(state){
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(Chat);
