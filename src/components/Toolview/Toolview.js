@@ -62,11 +62,20 @@ class Toolview extends Component {
         });
     };
 
+    initMap = () => {
+        return({
+            zoom: 4,
+            center: {lat: 37.090, lng: -95.712},
+            mapTypeId: 'terrain'
+        })
+    }
+
     render() {
         console.log(this.state)
         console.log(this.props.match.params.id)
         let map = 
-        <Iframe url={`https://www.google.com/maps/embed/v1/place?key=${REACT_APP_GOOGLE_API_KEY}&q=Space+Needle,Seattle+WA`}
+        <Iframe url={`https://www.google.com/maps/embed/v1/place?key=${REACT_APP_GOOGLE_API_KEY}&q=near+95366&center=37.749009,-121.125773&zoom=15`}
+            zoom="100"
             width="300px"
             height="300px"
             id="myId"
