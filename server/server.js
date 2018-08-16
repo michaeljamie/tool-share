@@ -95,6 +95,7 @@ app.get('/api/user-data', ( req, res ) => {
   
 app.get('/api/logout', (req, res) => {
   req.session.destroy()
+  res.redirect(`${FRONTEND_DOMAIN}/#`)
 });
 
 // Profile Endpoints
