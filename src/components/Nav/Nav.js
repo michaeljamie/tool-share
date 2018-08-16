@@ -34,7 +34,7 @@ class Nav extends Component {
 
                     <ul id="menu">
                         <Link to="/" className="nav-links" ><li onClick={ () => this.changeMenu() }>Home</li></Link>
-                        <Link to="/profile" className="nav-links" ><li onClick={ () => this.changeMenu() }>Profile</li></Link>
+                        <Link to={`/profile/${this.props.users.userid}`} className="nav-links" ><li onClick={ () => this.changeMenu() }>Profile</li></Link>
                         <Link to="/search" className="nav-links" ><li onClick={ () => this.changeMenu() }>Search</li></Link>
                         <Link to="/faq" className="nav-links" ><li onClick={ () => this.changeMenu() }>FAQ</li></Link>
                     </ul>
