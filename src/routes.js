@@ -6,6 +6,7 @@ import Profile from './components/Profile/Profile';
 import FAQ from './components/FAQ/FAQ';
 import Toolview from './components/Toolview/Toolview';
 import Chat from './components/Chat/Chat';
+import Messages from './components/Messages/Messages';
 
 export default (
     <Switch>
@@ -15,5 +16,6 @@ export default (
         <Route component={FAQ} path="/faq" />
         <Route component={Chat} path="/chat" />
         <Route component={Toolview} path="/toolview/:id" />
+        <Route component={Messages} path="/messages" />
     </Switch>
 )
