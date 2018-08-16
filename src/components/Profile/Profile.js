@@ -26,15 +26,38 @@ class Profile extends Component {
         title: 'Ladder',
         img: 'something'
       }],
-      toolsForRent: []
+      toolsForRent: [],
+      latlong: ""
     }
   }
 
 
+componentDidMount(){
+  this.getLocation()
+} 
+
+getLocation = () => {
+  if (navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(this.showPosition)
+  } else {
+    return "Geolocation is not supported by this browser"
+  }
+}
+
+showPosition= position =>{
+  console.log(position)
+  let latlong = position.coords.latitude + "," + position.coords.longitude
+  let {userid} = this.props.users
+  console.log(userid)
+  axios.post(`api/updateUser/${userid}`, {latlong}).then(res=>{
+    console.log('posted')
+  })
+}
 
 
   render() {
     console.log(this.props.users)
+    console.log(this.state.latlong)
    
     // var {userName, profilePic, bio, listerRating, renterRating, rentedTools} = this.state;
     var {bio, fullname, profile_pic, listerrating, renterrating} = this.props.users

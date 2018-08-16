@@ -20,6 +20,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
+    "react-touch": "^0.4.4",
     "redux": "^4.0.0",
     "redux-promise-middleware": "^5.1.1",
     "socket.io": "^2.1.1",
