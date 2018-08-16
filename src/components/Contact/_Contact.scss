@@ -5,6 +5,9 @@
     bottom: 2%;
     right: 2%;
     margin: 12px;
+    border-radius: 50px; 
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.05s;
 }
 
 .contact-icon {
@@ -20,14 +23,20 @@
 	justify-content: center;
 	align-items: center;
     align-content: stretch;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    
     transition: 0.3s;
 }
+
+
 
 .contact-icon:hover {
     cursor: pointer;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    transform: scale(1.01);
+}
+
+.contact-main:active {
+    transform: translateY(3px);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.08);
 }
 
 .contact-iconPic {
