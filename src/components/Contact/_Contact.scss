@@ -44,7 +44,9 @@
     background: $color5;
     border-radius: 8px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-
+    // transform-origin: 0% 0%;
+    // transform: translate(150%, 0);
+    // transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
 .contact-insideForm {
@@ -74,6 +76,12 @@
 }
 
 .contact-formButton {
+    border: none;
+    border-radius: 6px;
+    background: $color5;
+    color: $color1;
+    height: 35px;
+    width: 160px;
     color: white;
     font-size: 21px;
     transition: 0.3s ease-in-out;
