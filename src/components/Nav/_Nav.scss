@@ -18,10 +18,13 @@ body {
  .nav-bar {
     top: 0;
     height: 10vh;
-    width: 100vw;
+    width: 100%;
     background-color: #fdd947;
     position: sticky;
     z-index: 999;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
  }
  
  #menuToggle {
@@ -113,4 +116,16 @@ body {
 
 #menuToggle input:checked ~ ul {
   transform: none;
+}
+
+.nav_profile_icon {
+  height: 45px;
+  width: 45px;
+  border-radius: 40px;
+  padding: 15px;
+}
+
+.nav_register_link {
+  color: $color4;
+  padding: 15px;
 }
