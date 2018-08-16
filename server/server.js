@@ -95,6 +95,7 @@ app.get('/api/logout', (req, res) => {
 
 // Profile Endpoints
 app.get('/api/userinfo', uc.read);
+app.get('/api/session', uc.getUserSession)
 
 // Tool Endpoints
 app.get('/api/tools', tc.select_all_tools);

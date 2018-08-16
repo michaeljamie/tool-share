@@ -10,4 +10,10 @@ module.exports = {
         .catch(console.log)
     },
 
+
+    getUserSession: (req, res) => {
+        res.status(200).send(req.session);
+        console.log(req.session)
+    },
+
 }
