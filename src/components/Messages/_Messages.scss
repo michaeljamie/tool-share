@@ -1,0 +1,84 @@
+.Messages {
+    min-height: 72vh;
+    width: 100%;
+    height: auto;
+    background-color: $color2;
+    color: $color1
+}
+
+.Messages_header {
+    height: 10vh;
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Message_list {
+    height: 62vh;
+    width: 100%;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.Message_list::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+
+.Message_list::-webkit-scrollbar-thumb {
+    background: $color4; 
+    border-radius: 10px;
+}
+
+.individual_message {
+    height: 15vh;
+    width: 95%;
+    background-color: whitesmoke;
+    border: 1px solid $color1;
+    margin: 2.5vw;
+    box-shadow: 3px 3px 5px $color4;
+    @include flexSetUp(space-around, center, row)
+}
+
+.messages_profile_icon {
+    height: 75px;
+    width: 75px;
+    border-radius: 37.5px;
+}
+
+.messages_name {
+    font-size: 24px;
+}
+
+.messages_time {
+    align-self: flex-start;
+    padding: 15px;
+}
+
+#profile-menu-show {
+    height: 18vh;
+    width: 40%;
+    border-radius: 20px;
+    background-color: $color1;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    top: 7vh;
+    right: 5vw;
+}
+
+#profile-menu-disable {
+    display: none;
+}
+
+.nav-profile-links {
+    width: 100%;
+    text-decoration: none;
+    list-style-type: none;
+    font-size: 25px;
+    color: $color5;
+    margin: 5px;
+}

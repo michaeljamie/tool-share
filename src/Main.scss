@@ -20,8 +20,6 @@ $font1: 'Montserrat', sans-serif;
   flex-direction: $direction
 }
 
-
-
 //implementation
 
 // .flex {
@@ -35,7 +33,6 @@ $font1: 'Montserrat', sans-serif;
 //   @include width-height(120px, 120px);
 //   background: $primary-color;
 // }
-
 
 
 @import "components/FAQ/_FAQ.scss";
@@ -53,6 +50,7 @@ $font1: 'Montserrat', sans-serif;
 @import "components/Messages/_Messages.scss";
 @import "components/Chat/Chatbox/_Chatbox.scss";
 @import "components/ProfileToolCard/_ProfileToolCard.scss";
+@import "components/PostTool/_PostTool.scss";
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
