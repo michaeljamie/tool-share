@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 class Messages extends Component {
 
+
     render() {
         return (
             <div className="Messages">

@@ -32,7 +32,8 @@ CREATE TABLE tools (
     tool_img VARCHAR (250),
     tool_price INT,
     renter_id INT REFERENCES users(userID),
-    deposit MONEY
+    deposit MONEY,
+    currently_available BOOLEAN
 );
 
 CREATE TABLE messages (
