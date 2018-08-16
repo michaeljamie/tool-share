@@ -13,7 +13,7 @@ export default (
         <Route component={ToolSearch} path="/search" />
         <Route component={Profile} path="/profile" />
         <Route component={FAQ} path="/faq" />
-        <Route component={Chat} path="/messages" />
+        <Route component={Chat} path="/chat" />
         <Route component={Toolview} path="/toolview/:id" />
     </Switch>
 )
