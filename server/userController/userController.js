@@ -11,8 +11,8 @@ module.exports = {
     },
     update: (req, res) => {
         const {id} = req.params;
-        const {latlong} = req.body;
-        req.app.get('db').update_user_latlong([id, latlong])
+        const {lat, long} = req.body;
+        req.app.get('db').update_user_latlong([id, lat, long])
         .then( response => {
             res.status(200)
         })
