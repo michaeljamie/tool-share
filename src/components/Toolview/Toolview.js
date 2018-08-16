@@ -8,56 +8,114 @@ import axios from 'axios';
 const {REACT_APP_GOOGLE_API_KEY} = process.env
 
 class Toolview extends Component {
-    constructor(){
-        super()
+    constructor(props) {
+        super(props);
+        this.state ={
+            owner_name: '',
+            owner_id: 0,
+            owner_pic: '',
+            owner_rating: '',
+            tool_id: 0,
+            tool_name: '',
+            tool_type: '',
+            tool_descript: '',
+            times_rented: 0,
+            tool_condition: '',
+            for_rent: false,
+            for_sale: false,
+            delivery: false,
+            pick_up: false,
+            power_tool: false,
+            requires_fuel: false,
+            fuel_type: '',
+            tool_img: '',
+            tool_price: 0,
+        };
+    };
+
+    componentDidMount() {
+        this.getToolAndOwner();
+    };
+
+    getToolAndOwner() {
+        axios.get(`/api/tool/${this.props.match.params.id}`).then( tool => {
+            this.setState({
+                owner_name: tool.data.fullname,
+                owner_pic: tool.data.profile_pic,
+                owner_id: tool.data.tool_owner,
+                tool_id: tool.data.tool_id,
+                tool_name: tool.data.tool_name,
+                tool_type: tool.data.tool_type,
+                tool_descript: tool.data.tool_descript,
+                times_rented: tool.data.times_rented,
+                tool_condition: tool.data.tool_condition,
+                for_rent: tool.data.for_rent,
+                for_sale: tool.data.for_sale,
+                delivery: tool.data.delivery,
+                pick_up: tool.data.pick_up,
+                power_tool: tool.data.power_tool,
+                requires_fuel: tool.data.requires_fuel,
+                fuel_type: tool.data.fuel_type,
+                tool_img: tool.data.tool_img,
+                tool_price: tool.data.tool_price,
+            });
+        });
+    };
+
+    initMap = () => {
+        return({
+            zoom: 4,
+            center: {lat: 37.090, lng: -95.712},
+            mapTypeId: 'terrain'
+        })
     }
 
-    render(){
-        
+    render() {
+        console.log(this.state)
+        console.log(this.props.match.params.id)
         let map = 
-        <Iframe url={`https://www.google.com/maps/embed/v1/place?key=${REACT_APP_GOOGLE_API_KEY}
-        &q=Space+Needle,Seattle+WA`}
-                width="300px"
-                height="300px"
-                id="myId"
-                className="toolview-map"
-                display="initial"
-                position="relative"
-                allowFullScreen
-                />
+        <Iframe url={`https://www.google.com/maps/embed/v1/place?key=${REACT_APP_GOOGLE_API_KEY}&q=near+95366&center=37.749009,-121.125773&zoom=15`}
+            zoom="100"
+            width="300px"
+            height="300px"
+            id="myId"
+            className="toolview-map"
+            display="initial"
+            position="relative"
+            allowFullScreen
+        />
 
         return(
             <div>
-               <div className = "toolview-top">
+                <div className = "toolview-top">
+                    <div className = "toolview-top-title">{`${this.state.tool_name}`}</div>
                     <div className = "toolview-pic"> 
-                        <img src="http://cdn1.grizzly.com/pics/jpeg500/g/g0623x-cd1bd439c663c63024eab578fbad1295.jpg" alt="table saw"/>
+                        <img src={this.state.tool_img} alt="table saw"/>
                     </div>
                     
-                    <div className = "toolview-topright">
-                        <div className = "toolview-price">
-                            Price: $10/day
-                        </div>
-                        <div className = "toolview-calendar">
-                            <Calendar/>
-                        </div>
-                        <div>
+                
+                        <div className = "toolview-price-rent">
+                            <div>Price: ${this.state.tool_price}/day</div>
                             <button>Rent</button>
                         </div>
-                    </div>
+                        <div className = "toolview-calendar">
+                            Rental Dates
+                            <Calendar/>
+                        </div>
                 </div>
                 <div className = "toolview-description">
-                    Tool description
+                    <div>{this.state.tool_descript}</div>
                 </div>
                 <div className = "toolview-lower">
                     <div className = "toolview-lister">
-                       <Lister/>
+                        <Lister name={this.state.owner_name} pic={this.state.owner_pic}/>
                     </div>
                     <div className = "toolview-additional">
                         <div>
-                        Deposit: $100
+                        Deposit: {this.state.tool_condition}
                         </div>
                         <div>
-                        Condition:
+                        Condition: {this.state.tool_condition}
                         </div>
                         <div>
                         Additional:
@@ -67,7 +125,7 @@ class Toolview extends Component {
                     <div className = "toolview-map">
                         {map}
                     </div>
-               
+                
                 <div className = "toolview-bottom">
                     Other Listings:  
                     <div className = "toolview-other">
@@ -77,8 +135,8 @@ class Toolview extends Component {
                     </div>
                 </div>
             </div>
-        )
-    }
-}
+        );
+    };
+};
 
 export default Toolview;
