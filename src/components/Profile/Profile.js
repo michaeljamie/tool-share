@@ -23,19 +23,12 @@ class Profile extends Component {
     };
   }
 
-  componentDidMount = async () => {
+  componentDidMount() {
     this.getLocation();
-  }
-
-  componentDidUpdate(prevProps) {
-    let { userid } = this.props.users;
-    if (userid && !this.state.gotRentedTools) {
-      axios.get(`/api/usersRentedTools/${userid}`).then(res => {
-        console.log("response:", res.data);
-        this.setState({ rentedTools: res.data , gotRentedTools: true});
-        console.log("rented tools:", this.state.rentedTools);
-      });
-    }
+    axios.get(`/api/usersRentedTools/${this.props.match.params.userid}`).then(res => {
+      this.setState({ rentedTools: res.data , gotRentedTools: true});
+      console.log("rented tools:", this.state.rentedTools);
+    });
   }
 
   onSwipeLeft() {
@@ -76,6 +69,11 @@ class Profile extends Component {
       listerrating,
       renterrating
     } = this.props.users;
+    let displayedRentedTools = this.state.rentedTools.map(tool => {
+      return (
+        <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price}/>
+      )
+    })
     return (
       <div>
         <div className="profile-page">
@@ -110,10 +108,7 @@ class Profile extends Component {
                   className="profile-toolsContainer"
                   style={{ position: "relative", left: this.state.toolStyle }}
                 >
-                  <div className="profile-tool" />
-                  <div className="profile-tool" />
-                  <div className="profile-tool" />
-                  <div className="profile-tool" />
+                  {displayedRentedTools}
                 </div>
               </div>
             </Swipeable>
