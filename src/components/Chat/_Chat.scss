@@ -22,27 +22,28 @@
     width: 85%;
     margin-top: 5px;
     @include flexSetUp(space-around, center, row);
+    text-align: center;
 }
 
-::-webkit-scrollbar {
+.chat-messages::-webkit-scrollbar {
     width: 10px;
 }
  
 
-::-webkit-scrollbar-track {
+.chat-messages::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
  
 
-::-webkit-scrollbar-thumb {
+.chat-messages::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    background: $color2; 
+    background: $color5; 
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
-::-webkit-scrollbar-thumb:window-inactive {
+.chat-messages::-webkit-scrollbar-thumb:window-inactive {
 	background: $color2; 
 }
 
