@@ -16,6 +16,14 @@
     cursor: pointer;
 }
 
+.home-headbutt {
+    width: 100%;
+    height: 20vh;
+    @include flexSetUp(center, center, column);
+}
+
+
+
 .home-main {
     text-align: center;
 }
@@ -79,21 +87,108 @@
     margin: 0;
 }
 
+%test {
+    position: absolute;
+      content: '';
+      transition: all .25s;
+  }
+  
+  .home-mainButton {
+      margin-top: 10px;
+      border: none;
+      position: relative;
+      display: inline-block; 
+      padding: 20px 20px;
+      color: white;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      vertical-align: middle;
+      font-family: 'Rubik One', sans-serif;
+      text-decoration: none;
+      font-size: 3vw;
+      transition: all .25s;
+      background-color: #fdd947;
+  
+      &::before {
+      @extend %test;
+          bottom: -15px;
+          height: 15px;
+          width: 100%;
+          left: 8px;
+          transform: skewX(45deg);
+          background-color: darken(#fdd947, 20%);
+      }
+  
+      &::after {
+          @extend %test;
+          right: -15px;
+          height: 100%;
+          width: 15px;
+          bottom: -8px;
+          transform: skewY(45deg);
+          background-color: darken(#fdd947, 30%);
+      }
+  
+      &:active {
+          margin-left: 10px;
+          margin-top: 10px;
+          &::before {
+              bottom: -5px;
+              height: 5px;
+              left: 3px;
+          }
+          
+      &::after {
+              right: -5px;
+              width: 5px;
+              bottom: -3px;
+          }	
+      }
+  }
+
+  #second {
+      position: static;
+      top: 60%;
+      left: 60%
+  }
+
 .home-steps {
     @include flexSetUp(space-around, center, column);
-    height: 80vh;
+    height: 400vh;
     width: 100%;
-    background: $color2;
+    background: linear-gradient(to top, $color2, $color1);
     margin: 0;
 }
 
 .steps-text {
-    color: $color1;
-    font-size: 20px;
+    color: $color3;
+    font-size: 30px;
+}
+
+.steps-icon {
+    height: 60px;
+}
+
+.home-dude {
+    height: 300px;
+    margin: 0;
+}
+
+.home-car {
+    height: 300px;
+    margin: 0;
+    animation: floatcar 3.5s ease-in-out infinite;
+}
+
+.home-lady {
+    height: 250px;
+    margin: 0;
 }
 
 .steps-section {
     @include flexSetUp(space-around, center, row);
+    width: 90%;
     
 }
 
@@ -131,6 +226,8 @@
     width: 80%;
     @include flexSetUp(flex-start, center, row);
 }
+
+
 
 .home-iconBox {
     height: 50px;
@@ -177,5 +274,20 @@
     100% {
       box-shadow: rgba(0,0,0,0.6);
       transform: translatey(0px);
+    }
+  }
+
+  @keyframes floatcar {
+    0% {
+      box-shadow: rgba(0,0,0,0.6);
+      transform: translatex(25px);
+    }
+    50% {
+      box-shadow:  rgba(0,0,0,0.2);
+      transform: translatex(-25px);
+    }
+    100% {
+      box-shadow: rgba(0,0,0,0.6);
+      transform: translatex(25px);
     }
   }

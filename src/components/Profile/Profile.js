@@ -43,22 +43,23 @@ class Profile extends Component {
     return this.state.toolStyle.toString();
   }
 
+  showPosition = position => {
+    console.log(position)
+    let lat = position.coords.latitude
+    let long = position.coords.longitude
+    let {userid} = this.props.users
+    console.log(userid)
+    axios.post(`api/updateUser/${userid}`, {lat, long}).then(res=>{
+      console.log('posted')
+    })
+  }
+
   getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.showPosition);
     } else {
       return "Geolocation is not supported by this browser";
     }
-  };
-
-  showPosition = position => {
-    console.log(position);
-    let latlong = position.coords.latitude + "," + position.coords.longitude;
-    let { userid } = this.props.users;
-    console.log(userid);
-    axios.post(`api/updateUser/${userid}`, { latlong }).then(res => {
-      console.log("posted");
-    });
   };
 
   render() {
