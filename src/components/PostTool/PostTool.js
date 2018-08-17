@@ -6,12 +6,20 @@ import {connect} from "react-redux";
 class PostTool extends Component {
     constructor(props) {
         super(props);
+        this.postNewTool = this.postNewTool.bind(this);
         this.state ={
+            name:'asdfa'
         };
     };
 
-
-
+    postNewTool() {
+        const {name} = this.state
+        let data = name
+        console.log(data)
+        // axios.post(`/api/post/tool`).then( (res) => {
+        //     console.log(res)
+        // })
+    }
 
     render() {
         return(
@@ -50,6 +58,7 @@ class PostTool extends Component {
                 <div>Tool IMG: <input type='text' className='posttool-input'/></div>
                 <div>Price: <input type='number' className='posttool-input'/></div>
                 <div>Deposit: <input type='number' className='posttool-input'/></div>
+                <button onClick={this.postNewTool}>Post Tool</button>
             </div>
         );
     };

@@ -78,7 +78,7 @@ showPosition= position =>{
     console.log(this.props.users);
 
     // var {userName, profilePic, bio, listerRating, renterRating, rentedTools} = this.state;
-    var {
+    const {
       bio,
       fullname,
       profile_pic,

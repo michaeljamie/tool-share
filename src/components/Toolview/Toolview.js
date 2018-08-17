@@ -92,7 +92,7 @@ class Toolview extends Component {
                 <Link to='/search'><button className='toolview-back-button'>Back to Results</button></Link>
                 <div className = "toolview-top">
                 {editButton}
-                    <div className = "toolview-top-title">{`${this.state.tool_name}`}</div>
+                    <h1 className = "toolview-top-title">{`${this.state.tool_name}`}</h1>
                     <div className = "toolview-pic"> 
                         <img src={this.state.tool_img} alt="table saw"/>
                     </div>
