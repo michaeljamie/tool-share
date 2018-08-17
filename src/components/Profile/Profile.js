@@ -37,6 +37,7 @@ class Profile extends Component {
     };
   }
   componentDidMount(){
+    this.getLocation()
     this.onSwipeLeft = function(){
       this.setState({toolStyle: this.state.toolStyle-=370})
       console.log(this.state.toolStyle)
@@ -51,6 +52,26 @@ class Profile extends Component {
 
   onSwipeLeft() {}
 
+getLocation = () => {
+  if (navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(this.showPosition)
+  } else {
+    return "Geolocation is not supported by this browser"
+  }
+}
+
+showPosition= position =>{
+  console.log(position)
+  let latlong = position.coords.latitude + "," + position.coords.longitude
+  let {userid} = this.props.users
+  console.log(userid)
+  axios.post(`api/updateUser/${userid}`, {latlong}).then(res=>{
+    console.log('posted')
+  })
+}
+
+
+   
   onSwipeRight() {}
 
   render() {

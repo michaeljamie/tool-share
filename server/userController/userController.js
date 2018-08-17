@@ -9,5 +9,19 @@ module.exports = {
         })
         .catch(console.log)
     },
+    
+    update: (req, res) => {
+        const {id} = req.params;
+        const {latlong} = req.body;
+        req.app.get('db').update_user_latlong([id, latlong])
+        .then( response => {
+            res.status(200)
+        })
+    },
+
+    getUserSession: (req, res) => {
+        res.status(200).send(req.session);
+        console.log(req.session)
+    },
 
 }
