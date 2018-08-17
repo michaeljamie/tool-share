@@ -62,10 +62,11 @@ getLocation = () => {
 
 showPosition= position =>{
   console.log(position)
-  let latlong = position.coords.latitude + "," + position.coords.longitude
+  let lat = position.coords.latitude
+  let long = position.coords.longitude
   let {userid} = this.props.users
   console.log(userid)
-  axios.post(`api/updateUser/${userid}`, {latlong}).then(res=>{
+  axios.post(`api/updateUser/${userid}`, {lat, long}).then(res=>{
     console.log('posted')
   })
 }

@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import 'https://fonts.googleapis.com/css?family=Rubik+One';
 
 $color1: #252525;
-$color2: #d5d5d3;
+$color2: #979797;
 $color3: #ffffff;
 $color4: #444444;
 $color5: #fdd947;
@@ -49,7 +50,9 @@ $font1: 'Montserrat', sans-serif;
 @import "components/Chat/_Chat.scss";
 @import "components/Messages/_Messages.scss";
 @import "components/Chat/Chatbox/_Chatbox.scss";
+@import "components/Home/HomeButton/_Button.scss";
 @import "components/PostTool/_PostTool.scss";
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
