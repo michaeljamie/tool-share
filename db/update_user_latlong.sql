@@ -1,1 +1,1 @@
-UPDATE users SET latlong = $2 WHERE userid = $1;
+UPDATE users SET latitude = $2, longitude = $3 WHERE userid = $1;
