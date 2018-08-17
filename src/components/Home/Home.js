@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from './HomeButton/Button';
 import whiteCard from './../../assets/whiteCard.png';
 import whiteClipboard from './../../assets/whiteClipboard.png';
 import whiteShield from './../../assets/whiteShield.png';
@@ -8,7 +9,15 @@ import ex2 from './../../assets/ex2.jpg';
 import ex3 from './../../assets/ex3.jpg';
 import ex4 from './../../assets/ex4.jpg';
 import whiteArrow from './../../assets/whiteArrow.png';
-import whiteHammer from './../../assets/whiteHammer.png';
+import arrowleft from './../../assets/arrowleft.png';
+import arrowright from './../../assets/arrowright.png';
+import dude from './../../assets/dude.png';
+import dude1 from './../../assets/dude1.png';
+import lady from './../../assets/lady.png';
+import construction from './../../assets/construction.png';
+import hammertime from './../../assets/hammertime.png';
+import car from './../../assets/car.png';
+import ladderguy from './../../assets/ladderguy.png';
 
 export default class Home extends Component {
     constructor(){
@@ -45,8 +54,11 @@ export default class Home extends Component {
 
                     </div>
                     
-                    <div>
-                        <Link to= '/search'><button className= 'home-button'>Find Tools Now</button></Link>
+                    <div className = 'home-headbutt'>
+                    {/* <Button/> */}
+                    
+                        <Link to= '/search'><button className= 'home-mainButton'>Find Tools</button></Link>
+                    
                     </div>
                     <div className='home-icons'>
                         {/* <img src={whiteHammer} alt="" className = 'home-icon1'/> */}
@@ -56,7 +68,7 @@ export default class Home extends Component {
                 <div className = 'home-searchBar'>
                     <input type="text" placeholder ='Zip Code'/>
                     <input type="text" placeholder ='ex. Hammer Drill, Jack Hammer, Plate Compactor, etc'/>
-                    <button className= 'home-button'>Search Your Area</button>
+                    <button className= 'home-mainButton' id='second'>Search Your Area</button>
                     <div className='home-exampleCard'>
                         <img src={ex1} className='home-examplePic' alt=""/>
                         <div className='home-exampleRight'>
@@ -86,16 +98,30 @@ export default class Home extends Component {
                 <div className = 'home-steps'>
                     <h1 className = 'steps-text'>HERE'S HOW IT WORKS:</h1>
                     <div className = 'steps-section'>
+                        <img src={dude} className = 'home-dude' alt=""/>
+                        <img src={lady} className = 'home-lady' alt=""/>
+                        
 
+
+                        {/* <img src={arrowleft} className = 'steps-icon' alt=""/> */}
                     </div>
                     <div className = 'steps-section'>
-
+                        <img src={car} className = 'home-car' alt=""/>
                     </div>
                     <div className = 'steps-section'>
-
+                        <img src={construction} className = 'home-dude' alt=""/>
+                    </div>
+            
+                    <div className = 'steps-section'>
+                        <img src={dude1} className = 'home-lady' alt=""/>
+                        
                     </div>
                     <div className = 'steps-section'>
-
+                        <img src={ladderguy} className = 'home-lady' alt=""/>
+                        
+                    </div>
+                    <div className = 'steps-section'>
+                        <img src={hammertime} className = 'home-dude' alt=""/>
                     </div>
 
                 </div>

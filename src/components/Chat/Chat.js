@@ -34,7 +34,8 @@ class Chat extends Component {
             userid: this.props.user.userid,
             message: this.refs.message.value,
             profile_pic: this.props.user.profile_pic,
-            username: this.props.user.username
+            username: this.props.user.username,
+            date: new Date()
         }
         console.log(obj)
         socket.emit('message sent', obj)
@@ -66,7 +67,8 @@ class Chat extends Component {
                 message = {e.message}
                 messageUserpic = {e.profile_pic}
                 messageUsername = {e.username}
-                currentUser={this.props.user.userid}
+                date = {e.date}
+                currentUser={this.props.user.username}
                 username={this.props.user.username}
                 userpic={this.props.user.profile_pic}
                 />
