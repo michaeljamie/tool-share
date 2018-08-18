@@ -10,7 +10,8 @@ CREATE TABLE users (
 	bio VARCHAR(200),
 	listerRating DECIMAL(3, 2),
 	renterRating DECIMAL(3, 2),
-    latLong VARCHAR(100)
+    latitude VARCHAR(50),
+    longitude VARCHAR(50)
 );
 
 CREATE TABLE tools (
