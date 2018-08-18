@@ -35,7 +35,6 @@ class Chat extends Component {
             message: this.refs.message.value,
             profile_pic: this.props.user.profile_pic,
             username: this.props.user.username,
-            date: new Date()
         }
         console.log(obj)
         socket.emit('message sent', obj)

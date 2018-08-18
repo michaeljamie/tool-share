@@ -7,6 +7,7 @@ const axios = require('axios');
 const socket = require('socket.io');
 const uc = require('./userController/userController');
 const tc = require('./toolController/toolController');
+const mc = require('./messageController/messageController');
 
 let {
   REACT_APP_CLIENT_ID,
@@ -22,10 +23,17 @@ const app = express()
     , io = socket(app.listen(SERVER_PORT, () => console.log(`Till ${SERVER_PORT}, I got your back, we can do this! - Childish Gambino`)))
 
     io.on('connection', socket => {
-        console.log('User Connected');
+      socket.on('join room', data => {
+        socket.join(data.room)
+      })
+       console.log('User Connected');
     
     socket.on('message sent', data => {
       console.log(data);
+      let { userid, message, profile_pic, username } = data
+      let date = new Date()
+      const db = app.get('db')
+      db.submit_message([])
       io.emit('message dispatched', data)
     })
 
@@ -106,6 +114,9 @@ app.post('/api/updateUser/:id', uc.update);
 // Tool Endpoints
 app.get('/api/tools', tc.select_all_tools);
 app.get('/api/tool/:id', tc.select_tool_and_owner);
+
+// Message Enpoints
+app.put('/api/room', mc.create)
 
 
 
