@@ -6,7 +6,13 @@ import Iframe from 'react-iframe';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
+<<<<<<< HEAD
 import ToolSearchCard from "./../../components/ToolSearchCard/ToolSearchCard";
+=======
+import io from 'socket.io-client';
+
+const socket = io(`http://localhost:3005`)
+>>>>>>> master
 
 const {REACT_APP_GOOGLE_API_KEY} = process.env
 
@@ -95,6 +101,31 @@ class Toolview extends Component {
         })
     }
 
+<<<<<<< HEAD
+=======
+    latlongToZip = (lat, long) => {
+        // console.log(lat)
+        axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`)
+        .then(res=>{
+            let zip =res.data.postalCodes[0].postalCode
+        })
+    }
+
+    joinRoom = () => {
+        let room
+        if(+this.props.user.userid > +this.state.owner_id) {
+            room = `user${this.props.user.userid}chattingwith${this.state.owner_id}`
+        }
+        else {
+            room = `user${this.state.owner_id}chattingwith${this.props.user.userid}`
+        }
+        axios.put('/api/room', { room: room, sender_id: this.props.user.userid, receiver_id: this.state.owner_id })
+        socket.emit('join room', {
+            room
+        })
+    }
+
+>>>>>>> master
     render() {
         console.log(this.props)
         let map = 
@@ -146,6 +177,9 @@ class Toolview extends Component {
                         Additional:
                    
                         </div> 
+                        <button onClick={ () => this.joinRoom() }>
+                            Message
+                        </button>
                     </div>
                 </div>
                     <div className = "toolview-map">
