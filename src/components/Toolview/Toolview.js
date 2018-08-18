@@ -6,15 +6,10 @@ import Iframe from 'react-iframe';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
-<<<<<<< HEAD
-import ToolSearchCard from "./../../components/ToolSearchCard/ToolSearchCard";
-=======
 import io from 'socket.io-client';
+import Map from './../../components/Map/Map';
 
 const socket = io(`http://localhost:3005`)
->>>>>>> master
-
-const {REACT_APP_GOOGLE_API_KEY} = process.env
 
 class Toolview extends Component {
     constructor(props) {
@@ -52,64 +47,30 @@ class Toolview extends Component {
 
     getToolAndOwner() {
         axios.get(`/api/tool/${this.props.match.params.id}`).then( tool => {
-            let lat = tool.data.latitude
-            let long = tool.data.longitude
-          
-            axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`)
-            .then(res=>{
-                console.log(res)
-                if(lat && long){
-                    this.setState({
-                        owner_city: res.data.postalCodes[0].placeName,
-                        owner_state: res.data.postalCodes[0].adminCode1,
-                    })
-                }
-                
-                this.setState({
-                   
-                    owner_name: tool.data.fullname,
-                    owner_pic: tool.data.profile_pic,
-                    owner_id: tool.data.tool_owner,
-                    owner_lat: tool.data.latitude,
-                    owner_long: tool.data.longitude,
-                    tool_id: tool.data.tool_id,
-                    tool_name: tool.data.tool_name,
-                    tool_type: tool.data.tool_type,
-                    tool_descript: tool.data.tool_descript,
-                    times_rented: tool.data.times_rented,
-                    tool_condition: tool.data.tool_condition,
-                    for_rent: tool.data.for_rent,
-                    for_sale: tool.data.for_sale,
-                    delivery: tool.data.delivery,
-                    pick_up: tool.data.pick_up,
-                    power_tool: tool.data.power_tool,
-                    requires_fuel: tool.data.requires_fuel,
-                    fuel_type: tool.data.fuel_type,
-                    tool_img: tool.data.tool_img,
-                    tool_price: tool.data.tool_price,
-                });
-            })
-            
+            this.setState({
+                owner_name: tool.data.fullname,
+                owner_pic: tool.data.profile_pic,
+                owner_id: tool.data.tool_owner,
+                owner_lat: tool.data.latitude,
+                owner_long: tool.data.longitude,
+                tool_id: tool.data.tool_id,
+                tool_name: tool.data.tool_name,
+                tool_type: tool.data.tool_type,
+                tool_descript: tool.data.tool_descript,
+                times_rented: tool.data.times_rented,
+                tool_condition: tool.data.tool_condition,
+                for_rent: tool.data.for_rent,
+                for_sale: tool.data.for_sale,
+                delivery: tool.data.delivery,
+                pick_up: tool.data.pick_up,
+                power_tool: tool.data.power_tool,
+                requires_fuel: tool.data.requires_fuel,
+                fuel_type: tool.data.fuel_type,
+                tool_img: tool.data.tool_img,
+                tool_price: tool.data.tool_price,
+            });
         });
     };
-
-    initMap = () => {
-        return({
-            zoom: 4,
-            center: {lat: 37.090, lng: -95.712},
-            mapTypeId: 'terrain'
-        })
-    }
-
-<<<<<<< HEAD
-=======
-    latlongToZip = (lat, long) => {
-        // console.log(lat)
-        axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`)
-        .then(res=>{
-            let zip =res.data.postalCodes[0].postalCode
-        })
-    }
 
     joinRoom = () => {
         let room
@@ -125,20 +86,7 @@ class Toolview extends Component {
         })
     }
 
->>>>>>> master
     render() {
-        console.log(this.props)
-        let map = 
-        <Iframe url={`https://www.google.com/maps/embed/v1/place?key=${REACT_APP_GOOGLE_API_KEY}&q=near+${this.state.owner_city},${this.state.owner_state}&center=${this.state.owner_lat},${this.state.owner_long}&zoom=15`}
-            zoom="100"
-            width="300px"
-            height="300px"
-            id="myId"
-            className="toolview-map"
-            display="initial"
-            position="relative"
-            allowFullScreen
-        />
         let editButton = this.state.owner_id === this.props.user.userid ? <button className='toolview-edit-button'>edit</button> : null
 
         return(
@@ -183,7 +131,8 @@ class Toolview extends Component {
                     </div>
                 </div>
                     <div className = "toolview-map">
-                        {map}
+                        {/* {map} */}
+                        <Map id={this.props.match.params.id}/>
                     </div>
                 
                 <div className = "toolview-bottom">
