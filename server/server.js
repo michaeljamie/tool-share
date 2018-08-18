@@ -16,7 +16,6 @@ let {
   SERVER_PORT,
   SESSION_SECRET,
   CONNECTION_STRING,
-  GOOGLE_API,
 } = process.env
 
 const app = express()
@@ -119,6 +118,7 @@ app.post('/api/updateUser/:id', uc.update);
 app.get('/api/tools', tc.select_all_tools);
 app.get('/api/tool/:id', tc.select_tool_and_owner);
 app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting)
+app.get('/api/usersListedTools/:userid', tc.select_all_tools_user_has_listed)
 
 // Message Enpoints
 app.put('/api/room', mc.create)

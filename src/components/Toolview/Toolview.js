@@ -6,10 +6,14 @@ import Iframe from 'react-iframe';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
+<<<<<<< HEAD
+import ToolSearchCard from "./../../components/ToolSearchCard/ToolSearchCard";
+=======
 import io from 'socket.io-client';
 import { setRoomID } from '../../ducks/reducer'
 
 const socket = io(`http://localhost:3005`)
+>>>>>>> master
 
 const {REACT_APP_GOOGLE_API_KEY} = process.env
 
@@ -23,7 +27,8 @@ class Toolview extends Component {
             owner_rating: '',
             owner_lat: '',
             owner_long: '',
-            owner_zip: null,
+            owner_city: null,
+            owner_state: null,
             tool_id: 0,
             tool_name: '',
             tool_type: '',
@@ -50,11 +55,19 @@ class Toolview extends Component {
         axios.get(`/api/tool/${this.props.match.params.id}`).then( tool => {
             let lat = tool.data.latitude
             let long = tool.data.longitude
+          
             axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`)
             .then(res=>{
                 console.log(res)
+                if(lat && long){
+                    this.setState({
+                        owner_city: res.data.postalCodes[0].placeName,
+                        owner_state: res.data.postalCodes[0].adminCode1,
+                    })
+                }
+                
                 this.setState({
-                    owner_zip: res.data.postalCodes[0].postalCode,
+                   
                     owner_name: tool.data.fullname,
                     owner_pic: tool.data.profile_pic,
                     owner_id: tool.data.tool_owner,
@@ -89,6 +102,8 @@ class Toolview extends Component {
         })
     }
 
+<<<<<<< HEAD
+=======
     latlongToZip = (lat, long) => {
         // console.log(lat)
         axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`)
@@ -109,10 +124,11 @@ class Toolview extends Component {
         this.props.setRoomID(room)
     }
 
+>>>>>>> master
     render() {
         console.log(this.props)
         let map = 
-        <Iframe url={`https://www.google.com/maps/embed/v1/place?key=${REACT_APP_GOOGLE_API_KEY}&q=near+${this.state.owner_zip}&center=${this.state.owner_lat},${this.state.owner_long}&zoom=15`}
+        <Iframe url={`https://www.google.com/maps/embed/v1/place?key=${REACT_APP_GOOGLE_API_KEY}&q=near+${this.state.owner_city},${this.state.owner_state}&center=${this.state.owner_lat},${this.state.owner_long}&zoom=15`}
             zoom="100"
             width="300px"
             height="300px"
@@ -158,6 +174,7 @@ class Toolview extends Component {
                         </div>
                         <div>
                         Additional:
+                   
                         </div> 
                         <Link to="/chat"><button onClick={ () => this.joinRoom() }>
                             Message

@@ -22,5 +22,14 @@ module.exports = {
         .then(tools => {
             res.status(200).send(tools)
         })
+    },
+
+    select_all_tools_user_has_listed: (req, res) => {
+        const {userid} = req.params;
+        req.app.get('db').select_all_tools_user_has_listed([userid])
+        .then(tools => {
+            res.status(200).send(tools)
+        })
     }
+    
 }
