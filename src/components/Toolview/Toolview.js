@@ -6,14 +6,11 @@ import Iframe from 'react-iframe';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-<<<<<<< HEAD
 import ToolSearchCard from "./../../components/ToolSearchCard/ToolSearchCard";
-=======
 import io from 'socket.io-client';
 import { setRoomID } from '../../ducks/reducer'
 
 const socket = io(`http://localhost:3005`)
->>>>>>> master
 
 const {REACT_APP_GOOGLE_API_KEY} = process.env
 
@@ -102,8 +99,6 @@ class Toolview extends Component {
         })
     }
 
-<<<<<<< HEAD
-=======
     latlongToZip = (lat, long) => {
         // console.log(lat)
         axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`)
@@ -124,7 +119,6 @@ class Toolview extends Component {
         this.props.setRoomID(room)
     }
 
->>>>>>> master
     render() {
         console.log(this.props)
         let map = 

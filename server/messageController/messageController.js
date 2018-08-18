@@ -6,5 +6,13 @@ module.exports = {
             res.sendStatus(200)
         })
         .catch(console.log)
+    },
+    read: ( req, res ) => {
+        let { userid } = req.params
+        req.app.get('db').get_messages([ userid ])
+        .then( result => {
+            res.send(result)
+        })
+        .catch(console.log)
     }
 }
