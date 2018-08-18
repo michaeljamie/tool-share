@@ -1,3 +1,16 @@
-.posttool-input {
+.post-tool-input {
     border: solid 1px black;
+}
+
+.post-tool-body {
+    height: 100vh;
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.post-tool-button {
+    background-color: #fdd947;
 }

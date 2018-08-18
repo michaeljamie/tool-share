@@ -16,4 +16,42 @@ module.exports = {
         .catch(err => console.log(err))
     },
 
+    post_tool: (req, res, next) => {
+       const {
+            name,
+            type,
+            description,
+            condition,
+            for_rent,
+            for_sale,
+            delivery_avail,
+            pickup_avail,
+            power_tool,
+            requires_fuel,
+            fuel_type,
+            tool_img,
+            priceInt,
+            depositInt
+        } = req.body
+        req.app.get('db').post_tool([
+            name,
+            type,
+            description,
+            condition,
+            for_rent,
+            for_sale,
+            delivery_avail,
+            pickup_avail,
+            power_tool,
+            requires_fuel,
+            fuel_type,
+            tool_img,
+            priceInt,
+            depositInt
+        ])
+          .then( () => { res.status(200).send('Tool Posted') 
+        })
+        .catch(err => console.log(err))
+    },
+
 }

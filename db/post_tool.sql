@@ -1,0 +1,29 @@
+INSERT INTO tools (
+    PROP_NAME,
+    PROP_DESCRIPT,
+    PROP_ADDRESS,
+    PROP_CITY,
+    PROP_STATE,
+    PROP_ZIP,
+    IMG_URL,
+    LOAN_AMT,
+    MORTGAGE_AMT,
+    RENT,
+    USERID
+)
+VALUES (
+    $1,
+    $2,
+    $3,
+    $4,
+    $5,
+    $6,
+    $7,
+    $8,
+    $9,
+    $10,
+    $11,
+    $12,
+    $13,
+    $14
+);
