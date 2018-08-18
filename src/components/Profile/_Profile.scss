@@ -38,7 +38,7 @@
   text-align: center;
   height: 10vh;
   margin-top: 12px;
-  background: black;
+  background: $color1;
   border-top: 5px solid $color4;
   border-radius: 25px 25px 0 0;
 }
@@ -48,7 +48,7 @@
   color: $color5
 }
 .profile-toolsOuterContainer {
-  background: darkgrey;
+  background: linear-gradient($color5, black 100%);
   overflow: hidden;
 }
 .profile-toolsContainer {

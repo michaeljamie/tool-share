@@ -16,4 +16,11 @@ module.exports = {
         .catch(err => console.log(err))
     },
 
+    select_all_tools_user_is_renting: (req, res) => {
+        const {userid} = req.params;
+        req.app.get('db').select_all_tools_user_is_renting([userid])
+        .then(tools => {
+            res.status(200).send(tools)
+        })
+    }
 }

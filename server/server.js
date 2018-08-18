@@ -75,11 +75,11 @@ app.get('/auth/callback', async (req, res) => {
   let userExists = await db.find_user([sub]);
   if (userExists[0]) {
     req.session.user = userExists[0];
-    res.redirect(`${process.env.FRONTEND_DOMAIN}/#/profile`);
+    res.redirect(`${process.env.FRONTEND_DOMAIN}/#/profile/${req.session.user.userid}`);
   } else {
     db.create_user([sub, name, picture]).then(createdUser => {
       req.session.user = createdUser[0];
-      res.redirect(`${process.env.FRONTEND_DOMAIN}/#/profile`);
+      res.redirect(`${process.env.FRONTEND_DOMAIN}/#/profile/${req.session.user.userid}`);
     });
   };
 });
@@ -106,6 +106,7 @@ app.post('/api/updateUser/:id', uc.update);
 // Tool Endpoints
 app.get('/api/tools', tc.select_all_tools);
 app.get('/api/tool/:id', tc.select_tool_and_owner);
+app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting)
 
 
 

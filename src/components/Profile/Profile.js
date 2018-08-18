@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import profilePic from "../../assets/defaultProfilePic.png";
 import StarRating from "../StarRating/StarRating";
+import ProfileToolCard from "../ProfileToolCard/ProfileToolCard";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Swipeable } from "react-touch";
+import { getUserInfo } from './../../ducks/reducer';
 
 class Profile extends Component {
   constructor() {
@@ -14,71 +16,53 @@ class Profile extends Component {
       bio: "This will be where the bio goes.",
       listerRating: 3,
       renterRating: 4,
-      rentedTools: [
-        {
-          title: "Hammer",
-          img: "something"
-        },
-        {
-          title: "Drill",
-          img: "something"
-        },
-        {
-          title: "Wrench",
-          img: "something"
-        },
-        {
-          title: "Ladder",
-          img: "something"
-        }
-      ],
+      rentedTools: [],
       toolsForRent: [],
-      toolStyle: 0
+      toolStyle: 0,
+      gotRentedTools: false
     };
   }
-  componentDidMount(){
-    this.getLocation()
-    this.onSwipeLeft = function(){
-      this.setState({toolStyle: this.state.toolStyle-=370})
-      console.log(this.state.toolStyle)
-      return this.state.toolStyle.toString();
-    }
-    this.onSwipeRight = function(){
-      this.setState({toolStyle: this.state.toolStyle+=370})
-      console.log(this.state.toolStyle)
-      return this.state.toolStyle.toString();
-    }
+
+  componentDidMount() {
+    this.getLocation();
+    axios.get(`/api/usersRentedTools/${this.props.match.params.userid}`).then(res => {
+      this.setState({ rentedTools: res.data , gotRentedTools: true});
+      console.log("rented tools:", this.state.rentedTools);
+    });
   }
 
-  onSwipeLeft() {}
-
-getLocation = () => {
-  if (navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(this.showPosition)
-  } else {
-    return "Geolocation is not supported by this browser"
+  onSwipeLeft() {
+    this.setState({ toolStyle: (this.state.toolStyle -= 370) });
+    console.log(this.state.toolStyle);
+    return this.state.toolStyle.toString();
   }
-}
 
-showPosition= position =>{
-  console.log(position)
-  let lat = position.coords.latitude
-  let long = position.coords.longitude
-  let {userid} = this.props.users
-  console.log(userid)
-  axios.post(`api/updateUser/${userid}`, {lat, long}).then(res=>{
-    console.log('posted')
-  })
-}
+  onSwipeRight() {
+    this.setState({ toolStyle: (this.state.toolStyle += 370) });
+    console.log(this.state.toolStyle);
+    return this.state.toolStyle.toString();
+  }
 
+  showPosition = position => {
+    console.log(position)
+    let lat = position.coords.latitude
+    let long = position.coords.longitude
+    let {userid} = this.props.users
+    console.log(userid)
+    axios.post(`api/updateUser/${userid}`, {lat, long}).then(res=>{
+      console.log('posted')
+    })
+  }
 
-   
-  onSwipeRight() {}
+  getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+    } else {
+      return "Geolocation is not supported by this browser";
+    }
+  };
 
   render() {
-    console.log(this.props.users);
-
-    // var {userName, profilePic, bio, listerRating, renterRating, rentedTools} = this.state;
     var {
       bio,
       fullname,
@@ -86,6 +70,11 @@ showPosition= position =>{
       listerrating,
       renterrating
     } = this.props.users;
+    let displayedRentedTools = this.state.rentedTools.map(tool => {
+      return (
+        <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price}/>
+      )
+    })
     return (
       <div>
         <div className="profile-page">
@@ -110,16 +99,17 @@ showPosition= position =>{
             <div className="profile-toolsHeader">
               <span>Currently Rented Tools</span>
             </div>
-            <Swipeable 
+            <Swipeable
               onSwipeLeft={() => this.onSwipeLeft()}
               onSwipeRight={() => this.onSwipeRight()}
             >
-              <div className='profile-toolsOuterContainer'>
-                <div id="move_this" className="profile-toolsContainer" style={{position:"relative", left: this.state.toolStyle}}>
-                  <div className="profile-tool" />
-                  <div className="profile-tool" />
-                  <div className="profile-tool" />
-                  <div className="profile-tool" />
+              <div className="profile-toolsOuterContainer">
+                <div
+                  id="move_this"
+                  className="profile-toolsContainer"
+                  style={{ position: "relative", left: this.state.toolStyle }}
+                >
+                  {displayedRentedTools}
                 </div>
               </div>
             </Swipeable>
@@ -133,7 +123,7 @@ showPosition= position =>{
                 <option value="LeastToMost">Least to Most Rented</option>
               </select>
             </div>
-            <div className='profile-toolsOuterContainer'>
+            <div className="profile-toolsOuterContainer">
               <div className="profile-toolsContainer">
                 <div className="profile-tool" />
                 <div className="profile-tool" />
@@ -154,4 +144,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(
+  mapStateToProps,
+  { getUserInfo }
+)(Profile);
