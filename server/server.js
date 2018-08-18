@@ -23,18 +23,22 @@ const app = express()
     , io = socket(app.listen(SERVER_PORT, () => console.log(`Till ${SERVER_PORT}, I got your back, we can do this! - Childish Gambino`)))
 
     io.on('connection', socket => {
-      socket.on('join room', data => {
-        socket.join(data.room)
-      })
-       console.log('User Connected');
+      console.log('User Connected');
     
     socket.on('message sent', data => {
       console.log(data);
-      let { userid, message, profile_pic, username } = data
+      let { userid, message, profile_pic, username, current_room } = data
       let date = new Date()
+      const response ={
+        userid,
+        message,
+        profile_pic,
+        username,
+        date
+      }
       const db = app.get('db')
-      db.submit_message([])
-      io.emit('message dispatched', data)
+      db.submit_message([current_room, message, date])
+      io.emit(`message dispatched-${current_room}`, response)
     })
 
     socket.on('disconnect', () => {
@@ -118,9 +122,3 @@ app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting)
 
 // Message Enpoints
 app.put('/api/room', mc.create)
-
-
-
-
-
-

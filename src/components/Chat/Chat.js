@@ -17,7 +17,7 @@ class Chat extends Component {
     }
 
     componentDidMount = () => {
-        socket.on('message dispatched', data => {
+        socket.on(`message dispatched-${this.props.current_room}`, data => {
             console.log('frontend receiving data =', data)
             const messages = [ ...this.state.messages, data]
             this.setState({messages})
@@ -35,6 +35,7 @@ class Chat extends Component {
             message: this.refs.message.value,
             profile_pic: this.props.user.profile_pic,
             username: this.props.user.username,
+            current_room: this.props.current_room
         }
         console.log(obj)
         socket.emit('message sent', obj)
@@ -94,7 +95,8 @@ class Chat extends Component {
 
 function mapStateToProps(state){
     return {
-        user: state.user
+        user: state.user,
+        current_room: state.current_room
     }
 }
 
