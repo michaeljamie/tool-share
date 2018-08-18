@@ -19,16 +19,19 @@ class Profile extends Component {
       rentedTools: [],
       listedTools: [],
       rentedToolsStyle: 0,
-      listedToolsStyle: 0,
-      gotRentedTools: false
+      listedToolsStyle: 0
     };
   }
 
   componentDidMount() {
     this.getLocation();
     axios.get(`/api/usersRentedTools/${this.props.match.params.userid}`).then(res => {
-      this.setState({ rentedTools: res.data , gotRentedTools: true});
+      this.setState({ rentedTools: res.data });
       console.log("rented tools:", this.state.rentedTools);
+    });
+    axios.get(`/api/usersListedTools/${this.props.match.params.userid}`).then(res => {
+      this.setState({ listedTools: res.data });
+      console.log("listed tools:", this.state.listedTools);
     });
   }
 
@@ -140,7 +143,6 @@ class Profile extends Component {
                 <option value="LeastToMost">Least to Most Rented</option>
               </select>
             </div>
-            <div className="profile-toolsOuterContainer">
               <Swipeable
               onSwipeLeft={() => this.listedSwipeLeft()}
               onSwipeRight={() => this.listedSwipeRight()}
@@ -150,11 +152,10 @@ class Profile extends Component {
                   className="profile-toolsContainer"
                   style={{ position: "relative", left: this.state.listedToolsStyle }}
                 >
-                  {displayedRentedTools}
+                  {displayedListedTools}
                 </div>
               </div>
             </Swipeable>
-            </div>
           </div>
         </div>
       </div>
