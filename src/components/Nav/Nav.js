@@ -67,7 +67,7 @@ class Nav extends Component {
                 { this.props.users.username ? <img onClick={this.updateProfileNav} className="nav_profile_icon" src={this.props.users.profile_pic} alt="profile icon"/> : <h3 onClick={this.login} className="nav_register_link">Login</h3> }
 
                 <ul id={ this.state.showProfileNav ? "profile-menu-show" : "profile-menu-disable" }>
-                    <Link to="/profile" className="nav-profile-links" ><li onClick={ this.updateProfileNav }>Profile</li></Link>
+                    <Link to={`/profile/${this.props.users.userid}`} className="nav-profile-links" ><li onClick={ this.updateProfileNav }>Profile</li></Link>
                     <Link to="/" className="nav-profile-links" ><li onClick={ this.logout }>Logout</li></Link>
                 </ul>
             </div>            
