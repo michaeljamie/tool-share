@@ -6,6 +6,7 @@ import Iframe from 'react-iframe';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
+import ToolSearchCard from "./../../components/ToolSearchCard/ToolSearchCard";
 
 const {REACT_APP_GOOGLE_API_KEY} = process.env
 
@@ -19,7 +20,8 @@ class Toolview extends Component {
             owner_rating: '',
             owner_lat: '',
             owner_long: '',
-            owner_zip: null,
+            owner_city: null,
+            owner_state: null,
             tool_id: 0,
             tool_name: '',
             tool_type: '',
@@ -50,7 +52,8 @@ class Toolview extends Component {
             .then(res=>{
                 console.log(res)
                 this.setState({
-                    owner_zip: res.data.postalCodes[0].postalCode,
+                    owner_city: res.data.postalCodes[0].placeName,
+                    owner_state: res.data.postalCodes[0].adminCode1,
                     owner_name: tool.data.fullname,
                     owner_pic: tool.data.profile_pic,
                     owner_id: tool.data.tool_owner,
@@ -85,18 +88,10 @@ class Toolview extends Component {
         })
     }
 
-    latlongToZip = (lat, long) => {
-        // console.log(lat)
-        axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`)
-        .then(res=>{
-            let zip =res.data.postalCodes[0].postalCode
-        })
-    }
-
     render() {
         console.log(this.props)
         let map = 
-        <Iframe url={`https://www.google.com/maps/embed/v1/place?key=${REACT_APP_GOOGLE_API_KEY}&q=near+${this.state.owner_zip}&center=${this.state.owner_lat},${this.state.owner_long}&zoom=15`}
+        <Iframe url={`https://www.google.com/maps/embed/v1/place?key=${REACT_APP_GOOGLE_API_KEY}&q=near+${this.state.owner_city},${this.state.owner_state}&center=${this.state.owner_lat},${this.state.owner_long}&zoom=15`}
             zoom="100"
             width="300px"
             height="300px"
@@ -152,7 +147,7 @@ class Toolview extends Component {
                 <div className = "toolview-bottom">
                     Other Listings:  
                     <div className = "toolview-other">
-                        <div></div>
+                        <div><ToolSearchCard/></div>
                         <div></div>
                         <div></div>  
                     </div>
