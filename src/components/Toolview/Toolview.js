@@ -48,12 +48,19 @@ class Toolview extends Component {
         axios.get(`/api/tool/${this.props.match.params.id}`).then( tool => {
             let lat = tool.data.latitude
             let long = tool.data.longitude
+          
             axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`)
             .then(res=>{
                 console.log(res)
+                if(lat && long){
+                    this.setState({
+                        owner_city: res.data.postalCodes[0].placeName,
+                        owner_state: res.data.postalCodes[0].adminCode1,
+                    })
+                }
+                
                 this.setState({
-                    owner_city: res.data.postalCodes[0].placeName,
-                    owner_state: res.data.postalCodes[0].adminCode1,
+                   
                     owner_name: tool.data.fullname,
                     owner_pic: tool.data.profile_pic,
                     owner_id: tool.data.tool_owner,
@@ -137,6 +144,7 @@ class Toolview extends Component {
                         </div>
                         <div>
                         Additional:
+                   
                         </div> 
                     </div>
                 </div>
@@ -147,7 +155,7 @@ class Toolview extends Component {
                 <div className = "toolview-bottom">
                     Other Listings:  
                     <div className = "toolview-other">
-                        <div><ToolSearchCard/></div>
+                        <div></div>
                         <div></div>
                         <div></div>  
                     </div>
