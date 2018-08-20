@@ -23,4 +23,11 @@ module.exports = {
         })
         .catch(console.log)
     },
+    read: (req, res ) => {
+        
+        req.app.get('db').get_messages([]).then(messages => { res.status(200).send(messages) 
+        })
+        .catch(err => console.log(err))
+    }
+
 }

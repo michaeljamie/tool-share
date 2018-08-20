@@ -128,3 +128,5 @@ app.get('/api/usersListedTools/:userid', tc.select_all_tools_user_has_listed)
 app.put('/api/room', mc.create)
 app.get('/api/sendermessages/:id', mc.read_sender)
 app.get('/api/receivermessages/:id', mc.read_receiver)
+app.get('/api/messages', mc.read)
+
