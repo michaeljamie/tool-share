@@ -15,7 +15,7 @@ export default (
         <Route component={ToolSearch} path="/search" />
         <Route component={Profile} path="/profile/:userid" />
         <Route component={FAQ} path="/faq" />
-        <Route component={Chat} path="/chat" />
+        <Route component={Chat} path="/chat/:messageid" />
         <Route component={Toolview} path="/toolview/:id" />
         <Route component={Messages} path="/messages" />
         <Route component={PostTool} path="/post" />

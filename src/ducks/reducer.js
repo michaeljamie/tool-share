@@ -8,6 +8,7 @@ const initialState = {
     search_sale_option: false,
     search_max_price: 0,
     search_max_distance: 0,
+    current_room: '',
 };
 
 const USER_DATA = 'USER_DATA';
@@ -19,7 +20,15 @@ const SEARCH_RENT_OPTION = 'SEARCH_RENT_OPTION';
 const SEARCH_SALE_OPTION = 'SEARCH_SALE_OPTION';
 const SEARCH_MAX_PRICE = 'SEARCH_MAX_PRICE';
 const SEARCH_MAX_DISTANCE= 'SEARCH_MAX_DISTANCE';
+const SET_ROOM_ID = 'SET_ROOM_ID';
 
+
+export function setRoomID (room) {
+    return {
+        type: SET_ROOM_ID,
+        payload: room
+    }
+}
 
 export function getUserInfo (user) {
     return {
@@ -112,6 +121,9 @@ export default function reducer (state=initialState, action){
 
         case SEARCH_MAX_DISTANCE:
         return Object.assign({}, state, {search_max_distance: action.payload})
+
+        case SET_ROOM_ID:
+        return Object.assign({}, state, {current_room: action.payload})
         
         default: return state;
     };
