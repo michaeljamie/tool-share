@@ -6,6 +6,8 @@
     justify-content: flex-start;
     align-items: center;
     margin: none;
+    // background-image: url('assets/woodbackground.jpeg');
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('assets/woodbackground.jpeg');
 }
 
 .search-bar {
@@ -59,12 +61,14 @@
     justify-content: space-evenly;
     align-items: center;
     border: none;
+    color: white;
 }
 
 .search-criteria-select {
     height: 40%;
     width: 80%;
     border: 1px solid black;
+    
 }
 
 .search-filter-box {
@@ -74,6 +78,7 @@
     justify-content: flex-start;
     align-items: center;
     border: black 1px solid;
+    background: white;
 }
 
 .search-filter-button {

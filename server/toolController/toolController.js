@@ -8,6 +8,14 @@ module.exports = {
         .catch(err => console.log(err))
     },
 
+    select_tool_by_tags: (req, res) => {
+       const {tag} = req.query;
+        req.app.get('db').select_tool_by_tags([tag])
+        .then( tools => {
+            res.status(200).send(tools)
+        })
+    },
+
     select_tool_and_owner: (req, res, next) => {
         const {id} = req.params;
         req.app.get('db').select_tool_and_owner([id])
