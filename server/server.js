@@ -122,4 +122,5 @@ app.get('/api/usersListedTools/:userid', tc.select_all_tools_user_has_listed)
 
 // Message Enpoints
 app.put('/api/room', mc.create)
-app.get('/api/messages/:id', mc.read)
+app.get('/api/sendermessages/:id', mc.read_sender)
+app.get('/api/receivermessages/:id', mc.read_receiver)

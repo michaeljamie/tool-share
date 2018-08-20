@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from "react-redux";
+import { getUserInfo } from './../../ducks/reducer';
+import { promises } from 'fs';
+import { Link } from 'react-router-dom'
 
 class Messages extends Component {
     constructor() {
@@ -12,19 +15,36 @@ class Messages extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/api/messages/${this.props.users.userid}`).then(res => {
-            this.setState({messages: res.data})
+        let messagesArr = []
+        axios.get('/api/user-data').then(res=>{
+            this.props.getUserInfo(res.data) 
+        })
+        Promise.all([
+            axios.get(`/api/sendermessages/${this.props.users.userid}`).then(res => {
+                for (let i = 0; i < res.data.length; i++) {
+                    messagesArr.push(res.data[i])
+                }
+            }),
+            axios.get(`/api/receivermessages/${this.props.users.userid}`).then(res => {
+                for (let i = 0; i < res.data.length; i++) {
+                    messagesArr.push(res.data[i])
+                }
+            })
+        ]).then(() => {
+            this.setState({messages: messagesArr})
         })
     }
 
     render() {
         let messagesToDisplay = this.state.messages.map((e, i) => {
             return (
-                <div className="individual_message">
-                    <img className="messages_profile_icon" src="https://pbs.twimg.com/profile_images/633817680286384128/TMHEs83b.jpg" alt="he-man"/>
-                    <div className="messages_name">He Man</div>
-                    <div className="messages_time">2:34 p.m.</div>
+                <Link to={`/chat/${e.message_id}`}>
+                <div key={e.fullname + i} className="individual_message">
+                    <img className="messages_profile_icon" src={e.profile_pic} alt="profile_pic"/>
+                    <div className="messages_name">{e.fullname}</div>
+                    <div className="messages_time">2:23 p.m.</div>
                 </div>
+                </Link>
             )
         })
         return (
@@ -44,4 +64,4 @@ function mapStateToProps(state) {
     };
   }
   
-  export default connect(mapStateToProps)(Messages);
+  export default connect(mapStateToProps, {getUserInfo})(Messages);
