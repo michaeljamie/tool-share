@@ -6,10 +6,13 @@ import Iframe from 'react-iframe';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
+import ToolSearchCard from "./../../components/ToolSearchCard/ToolSearchCard";
 import io from 'socket.io-client';
 import Map from './../../components/Map/Map';
 
 const socket = io(`http://localhost:3005`)
+
+const {REACT_APP_GOOGLE_API_KEY} = process.env
 
 class Toolview extends Component {
     constructor(props) {
@@ -71,6 +74,22 @@ class Toolview extends Component {
             });
         });
     };
+
+    initMap = () => {
+        return({
+            zoom: 4,
+            center: {lat: 37.090, lng: -95.712},
+            mapTypeId: 'terrain'
+        })
+    }
+
+    latlongToZip = (lat, long) => {
+        // console.log(lat)
+        axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`)
+        .then(res=>{
+            let zip =res.data.postalCodes[0].postalCode
+        })
+    }
 
     joinRoom = () => {
         let room
