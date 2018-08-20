@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Lister from './../Lister/Lister';
 import Calendar from './Calendar';
 import 'react-dates/lib/css/_datepicker.css';
-import Iframe from 'react-iframe';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import ToolSearchCard from "./../../components/ToolSearchCard/ToolSearchCard";
 import io from 'socket.io-client';
+import { setRoomID } from '../../ducks/reducer'
 import Map from './../../components/Map/Map';
 
 const socket = io(`http://localhost:3005`)
@@ -100,9 +100,7 @@ class Toolview extends Component {
             room = `user${this.state.owner_id}chattingwith${this.props.user.userid}`
         }
         axios.put('/api/room', { room: room, sender_id: this.props.user.userid, receiver_id: this.state.owner_id })
-        socket.emit('join room', {
-            room
-        })
+        this.props.setRoomID(room)
     }
 
     render() {
@@ -113,7 +111,7 @@ class Toolview extends Component {
                 <Link to='/search'><button className='toolview-back-button'>Back to Results</button></Link>
                 <div className = "toolview-top">
                 {editButton}
-                    <div className = "toolview-top-title">{`${this.state.tool_name}`}</div>
+                    <h1 className = "toolview-top-title">{`${this.state.tool_name}`}</h1>
                     <div className = "toolview-pic"> 
                         <img src={this.state.tool_img} alt="table saw"/>
                     </div>
@@ -144,13 +142,12 @@ class Toolview extends Component {
                         Additional:
                    
                         </div> 
-                        <button onClick={ () => this.joinRoom() }>
+                        <Link to="/chat"><button onClick={ () => this.joinRoom() }>
                             Message
-                        </button>
+                        </button></Link>
                     </div>
                 </div>
                     <div className = "toolview-map">
-                        {/* {map} */}
                         <Map id={this.props.match.params.id}/>
                     </div>
                 
@@ -173,4 +170,4 @@ function mapStateToProps(state) {
     };
   }
   
-  export default connect(mapStateToProps)(Toolview);
+  export default connect(mapStateToProps, { setRoomID })(Toolview);
