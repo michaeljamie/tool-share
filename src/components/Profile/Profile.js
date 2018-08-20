@@ -126,15 +126,19 @@ class Profile extends Component {
     let listedToolCounter = 0
     let listTools = numOfListPages.map((page,i) => {
       listedPageCounter += 1;
-      <div className='profile-toolsContainer'>
+      return (
+        <div className='profile-toolsContainer'>
         {this.state.listedTools.forEach((tool,i) => {
-          listedPageCounter += 1;
+          listedToolCounter += 1
           return (
             <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price}/>
           )
         })}
       </div>
+      )
     })
+
+    console.log('displayed:',displayedListedTools)
 
     // let displayedListedToolsPages = 
 

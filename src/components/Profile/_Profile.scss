@@ -26,6 +26,7 @@
   min-height: 12vh;
   width: 91vw;
   word-wrap: break-word;
+  border-radius: 8px;
 }
 .profile-buttons {
   display: flex;
@@ -61,7 +62,7 @@
 }
 .profile-toolsContainer {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   justify-content: space-around;
   align-content: space-around;
   height: 37vh;
