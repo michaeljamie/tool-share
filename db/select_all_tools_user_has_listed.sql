@@ -1,2 +1,2 @@
-select * from tools
-where tool_owner = $1
+SELECT * FROM tools
+WHERE tool_owner = $1

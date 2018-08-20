@@ -1,2 +1,2 @@
-select * from tools
-where renter_id = $1
+SELECT * FROM tools
+WHERE renter_id = $1

@@ -1,0 +1,36 @@
+.profileEdit-page {
+  height: 68.6vh;
+  padding: 3vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.profileEdit-nameContainer {
+  margin-top: 6vh;
+}
+.profileEdit-fullName {
+  border: 1px solid black;
+}
+.profileEdit-bioContainer {
+  margin-top: 6vh;
+}
+.profileEdit-bio {
+  border: 1px solid black;
+}
+.profileEdit-emailContainer {
+  margin-top: 6vh;
+}
+.profileEdit-email {
+  border: 1px solid black;
+}
+.profileEdit-phoneContainer {
+  margin-top: 6vh;
+}
+.profileEdit-phone {
+  border: 1px solid black;
+}
+.profileEdit-confirm {
+  border: 1px solid black;
+  margin-top: 6vh;
+  background-color: $color5;
+}
