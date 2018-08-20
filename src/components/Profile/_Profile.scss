@@ -5,34 +5,43 @@
 .profile-userInfo {
   position: relative;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between
+  flex-direction: column;
+  align-items: center;
 }
 .profile-userPic {
-  border: 1px solid black;
-  height: 19vh;
-  width: 19vh;
-}
-.profile-bio {
-  border: 1px solid black;
-  background: lightgrey;
-  height: 19vh;
-  width: 56vw;
+  border-radius: 50%;
+  border: 3px solid $color5;
+  height:23vh;
+  width: 23vh;
 }
 .profile-userName {
+  margin-top: 8px;
   font-size: 20px;
 }
-.profile-edit {
-  position: absolute;
-  bottom: 1px;
-  right: 1px;
+.profile-bio {
+  position: relative;
+  padding: 5px;
+  margin: 10px;
+  background: lightgrey;
+  min-height: 12vh;
+  width: 91vw;
+  word-wrap: break-word;
+  border-radius: 8px;
+}
+.profile-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 70vw;
+}
+.profile-buttons button {
   font-size: 16px;
+  background: $color5;
 }
 .profile-ratingsContainer {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 .profile-toolsHeader {
   text-align: center;
@@ -53,7 +62,7 @@
 }
 .profile-toolsContainer {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   justify-content: space-around;
   align-content: space-around;
   height: 37vh;
