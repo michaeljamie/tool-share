@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Lister from './../Lister/Lister';
 import Calendar from './Calendar';
 import 'react-dates/lib/css/_datepicker.css';
-import Iframe from 'react-iframe';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
@@ -112,7 +111,7 @@ class Toolview extends Component {
                 <Link to='/search'><button className='toolview-back-button'>Back to Results</button></Link>
                 <div className = "toolview-top">
                 {editButton}
-                    <div className = "toolview-top-title">{`${this.state.tool_name}`}</div>
+                    <h1 className = "toolview-top-title">{`${this.state.tool_name}`}</h1>
                     <div className = "toolview-pic"> 
                         <img src={this.state.tool_img} alt="table saw"/>
                     </div>
@@ -149,7 +148,6 @@ class Toolview extends Component {
                     </div>
                 </div>
                     <div className = "toolview-map">
-                        {/* {map} */}
                         <Map id={this.props.match.params.id}/>
                     </div>
                 
