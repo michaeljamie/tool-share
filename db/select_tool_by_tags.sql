@@ -1,0 +1,1 @@
+select * from tags join tools on tags.tool_id = tools.tool_id where tags.tag = $1;
