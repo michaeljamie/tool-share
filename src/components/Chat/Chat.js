@@ -3,6 +3,7 @@ import io from 'socket.io-client';
 import Chatbox from './Chatbox/Chatbox';
 import whiteMessage from './../../assets/whiteMessage.png';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 const socket = io(`http://localhost:3005`)
 
@@ -17,6 +18,9 @@ class Chat extends Component {
     }
 
     componentDidMount = () => {
+        axios.get(`/api/messages`).then(res => {
+
+        })
         socket.on('message dispatched', data => {
             console.log('frontend receiving data =', data)
             const messages = [ ...this.state.messages, data]

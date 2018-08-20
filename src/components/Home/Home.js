@@ -57,7 +57,7 @@ export default class Home extends Component {
                     <div className = 'home-headbutt'>
                     {/* <Button/> */}
                     
-                        <Link to= '/search'><button className= 'home-mainButton'>Find Tools</button></Link>
+                        <Link to= '/search' className = 'home-Link'><a href="#" className='btn btn-sm animated-button gibson-two'>Find Tools</a></Link>
                     
                     </div>
                     <div className='home-icons'>
@@ -68,29 +68,45 @@ export default class Home extends Component {
                 <div className = 'home-searchBar'>
                     <input type="text" placeholder ='Zip Code'/>
                     <input type="text" placeholder ='ex. Hammer Drill, Jack Hammer, Plate Compactor, etc'/>
-                    <button className= 'home-mainButton' id='second'>Search Your Area</button>
+                    <a  href="#" className= 'btn btn-sm animated-button gibson-two'>Search Your Area</a>
                     <div className='home-exampleCard'>
                         <img src={ex1} className='home-examplePic' alt=""/>
                         <div className='home-exampleRight'>
-                            <h3>$25/Day</h3>
+                            <div className='home-titleBox'>
+                                <h3 className='home-exampleTitle'>$25/Day</h3>
+                            </div>                      
+                            <p className='home-tool1'>Lawnmower</p>
+                            <p className='home-tool'>Honda</p>
                         </div>
                     </div>
                     <div className='home-exampleCard'>
                         <img src={ex2} className='home-examplePic' alt=""/>
                         <div className='home-exampleRight'>
-                            <h3>$38/Day</h3>
+                            <div className='home-titleBox'>
+                                <h3 className='home-exampleTitle'>$38/Day</h3>
+                            </div>
+                            <p className='home-tool1'>Power Auger</p>
+                            <p className='home-tool'>Southland</p>
                         </div>
                     </div>
                     <div className='home-exampleCard'>
                         <img src={ex3} className='home-examplePic' alt=""/>
                         <div className='home-exampleRight'>
-                            <h3>$20/Day</h3>
+                            <div className='home-titleBox'>
+                                <h3 className='home-exampleTitle'>$20/Day</h3>
+                            </div>
+                            <p className='home-tool1'>Chainsaw</p>
+                            <p className='home-tool'>Homelite</p>
                         </div>
                     </div>
                     <div className='home-exampleCard'>
                         <img src={ex4} className='home-examplePic' alt=""/>
                         <div className='home-exampleRight'>
-                            <h3>$7/Day</h3>
+                            <div className='home-titleBox'>
+                                <h3 className='home-exampleTitle'>$7/Day</h3>
+                            </div>
+                            <p className='home-tool1'>Power Drill</p>
+                            <p className='home-tool'>Craftsman</p>
                         </div>
                     </div>
 
@@ -99,7 +115,7 @@ export default class Home extends Component {
                     <h1 className = 'steps-text'>HERE'S HOW IT WORKS:</h1>
                     <div className = 'steps-section'>
                         <img src={dude} className = 'home-dude' alt=""/>
-                        <img src={lady} className = 'home-lady' alt=""/>
+
                         
 
 
@@ -127,43 +143,70 @@ export default class Home extends Component {
                 </div>
                 <div className = 'home-signup'>
                     <h3 className='home-signupText'>Ready to begin?</h3>
-                    <button  className= 'home-button' onClick={this.login}>SIGN-UP NOW</button>
+                    <a href="#" className= 'btn btn-sm animated-button gibson-two' onClick={this.login}>SIGN-UP NOW</a>
 
                 </div>
                 <div className = 'home-safe'>
                     <h1 className = 'home-safeText'>WE'VE GOT YOU COVERED</h1>
                     <div className = 'home-mid'>
-                        <div className = 'home-iconBox'>
-                            <img src={whiteCard} className = 'home-icon' alt=""/>
-             
-                            
+                        <div className = 'home-iconRight'>
+                            <div className = 'home-iconBox'>
+                                <img src={whiteCard} className = 'home-icon' alt=""/>
+                            </div>
+                        <h3 className = 'home-iconTitle'>SAFE PAYMENT</h3>
                         </div>
-                        <h3>SAFE PAYMENT</h3>
+                        <div>
+                        
+                        <p className = 'home-iconText'>We've fully integrated Stripe to handle payments securely and safely.  We submit a pre-authorization hold for the rental amount plus a security deposit at the start of the rental.  The funds are settled for the rental cost once the tool is returned.</p>
+                        </div>
                     </div>
                     <div className = 'home-mid'>
-                        <div className = 'home-iconBox'>
-                            <img src={whiteClipboard} className = 'home-icon' alt=""/>
-                            
+                        <div className = 'home-iconRight'>
+                            <div className = 'home-iconBox'>
+                                <img src={whiteClipboard} className = 'home-icon' alt=""/>
+                            </div>
+                        <h3 className = 'home-iconTitle'>USER AGREEMENT</h3>
                         </div>
-                        <h3>USER AGREEMENT</h3>
+                        <div>
+                        
+                        <p className = 'home-iconText'>We have contracts necessary to provide accountability from both parties for each and every rental.  Feel free to read our <a href="" className = 'home-rentalLink'>Rental Agreement</a> for more details.</p>
+                        </div>
                     </div>
                     <div className = 'home-mid'>
-                        <div className = 'home-iconBox'>
-                            <img src={whiteShield} className = 'home-icon' alt=""/>
-                            
+                        <div className = 'home-iconRight'>
+                            <div className = 'home-iconBox'>
+                                <img src={whiteShield} className = 'home-icon' alt=""/>
+                            </div>
+                        <h3 className = 'home-iconTitle'>100% SECURE</h3>
                         </div>
-                        <h3>100% SECURE</h3>
+                        <div>
+                        
+                        <p className = 'home-iconText'>We handle your payment, and we don't give out any of your information until the rental exchange has been scheduled.  You decide what information you would like to share.  You can message the buyer or seller directly and can arrange a meeting wherever you choose.</p>
+                        </div>
                     </div>
+
 
                 </div>
                 <div className ='home-contact'>
                     <h3 className ='home-contactText'>CONTACT US:</h3>
-                    <input type="text" placeholder="Name"/>
-                    <input type="text" placeholder="Email"/>
-                    <input type="text" placeholder="Phone Number"/>
-                    <textarea name="Question" id="" cols="30" rows="10" placeholder="Message"></textarea>
-                    <button className= 'home-button'>Submit</button>
-
+                    <div className='home-contactDiv'>
+                        <p className = 'home-inputText'>Name</p>
+                        <input className = 'home-input1' type="text" />
+                    </div>
+                    <div className='home-contactDiv'>
+                        <p className = 'home-inputText'>Email</p>
+                        <input className = 'home-input1' type="text" />
+                    </div>
+                    <div className='home-contactDiv'>
+                        <p className = 'home-inputText'>Phone Number</p>
+                        <input className = 'home-input1' type="text" />
+                    </div>
+                    <div className='home-contactDiv'>
+                        <p className = 'home-inputText'>Message</p>
+                        <input className = 'home-input1' type="text" />
+                    </div>
+                    <a href="#" className= 'btn btn-sm animated-button gibson-two'>Submit</a>
+                    
                 </div>
                 
             </div>
