@@ -49,8 +49,8 @@ export default class Home extends Component {
             <div className='home-main'>
                 <div className='home-header'>
                     <div className='home-headerText'>
-                        <h1>RENT TOOLS</h1>
-                        <h2>FROM YOUR NEIGHBOR</h2>
+                        <h1 className='home-header-1'>RENT TOOLS</h1>
+                        <h2 className='home-header-2'>FROM YOUR NEIGHBOR'S GARAGE</h2>
 
                     </div>
                     
@@ -66,8 +66,17 @@ export default class Home extends Component {
                     </div>
                 </div>
                 <div className = 'home-searchBar'>
-                    <input type="text" placeholder ='Zip Code'/>
-                    <input type="text" placeholder ='ex. Hammer Drill, Jack Hammer, Plate Compactor, etc'/>
+                    <h3 className='home-searchTop'>Start Searching:</h3>
+                    <div className='home-contactDiv'>
+                        <p className = 'home-inputText'>Zip Code</p>
+                        <input className = 'home-input1' type="text" />
+                    </div>
+                    <div className='home-contactDiv'>
+                        <p className = 'home-inputText'>Keyword</p>
+                        <input className = 'home-input1' type="text"/>
+                    </div>
+                    {/* <input type="text" placeholder ='Zip Code'/>
+                    <input type="text" placeholder ='ex. Hammer Drill, Jack Hammer, Plate Compactor, etc'/> */}
                     <a  href="#" className= 'btn btn-sm animated-button gibson-two'>Search Your Area</a>
                     <div className='home-exampleCard'>
                         <img src={ex1} className='home-examplePic' alt=""/>

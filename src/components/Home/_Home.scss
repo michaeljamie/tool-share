@@ -42,6 +42,14 @@
     margin: 0;
 }
 
+.home-header-1 {
+    font-size: 40px;
+}
+
+.home-header-2 {
+    font-size: 25px;
+    font-family: $font2;
+}
 .home-icons {
     @include flexSetUp(space-around, center, column);
     animation: float 3.9s ease-in-out infinite;
@@ -61,7 +69,7 @@
 }
 .home-exampleCard {
     @include flexSetUp(space-around, center, row);
-    height: 19%;
+    height: 15%;
     width: 80%;
     background: $color3;
     border-radius: 6px;
@@ -102,10 +110,16 @@
 
 .home-searchBar {
     @include flexSetUp(space-around, center, column);
-    height: 200vh;
+    height: 270vh;
     width: 100%;
     background: $color1;
     margin: 0;
+}
+
+.home-searchTop {
+    color: white;
+    font-size: 35px;
+    margin-bottom: 0px;
 }
 
 .home-Link {
@@ -368,6 +382,7 @@ a.animated-button.gibson-two:hover {
 .home-contactDiv {
     width: 60%;
 }
+
 
 @keyframes float {
     0% {
