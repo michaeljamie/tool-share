@@ -2,22 +2,33 @@ const initialState = {
     user: {},
     search_title: '',
     search_keywords: '',
+    search_tags: '',
     search_pickup_option: '',
     search_rent_option: true,
     search_sale_option: false,
     search_max_price: 0,
     search_max_distance: 0,
+    current_room: '',
 };
 
 const USER_DATA = 'USER_DATA';
 const SEARCH_TITLE = 'SEARCH_TITLE';
 const SEARCH_KEYWORDS = 'SEARCH_KEYWORDS';
+const SEARCH_TAGS = 'SEARCH_TAGS';
 const SEARCH_PICKUP_OPTION = 'SEARCH_PICKUP_OPTION';
 const SEARCH_RENT_OPTION = 'SEARCH_RENT_OPTION';
 const SEARCH_SALE_OPTION = 'SEARCH_SALE_OPTION';
 const SEARCH_MAX_PRICE = 'SEARCH_MAX_PRICE';
 const SEARCH_MAX_DISTANCE= 'SEARCH_MAX_DISTANCE';
+const SET_ROOM_ID = 'SET_ROOM_ID';
 
+
+export function setRoomID (room) {
+    return {
+        type: SET_ROOM_ID,
+        payload: room
+    }
+}
 
 export function getUserInfo (user) {
     return {
@@ -37,6 +48,13 @@ export function handleSearchKeywords (keywords) {
     return {
         type: SEARCH_KEYWORDS,
         payload: keywords
+    };
+};
+
+export function handleSearchTags (tag) {
+    return {
+        type: SEARCH_TAGS,
+        payload: tag
     };
 };
 
@@ -86,6 +104,9 @@ export default function reducer (state=initialState, action){
         case SEARCH_KEYWORDS:
         return Object.assign({}, state, {search_keywords: action.payload})
 
+        case SEARCH_TAGS:
+        return Object.assign({}, state, {search_tags: action.payload})
+
         case SEARCH_PICKUP_OPTION:
         return Object.assign({}, state, {search_pickup_option: action.payload})
 
@@ -100,6 +121,9 @@ export default function reducer (state=initialState, action){
 
         case SEARCH_MAX_DISTANCE:
         return Object.assign({}, state, {search_max_distance: action.payload})
+
+        case SET_ROOM_ID:
+        return Object.assign({}, state, {current_room: action.payload})
         
         default: return state;
     };

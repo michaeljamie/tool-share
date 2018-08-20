@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {
   handleSearchTitle,
   handleSearchKeywords,
+  handleSearchTags,
   handleSearchPickupOption,
   handleSearchRentOption,
   handleSearchSaleOption,
@@ -31,15 +32,25 @@ class ToolSearch extends Component {
   };
 
   handleSearch() {
-    console.log('Searching...')
+    axios.get(`api/tools_by_tag/?tag=${this.props.search_tags}`)
+    .then( res => {
+      this.setState({
+        searchResults: res.data
+      })
+    })
   };
 
   render() {
+    console.log(this.props.search_tags)
+   
+    
     const all_tools_unfiltered = this.state.searchResults.map( (tool) => {
+     
       return (
         <ToolSearchCard key={tool.tool_id} id={tool.tool_id} title={tool.tool_name} price={tool.tool_price} image={tool.tool_img} condition={tool.tool_condition}/>
       );
-    });
+    })
+  
 
     return (
       <div className="tool-search-body">
@@ -54,6 +65,16 @@ class ToolSearch extends Component {
                 <option value="power-tools">Power Tools</option>
                 <option value="gas-tools">Gas Powered</option>
                 <option value="hand-tools">Hand Tools</option>
+              </select>
+            </div>
+            <div className='search-criteria-minor-box'>
+            Tag Search
+              <select className='search-criteria-select' name="searchTags" value={this.props.search_tags} onChange={(e) => this.props.handleSearchTags(e.target.value)}>
+                <option value="drill">Drills</option>
+                <option value="saw">Saws</option>
+                <option value="jackhammer">Jackhammers</option>
+                <option value="sander">Sanders</option>
+                <option value="grinder">Grinders</option>
               </select>
             </div>
             <div className='search-criteria-minor-box'>
@@ -108,6 +129,7 @@ function mapStateToProps(state) {
   return {
     search_title: state.search_title,
     search_keywords: state.search_keywords,
+    search_tags: state.search_tags,
     search_rent_option: state.search_rent_option,
     search_sale_option: state.search_sale_option,
     search_pickup_option: state.search_pickup_option,
@@ -118,7 +140,8 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   handleSearchTitle, 
-  handleSearchKeywords,   
+  handleSearchKeywords,
+  handleSearchTags,   
   handleSearchPickupOption,
   handleSearchRentOption,
   handleSearchSaleOption,
