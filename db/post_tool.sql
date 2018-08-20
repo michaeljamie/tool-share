@@ -1,15 +1,20 @@
 INSERT INTO tools (
-    PROP_NAME,
-    PROP_DESCRIPT,
-    PROP_ADDRESS,
-    PROP_CITY,
-    PROP_STATE,
-    PROP_ZIP,
-    IMG_URL,
-    LOAN_AMT,
-    MORTGAGE_AMT,
-    RENT,
-    USERID
+    tool_owner,
+    tool_name,
+    tool_type,
+    tool_descript,
+    tool_condition,
+    for_rent,
+    for_sale,
+    delivery,
+    pick_up,
+    power_tool,
+    power_type,
+    requires_fuel,
+    fuel_type,
+    tool_img,
+    tool_price,
+    deposit
 )
 VALUES (
     $1,
@@ -25,5 +30,7 @@ VALUES (
     $11,
     $12,
     $13,
-    $14
+    $14,
+    $15,
+    $16
 );

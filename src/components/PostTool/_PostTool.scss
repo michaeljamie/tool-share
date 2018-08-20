@@ -1,9 +1,18 @@
+.post-tool-section {
+    display: flex;    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 .post-tool-input {
     border: solid 1px black;
+    width: 80%;
 }
 
 .post-tool-body {
-    height: 100vh;
+    height: 100%;
     width: 98%;
     display: flex;
     flex-direction: column;
@@ -13,4 +22,12 @@
 
 .post-tool-button {
     background-color: #fdd947;
+    outline: none;
+    border: none;
+    width: 40%;
+    height: 5%;
+    font-size: 100%;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

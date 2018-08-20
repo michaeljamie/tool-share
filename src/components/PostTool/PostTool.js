@@ -22,28 +22,25 @@ class PostTool extends Component {
             pickup_avail: false,
             power_tool: false,
             requires_fuel: false,
-            fuel_type: '',
+            fuel_type: 'None',
             tool_img: '',
             price: 0,
             deposit:  0
         };
     };
 
-    componentDidMount() {
-        axios.get('/api/session').then(res =>
-            res.data.user ?
-            console.log('User on Session')
-            : this.login()
-        );
-    };
+    // componentDidMount() {
+    //     axios.get('/api/session').then(res =>
+    //         res.data.user ?
+    //         console.log('User on Session')
+    //         : this.login()
+    //     );
+    // };
 
-    login = () => {
-        const redirectUri = encodeURIComponent(`${window.origin}/auth/callback`);
-        window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`
-    }
-
-      
-    
+    // login = () => {
+    //     const redirectUri = encodeURIComponent(`${window.origin}/auth/callback`);
+    //     window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`
+    // };
 
     postNewTool() {
         const {
@@ -57,6 +54,7 @@ class PostTool extends Component {
             delivery_avail,
             pickup_avail,
             power_tool,
+            power_type,
             requires_fuel,
             fuel_type,
             tool_img,
@@ -76,17 +74,17 @@ class PostTool extends Component {
             delivery_avail,
             pickup_avail,
             power_tool,
+            power_type,
             requires_fuel,
             fuel_type,
             tool_img,
             priceInt,
             depositInt
         }
-        console.log(tool_data)
         axios.post(`/api/post/tool`, tool_data).then( (res) => {
             console.log(res)
-        })
-    }
+        });
+    };
 
     handleChange(event) {
         this.setState({[event.target.name]: event.target.value});
@@ -94,58 +92,105 @@ class PostTool extends Component {
 
     toogleBoolean(event) {
         this.setState({[event.target.name]: event.target.checked});
-    }
+    };
 
     render() {
-        console.log(this.props.user.userid)
         return(
             <div className='post-tool-body'>
                 <h1>Post New Tool</h1>
-                <div>Name: <input type='text' name='name' className='post-tool-input' onChange={this.handleChange}/></div>
-                <div>Type:               
-                    <select className='post-tool-input' name="type" onChange={this.handleChange}>
-                        <option value="type1">Type1</option>
-                        <option value="type2">Type2</option>
-                        <option value="type3">Type3</option>
+                <div className='post-tool-section'>
+                    <div>Provide brand name and model of tool.</div>
+                    <input type='text' name='name' className='post-tool-input' onChange={this.handleChange}/>
+                </div>
+                <div className='post-tool-section'>
+                    <div>Paste image address here.</div>
+                    <input type='text' className='post-tool-input' name='tool_img' onChange={this.handleChange}/>
+                </div>
+                <div className='post-tool-section'>
+                    <div>In a few words describe the type of tool.</div>               
+                    <input className='post-tool-input' name="type" onChange={this.handleChange}/>
+                </div>
+                <div className='post-tool-section'>
+                    <div>Provide a description of the tool. (Max 200)</div> 
+                    <input type='text' className='post-tool-input' maxLength='200' name="description" onChange={this.handleChange}/>
+                </div>
+                <div className='post-tool-section'>
+                    <div>Select the price per diem for the tool.</div>
+                    <input type='number' className='post-tool-input' name='price' onChange={this.handleChange}/>
+                </div>
+                <div className='post-tool-section'>
+                    <div>Select a deposit amount for the tool.</div>
+                    <input type='number' className='post-tool-input' name='deposit' onChange={this.handleChange}/>
+                </div>
+                <div className='post-tool-section'>
+                    <div>Describe the condition of the tool.</div>
+                    <select className='post-tool-input' name="condition" onChange={this.handleChange}>
+                        <option value="Excellent">Excellent</option>
+                        <option value="Great">Great</option>
+                        <option value="Good">Good</option>
+                        <option value="Fair">Fair</option>
+                        <option value="Poor">Poor</option>
                     </select>
                 </div>
-                <div>Description: <input type='text' className='post-tool-input' name="description" onChange={this.handleChange}/></div>
-                <div>Condition:
-                    <select className='search-criteria-select' name="condition" onChange={this.handleChange}>
-                        <option value="type1">Great</option>
-                        <option value="type2">Good</option>
-                        <option value="type3">Fair</option>
-                        <option value="type3">Poor</option>
-                    </select>
+                <div className='post-tool-section'>
+                    <div>Will this tool be for rent?</div> 
+                    <div>{`Yes `}<input type='checkbox' name='for_rent' onClick={this.toogleBoolean}/></div>
                 </div>
-                <div>For Rent: <input type='checkbox' name='for_rent' onClick={this.toogleBoolean}/></div>
-                <div>For Sale: <input type='checkbox' name='for_sale' onClick={this.toogleBoolean}/></div>
-                <div>Delivery: <input type='checkbox' name='delivery_avail' onClick={this.toogleBoolean}/></div>
-                <div>Pick Up: <input type='checkbox' name='pickup_avail' onClick={this.toogleBoolean}/></div>
-                <div>Power Tool: <input type='checkbox' name='power_tool' onClick={this.toogleBoolean}/></div>
-                <div>Requires Fuel: <input type='checkbox' name='requires_fuel' onClick={this.toogleBoolean}/></div>
-                <div>Fuel Type: 
-                    <select className='search-criteria-select' name="fuel_type" onChange={this.handleChange}>
-                        <option value="type1">Gasoline</option>
-                        <option value="type2">Diesel</option>
-                        <option value="type3">Ethanol</option>
-                    </select>
+                <div className='post-tool-section'>
+                    <div>Will this tool be for sale?</div>
+                    <div>{`Yes `}<input type='checkbox' name='for_sale' onClick={this.toogleBoolean}/></div>
                 </div>
-                <div>Tool IMG: <input type='text' className='post-tool-input' name='tool_img' onChange={this.handleChange}/></div>
-                <div>Price: <input type='number' className='post-tool-input' name='price' onChange={this.handleChange}/></div>
-                <div>Deposit: <input type='number' className='post-tool-input' name='deposit' onChange={this.handleChange}/></div>
+                <div className='post-tool-section'>
+                    <div>Will this tool be available for delivery?</div>
+                    <div>{`Yes `}<input type='checkbox' name='delivery_avail' onClick={this.toogleBoolean}/></div>
+                </div>
+                <div className='post-tool-section'>
+                    <div>Will this tool be available for pick up?</div>
+                    <div>{`Yes `}<input type='checkbox' name='pickup_avail' onClick={this.toogleBoolean}/></div>
+                </div>
+                <div className='post-tool-section'>
+                    <div>Is this a power tool?</div>
+                    <div>{`Yes `}<input type='checkbox' name='power_tool' onClick={this.toogleBoolean}/></div>
+                </div>
+                { 
+                    this.state.power_tool ?
+                    <div className='post-tool-section'>
+                        <div>What type of power?</div> 
+                        <select className='search-criteria-select' name="fuel_type" onChange={this.handleChange}>
+                            <option value="electric">Electric</option>
+                            <option value="pneumatic">Pneumatic</option>
+                        </select>
+                    </div>
+                    :
+                    null
+                }
+                <div className='post-tool-section'>
+                    <div>Does this tool require fuel?</div>
+                    <div>{`Yes `}<input type='checkbox' name='requires_fuel' onClick={this.toogleBoolean}/></div>
+                </div>
+                { 
+                    this.state.requires_fuel ?
+                    <div className='post-tool-section'>
+                        <div>What type of fuel?</div>
+                        <select className='search-criteria-select' name="fuel_type" onChange={this.handleChange}>
+                            <option value="gasoline">Gasoline</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="ethanol">Ethanol</option>
+                        </select>
+                    </div>
+                    :
+                    null
+                }
                 <button className='post-tool-button' onClick={this.postNewTool}>Post Tool</button>
             </div>
         );
     };
 };
-
-
   
 function mapStateToProps(state) {
   return {
     user: state.user
   };
-}
+};
 
 export default connect(mapStateToProps)(PostTool);

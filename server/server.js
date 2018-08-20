@@ -7,6 +7,7 @@ const axios = require('axios');
 const socket = require('socket.io');
 const uc = require('./userController/userController');
 const tc = require('./toolController/toolController');
+const mc = require('./messageController/messageController');
 
 let {
   REACT_APP_CLIENT_ID,
@@ -15,17 +16,23 @@ let {
   SERVER_PORT,
   SESSION_SECRET,
   CONNECTION_STRING,
-  GOOGLE_API,
 } = process.env
 
 const app = express()
     , io = socket(app.listen(SERVER_PORT, () => console.log(`Till ${SERVER_PORT}, I got your back, we can do this! - Childish Gambino`)))
 
     io.on('connection', socket => {
-        console.log('User Connected');
+      socket.on('join room', data => {
+        socket.join(data.room)
+      })
+       console.log('User Connected');
     
     socket.on('message sent', data => {
       console.log(data);
+      let { userid, message, profile_pic, username } = data
+      let date = new Date()
+      const db = app.get('db')
+      db.submit_message([])
       io.emit('message dispatched', data)
     })
 
@@ -75,11 +82,11 @@ app.get('/auth/callback', async (req, res) => {
   let userExists = await db.find_user([sub]);
   if (userExists[0]) {
     req.session.user = userExists[0];
-    res.redirect(`${process.env.FRONTEND_DOMAIN}/#/profile`);
+    res.redirect(`${process.env.FRONTEND_DOMAIN}/#/profile/${req.session.user.userid}`);
   } else {
     db.create_user([sub, name, picture]).then(createdUser => {
       req.session.user = createdUser[0];
-      res.redirect(`${process.env.FRONTEND_DOMAIN}/#/profile`);
+      res.redirect(`${process.env.FRONTEND_DOMAIN}/#/profile/${req.session.user.userid}`);
     });
   };
 });
@@ -107,3 +114,14 @@ app.post('/api/updateUser/:id', uc.update);
 app.get('/api/tools', tc.select_all_tools);
 app.get('/api/tool/:id', tc.select_tool_and_owner);
 app.post('/api/post/tool', tc.post_tool);
+app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting)
+app.get('/api/usersListedTools/:userid', tc.select_all_tools_user_has_listed)
+
+// Message Enpoints
+app.put('/api/room', mc.create)
+
+
+
+
+
+

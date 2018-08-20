@@ -18,6 +18,7 @@ module.exports = {
 
     post_tool: (req, res, next) => {
        const {
+            owner,
             name,
             type,
             description,
@@ -27,6 +28,7 @@ module.exports = {
             delivery_avail,
             pickup_avail,
             power_tool,
+            power_type,
             requires_fuel,
             fuel_type,
             tool_img,
@@ -34,6 +36,7 @@ module.exports = {
             depositInt
         } = req.body
         req.app.get('db').post_tool([
+            owner,
             name,
             type,
             description,
@@ -43,15 +46,32 @@ module.exports = {
             delivery_avail,
             pickup_avail,
             power_tool,
+            power_type,
             requires_fuel,
             fuel_type,
             tool_img,
             priceInt,
             depositInt
         ])
-          .then( () => { res.status(200).send('Tool Posted') 
+        .then( () => { res.status(200).send('Tool Posted') 
         })
         .catch(err => console.log(err))
     },
 
+    select_all_tools_user_is_renting: (req, res) => {
+        const {userid} = req.params;
+        req.app.get('db').select_all_tools_user_is_renting([userid])
+        .then(tools => {
+            res.status(200).send(tools)
+        })
+    },
+
+    select_all_tools_user_has_listed: (req, res) => {
+        const {userid} = req.params;
+        req.app.get('db').select_all_tools_user_has_listed([userid])
+        .then(tools => {
+            res.status(200).send(tools)
+        })
+    }
+    
 }
