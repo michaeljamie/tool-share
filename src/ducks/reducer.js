@@ -2,6 +2,7 @@ const initialState = {
     user: {},
     search_title: '',
     search_keywords: '',
+    search_tags: '',
     search_pickup_option: '',
     search_rent_option: true,
     search_sale_option: false,
@@ -12,6 +13,7 @@ const initialState = {
 const USER_DATA = 'USER_DATA';
 const SEARCH_TITLE = 'SEARCH_TITLE';
 const SEARCH_KEYWORDS = 'SEARCH_KEYWORDS';
+const SEARCH_TAGS = 'SEARCH_TAGS';
 const SEARCH_PICKUP_OPTION = 'SEARCH_PICKUP_OPTION';
 const SEARCH_RENT_OPTION = 'SEARCH_RENT_OPTION';
 const SEARCH_SALE_OPTION = 'SEARCH_SALE_OPTION';
@@ -37,6 +39,13 @@ export function handleSearchKeywords (keywords) {
     return {
         type: SEARCH_KEYWORDS,
         payload: keywords
+    };
+};
+
+export function handleSearchTags (tag) {
+    return {
+        type: SEARCH_TAGS,
+        payload: tag
     };
 };
 
@@ -85,6 +94,9 @@ export default function reducer (state=initialState, action){
 
         case SEARCH_KEYWORDS:
         return Object.assign({}, state, {search_keywords: action.payload})
+
+        case SEARCH_TAGS:
+        return Object.assign({}, state, {search_tags: action.payload})
 
         case SEARCH_PICKUP_OPTION:
         return Object.assign({}, state, {search_pickup_option: action.payload})
