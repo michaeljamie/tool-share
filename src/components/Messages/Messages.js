@@ -38,7 +38,7 @@ class Messages extends Component {
     render() {
         let messagesToDisplay = this.state.messages.map((e, i) => {
             return (
-                <Link to={`/chat/${e.message_id}`}>
+                <Link className="link_to_chat" to={`/chat/${e.message_id}`}>
                 <div key={e.fullname + i} className="individual_message">
                     <img className="messages_profile_icon" src={e.profile_pic} alt="profile_pic"/>
                     <div className="messages_name">{e.fullname}</div>
