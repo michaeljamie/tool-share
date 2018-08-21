@@ -32,8 +32,9 @@
 .profile-bio {
   position: relative;
   padding: 5px;
-  margin: 10px;
-  background: lightgrey;
+  margin-top: 10px;
+  margin-bottom: 13px;
+  background: $color2;
   min-height: 12vh;
   width: 91vw;
   word-wrap: break-word;
@@ -48,7 +49,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 10px;
 }
 .profile-toolsHeader {
   text-align: center;
@@ -82,11 +82,6 @@
   max-height: 38vh;
   display: flex;
 }
-.profile-tool {
-  height: 45%;
-  width: 45%;
-  background: grey;
-}
 .profile-timesRented {
   font-size: 14px;
 }
@@ -103,4 +98,10 @@
 }
 .profile-editButton img {
   height: 70%;
+}
+hr {
+  background-color: $color5;
+  height: 1px;
+  border: 0;
+  margin: 25px 16px;
 }
