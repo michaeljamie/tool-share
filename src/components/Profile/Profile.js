@@ -5,17 +5,17 @@ import ProfileToolCard from "../ProfileToolCard/ProfileToolCard";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Swipeable } from "react-touch";
-import { getUserInfo } from './../../ducks/reducer';
+import {Link} from 'react-router-dom';
 
 class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      userName: "Name Namerson",
-      profilePic: profilePic,
-      bio: "This will be where the bio goes.",
-      listerRating: 3,
-      renterRating: 4,
+      userName: '',
+      profilePic: null,
+      bio: '',
+      listerRating: null,
+      renterRating: null,
       rentedTools: [],
       listedTools: [],
       rentedToolsStyle: 0,
@@ -25,38 +25,50 @@ class Profile extends Component {
 
   componentDidMount() {
     this.getLocation();
+    axios.get(`/api/userData/${this.props.match.params.userid}`).then(res => {
+      let {fullname, bio, profile_pic, listerrating, renterrating} = res.data[0]
+      this.setState({
+        userName: fullname,
+        bio: bio,
+        profilePic: profile_pic,
+        listerRating: listerrating,
+        renterRating: renterrating
+      })
+    })
     axios.get(`/api/usersRentedTools/${this.props.match.params.userid}`).then(res => {
       this.setState({ rentedTools: res.data });
-      console.log("rented tools:", this.state.rentedTools);
     });
     axios.get(`/api/usersListedTools/${this.props.match.params.userid}`).then(res => {
       this.setState({ listedTools: res.data });
-      console.log("listed tools:", this.state.listedTools);
     });
   }
 
   rentedSwipeLeft() {
-    this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle -= 370) });
+    this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle -= 94) });
     console.log(this.state.rentedToolsStyle);
     return this.state.rentedToolsStyle.toString();
   }
 
   rentedSwipeRight() {
-    this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle += 370) });
-    console.log(this.state.rentedToolsStyle);
-    return this.state.rentedToolsStyle.toString();
+    if (this.state.rentedToolsStyle < 0) {
+      this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle += 94) });
+      console.log(this.state.rentedToolsStyle);
+      return this.state.rentedToolsStyle.toString();
+    }
   }
 
   listedSwipeLeft() {
-    this.setState({ listedToolsStyle: (this.state.listedToolsStyle -= 370) });
+    this.setState({ listedToolsStyle: (this.state.listedToolsStyle -= 94) });
     console.log(this.state.listedToolsStyle);
     return this.state.listedToolsStyle.toString();
   }
 
   listedSwipeRight() {
-    this.setState({ listedToolsStyle: (this.state.listedToolsStyle += 370) });
-    console.log(this.state.listedToolsStyle);
-    return this.state.listedToolsStyle.toString();
+    if (this.state.listedToolsStyle < 0) {
+      this.setState({ listedToolsStyle: (this.state.listedToolsStyle += 94) });
+      console.log(this.state.listedToolsStyle);
+      return this.state.listedToolsStyle.toString();
+    }
   }
 
   showPosition = position => {
@@ -79,13 +91,11 @@ class Profile extends Component {
   };
 
   render() {
-    var {
-      bio,
-      fullname,
-      profile_pic,
-      listerrating,
-      renterrating
-    } = this.props.users;
+
+    let {userid} = this.props.users
+    let {userName, profilePic, bio, listerRating, renterRating} = this.state;
+
+    //mapping out the entire arrays of tool cards
     let displayedRentedTools = this.state.rentedTools.map(tool => {
       return (
         <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price}/>
@@ -96,6 +106,37 @@ class Profile extends Component {
         <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price}/>
       )
     })
+
+    //splitting the array into pages of four tool cards for rented
+    var arraysForRented = [];
+    while (displayedRentedTools.length > 0)
+        arraysForRented.push(displayedRentedTools.splice(0, 4));
+    let rentTools = arraysForRented.map((array,i) => {
+      let toolGroup = array.map((tool,i) => {
+        return tool
+      })
+      return (
+        <div className='profile-toolsContainer' style={{position: 'relative', left: `${this.state.rentedToolsStyle}vw`}}>
+          {toolGroup}
+        </div>
+      )
+    })
+
+    //splitting the array into pages of four tool cards for listed
+    var arraysForListed = [];
+    while (displayedListedTools.length > 0)
+        arraysForListed.push(displayedListedTools.splice(0, 4));
+    let listTools = arraysForListed.map((array,i) => {
+      let toolGroup = array.map((tool,i) => {
+        return tool
+      })
+      return (
+        <div className='profile-toolsContainer' style={{position: 'relative', left: `${this.state.listedToolsStyle}vw`}}>
+          {toolGroup}
+        </div>
+      )
+    })
+
     return (
       <div>
         <div className="profile-page">
@@ -103,18 +144,24 @@ class Profile extends Component {
             <img
               className="profile-userPic"
               alt="profilePic"
-              src={profile_pic}
+              src={profilePic}
             />
+            <span className="profile-userName">{userName}</span>
             <div className="profile-bio">
-              <span className="profile-userName">{fullname}</span>
-              <br />
               <span>{bio}</span>
-              <button className="profile-edit">Edit</button>
+            </div>
+            <div className='profile-buttons'>
+            {userid===parseInt(this.props.match.params.userid)?
+            <Link to={`/edit/${this.props.match.params.userid}`}><button className="profile-edit">Edit Profile</button></Link>:
+            null}
+            {userid===parseInt(this.props.match.params.userid)?
+            <Link to={`/edit/${this.props.match.params.userid}`}><button className="profile-add">Add Tool</button></Link>:
+            null}
             </div>
           </div>
           <div className="profile-ratingsContainer">
-            <StarRating rateType={"Lister"} rating={listerrating} />
-            <StarRating rateType={"Renter"} rating={renterrating} />
+            <StarRating rateType={"Lister"} rating={listerRating} />
+            <StarRating rateType={"Renter"} rating={renterRating} />
           </div>
           <div className="profile-rentContainer">
             <div className="profile-toolsHeader">
@@ -125,11 +172,8 @@ class Profile extends Component {
               onSwipeRight={() => this.rentedSwipeRight()}
             >
               <div className="profile-toolsOuterContainer">
-                <div
-                  className="profile-toolsContainer"
-                  style={{ position: "relative", left: this.state.rentedToolsStyle }}
-                >
-                  {displayedRentedTools}
+                <div className='profile-pageSlider'>
+                  {rentTools}
                 </div>
               </div>
             </Swipeable>
@@ -143,18 +187,15 @@ class Profile extends Component {
                 <option value="LeastToMost">Least to Most Rented</option>
               </select>
             </div>
-              <Swipeable
-              onSwipeLeft={() => this.listedSwipeLeft()}
-              onSwipeRight={() => this.listedSwipeRight()}
+            <Swipeable
+            onSwipeLeft={() => this.listedSwipeLeft()}
+            onSwipeRight={() => this.listedSwipeRight()}
             >
-              <div className="profile-toolsOuterContainer">
-                <div
-                  className="profile-toolsContainer"
-                  style={{ position: "relative", left: this.state.listedToolsStyle }}
-                >
-                  {displayedListedTools}
-                </div>
+            <div className="profile-toolsOuterContainer">
+              <div className='profile-pageSlider'>
+                {listTools}
               </div>
+            </div>
             </Swipeable>
           </div>
         </div>
@@ -169,7 +210,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { getUserInfo }
-)(Profile);
+export default connect(mapStateToProps)(Profile);

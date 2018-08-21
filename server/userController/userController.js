@@ -24,4 +24,21 @@ module.exports = {
         console.log(req.session)
     },
 
+    getUserData: (req, res) => {
+        const {userid} = req.params;
+        req.app.get('db').get_user_data([userid])
+        .then(data => {
+            res.send(data)
+        })
+    },
+
+    changeUserData: (req, res) => {
+        const {userid} = req.params;
+        const {fullName, bio, email, phone} = req.body;
+        req.app.get('db').change_user_data([fullName, bio, email, phone, userid])
+        .then(() => {
+            res.end()
+        })
+    }
+
 }

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Lato');
 @import 'https://fonts.googleapis.com/css?family=Rubik+One';
 
 $color1: #252525;
@@ -8,6 +9,7 @@ $color4: #444444;
 $color5: #fdd947;
 
 $font1: 'Montserrat', sans-serif;
+$font2: 'Lato', sans-serif;
 
 @mixin width-height($width, $height) {
   width: $width;
@@ -53,6 +55,7 @@ $font1: 'Montserrat', sans-serif;
 @import "components/ProfileToolCard/_ProfileToolCard.scss";
 @import "components/Home/HomeButton/_Button.scss";
 @import "components/PostTool/_PostTool.scss";
+@import "components/ProfileEdit/_ProfileEdit.scss";
 
 
 @keyframes App-logo-spin {

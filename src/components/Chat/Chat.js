@@ -3,6 +3,7 @@ import io from 'socket.io-client';
 import Chatbox from './Chatbox/Chatbox';
 import whiteMessage from './../../assets/whiteMessage.png';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 const socket = io(`http://localhost:3005`)
 
@@ -17,7 +18,13 @@ class Chat extends Component {
     }
 
     componentDidMount = () => {
-        socket.on('message dispatched', data => {
+        console.log('this.props.match.params=', this.props.match.params)
+        axios.get(`/api/messages/:${this.props.match.params}`).then(res => {
+            console.log(res.data)
+            const messages = [ ...this.state.messages, res.data]
+            this.setState({messages})
+        })
+        socket.on(`message dispatched-${this.props.current_room}`, data => {
             console.log('frontend receiving data =', data)
             const messages = [ ...this.state.messages, data]
             this.setState({messages})
@@ -35,6 +42,7 @@ class Chat extends Component {
             message: this.refs.message.value,
             profile_pic: this.props.user.profile_pic,
             username: this.props.user.username,
+            current_room: this.props.current_room
         }
         console.log(obj)
         socket.emit('message sent', obj)
@@ -76,6 +84,7 @@ class Chat extends Component {
 
         return(
             <div className = 'chat-body'>
+
                 <div ref={(div) => { this.messageList = div }} className="chat-messages">
                     { messages[0] ? messages : null}
                 </div>
@@ -94,7 +103,8 @@ class Chat extends Component {
 
 function mapStateToProps(state){
     return {
-        user: state.user
+        user: state.user,
+        current_room: state.current_room
     }
 }
 
