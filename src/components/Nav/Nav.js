@@ -67,7 +67,7 @@ class Nav extends Component {
 
                 <ul id={ this.state.showProfileNav ? "profile-menu-show" : "profile-menu-disable" }>
                     <Link to={`/profile/${this.props.users.userid}`} className="nav-profile-links" ><li onClick={ this.updateProfileNav }>Profile</li></Link>
-                    <Link to="/messages" className="nav-links" ><li onClick={ () => this.changeMenu() }>Messages</li></Link>
+                    <Link to="/messages" className="nav-profile-links" ><li onClick={ this.updateProfileNav }>Messages</li></Link>
                     <Link to="/" className="nav-profile-links" ><li onClick={ this.logout }>Logout</li></Link>
                 </ul>
             </div>            
