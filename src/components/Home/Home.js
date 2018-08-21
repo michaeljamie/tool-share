@@ -123,6 +123,7 @@ export default class Home extends Component {
                 <div className = 'home-steps'>
                     <h1 className = 'steps-text'>HERE'S HOW IT WORKS:</h1>
                     <div className = 'steps-section'>
+            
                         <img src={dude} className = 'home-dude' alt=""/>
 
                         

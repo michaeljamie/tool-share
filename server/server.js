@@ -36,7 +36,7 @@ const app = express()
         date
       }
       const db = app.get('db')
-      db.submit_message([current_room, message, date])
+      db.submit_message([current_room, JSON.stringify(response)])
       io.emit(`message dispatched-${current_room}`, response)
     })
 
@@ -119,6 +119,7 @@ app.put('/api/userData/:userid', uc.changeUserData)
 // Tool Endpoints
 app.get('/api/tools', tc.select_all_tools);
 app.get('/api/tools_by_tag', tc.select_tool_by_tags);
+app.get('/api/get_all_tools_with_tags', tc.get_all_tools_with_tags)
 app.get('/api/tool/:id', tc.select_tool_and_owner);
 app.post('/api/post/tool', tc.post_tool);
 app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting)
@@ -128,5 +129,5 @@ app.get('/api/usersListedTools/:userid', tc.select_all_tools_user_has_listed)
 app.put('/api/room', mc.create)
 app.get('/api/sendermessages/:id', mc.read_sender)
 app.get('/api/receivermessages/:id', mc.read_receiver)
-app.get('/api/messages', mc.read)
+app.get('/api/messages/:id', mc.read)
 

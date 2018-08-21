@@ -5,10 +5,13 @@ import 'react-dates/lib/css/_datepicker.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
+import { handleSearchTags } from '../../ducks/reducer';
 import ToolSearchCard from "./../../components/ToolSearchCard/ToolSearchCard";
 import io from 'socket.io-client';
 import { setRoomID } from '../../ducks/reducer'
 import Map from './../../components/Map/Map';
+import SimilarTools from './../../components/SimilarTools/SimilarTools';
+import {withRouter} from 'react-router-dom';
 
 const socket = io(`http://localhost:3005`)
 
@@ -41,12 +44,21 @@ class Toolview extends Component {
             fuel_type: '',
             tool_img: '',
             tool_price: 0,
+            allToolsAndTags: []
         };
     };
 
     componentDidMount() {
         this.getToolAndOwner();
+        this.getTools();
     };
+
+    componentDidUpdate (prevProps) {
+        if(prevProps.match.params.id !== this.props.match.params.id){
+            this.getToolAndOwner()
+            window.scrollTo(0,0)
+        }
+    }
 
     getToolAndOwner() {
         axios.get(`/api/tool/${this.props.match.params.id}`).then( tool => {
@@ -71,20 +83,20 @@ class Toolview extends Component {
                 fuel_type: tool.data.fuel_type,
                 tool_img: tool.data.tool_img,
                 tool_price: tool.data.tool_price,
-            });
+            }, _=>console.log('toolview rerendered, ', this.state.tool_name));
         });
     };
 
-    initMap = () => {
-        return({
-            zoom: 4,
-            center: {lat: 37.090, lng: -95.712},
-            mapTypeId: 'terrain'
+    getTools = () => {
+        axios.get('api/get_all_tools_with_tags')
+        .then(res=>{
+            this.setState({
+                allToolsAndTags: res.data
+            })
         })
     }
 
     latlongToZip = (lat, long) => {
-        // console.log(lat)
         axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`)
         .then(res=>{
             let zip =res.data.postalCodes[0].postalCode
@@ -104,8 +116,19 @@ class Toolview extends Component {
     }
 
     render() {
+        console.log('toolview render')
         let editButton = this.state.owner_id === this.props.user.userid ? <button className='toolview-edit-button'>edit</button> : null
+       
+        let toolsWithSameTags = this.state.allToolsAndTags.filter(tool=>{
+            return tool.tag === this.props.search_tags && tool.tool_id !== +this.props.match.params.id
+        })
 
+        let similarTools = toolsWithSameTags.map( (tool, index) => {
+            return (
+                <SimilarTools key={index} location={this.props.location} id={tool.tool_id} image={tool.tool_img} name={tool.tool_name} price={tool.tool_price} />
+            )
+        })
+       
         return(
             <div>
                 <Link to='/search'><button className='toolview-back-button'>Back to Results</button></Link>
@@ -152,7 +175,8 @@ class Toolview extends Component {
                     </div>
                 
                 <div className = "toolview-bottom">
-                    Other Listings:  
+                    Similar Tools:  
+                   {similarTools}
                     <div className = "toolview-other">
                         <div></div>
                         <div></div>
@@ -166,7 +190,8 @@ class Toolview extends Component {
 
 function mapStateToProps(state) {
     return {
-      user: state.user
+      user: state.user,
+      search_tags: state.search_tags
     };
   }
   

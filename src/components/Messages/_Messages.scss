@@ -38,7 +38,14 @@
     border: 1px solid $color1;
     margin: 2.5vw;
     box-shadow: 3px 3px 5px $color4;
+    outline: none;
     @include flexSetUp(space-around, center, row)
+}
+
+.link_to_chat {
+    outline: none;
+    text-decoration: none;
+    color: $color4;
 }
 
 .messages_profile_icon {
@@ -48,7 +55,7 @@
 }
 
 .messages_name {
-    font-size: 24px;
+    font-size: 18px;
 }
 
 .messages_time {
