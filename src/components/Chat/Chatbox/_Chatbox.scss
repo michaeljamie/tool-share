@@ -2,7 +2,7 @@
     height: 60px;
     width: 60px;
     border-radius: 35px;
-    margin: 7px;
+    margin: 5px;
     border: 2px solid $color4;
 }
 
@@ -10,13 +10,26 @@
     height: 60px;
     width: 60px;
     border-radius: 35px;
-    margin: 7px;
+    margin: 5px;
     border: 2px solid $color5;
 }
 
 .chat-date {
-    font-size: 10px;
-    color: $color4;
+    font-size: 12px;
+    color: $color1;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    box-sizing: 0;
+    padding: 0;
+}
+
+.chat-date>p {
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    box-sizing: 0;
+    padding: 0;
 }
 
 .chat-userChat2 {
@@ -61,9 +74,33 @@
 
 .chat-username {
     font-size: 16px; 
-    
+    color: $color1;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    box-sizing: 0;
+    padding: 3px;
+}
+
+.chat-username>p {
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    box-sizing: 0;
+    padding: 0;
+    margin-bottom: 5px;
 }
 
 .chat-message {
     font-size: 16px;
+}
+
+.chat-side {
+    @include flexSetUp(flex-start, center, column);
+    text-align: center;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    box-sizing: 0;
+    padding: 0;
 }
