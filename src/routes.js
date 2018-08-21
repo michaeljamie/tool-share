@@ -9,6 +9,7 @@ import Toolview from './components/Toolview/Toolview';
 import Chat from './components/Chat/Chat';
 import Messages from './components/Messages/Messages';
 import PostTool from './components/PostTool/PostTool';
+import CheckOut from './components/CheckOut/CheckOut';
 
 export default (
     <Switch>
@@ -21,5 +22,6 @@ export default (
         <Route component={Toolview} path="/toolview/:id" />
         <Route component={Messages} path="/messages" />
         <Route component={PostTool} path="/post" />
+        <Route component={CheckOut} path="/checkout/:id" />
     </Switch>
 )
