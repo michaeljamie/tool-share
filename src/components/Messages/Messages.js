@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from "react-redux";
-import { getUserInfo } from './../../ducks/reducer';
+import { getUserInfo, setRoomID } from './../../ducks/reducer';
 import { promises } from 'fs';
 import { Link } from 'react-router-dom'
 
@@ -35,11 +35,16 @@ class Messages extends Component {
         })
     }
 
+    joinRoom = (room_id) => {
+        this.props.setRoomID(room_id)
+    }
+
     render() {
         let messagesToDisplay = this.state.messages.map((e, i) => {
             return (
-                <Link className="link_to_chat" to={`/chat/${e.message_id}`}>
-                <div key={e.fullname + i} className="individual_message">
+                
+                <Link to={`/chat/${e.room_id}`} className="link_to_chat">
+                <div key={e.fullname + i} className="individual_message" onClick={() => this.joinRoom(e.room_id)}>
                     <img className="messages_profile_icon" src={e.profile_pic} alt="profile_pic"/>
                     <div className="messages_name">{e.fullname}</div>
                     <div className="messages_time">2:23 p.m.</div>
@@ -64,4 +69,4 @@ function mapStateToProps(state) {
     };
   }
   
-  export default connect(mapStateToProps, {getUserInfo})(Messages);
+  export default connect(mapStateToProps, {getUserInfo, setRoomID})(Messages);
