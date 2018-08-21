@@ -46,5 +46,7 @@ CREATE TABLE messages (
 CREATE TABLE chats (
 	chat_id SERIAL PRIMARY KEY,
 	room_id TEXT REFERENCES messages(room_id),
-    messages TEXT
+    messages TEXT,
+    message_date TEXT,
+    message_time TEXT
 );
