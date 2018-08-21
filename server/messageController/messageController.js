@@ -24,10 +24,15 @@ module.exports = {
         .catch(console.log)
     },
     read: (req, res ) => {
-        let { id } = req.params;
-        req.app.get('db').get_messages([ id ]).then(messages => { res.status(200).send(messages.map(e => {
-            return JSON.parse(e)
-        })) 
+        let { messageid } = req.params;
+        req.app.get('db').get_messages([ messageid ]).then(messages => {
+            const messagesArr = [];
+            messages.map( e => {
+            messagesArr.push(JSON.parse(e.messages))
+            return messagesArr;
+        }
+    )
+    res.send(messagesArr) 
         })
         .catch(err => console.log(err))
     }

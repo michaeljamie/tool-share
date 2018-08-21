@@ -1,13 +1,14 @@
 require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const massive = require('massive');
-const axios = require('axios');
-const socket = require('socket.io');
-const uc = require('./userController/userController');
-const tc = require('./toolController/toolController');
-const mc = require('./messageController/messageController');
+  const express = require('express');
+  const bodyParser = require('body-parser');
+  const session = require('express-session');
+  const massive = require('massive');
+  const axios = require('axios');
+  const socket = require('socket.io');
+  const uc = require('./userController/userController');
+  const tc = require('./toolController/toolController');
+  const mc = require('./messageController/messageController');
+  const moment = require('moment');
 
 let {
   REACT_APP_CLIENT_ID,
@@ -27,7 +28,7 @@ const app = express()
     socket.on('message sent', data => {
       console.log(data);
       let { userid, message, profile_pic, username, current_room } = data
-      let date = new Date()
+      let date = moment().format('l h:mm a')
       const response ={
         userid,
         message,
@@ -129,5 +130,5 @@ app.get('/api/usersListedTools/:userid', tc.select_all_tools_user_has_listed)
 app.put('/api/room', mc.create)
 app.get('/api/sendermessages/:id', mc.read_sender)
 app.get('/api/receivermessages/:id', mc.read_receiver)
-app.get('/api/messages/:id', mc.read)
+app.get('/api/messages/:messageid', mc.read)
 
