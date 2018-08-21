@@ -6,6 +6,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { Swipeable } from "react-touch";
 import {Link} from 'react-router-dom';
+import edit from '../../assets/cogIcon.png';
 
 class Profile extends Component {
   constructor() {
@@ -37,37 +38,35 @@ class Profile extends Component {
     })
     axios.get(`/api/usersRentedTools/${this.props.match.params.userid}`).then(res => {
       this.setState({ rentedTools: res.data });
-      console.log("rented tools:", this.state.rentedTools);
     });
     axios.get(`/api/usersListedTools/${this.props.match.params.userid}`).then(res => {
       this.setState({ listedTools: res.data });
-      console.log("listed tools:", this.state.listedTools);
     });
   }
 
   rentedSwipeLeft() {
-    this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle -= 370) });
+    this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle -= 94) });
     console.log(this.state.rentedToolsStyle);
     return this.state.rentedToolsStyle.toString();
   }
 
   rentedSwipeRight() {
     if (this.state.rentedToolsStyle < 0) {
-      this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle += 370) });
+      this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle += 94) });
       console.log(this.state.rentedToolsStyle);
       return this.state.rentedToolsStyle.toString();
     }
   }
 
   listedSwipeLeft() {
-    this.setState({ listedToolsStyle: (this.state.listedToolsStyle -= 370) });
+    this.setState({ listedToolsStyle: (this.state.listedToolsStyle -= 94) });
     console.log(this.state.listedToolsStyle);
     return this.state.listedToolsStyle.toString();
   }
 
   listedSwipeRight() {
     if (this.state.listedToolsStyle < 0) {
-      this.setState({ listedToolsStyle: (this.state.listedToolsStyle += 370) });
+      this.setState({ listedToolsStyle: (this.state.listedToolsStyle += 94) });
       console.log(this.state.listedToolsStyle);
       return this.state.listedToolsStyle.toString();
     }
@@ -93,24 +92,11 @@ class Profile extends Component {
   };
 
   render() {
-    let numOfRentPages = [];
-    let numOfRentContainers = 0;
-    numOfRentContainers += Math.ceil(this.state.rentedTools.length/4)
-    for (let i = 1; i <= numOfRentContainers; i++) {
-      numOfRentPages.push(i)
-    }
-    console.log('rent containers:',numOfRentContainers,'rent pages:',numOfRentPages)
-
-    let numOfListPages = [];
-    let numOfListContainers = 0;
-    numOfListContainers += Math.ceil(this.state.listedTools.length/4)
-    for (let i = 1; i <= numOfListContainers; i++) {
-      numOfListPages.push(i)
-    }
-    console.log('list containers:',numOfListContainers,'list pages:',numOfListPages)
 
     let {userid} = this.props.users
     let {userName, profilePic, bio, listerRating, renterRating} = this.state;
+
+    //mapping out the entire arrays of tool cards
     let displayedRentedTools = this.state.rentedTools.map(tool => {
       return (
         <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price}/>
@@ -122,40 +108,47 @@ class Profile extends Component {
       )
     })
 
-    let listedPageCounter = 0;
-    let listedToolCounter = 0
-    let listTools = numOfListPages.map((page,i) => {
-      listedPageCounter += 1;
+    //splitting the array into pages of four tool cards for rented
+    var arraysForRented = [];
+    while (displayedRentedTools.length > 0)
+        arraysForRented.push(displayedRentedTools.splice(0, 4));
+    let rentTools = arraysForRented.map((array,i) => {
+      let toolGroup = array.map((tool,i) => {
+        return tool
+      })
       return (
-        <div className='profile-toolsContainer'>
-        {this.state.listedTools.forEach((tool,i) => {
-          listedToolCounter += 1
-          return (
-            <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price}/>
-          )
-        })}
-      </div>
+        <div className='profile-toolsContainer' style={{position: 'relative', left: `${this.state.rentedToolsStyle}vw`}}>
+          {toolGroup}
+        </div>
       )
     })
 
-    console.log('displayed:',displayedListedTools)
-
-    // let displayedListedToolsPages = 
-
-    // let displayedListedTools = for (let i = 0; i < numOfListContainers; i++) {
-    //   return (
-    //     <div className='profile-toolsContainer'>
-    //       {this.state.listedTools.map((tool,i) => {
-    //          
-    //        })}
-    //     </div>
-    //   )
-    // }
+    //splitting the array into pages of four tool cards for listed
+    var arraysForListed = [];
+    while (displayedListedTools.length > 0)
+        arraysForListed.push(displayedListedTools.splice(0, 4));
+    let listTools = arraysForListed.map((array,i) => {
+      let toolGroup = array.map((tool,i) => {
+        return tool
+      })
+      return (
+        <div className='profile-toolsContainer' style={{position: 'relative', left: `${this.state.listedToolsStyle}vw`}}>
+          {toolGroup}
+        </div>
+      )
+    })
 
     return (
       <div>
         <div className="profile-page">
           <div className="profile-userInfo">
+            {userid===parseInt(this.props.match.params.userid)?
+              <Link to={`/edit/${this.props.match.params.userid}`}>
+                <div className='profile-editButton'>
+                  <img src={edit}/>
+                </div>
+              </Link>:
+            null}
             <img
               className="profile-userPic"
               alt="profilePic"
@@ -164,14 +157,6 @@ class Profile extends Component {
             <span className="profile-userName">{userName}</span>
             <div className="profile-bio">
               <span>{bio}</span>
-            </div>
-            <div className='profile-buttons'>
-            {userid===parseInt(this.props.match.params.userid)?
-            <Link to={`/edit/${this.props.match.params.userid}`}><button className="profile-edit">Edit Profile</button></Link>:
-            null}
-            {userid===parseInt(this.props.match.params.userid)?
-            <Link to={`/edit/${this.props.match.params.userid}`}><button className="profile-add">Add Tool</button></Link>:
-            null}
             </div>
           </div>
           <div className="profile-ratingsContainer">
@@ -187,11 +172,8 @@ class Profile extends Component {
               onSwipeRight={() => this.rentedSwipeRight()}
             >
               <div className="profile-toolsOuterContainer">
-                <div
-                  className="profile-toolsContainer"
-                  style={{ position: "relative", left: this.state.rentedToolsStyle }}
-                >
-                  {displayedRentedTools}
+                <div className='profile-pageSlider'>
+                  {rentTools}
                 </div>
               </div>
             </Swipeable>
@@ -200,23 +182,23 @@ class Profile extends Component {
             <div className="profile-toolsHeader">
               <span>Listed Tools</span>
               <br />
+              {userid===parseInt(this.props.match.params.userid)?
+              <Link to={`/post`}><button className="profile-addButton">Add Tool</button></Link>:
+              null}
               <select className="profile-timesRented">
                 <option value="MostToLeast">Most to Least Rented</option>
                 <option value="LeastToMost">Least to Most Rented</option>
               </select>
             </div>
-              <Swipeable
-              onSwipeLeft={() => this.listedSwipeLeft()}
-              onSwipeRight={() => this.listedSwipeRight()}
+            <Swipeable
+            onSwipeLeft={() => this.listedSwipeLeft()}
+            onSwipeRight={() => this.listedSwipeRight()}
             >
-              <div className="profile-toolsOuterContainer">
-                <div
-                  className="profile-toolsContainer"
-                  style={{ position: "relative", left: this.state.listedToolsStyle }}
-                >
-                  {displayedListedTools}
-                </div>
+            <div className="profile-toolsOuterContainer">
+              <div className='profile-pageSlider'>
+                {listTools}
               </div>
+            </div>
             </Swipeable>
           </div>
         </div>

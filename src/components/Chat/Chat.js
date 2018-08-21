@@ -18,8 +18,11 @@ class Chat extends Component {
     }
 
     componentDidMount = () => {
-        axios.get(`/api/messages`).then(res => {
-
+        console.log('this.props.match.params=', this.props.match.params)
+        axios.get(`/api/messages/${this.props.match.params.messageid}`).then(res => {
+            console.log(res)
+            const messages = [ ...this.state.messages, ...res.data.map(e => e)]
+            this.setState({messages})
         })
         socket.on(`message dispatched-${this.props.current_room}`, data => {
             console.log('frontend receiving data =', data)
@@ -62,7 +65,7 @@ class Chat extends Component {
 
 
     render(){
-
+        console.log(this.state.messages)
         const messages = this.state.messages.map((e,i) => {
             return(
                 <Chatbox
@@ -81,6 +84,7 @@ class Chat extends Component {
 
         return(
             <div className = 'chat-body'>
+
                 <div ref={(div) => { this.messageList = div }} className="chat-messages">
                     { messages[0] ? messages : null}
                 </div>

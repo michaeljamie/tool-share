@@ -1,6 +1,10 @@
 .profile-page {
   padding: 3vw;
-  background-color: lightslategray;
+  background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.685)), url('./assets/profileBkgd.jpeg');
+  background-position-x: right;
+  background-position-y: top;
+  background-size: auto;
+  background-attachment: fixed;
 }
 .profile-userInfo {
   position: relative;
@@ -17,6 +21,13 @@
 .profile-userName {
   margin-top: 8px;
   font-size: 20px;
+  background: $color5;
+  border-top-left-radius: 35%;
+  border-top-right-radius: 35%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 1px 4px;
+  padding-top: 5px;
 }
 .profile-bio {
   position: relative;
@@ -28,14 +39,10 @@
   word-wrap: break-word;
   border-radius: 8px;
 }
-.profile-buttons {
-  display: flex;
-  justify-content: space-around;
-  width: 70vw;
-}
-.profile-buttons button {
+.profile-addButton {
   font-size: 16px;
   background: $color5;
+  margin-right: 10px;
 }
 .profile-ratingsContainer {
   display: flex;
@@ -53,22 +60,27 @@
 }
 .profile-toolsHeader span {
   font-family: $font1;
-  font-size: 21px;
+  font-size: 24px;
   color: $color5
 }
 .profile-toolsOuterContainer {
-  background: linear-gradient($color5, black 100%);
+  background: linear-gradient($color5, rgba(0, 0, 0, 0) 95%);
   overflow: hidden;
 }
 .profile-toolsContainer {
   display: flex;
-  flex-flow: column wrap;
-  justify-content: space-around;
+  flex-flow: row wrap;
+  justify-content: space-between;
   align-content: space-around;
-  height: 37vh;
-  min-width: 91vw;
+  height: 38vh;
+  width: 91.4vw;
   padding: 5px;
   transition: 400ms;
+  flex-shrink: 0;
+}
+.profile-pageSlider {
+  max-height: 38vh;
+  display: flex;
 }
 .profile-tool {
   height: 45%;
@@ -77,4 +89,18 @@
 }
 .profile-timesRented {
   font-size: 14px;
+}
+.profile-editButton {
+  position: absolute;
+  right: 0;
+  height: 7vh;
+  width: 7vh;
+  border-radius: 50%;
+  background: $color5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-editButton img {
+  height: 70%;
 }
