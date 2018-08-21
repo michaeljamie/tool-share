@@ -28,16 +28,18 @@ const app = express()
     socket.on('message sent', data => {
       console.log(data);
       let { userid, message, profile_pic, username, current_room } = data
-      let date = moment().format('l h:mm a')
+      let date = moment().format('l')
+      let time = moment().format('h:mm a')
       const response ={
         userid,
         message,
         profile_pic,
         username,
-        date
+        date,
+        time
       }
       const db = app.get('db')
-      db.submit_message([current_room, JSON.stringify(response)])
+      db.submit_message([current_room, JSON.stringify(response), date, time])
       io.emit(`message dispatched-${current_room}`, response)
     })
 
