@@ -3,6 +3,7 @@ import './_FAQ.scss'
 import letterQ from '../../assets/letterQ.png'
 import upArrowBlack from '../../assets/upArrowBlack.png'
 import downArrowBlack from '../../assets/downArrowBlack.png'
+import { Link } from 'react-router-dom';
 
 class FAQ extends Component {
     constructor() {
@@ -50,6 +51,7 @@ class FAQ extends Component {
                     </div>
                     <div className={this.state.q4Clicked ? "answer-displayed" : "answer-not-displayed"}>Answer:  Mark Zuckerberg is paying us to collect as much data about you as we can.</div>
                 </div>
+                <Link to="/terms_and_conditions" className="tac_link">Please see our terms of service</Link>
             </div>
         )
     }
