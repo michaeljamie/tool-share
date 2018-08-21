@@ -21,11 +21,13 @@ class Messages extends Component {
         })
         Promise.all([
             axios.get(`/api/sendermessages/${this.props.users.userid}`).then(res => {
+                console.log(res)
                 for (let i = 0; i < res.data.length; i++) {
                     messagesArr.push(res.data[i])
                 }
             }),
             axios.get(`/api/receivermessages/${this.props.users.userid}`).then(res => {
+                console.log(res)
                 for (let i = 0; i < res.data.length; i++) {
                     messagesArr.push(res.data[i])
                 }
@@ -40,6 +42,7 @@ class Messages extends Component {
     }
 
     render() {
+        console.log(this.state.messages)
         let messagesToDisplay = this.state.messages.map((e, i) => {
             return (
                 
