@@ -39,14 +39,10 @@
   word-wrap: break-word;
   border-radius: 8px;
 }
-.profile-buttons {
-  display: flex;
-  justify-content: space-around;
-  width: 70vw;
-}
-.profile-buttons button {
+.profile-addButton {
   font-size: 16px;
   background: $color5;
+  margin-right: 10px;
 }
 .profile-ratingsContainer {
   display: flex;
@@ -64,7 +60,7 @@
 }
 .profile-toolsHeader span {
   font-family: $font1;
-  font-size: 21px;
+  font-size: 24px;
   color: $color5
 }
 .profile-toolsOuterContainer {
@@ -93,4 +89,18 @@
 }
 .profile-timesRented {
   font-size: 14px;
+}
+.profile-editButton {
+  position: absolute;
+  right: 0;
+  height: 7vh;
+  width: 7vh;
+  border-radius: 50%;
+  background: $color5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-editButton img {
+  height: 70%;
 }
