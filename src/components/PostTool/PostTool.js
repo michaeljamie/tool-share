@@ -15,32 +15,35 @@ class PostTool extends Component {
             name:'',
             type: '',
             description: '',
+            times_rented: 0,
             condition: '',
             for_rent: false,
             for_sale: false,
             delivery_avail: false,
             pickup_avail: false,
             power_tool: false,
+            power_type: 'n/a',
             requires_fuel: false,
-            fuel_type: 'None',
+            fuel_type: 'n/a',
             tool_img: '',
             price: 0,
-            deposit:  0
+            deposit:  0,
+            currently_available: true,
         };
     };
 
-    // componentDidMount() {
-    //     axios.get('/api/session').then(res =>
-    //         res.data.user ?
-    //         console.log('User on Session')
-    //         : this.login()
-    //     );
-    // };
+    componentDidMount() {
+        axios.get('/api/session').then(res =>
+            res.data.user ?
+            console.log('User on Session')
+            : this.login()
+        );
+    };
 
-    // login = () => {
-    //     const redirectUri = encodeURIComponent(`${window.origin}/auth/callback`);
-    //     window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`
-    // };
+    login = () => {
+        const redirectUri = encodeURIComponent(`${window.origin}/auth/callback`);
+        window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`
+    };
 
     postNewTool() {
         const {
@@ -48,6 +51,7 @@ class PostTool extends Component {
             name,
             type,
             description,
+            times_rented,
             condition,
             for_rent,
             for_sale,
@@ -68,6 +72,7 @@ class PostTool extends Component {
             name,
             type,
             description,
+            times_rented,
             condition,
             for_rent,
             for_sale,
@@ -156,7 +161,7 @@ class PostTool extends Component {
                     this.state.power_tool ?
                     <div className='post-tool-section'>
                         <div>What type of power?</div> 
-                        <select className='search-criteria-select' name="fuel_type" onChange={this.handleChange}>
+                        <select className='search-criteria-select' name="power_type" onChange={this.handleChange}>
                             <option value="electric">Electric</option>
                             <option value="pneumatic">Pneumatic</option>
                         </select>

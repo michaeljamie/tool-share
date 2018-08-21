@@ -3,6 +3,7 @@ INSERT INTO tools (
     tool_name,
     tool_type,
     tool_descript,
+    times_rented,
     tool_condition,
     for_rent,
     for_sale,
@@ -14,7 +15,8 @@ INSERT INTO tools (
     fuel_type,
     tool_img,
     tool_price,
-    deposit
+    deposit,
+    currently_available
 )
 VALUES (
     $1,
@@ -32,5 +34,7 @@ VALUES (
     $13,
     $14,
     $15,
-    $16
+    $16,
+    $17,
+    $18
 );
