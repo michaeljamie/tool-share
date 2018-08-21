@@ -61,7 +61,7 @@ body {
    margin-bottom: 5px;
    position: relative;
    
-   background: #232323;
+   background: $color1;
    border-radius: 3px;
    
    z-index: 1;
@@ -131,10 +131,23 @@ body {
 }
 
 .nav_register_link {
-  color: $color4;
+  color: $color1;
   padding: 15px;
 }
 
 .nav_register_link:hover {
   cursor: pointer;
 }
+
+.nav-title {
+  color: $color1;
+  font-family: 'Bangers', cursive;
+  text-align: center;
+  margin-right: 20%;
+  font-size: 28px;
+}
+
+.middle-nav {
+  width: 50%;
+}
+

@@ -179,7 +179,7 @@ export default class Home extends Component {
                         </div>
                         <div>
                         
-                        <p className = 'home-iconText'>We have contracts necessary to provide accountability from both parties for each and every rental.  Feel free to read our <a href="" className = 'home-rentalLink'>Rental Agreement</a> for more details.</p>
+                        <p className = 'home-iconText'>We have contracts necessary to provide accountability from both parties for each and every rental.  Feel free to read our <Link to="/rental_agreement"><a href="" className = 'home-rentalLink'>Rental Agreement</a></Link> for more details.</p>
                         </div>
                     </div>
                     <div className = 'home-mid'>
