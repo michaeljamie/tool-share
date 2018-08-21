@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
 import {connect} from "react-redux";
 const { REACT_APP_DOMAIN, REACT_APP_CLIENT_ID } = process.env;
 
@@ -15,32 +14,35 @@ class PostTool extends Component {
             name:'',
             type: '',
             description: '',
-            condition: '',
+            times_rented: 0,
+            condition: 'Good',
             for_rent: false,
             for_sale: false,
             delivery_avail: false,
             pickup_avail: false,
             power_tool: false,
+            power_type: null,
             requires_fuel: false,
-            fuel_type: 'None',
+            fuel_type: null,
             tool_img: '',
             price: 0,
-            deposit:  0
+            deposit:  0,
+            currently_available: true,
         };
     };
 
-    // componentDidMount() {
-    //     axios.get('/api/session').then(res =>
-    //         res.data.user ?
-    //         console.log('User on Session')
-    //         : this.login()
-    //     );
-    // };
+    componentDidMount() {
+        axios.get('/api/session').then(res =>
+            res.data.user ?
+            console.log('User on Session')
+            : this.login()
+        );
+    };
 
-    // login = () => {
-    //     const redirectUri = encodeURIComponent(`${window.origin}/auth/callback`);
-    //     window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`
-    // };
+    login = () => {
+        const redirectUri = encodeURIComponent(`${window.origin}/auth/callback`);
+        window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`
+    };
 
     postNewTool() {
         const {
@@ -48,6 +50,7 @@ class PostTool extends Component {
             name,
             type,
             description,
+            times_rented,
             condition,
             for_rent,
             for_sale,
@@ -68,6 +71,7 @@ class PostTool extends Component {
             name,
             type,
             description,
+            times_rented,
             condition,
             for_rent,
             for_sale,
@@ -82,7 +86,8 @@ class PostTool extends Component {
             depositInt
         }
         axios.post(`/api/post/tool`, tool_data).then( (res) => {
-            console.log(res)
+            console.log(res.data)
+            this.props.history.push(`/toolview/${res.data.tool_id}`)
         });
     };
 
@@ -127,7 +132,7 @@ class PostTool extends Component {
                     <select className='post-tool-input' name="condition" onChange={this.handleChange}>
                         <option value="Excellent">Excellent</option>
                         <option value="Great">Great</option>
-                        <option value="Good">Good</option>
+                        <option selected value="Good">Good</option>
                         <option value="Fair">Fair</option>
                         <option value="Poor">Poor</option>
                     </select>
@@ -156,7 +161,8 @@ class PostTool extends Component {
                     this.state.power_tool ?
                     <div className='post-tool-section'>
                         <div>What type of power?</div> 
-                        <select className='search-criteria-select' name="fuel_type" onChange={this.handleChange}>
+                        <select className='search-criteria-select' name="power_type" onChange={this.handleChange}>
+                            <option selected value="null"></option>
                             <option value="electric">Electric</option>
                             <option value="pneumatic">Pneumatic</option>
                         </select>
@@ -172,7 +178,8 @@ class PostTool extends Component {
                     this.state.requires_fuel ?
                     <div className='post-tool-section'>
                         <div>What type of fuel?</div>
-                        <select className='search-criteria-select' name="fuel_type" onChange={this.handleChange}>
+                        <select className='search-criteria-select' name="fuel_type" defaultValue='' onChange={this.handleChange}>
+                            <option selected value="null"></option>
                             <option value="gasoline">Gasoline</option>
                             <option value="diesel">Diesel</option>
                             <option value="ethanol">Ethanol</option>
