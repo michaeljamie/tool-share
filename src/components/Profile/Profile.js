@@ -37,37 +37,35 @@ class Profile extends Component {
     })
     axios.get(`/api/usersRentedTools/${this.props.match.params.userid}`).then(res => {
       this.setState({ rentedTools: res.data });
-      console.log("rented tools:", this.state.rentedTools);
     });
     axios.get(`/api/usersListedTools/${this.props.match.params.userid}`).then(res => {
       this.setState({ listedTools: res.data });
-      console.log("listed tools:", this.state.listedTools);
     });
   }
 
   rentedSwipeLeft() {
-    this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle -= 370) });
+    this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle -= 94) });
     console.log(this.state.rentedToolsStyle);
     return this.state.rentedToolsStyle.toString();
   }
 
   rentedSwipeRight() {
     if (this.state.rentedToolsStyle < 0) {
-      this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle += 370) });
+      this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle += 94) });
       console.log(this.state.rentedToolsStyle);
       return this.state.rentedToolsStyle.toString();
     }
   }
 
   listedSwipeLeft() {
-    this.setState({ listedToolsStyle: (this.state.listedToolsStyle -= 370) });
+    this.setState({ listedToolsStyle: (this.state.listedToolsStyle -= 94) });
     console.log(this.state.listedToolsStyle);
     return this.state.listedToolsStyle.toString();
   }
 
   listedSwipeRight() {
     if (this.state.listedToolsStyle < 0) {
-      this.setState({ listedToolsStyle: (this.state.listedToolsStyle += 370) });
+      this.setState({ listedToolsStyle: (this.state.listedToolsStyle += 94) });
       console.log(this.state.listedToolsStyle);
       return this.state.listedToolsStyle.toString();
     }
@@ -93,24 +91,11 @@ class Profile extends Component {
   };
 
   render() {
-    let numOfRentPages = [];
-    let numOfRentContainers = 0;
-    numOfRentContainers += Math.ceil(this.state.rentedTools.length/4)
-    for (let i = 1; i <= numOfRentContainers; i++) {
-      numOfRentPages.push(i)
-    }
-    console.log('rent containers:',numOfRentContainers,'rent pages:',numOfRentPages)
-
-    let numOfListPages = [];
-    let numOfListContainers = 0;
-    numOfListContainers += Math.ceil(this.state.listedTools.length/4)
-    for (let i = 1; i <= numOfListContainers; i++) {
-      numOfListPages.push(i)
-    }
-    console.log('list containers:',numOfListContainers,'list pages:',numOfListPages)
 
     let {userid} = this.props.users
     let {userName, profilePic, bio, listerRating, renterRating} = this.state;
+
+    //mapping out the entire arrays of tool cards
     let displayedRentedTools = this.state.rentedTools.map(tool => {
       return (
         <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price}/>
@@ -122,35 +107,35 @@ class Profile extends Component {
       )
     })
 
-    let listedPageCounter = 0;
-    let listedToolCounter = 0
-    let listTools = numOfListPages.map((page,i) => {
-      listedPageCounter += 1;
+    //splitting the array into pages of four tool cards for rented
+    var arraysForRented = [];
+    while (displayedRentedTools.length > 0)
+        arraysForRented.push(displayedRentedTools.splice(0, 4));
+    let rentTools = arraysForRented.map((array,i) => {
+      let toolGroup = array.map((tool,i) => {
+        return tool
+      })
       return (
-        <div className='profile-toolsContainer'>
-        {this.state.listedTools.forEach((tool,i) => {
-          listedToolCounter += 1
-          return (
-            <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price}/>
-          )
-        })}
-      </div>
+        <div className='profile-toolsContainer' style={{position: 'relative', left: `${this.state.rentedToolsStyle}vw`}}>
+          {toolGroup}
+        </div>
       )
     })
 
-    console.log('displayed:',displayedListedTools)
-
-    // let displayedListedToolsPages = 
-
-    // let displayedListedTools = for (let i = 0; i < numOfListContainers; i++) {
-    //   return (
-    //     <div className='profile-toolsContainer'>
-    //       {this.state.listedTools.map((tool,i) => {
-    //          
-    //        })}
-    //     </div>
-    //   )
-    // }
+    //splitting the array into pages of four tool cards for listed
+    var arraysForListed = [];
+    while (displayedListedTools.length > 0)
+        arraysForListed.push(displayedListedTools.splice(0, 4));
+    let listTools = arraysForListed.map((array,i) => {
+      let toolGroup = array.map((tool,i) => {
+        return tool
+      })
+      return (
+        <div className='profile-toolsContainer' style={{position: 'relative', left: `${this.state.listedToolsStyle}vw`}}>
+          {toolGroup}
+        </div>
+      )
+    })
 
     return (
       <div>
@@ -187,11 +172,8 @@ class Profile extends Component {
               onSwipeRight={() => this.rentedSwipeRight()}
             >
               <div className="profile-toolsOuterContainer">
-                <div
-                  className="profile-toolsContainer"
-                  style={{ position: "relative", left: this.state.rentedToolsStyle }}
-                >
-                  {displayedRentedTools}
+                <div className='profile-pageSlider'>
+                  {rentTools}
                 </div>
               </div>
             </Swipeable>
@@ -205,18 +187,15 @@ class Profile extends Component {
                 <option value="LeastToMost">Least to Most Rented</option>
               </select>
             </div>
-              <Swipeable
-              onSwipeLeft={() => this.listedSwipeLeft()}
-              onSwipeRight={() => this.listedSwipeRight()}
+            <Swipeable
+            onSwipeLeft={() => this.listedSwipeLeft()}
+            onSwipeRight={() => this.listedSwipeRight()}
             >
-              <div className="profile-toolsOuterContainer">
-                <div
-                  className="profile-toolsContainer"
-                  style={{ position: "relative", left: this.state.listedToolsStyle }}
-                >
-                  {displayedListedTools}
-                </div>
+            <div className="profile-toolsOuterContainer">
+              <div className='profile-pageSlider'>
+                {listTools}
               </div>
+            </div>
             </Swipeable>
           </div>
         </div>
