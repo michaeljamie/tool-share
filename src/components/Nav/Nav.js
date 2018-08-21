@@ -60,6 +60,7 @@ class Nav extends Component {
                     <ul id="menu">
                         <Link to="/" className="nav-links" ><li onClick={ () => this.changeMenu() }>Home</li></Link>
                         <Link to="/search" className="nav-links" ><li onClick={ () => this.changeMenu() }>Tool Search</li></Link>
+                        <Link to="/post" className="nav-links" ><li onClick={ () => this.changeMenu() }>Add Tool</li></Link>
                         <Link to="/faq" className="nav-links" ><li onClick={ () => this.changeMenu() }>FAQ</li></Link>
                     </ul>
                 </div>

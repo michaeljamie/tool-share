@@ -1,8 +1,9 @@
 
 .FAQ-component {
     width: 100%;
+    min-height: 72vh;
     height: auto;
-    min-height: 100%;
+    @include flexSetUp(flex-start, center, column);
 }
 .FAQ-header {
     font-size: 24px;
@@ -10,6 +11,7 @@
     justify-content: center;
     align-items: center;
     font-weight: bolder;
+    padding: 10px;
 }
 .FAQ-questions {
     display: flex;
@@ -27,6 +29,9 @@
     margin-bottom: 25px;
     font-size: 18px;
 }
+.FAQ-individual-questions:hover {
+    cursor: pointer;
+}
 .FAQ-down-arrow {
     height: 25px;
     width: 25px;
@@ -41,12 +46,16 @@
 }
 .answer-displayed {
     height: 10%;
-    width: 80%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 18px;
+    font-weight: bold;
 }
 .answer-not-displayed {
     display: none
+}
+.tac_link {
+    margin: 2vh;
 }
