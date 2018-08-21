@@ -1,7 +1,7 @@
 .starRating-rating {
   text-align: center;
   background: $color4;
-  height: 7vh;
+  height: 8vh;
   width: 44vw;
   padding: 2px 0;
   border-radius: 50%;
@@ -9,6 +9,7 @@
 }
 .starRating-rating span {
   color: $color5;
+  font-style: italic;
 }
 .starRating-starContainer {
   display: flex;

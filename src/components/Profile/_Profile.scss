@@ -31,14 +31,18 @@
 }
 .profile-bio {
   position: relative;
-  padding: 5px;
+  padding: 7px;
   margin-top: 10px;
   margin-bottom: 13px;
-  background: $color2;
+  background: $color1;
   min-height: 12vh;
-  width: 91vw;
+  width: 88vw;
   word-wrap: break-word;
-  border-radius: 8px;
+  border-radius: 3px;
+  border: 2px outset gold;
+}
+.profile-bio span {
+  color: $color2;
 }
 .profile-addButton {
   font-size: 16px;
@@ -103,5 +107,5 @@ hr {
   background-color: $color5;
   height: 1px;
   border: 0;
-  margin: 25px 16px;
+  margin: 28px 16px;
 }
