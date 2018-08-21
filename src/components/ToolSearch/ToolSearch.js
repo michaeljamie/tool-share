@@ -29,6 +29,7 @@ class ToolSearch extends Component {
         searchResults: res.data
       });
     });
+    window.scrollTo(0,0);
   };
 
   handleSearch() {

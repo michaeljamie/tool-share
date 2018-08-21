@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Lister from './../Lister/Lister';
-import Calendar from './Calendar';
 import 'react-dates/lib/css/_datepicker.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -83,7 +82,7 @@ class Toolview extends Component {
                 fuel_type: tool.data.fuel_type,
                 tool_img: tool.data.tool_img,
                 tool_price: tool.data.tool_price,
-            }, _=>console.log('toolview rerendered, ', this.state.tool_name));
+            }, _=> console.log('toolview rerendered, ', this.state.tool_name));
         });
     };
 
@@ -140,11 +139,7 @@ class Toolview extends Component {
                     </div>
                         <div className = "toolview-price-rent">
                             <div>Price: ${this.state.tool_price}/day</div>
-                            <button className='toolview-rent-button'>Rent</button>
-                        </div>
-                        <div className = "toolview-calendar">
-                            Rental Dates
-                            <Calendar/>
+                            <Link to={`/checkout/${this.props.match.params.id}`}><button className='toolview-rent-button'>Rent</button></Link>
                         </div>
                 </div>
                 <div className = "toolview-description">
