@@ -65,8 +65,7 @@ module.exports = {
             depositInt,
             currently_available
         ])
-        .then( () => { res.status(200).send('Tool Posted') 
-        })
+        .then( (tool) => res.status(200).send(tool[0]) )
         .catch(err => console.log(err))
     },
 

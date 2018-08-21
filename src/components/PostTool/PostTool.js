@@ -87,7 +87,8 @@ class PostTool extends Component {
             depositInt
         }
         axios.post(`/api/post/tool`, tool_data).then( (res) => {
-            console.log(res)
+            console.log(res.data)
+            this.props.history.push(`/toolview/${res.data.tool_id}`)
         });
     };
 
