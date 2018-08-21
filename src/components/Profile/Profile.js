@@ -6,6 +6,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { Swipeable } from "react-touch";
 import {Link} from 'react-router-dom';
+import edit from '../../assets/cogIcon.png';
 
 class Profile extends Component {
   constructor() {
@@ -141,6 +142,13 @@ class Profile extends Component {
       <div>
         <div className="profile-page">
           <div className="profile-userInfo">
+            {userid===parseInt(this.props.match.params.userid)?
+              <Link to={`/edit/${this.props.match.params.userid}`}>
+                <div className='profile-editButton'>
+                  <img src={edit}/>
+                </div>
+              </Link>:
+            null}
             <img
               className="profile-userPic"
               alt="profilePic"
@@ -149,14 +157,6 @@ class Profile extends Component {
             <span className="profile-userName">{userName}</span>
             <div className="profile-bio">
               <span>{bio}</span>
-            </div>
-            <div className='profile-buttons'>
-            {userid===parseInt(this.props.match.params.userid)?
-            <Link to={`/edit/${this.props.match.params.userid}`}><button className="profile-edit">Edit Profile</button></Link>:
-            null}
-            {userid===parseInt(this.props.match.params.userid)?
-            <Link to={`/edit/${this.props.match.params.userid}`}><button className="profile-add">Add Tool</button></Link>:
-            null}
             </div>
           </div>
           <div className="profile-ratingsContainer">
@@ -182,6 +182,9 @@ class Profile extends Component {
             <div className="profile-toolsHeader">
               <span>Listed Tools</span>
               <br />
+              {userid===parseInt(this.props.match.params.userid)?
+              <Link to={`/post`}><button className="profile-addButton">Add Tool</button></Link>:
+              null}
               <select className="profile-timesRented">
                 <option value="MostToLeast">Most to Least Rented</option>
                 <option value="LeastToMost">Least to Most Rented</option>
