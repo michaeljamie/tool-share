@@ -9,6 +9,8 @@ import Toolview from './components/Toolview/Toolview';
 import Chat from './components/Chat/Chat';
 import Messages from './components/Messages/Messages';
 import PostTool from './components/PostTool/PostTool';
+import ToS from './components/ToS/ToS';
+import RentalAgreement from './components/RentalAgreement/RentalAgreement';
 
 export default (
     <Switch>
@@ -21,5 +23,7 @@ export default (
         <Route component={Toolview} path="/toolview/:id" />
         <Route component={Messages} path="/messages" />
         <Route component={PostTool} path="/post" />
+        <Route component={ToS} path="/terms_and_conditions" />
+        <Route component={RentalAgreement} path="/rental_agreement" />
     </Switch>
 )

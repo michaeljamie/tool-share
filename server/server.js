@@ -1,13 +1,14 @@
 require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const massive = require('massive');
-const axios = require('axios');
-const socket = require('socket.io');
-const uc = require('./userController/userController');
-const tc = require('./toolController/toolController');
-const mc = require('./messageController/messageController');
+  const express = require('express');
+  const bodyParser = require('body-parser');
+  const session = require('express-session');
+  const massive = require('massive');
+  const axios = require('axios');
+  const socket = require('socket.io');
+  const uc = require('./userController/userController');
+  const tc = require('./toolController/toolController');
+  const mc = require('./messageController/messageController');
+  const moment = require('moment');
 
 let {
   REACT_APP_CLIENT_ID,
@@ -27,16 +28,18 @@ const app = express()
     socket.on('message sent', data => {
       console.log(data);
       let { userid, message, profile_pic, username, current_room } = data
-      let date = new Date()
+      let date = moment().format('l')
+      let time = moment().format('h:mm a')
       const response ={
         userid,
         message,
         profile_pic,
         username,
-        date
+        date,
+        time
       }
       const db = app.get('db')
-      db.submit_message([current_room, JSON.stringify(response)])
+      db.submit_message([current_room, JSON.stringify(response), date, time])
       io.emit(`message dispatched-${current_room}`, response)
     })
 

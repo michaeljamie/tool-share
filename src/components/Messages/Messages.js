@@ -44,13 +44,17 @@ class Messages extends Component {
     render() {
         console.log(this.state.messages)
         let messagesToDisplay = this.state.messages.map((e, i) => {
+            console.log('e is this yo =', e)
             return (
                 
                 <Link to={`/chat/${e.room_id}`} className="link_to_chat">
                 <div key={e.fullname + i} className="individual_message" onClick={() => this.joinRoom(e.room_id)}>
                     <img className="messages_profile_icon" src={e.profile_pic} alt="profile_pic"/>
                     <div className="messages_name">{e.fullname}</div>
-                    <div className="messages_time">2:23 p.m.</div>
+                    <div className='messages-side'>
+                    <div className="messages_time">{e.message_time}</div>
+                    <div className="messages_time">{e.message_date}</div>
+                    </div>
                 </div>
                 </Link>
             )
