@@ -13,7 +13,22 @@ module.exports = {
         req.app.get('db').select_tool_by_tags([tag])
         .then( tools => {
             res.status(200).send(tools)
-        })
+        }).catch(err => console.log(err))
+    },
+
+    get_tags: (req, res) => {
+        const {id} = req.params;
+        req.app.get('db').get_tags([id])
+        .then( tags => {
+            res.status(200).send(tags)
+        }).catch(err => console.log(err))
+    },
+
+    get_all_tools_with_tags: (req, res) => {
+        req.app.get('db').get_all_tools_with_tags()
+        .then( tools => {
+            res.status(200).send(tools)
+        }).catch(err=>console.log(err))
     },
 
     select_tool_and_owner: (req, res, next) => {
