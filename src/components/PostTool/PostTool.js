@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
 import {connect} from "react-redux";
 const { REACT_APP_DOMAIN, REACT_APP_CLIENT_ID } = process.env;
 
@@ -16,15 +15,15 @@ class PostTool extends Component {
             type: '',
             description: '',
             times_rented: 0,
-            condition: '',
+            condition: 'Good',
             for_rent: false,
             for_sale: false,
             delivery_avail: false,
             pickup_avail: false,
             power_tool: false,
-            power_type: 'n/a',
+            power_type: null,
             requires_fuel: false,
-            fuel_type: 'n/a',
+            fuel_type: null,
             tool_img: '',
             price: 0,
             deposit:  0,
@@ -133,7 +132,7 @@ class PostTool extends Component {
                     <select className='post-tool-input' name="condition" onChange={this.handleChange}>
                         <option value="Excellent">Excellent</option>
                         <option value="Great">Great</option>
-                        <option value="Good">Good</option>
+                        <option selected value="Good">Good</option>
                         <option value="Fair">Fair</option>
                         <option value="Poor">Poor</option>
                     </select>
@@ -163,6 +162,7 @@ class PostTool extends Component {
                     <div className='post-tool-section'>
                         <div>What type of power?</div> 
                         <select className='search-criteria-select' name="power_type" onChange={this.handleChange}>
+                            <option selected value="null"></option>
                             <option value="electric">Electric</option>
                             <option value="pneumatic">Pneumatic</option>
                         </select>
@@ -178,7 +178,8 @@ class PostTool extends Component {
                     this.state.requires_fuel ?
                     <div className='post-tool-section'>
                         <div>What type of fuel?</div>
-                        <select className='search-criteria-select' name="fuel_type" onChange={this.handleChange}>
+                        <select className='search-criteria-select' name="fuel_type" defaultValue='' onChange={this.handleChange}>
+                            <option selected value="null"></option>
                             <option value="gasoline">Gasoline</option>
                             <option value="diesel">Diesel</option>
                             <option value="ethanol">Ethanol</option>
