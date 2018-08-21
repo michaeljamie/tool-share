@@ -12,6 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .Message_list {
@@ -61,6 +62,10 @@
 .messages_time {
     align-self: flex-start;
     padding: 15px;
+}
+
+.messages_side {
+    @include flexSetUp(space-around, center, column)
 }
 
 #profile-menu-show {

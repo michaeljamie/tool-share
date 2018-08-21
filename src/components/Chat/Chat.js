@@ -74,6 +74,7 @@ class Chat extends Component {
                 message = {e.message}
                 messageUserpic = {e.profile_pic}
                 messageUsername = {e.username}
+                time = {e.time}
                 date = {e.date}
                 currentUser={this.props.user.username}
                 username={this.props.user.username}
