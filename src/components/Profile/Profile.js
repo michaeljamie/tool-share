@@ -163,6 +163,7 @@ class Profile extends Component {
             <StarRating rateType={"Lister"} rating={listerRating} />
             <StarRating rateType={"Renter"} rating={renterRating} />
           </div>
+          <hr/>
           <div className="profile-rentContainer">
             <div className="profile-toolsHeader">
               <span>Currently Rented Tools</span>
