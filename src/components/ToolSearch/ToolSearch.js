@@ -41,9 +41,6 @@ class ToolSearch extends Component {
   };
 
   render() {
-    console.log(this.props.search_tags)
-   
-    
     const all_tools_unfiltered = this.state.searchResults.map( (tool) => {
      
       return (
