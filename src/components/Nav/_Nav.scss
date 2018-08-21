@@ -13,6 +13,7 @@ body {
  
  .nav-links:hover {
    color: whitesmoke;
+   cursor: pointer;
  }
 
  .nav-bar {
@@ -125,7 +126,15 @@ body {
   padding: 15px;
 }
 
+.nav_profile_icon:hover {
+  cursor: pointer;
+}
+
 .nav_register_link {
   color: $color4;
   padding: 15px;
+}
+
+.nav_register_link:hover {
+  cursor: pointer;
 }
