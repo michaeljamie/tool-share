@@ -42,6 +42,14 @@
     margin: 0;
 }
 
+.home-header-1 {
+    font-size: 40px;
+}
+
+.home-header-2 {
+    font-size: 25px;
+    font-family: $font2;
+}
 .home-icons {
     @include flexSetUp(space-around, center, column);
     animation: float 3.9s ease-in-out infinite;
@@ -61,97 +69,153 @@
 }
 .home-exampleCard {
     @include flexSetUp(space-around, center, row);
-    height: 140px;
-    width: 230px;
+    height: 15%;
+    width: 80%;
     background: $color3;
     border-radius: 6px;
 }
 
 .home-examplePic {
-    height: 100px;
-    width: 100px;
-    border: 1px solid $color5;
-    border-radius: 6px;
+    height: 130px;
+    width: 130px;
+    border: 1px solid $color1;
+    border-radius: 3px;
+}
+
+.home-exampleTitle {
+    font-size: 23px;
+    margin: 5px;
+    color: $color1;
+    border-bottom: solid 2px $color5;
+}
+
+.home-titleBox{
+    height: auto;
+    width: auto;
+    
+}
+
+.home-tool {
+    font-size: 16px;
+}
+
+.home-tool1 {
+    font-size: 18px;
 }
 
 .home-exampleRight {
-    @include flexSetUp(space-around, center, column);
+    @include flexSetUp(space-around, flex-start, column);
     color: $color1;
 }
 
 .home-searchBar {
     @include flexSetUp(space-around, center, column);
-    height: 170vh;
+    height: 270vh;
     width: 100%;
     background: $color1;
     margin: 0;
 }
 
-%test {
-    position: absolute;
-      content: '';
-      transition: all .25s;
-  }
-  
-  .home-mainButton {
-      margin-top: 10px;
-      border: none;
-      position: relative;
-      display: inline-block; 
-      padding: 20px 20px;
-      color: white;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      vertical-align: middle;
-      font-family: 'Rubik One', sans-serif;
-      text-decoration: none;
-      font-size: 3vw;
-      transition: all .25s;
-      background-color: #fdd947;
-  
-      &::before {
-      @extend %test;
-          bottom: -15px;
-          height: 15px;
-          width: 100%;
-          left: 8px;
-          transform: skewX(45deg);
-          background-color: darken(#fdd947, 20%);
-      }
-  
-      &::after {
-          @extend %test;
-          right: -15px;
-          height: 100%;
-          width: 15px;
-          bottom: -8px;
-          transform: skewY(45deg);
-          background-color: darken(#fdd947, 30%);
-      }
-  
-      &:active {
-          margin-left: 10px;
-          margin-top: 10px;
-          &::before {
-              bottom: -5px;
-              height: 5px;
-              left: 3px;
-          }
-          
-      &::after {
-              right: -5px;
-              width: 5px;
-              bottom: -3px;
-          }	
-      }
-  }
+.home-searchTop {
+    color: white;
+    font-size: 35px;
+    margin-bottom: 0px;
+}
 
-  #second {
-      position: static;
-      top: 60%;
-      left: 60%
-  }
+.home-Link {
+    text-decoration: none;
+    outline: none;
+}
+
+a.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+	margin: 30px auto 0;
+	padding: 14px 15px;
+	color: #fff;
+	font-size:14px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+    overflow: hidden;
+	letter-spacing: .08em;
+	border-radius: 0;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+a.animated-button:link:after, a.animated-button:visited:after {
+	content: "";
+	position: absolute;
+	height: 0%;
+	left: 50%;
+	top: 50%;
+	width: 150%;
+	
+	-webkit-transition: all 0.75s ease 0s;
+	-moz-transition: all 0.75s ease 0s;
+	-o-transition: all 0.75s ease 0s;
+	transition: all 0.75s ease 0s;
+}
+a.animated-button:link:hover, a.animated-button:visited:hover {
+	color: #FFF;
+	text-shadow: none;
+}
+a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
+	height: 450%;
+}
+a.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+	margin: 30px auto 0;
+    padding: 14px 15px;
+    z-index: 5;
+	color: #fff;
+	font-size:14px;
+	border-radius: 0;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+
+
+a.animated-button.gibson-two {
+	border: 2px solid #fdd947;
+	color: #FFF;
+}
+
+a.animated-button.gibson-two:after {
+    
+	opacity: 0;
+	background-image: -webkit-linear-gradient( transparent 50%, #fdd947 50%);
+	background-image: -moz-linear-gradient(transparent 50%, #fdd947 50%);
+	background-size: 10px 10px;
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	-ms-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+}
+a.animated-button.gibson-two:hover:after {
+	height: 600% !important;
+    opacity: 1;
+    
+}
+
+a.animated-button.gibson-two:hover {
+    z-index: 4;
+    
+}
 
 .home-steps {
     @include flexSetUp(space-around, center, column);
@@ -212,22 +276,31 @@
 
 .home-safe {
     @include flexSetUp(space-around, center, column);
-    height: 80vh;
+    height: 140vh;
     width: 100%;
     background: $color1;
     color: $color5;
 }
 
 .home-safeText {
-    font-size: 20px;
+    font-size: 27px;
 }
 
 .home-mid {
-    width: 80%;
-    @include flexSetUp(flex-start, center, row);
+    width: 85%;
+    @include flexSetUp(flex-start, center, column);
 }
 
+.home-iconTitle {
+    font-size: 24px;
+    text-align: left;
+    color: $color3;
+}
 
+.home-iconText {
+    text-align: left;
+    font-size: 18px;
+}
 
 .home-iconBox {
     height: 50px;
@@ -240,6 +313,20 @@
 
 .home-icon {
     height: 35px;
+}
+
+.home-iconRight {
+    @include flexSetUp(flex-start, center, row);
+    width: 75vw;
+    height: auto;
+}
+
+.home-rentalLink {
+    color: white;
+}
+
+.home-rentalLink:hover {
+    cursor: pointer;
 }
 
 .home-contact {
@@ -255,12 +342,47 @@
     margin: 0;
 }
 
-.home-contactText {
-    color: $color5;
+.home-input1 {
+    border: none;
+    background: transparent;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $color5;
+    width: 100%;
+    transition: .6s ease-in-out;
+    height: 2vh;
+    margin-top: 0px;
 }
-// .home-headerText {
-//     font-family: $font1;
-// }
+
+.home-input1::placeholder {
+    color: $color3;
+}
+
+.home-input1:focus {
+    color: $color3;
+    // transform: scaleY(3.5);
+    margin-top: 30px;
+    outline: none;
+    font-size: 23px;
+}
+
+
+
+.home-inputText {
+    color: $color3;
+    text-align: left;
+    margin-bottom: 0px;
+}
+
+
+
+.home-contactText {
+    color: $color3;
+}
+
+.home-contactDiv {
+    width: 60%;
+}
+
 
 @keyframes float {
     0% {
