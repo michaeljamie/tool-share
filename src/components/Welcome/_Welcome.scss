@@ -1,5 +1,6 @@
 .welcome-page {
-  height: 95vh;
+  background: $color1;
+  height: 140vh;
   padding: 3vw;
   display: flex;
   flex-direction: column;
@@ -8,23 +9,44 @@
 }
 .welcome-welcome {
   font-size: 50px;
+  color: $color3;
+  margin: 10px;
 }
 .welcome-greeting {
   text-align: center;
+  color: white;
+  padding: 12px;
+  border: 3px outset $color5;
+  font-size: 18px;
 }
-.welcome-section {
+.welcome-zipSection {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 3px outset $color5;
+  padding: 12px;
+  padding-bottom: 2px;
+}
+.welcome-phoneSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px outset $color5;
+  padding: 12px;
+  margin-top: 1em;
 }
 .welcome-paragraph {
   text-align: center;
+  color: white;
+  margin-top: 0;
+  font-size: 18px;
 }
-.welcome-paragraph span {
-  color: red;
+.welcome-bigNot {
+  color: $color5;
+  text-decoration: underline;
 }
-.welcome-input {
-  border: 1px solid black;
+.welcome-phoneInput {
+  margin-bottom: 8px;
 }
 .welcome-confirm {
   background-color: $color5;
@@ -33,4 +55,11 @@
   padding: 3px 12px;
   position: absolute;
   bottom: 3vh;
+}
+#welcome-zipReq {
+  padding-top: 1px;
+  color: red;
+}
+.welcome-lilNot {
+  font-style: italic;
 }
