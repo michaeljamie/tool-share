@@ -11,7 +11,7 @@ class App extends Component {
       <div>
         <Nav/>
         {Routes}
-        <Contact/>
+        { window.location.href === 'http://localhost:3000/#/' ? <Contact/> : ''}
         <Footer/>
       </div>
     );

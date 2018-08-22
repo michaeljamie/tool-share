@@ -1,15 +1,21 @@
 .starRating-rating {
   text-align: center;
-  background: $color2;
-  height: 7vh;
+  background: $color4;
+  height: 8vh;
   width: 44vw;
   padding: 2px 0;
   border-radius: 50%;
+  box-shadow: 0 0 13px 3px $color5;
+}
+.starRating-rating span {
+  color: $color5;
+  font-style: italic;
 }
 .starRating-starContainer {
   display: flex;
   justify-content: space-around;
   transform: skew(-10deg);
+  margin-bottom: 2px;
 }
 .starRating-star {
   font-size: 3.7vh;

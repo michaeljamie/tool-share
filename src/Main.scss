@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Lato');
 @import 'https://fonts.googleapis.com/css?family=Rubik+One';
+@import url('https://fonts.googleapis.com/css?family=Bangers');
 
 $color1: #252525;
 $color2: #979797;
@@ -56,6 +57,9 @@ $font2: 'Lato', sans-serif;
 @import "components/Home/HomeButton/_Button.scss";
 @import "components/PostTool/_PostTool.scss";
 @import "components/ProfileEdit/_ProfileEdit.scss";
+@import "components/CheckOut/_CheckOut.scss";
+@import "components/ToS/_ToS.scss";
+@import "components/RentalAgreement/_RentalAgreement.scss";
 
 
 @keyframes App-logo-spin {

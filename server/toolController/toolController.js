@@ -54,6 +54,7 @@ module.exports = {
             name,
             type,
             description,
+            times_rented,
             condition,
             for_rent,
             for_sale,
@@ -65,13 +66,15 @@ module.exports = {
             fuel_type,
             tool_img,
             priceInt,
-            depositInt
+            depositInt,
+            currently_available
         } = req.body
         req.app.get('db').post_tool([
             owner,
             name,
             type,
             description,
+            times_rented,
             condition,
             for_rent,
             for_sale,
@@ -83,10 +86,10 @@ module.exports = {
             fuel_type,
             tool_img,
             priceInt,
-            depositInt
+            depositInt,
+            currently_available
         ])
-        .then( () => { res.status(200).send('Tool Posted') 
-        })
+        .then( (tool) => res.status(200).send(tool[0]) )
         .catch(err => console.log(err))
     },
 
