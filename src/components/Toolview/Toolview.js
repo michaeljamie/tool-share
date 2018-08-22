@@ -5,15 +5,12 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { handleSearchTags } from '../../ducks/reducer';
-import ToolSearchCard from "./../../components/ToolSearchCard/ToolSearchCard";
 import io from 'socket.io-client';
 import { setRoomID } from '../../ducks/reducer'
 import Map from './../../components/Map/Map';
 import SimilarTools from './../../components/SimilarTools/SimilarTools';
 import {withRouter} from 'react-router-dom';
-
 const socket = io(`http://localhost:3005`)
-
 const {REACT_APP_GOOGLE_API_KEY} = process.env
 
 class Toolview extends Component {
@@ -30,7 +27,6 @@ class Toolview extends Component {
             owner_state: null,
             tool_id: 0,
             tool_name: '',
-            tool_type: '',
             tool_descript: '',
             times_rented: 0,
             tool_condition: '',
@@ -40,17 +36,19 @@ class Toolview extends Component {
             pick_up: false,
             power_tool: false,
             requires_fuel: false,
+            power_type: '',
             fuel_type: '',
             tool_img: '',
             tool_price: 0,
-            allToolsAndTags: [],
-            currentToolTag: ''
+            available: '',
+            currentToolTags: [],
+            allToolsAndTags: []
         };
     };
 
     componentDidMount() {
         this.getToolAndOwner();
-        this.getTools();
+        // this.getTools();
         window.scrollTo(0,0);
     };
 
@@ -59,11 +57,10 @@ class Toolview extends Component {
             this.getToolAndOwner()
             
         }
-    }
+    };
 
     getToolAndOwner() {
         axios.get(`/api/tool/${+this.props.match.params.id}`).then( tool => {
-            console.log(tool)
             this.setState({
                 owner_name: tool.data.fullname,
                 owner_pic: tool.data.profile_pic,
@@ -72,7 +69,6 @@ class Toolview extends Component {
                 owner_long: tool.data.longitude,
                 tool_id: tool.data.tool_id,
                 tool_name: tool.data.tool_name,
-                tool_type: tool.data.tool_type,
                 tool_descript: tool.data.tool_descript,
                 times_rented: tool.data.times_rented,
                 tool_condition: tool.data.tool_condition,
@@ -85,21 +81,25 @@ class Toolview extends Component {
                 fuel_type: tool.data.fuel_type,
                 tool_img: tool.data.tool_img,
                 tool_price: tool.data.tool_price,
-                currentToolTag: tool.data.tag
+                power_type: tool.data.power_type,
+                available: tool.data.currently_available
             });
-        });
+        }).then(
+        axios.get(`/api/tags/${+this.props.match.params.id}`).then( tags => {
+            this.setState({
+                currentToolTags: tags.data
+            })}
+        ));
     };
 
-    getTools = () => {
-        axios.get('api/get_all_tools_with_tags')
-        .then(res=>{
-            this.setState({
-                allToolsAndTags: res.data
-            })
-        })
-    }
-
-    
+    // getTools = () => {
+    //     axios.get('api/get_all_tools_with_tags')
+    //     .then(res=>{
+    //         this.setState({
+    //             allToolsAndTags: res.data
+    //         })
+    //     })
+    // }
 
     latlongToZip = (lat, long) => {
         axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`)
@@ -121,11 +121,10 @@ class Toolview extends Component {
     }
 
     render() {
-        console.log(this.state.currentToolTag)
+        console.log(this.state)
+
         let editButton = this.state.owner_id === this.props.user.userid ? <button className='toolview-edit-button'>edit</button> : null
        
-        
-
         let toolsWithSameTags = this.state.allToolsAndTags.filter(tool=>{
             if(this.props.search_tags){
                 return tool.tag === this.props.search_tags && tool.tool_id !== +this.props.match.params.id
@@ -150,7 +149,7 @@ class Toolview extends Component {
                         <img src={this.state.tool_img} alt="table saw"/>
                     </div>
                         <div className = "toolview-price-rent">
-                            <div>Price: ${this.state.tool_price}/day</div>
+                            <div>Price: {this.state.tool_price}/day</div>
                             <Link to={`/checkout/${this.props.match.params.id}`}><button className='toolview-rent-button'>Rent</button></Link>
                         </div>
                 </div>
@@ -184,11 +183,6 @@ class Toolview extends Component {
                 <div className = "toolview-bottom">
                     Similar Tools:  
                    {similarTools}
-                    <div className = "toolview-other">
-                        <div></div>
-                        <div></div>
-                        <div></div>  
-                    </div>
                 </div>
             </div>
         );
