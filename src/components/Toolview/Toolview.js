@@ -48,14 +48,14 @@ class Toolview extends Component {
 
     componentDidMount() {
         this.getToolAndOwner();
-        window.scrollTo(0,0)
         // this.getTools();
+        window.scrollTo(0,0);
     };
 
     componentDidUpdate (prevProps) {
         if(prevProps.match.params.id !== this.props.match.params.id){
             this.getToolAndOwner()
-            window.scrollTo(0,0)
+            
         }
     };
 

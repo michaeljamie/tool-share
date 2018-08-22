@@ -13,11 +13,11 @@ import arrowleft from './../../assets/arrowleft.png';
 import arrowright from './../../assets/arrowright.png';
 import dude from './../../assets/dude.png';
 import dude1 from './../../assets/dude1.png';
-import lady from './../../assets/lady.png';
 import construction from './../../assets/construction.png';
 import hammertime from './../../assets/hammertime.png';
 import car from './../../assets/car.png';
 import ladderguy from './../../assets/ladderguy.png';
+import axios from 'axios';
 
 export default class Home extends Component {
     constructor(){
@@ -25,7 +25,11 @@ export default class Home extends Component {
 
         this.state = {
             zipCode: '',
-            toolSearch: ''
+            toolSearch: '',
+            formname: '',
+            formemail: '',
+            formphone: '',
+            formmessage: '',
         }
     }
 
@@ -41,6 +45,24 @@ export default class Home extends Component {
         this.setState({
       [property]: value
     })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const {formname, formemail, formphone, formmessage} = this.state;
+
+        axios.post('./api/send', {
+           formname,
+           formemail,
+           formphone,
+           formmessage 
+        });
+        this.setState({
+            formname: '',
+            formemail: '',
+            formphone: '',
+            formmessage: ''
+        })
     }
 
 
@@ -122,32 +144,46 @@ export default class Home extends Component {
                 </div>
                 <div className = 'home-steps'>
                     <h1 className = 'steps-text'>HERE'S HOW IT WORKS:</h1>
+
                     <div className = 'steps-section'>
-            
+           
                         <img src={dude} className = 'home-dude' alt=""/>
-
-                        
-
-
+                        <div className = 'home-aboutText'>
+                            <h3>Jim wants to build a treehouse for his kids</h3>
+                        </div>
                         {/* <img src={arrowleft} className = 'steps-icon' alt=""/> */}
                     </div>
                     <div className = 'steps-section'>
                         <img src={car} className = 'home-car' alt=""/>
+                        <div className = 'home-aboutText'>
+                            <h3>Jim logs in to Tool Share, rents the tools he needs, and goes to meet the renter</h3>
+                        </div>
                     </div>
                     <div className = 'steps-section'>
-                        <img src={construction} className = 'home-dude' alt=""/>
+                        <img src={dude1} className = 'home-dude2' alt=""/>
+                        <div className = 'home-aboutText'>
+                            <h3>With his newly rented tools Jim is ready to begin</h3>
+                        </div>
+                    </div>
+                    <div className = 'steps-section'>
+                        <img src={construction} className = 'home-dude1' alt=""/>
+                        <div className = 'home-aboutText'>
+                            <h3>Jim writes up plans and gets to work</h3>
+                        </div>
                     </div>
             
+
                     <div className = 'steps-section'>
-                        <img src={dude1} className = 'home-lady' alt=""/>
-                        
+                        <img src={ladderguy} className = 'home-dude3' alt=""/>
+                        <div className = 'home-aboutText'>
+                            <h3>Jim wants to build a treehouse for his kids</h3>
+                        </div>
                     </div>
                     <div className = 'steps-section'>
-                        <img src={ladderguy} className = 'home-lady' alt=""/>
-                        
-                    </div>
-                    <div className = 'steps-section'>
-                        <img src={hammertime} className = 'home-dude' alt=""/>
+                        <img src={hammertime} className = 'home-dude4' alt=""/>
+                        <div className = 'home-aboutText'>
+                            <h3>Jim wants to build a treehouse for his kids</h3>
+                        </div>
                     </div>
 
                 </div>
@@ -201,21 +237,21 @@ export default class Home extends Component {
                     <h3 className ='home-contactText'>CONTACT US:</h3>
                     <div className='home-contactDiv'>
                         <p className = 'home-inputText'>Name</p>
-                        <input className = 'home-input1' type="text" />
+                        <input className = 'home-input1' type="text" onChange = {(e) => {this.handleChange('formname', e.target.value)}} value = {this.state.formname}/>
                     </div>
                     <div className='home-contactDiv'>
                         <p className = 'home-inputText'>Email</p>
-                        <input className = 'home-input1' type="text" />
+                        <input className = 'home-input1' type="text" onChange = {(e) => {this.handleChange('formemail', e.target.value)}} value = {this.state.formemail}/>
                     </div>
                     <div className='home-contactDiv'>
                         <p className = 'home-inputText'>Phone Number</p>
-                        <input className = 'home-input1' type="text" />
+                        <input className = 'home-input1' type="text" onChange = {(e) => {this.handleChange('formphone', e.target.value)}} value = {this.state.formphone}/>
                     </div>
                     <div className='home-contactDiv'>
                         <p className = 'home-inputText'>Message</p>
-                        <input className = 'home-input1' type="text" />
+                        <input className = 'home-input1' type="text" onChange = {(e) => {this.handleChange('formmessage', e.target.value)}} value = {this.state.formmessage}/>
                     </div>
-                    <a href="#" className= 'btn btn-sm animated-button gibson-two'>Submit</a>
+                    <a href="#" className= 'btn btn-sm animated-button gibson-two' onClick={this.handleSubmit}>Submit</a>
                     
                 </div>
                 
