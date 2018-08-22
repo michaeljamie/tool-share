@@ -1,36 +1,50 @@
 .profileEdit-page {
-  height: 68.6vh;
+  position: relative;
+  height: 87vh;
   padding: 3vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.profileEdit-nameContainer {
-  margin-top: 6vh;
+.profileEdit-page span {
+  width: 100%;
+  text-align: center;
 }
-.profileEdit-fullName {
+.profileEdit-nameContainer {
+  margin-top: 4vh;
+}
+.profileEdit-input {
   border: 1px solid black;
+  font-size: 21px;
 }
 .profileEdit-bioContainer {
-  margin-top: 6vh;
+  margin-top: 4vh;
 }
 .profileEdit-bio {
+  resize: none;
   border: 1px solid black;
+  font-size: 21px;
+  height: 25vh;
+  width: 92vw;
 }
 .profileEdit-emailContainer {
-  margin-top: 6vh;
-}
-.profileEdit-email {
-  border: 1px solid black;
+  margin-top: 4vh;
 }
 .profileEdit-phoneContainer {
-  margin-top: 6vh;
-}
-.profileEdit-phone {
-  border: 1px solid black;
+  margin-top: 4vh;
 }
 .profileEdit-confirm {
-  border: 1px solid black;
-  margin-top: 6vh;
   background-color: $color5;
+  font-size: 21px;
+  border-radius: 20px;
+  padding: 3px 12px;
+}
+.profileEdit-buttonContainer {
+  text-align: center;
+  position: absolute;
+  bottom: 4vh;
+  width: 94%;
+}
+span {
+  font-size: 21px;
 }

@@ -7,7 +7,7 @@ export default class ProfileToolCard extends Component {
       <div className='profileToolCard-card'>
           <img src={this.props.toolImg} alt='tool' className='profileToolCard-image'/>
         <div className='profileToolCard-cardTitle'>{this.props.toolName}</div>
-        <div className='profileToolCard-cardPrice'>${this.props.toolPrice}/day</div>
+        <div className='profileToolCard-cardPrice'>{this.props.toolPrice}/day</div>
         <Link to={`/toolview/${this.props.toolId}`}>
         <div className='profileToolCard-cardShade'/>
         </Link>

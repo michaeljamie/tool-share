@@ -63,6 +63,8 @@ massive(CONNECTION_STRING).then(db => {
   console.log('Database ready')
 });
 
+// app.use(uc.ignoreAuthInDevelopment)
+
 app.get('/auth/callback', async (req, res) => {
   // code from auth0 on req.query.code
   let payload = {
@@ -122,7 +124,8 @@ app.put('/api/userData/:userid', uc.changeUserData)
 // Tool Endpoints
 app.get('/api/tools', tc.select_all_tools);
 app.get('/api/tools_by_tag', tc.select_tool_by_tags);
-app.get('/api/get_all_tools_with_tags', tc.get_all_tools_with_tags)
+app.get('/api/get_all_tools_with_tags', tc.get_all_tools_with_tags);
+app.get('api/get_current_tool_tag/:id', tc.get_current_tool_tag);
 app.get('/api/tool/:id', tc.select_tool_and_owner);
 app.post('/api/post/tool', tc.post_tool);
 app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting)
