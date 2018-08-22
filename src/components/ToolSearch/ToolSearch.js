@@ -13,6 +13,7 @@ import {
   handleSearchMaxDistance,
   handleSearchMaxPrice
 } from '../../ducks/reducer';
+import Toolview from './../../components/Toolview/Toolview';
 
 class ToolSearch extends Component {
   constructor() {
@@ -41,10 +42,18 @@ class ToolSearch extends Component {
   };
 
   render() {
-    const all_tools_unfiltered = this.state.searchResults.map( (tool) => {
+    console.log(this.state.tag)
+    const tagPropsToToolview = this.state.searchResults.map( (tool, index) => {
      
       return (
-        <ToolSearchCard key={tool.tool_id} id={tool.tool_id} title={tool.tool_name} price={tool.tool_price} image={tool.tool_img} condition={tool.tool_condition}/>
+        <Toolview key={index*3} tag={tool.tag} thing = {'hello'} />
+      )
+    })
+    
+    
+    const all_tools_unfiltered = this.state.searchResults.map( (tool, index) => {
+      return (
+        <ToolSearchCard key={index} tag={tool.tag} id={tool.tool_id} title={tool.tool_name} price={tool.tool_price} image={tool.tool_img} condition={tool.tool_condition}/>
       );
     })
   
@@ -66,7 +75,8 @@ class ToolSearch extends Component {
             </div>
             <div className='search-criteria-minor-box'>
             Tag Search
-              <select className='search-criteria-select' name="searchTags" value={this.props.search_tags} onChange={(e) => this.props.handleSearchTags(e.target.value)}>
+              <select className='search-criteria-select' name="searchTags" value={this.state.search_tags} onChange={(e) => this.props.handleSearchTags(e.target.value)}>
+              <option value="">Select</option>
                 <option value="drill">Drills</option>
                 <option value="saw">Saws</option>
                 <option value="jackhammer">Jackhammers</option>

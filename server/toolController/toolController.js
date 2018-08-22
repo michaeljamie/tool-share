@@ -31,6 +31,15 @@ module.exports = {
         }).catch(err=>console.log(err))
     },
 
+    get_current_tool_tag: (req, res) => {
+        console.log(req.params.id)
+        const {id} = req.params;
+        req.app.get('db').get_current_tool_tag([id])
+        .then ( tag => {
+            res.status(200).send(tag)
+        }).catch(err=>console.log(err))
+    },
+
     select_tool_and_owner: (req, res, next) => {
         const {id} = req.params;
         req.app.get('db').select_tool_and_owner([id])

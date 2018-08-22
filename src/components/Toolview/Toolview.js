@@ -44,7 +44,8 @@ class Toolview extends Component {
             fuel_type: '',
             tool_img: '',
             tool_price: 0,
-            allToolsAndTags: []
+            allToolsAndTags: [],
+            currentToolTag: ''
         };
     };
 
@@ -61,7 +62,8 @@ class Toolview extends Component {
     }
 
     getToolAndOwner() {
-        axios.get(`/api/tool/${this.props.match.params.id}`).then( tool => {
+        axios.get(`/api/tool/${+this.props.match.params.id}`).then( tool => {
+            console.log(tool)
             this.setState({
                 owner_name: tool.data.fullname,
                 owner_pic: tool.data.profile_pic,
@@ -83,7 +85,8 @@ class Toolview extends Component {
                 fuel_type: tool.data.fuel_type,
                 tool_img: tool.data.tool_img,
                 tool_price: tool.data.tool_price,
-            }, _=>console.log('toolview rerendered, ', this.state.tool_name));
+                currentToolTag: tool.data.tag
+            });
         });
     };
 
@@ -95,6 +98,8 @@ class Toolview extends Component {
             })
         })
     }
+
+    
 
     latlongToZip = (lat, long) => {
         axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`)
@@ -116,16 +121,22 @@ class Toolview extends Component {
     }
 
     render() {
-        console.log('toolview render')
+        console.log(this.state.currentToolTag)
         let editButton = this.state.owner_id === this.props.user.userid ? <button className='toolview-edit-button'>edit</button> : null
        
+        
+
         let toolsWithSameTags = this.state.allToolsAndTags.filter(tool=>{
-            return tool.tag === this.props.search_tags && tool.tool_id !== +this.props.match.params.id
+            if(this.props.search_tags){
+                return tool.tag === this.props.search_tags && tool.tool_id !== +this.props.match.params.id
+            } else {
+                return tool.tag === this.state.currentToolTag && tool.tool_id !== +this.props.match.params.id
+            }
         })
 
         let similarTools = toolsWithSameTags.map( (tool, index) => {
             return (
-                <SimilarTools key={index} location={this.props.location} id={tool.tool_id} image={tool.tool_img} name={tool.tool_name} price={tool.tool_price} />
+                <SimilarTools key={index} hello={'hello'} location={this.props.location} id={tool.tool_id} image={tool.tool_img} name={tool.tool_name} price={tool.tool_price} />
             )
         })
        
