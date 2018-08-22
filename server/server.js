@@ -11,6 +11,15 @@ require('dotenv').config();
   const mc = require('./messageController/messageController');
   const nc = require('./nodemailerController/nodemailerController');
   const moment = require('moment');
+  var config = {
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: "<PROJECT_ID>.firebaseapp.com",
+    databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
+    storageBucket: "<BUCKET>.appspot.com",
+  };
+  firebase.initializeApp(config);
+
+  var storage = firebase.storage()
   
 
 let {
