@@ -5,10 +5,22 @@ require('dotenv').config();
   const massive = require('massive');
   const axios = require('axios');
   const socket = require('socket.io');
+  const nodemailer = require('nodemailer');
   const uc = require('./userController/userController');
   const tc = require('./toolController/toolController');
   const mc = require('./messageController/messageController');
+  const nc = require('./nodemailerController/nodemailerController');
   const moment = require('moment');
+  var config = {
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: "<PROJECT_ID>.firebaseapp.com",
+    databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
+    storageBucket: "<BUCKET>.appspot.com",
+  };
+  firebase.initializeApp(config);
+
+  var storage = firebase.storage()
+  
 
 let {
   REACT_APP_CLIENT_ID,
@@ -87,6 +99,7 @@ app.get('/auth/callback', async (req, res) => {
     }`
   );
   const db = req.app.get('db');
+  console.log(userData)
   let { sub, name, picture } = userData.data;
   let userExists = await db.find_user([sub]);
   if (userExists[0]) {
@@ -131,9 +144,11 @@ app.post('/api/post/tool', tc.post_tool);
 app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting)
 app.get('/api/usersListedTools/:userid', tc.select_all_tools_user_has_listed)
 
-// Message Enpoints
+// Message Endpoints
 app.put('/api/room', mc.create)
 app.get('/api/sendermessages/:id', mc.read_sender)
 app.get('/api/receivermessages/:id', mc.read_receiver)
 app.get('/api/messages/:messageid', mc.read)
 
+// Nodemailer Endpoints
+app.post('/api/send', nc.send)
