@@ -114,7 +114,7 @@ app.get('/api/user-data', ( req, res ) => {
   
 app.get('/api/logout', (req, res) => {
   req.session.destroy()
-  res.redirect(`${FRONTEND_DOMAIN}/#`)
+  res.redirect(`${process.env.FRONTEND_DOMAIN}/#/`)
 });
 
 // Profile Endpoints
@@ -124,6 +124,7 @@ app.post('/api/updateUser/:id', uc.update);
 app.get('/api/userData/:userid', uc.getUserData)
 app.put('/api/userData/:userid', uc.editUserData)
 app.put('/api/welcomeUserUpdate/:userid', uc.welcomeUpdate)
+app.delete('/api/deleteUser', uc.deleteUser)
 
 // Tool Endpoints
 app.get('/api/tools', tc.select_all_tools);
