@@ -9,6 +9,15 @@ require('dotenv').config();
   const tc = require('./toolController/toolController');
   const mc = require('./messageController/messageController');
   const moment = require('moment');
+  var config = {
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: "<PROJECT_ID>.firebaseapp.com",
+    databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
+    storageBucket: "<BUCKET>.appspot.com",
+  };
+  firebase.initializeApp(config);
+
+  var storage = firebase.storage()
 
 let {
   REACT_APP_CLIENT_ID,
