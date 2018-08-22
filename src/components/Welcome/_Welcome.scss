@@ -1,0 +1,65 @@
+.welcome-page {
+  background: $color1;
+  height: 140vh;
+  padding: 3vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.welcome-welcome {
+  font-size: 50px;
+  color: $color3;
+  margin: 10px;
+}
+.welcome-greeting {
+  text-align: center;
+  color: white;
+  padding: 12px;
+  border: 3px outset $color5;
+  font-size: 18px;
+}
+.welcome-zipSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px outset $color5;
+  padding: 12px;
+  padding-bottom: 2px;
+}
+.welcome-phoneSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px outset $color5;
+  padding: 12px;
+  margin-top: 1em;
+}
+.welcome-paragraph {
+  text-align: center;
+  color: white;
+  margin-top: 0;
+  font-size: 18px;
+}
+.welcome-bigNot {
+  color: $color5;
+  text-decoration: underline;
+}
+.welcome-phoneInput {
+  margin-bottom: 8px;
+}
+.welcome-confirm {
+  background-color: $color5;
+  font-size: 21px;
+  border-radius: 20px;
+  padding: 3px 12px;
+  position: absolute;
+  bottom: 3vh;
+}
+#welcome-zipReq {
+  padding-top: 1px;
+  color: red;
+}
+.welcome-lilNot {
+  font-style: italic;
+}

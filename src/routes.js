@@ -12,6 +12,7 @@ import PostTool from './components/PostTool/PostTool';
 import CheckOut from './components/CheckOut/CheckOut';
 import ToS from './components/ToS/ToS';
 import RentalAgreement from './components/RentalAgreement/RentalAgreement';
+import Welcome from './components/Welcome/Welcome';
 
 export default (
     <Switch>
@@ -27,5 +28,6 @@ export default (
         <Route component={CheckOut} path="/checkout/:id" />
         <Route component={ToS} path="/terms_and_conditions" />
         <Route component={RentalAgreement} path="/rental_agreement" />
+        <Route component={Welcome} path="/welcome/:userid" />
     </Switch>
 )

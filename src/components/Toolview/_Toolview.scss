@@ -17,7 +17,7 @@
     background-color: #fdd947;
     cursor: pointer;
     color: black;
-    width: 40%;
+    width: 100%;
 }
 
 .toolview-edit-button {
@@ -28,21 +28,19 @@
 }
 
 .toolview-top-title {
-    display: flex;
-    
+    display: flex; 
 }
 
 .toolview-pic img {
     display: flex;
     width: 80vw;
-    
 }
 
 .toolview-price-rent {
     display: flex;
     justify-content: space-evenly;
     margin-top: 10px;
-    width: 80vw;
+    width: 100vw;
     height: 30px;
 }
 
@@ -85,12 +83,3 @@
     display: flex;
     justify-content: space-around;
 }
-
-// .toolview-other div {
-//     width: 100px;
-//     height: 100px;
-//     background: gray;
-//     display: flex;
-// }
-
-
