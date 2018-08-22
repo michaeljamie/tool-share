@@ -93,7 +93,7 @@ app.get('/auth/callback', async (req, res) => {
   } else {
     db.create_user([sub, name, picture]).then(createdUser => {
       req.session.user = createdUser[0];
-      res.redirect(`${process.env.FRONTEND_DOMAIN}/#/profile/${req.session.user.userid}`);
+      res.redirect(`${process.env.FRONTEND_DOMAIN}/#/welcome/${req.session.user.userid}`);
     });
   };
 });
@@ -117,7 +117,8 @@ app.get('/api/userinfo', uc.read);
 app.get('/api/session', uc.getUserSession);
 app.post('/api/updateUser/:id', uc.update);
 app.get('/api/userData/:userid', uc.getUserData)
-app.put('/api/userData/:userid', uc.changeUserData)
+app.put('/api/userData/:userid', uc.editUserData)
+app.put('/api/welcomeUserUpdate/:userid', uc.welcomeUpdate)
 
 // Tool Endpoints
 app.get('/api/tools', tc.select_all_tools);

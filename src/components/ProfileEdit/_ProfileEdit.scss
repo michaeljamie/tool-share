@@ -11,14 +11,14 @@
   text-align: center;
 }
 .profileEdit-nameContainer {
-  margin-top: 4vh;
+  margin-top: 2vh;
 }
 .profileEdit-input {
   border: 1px solid black;
   font-size: 21px;
 }
 .profileEdit-bioContainer {
-  margin-top: 4vh;
+  margin-top: 2vh;
 }
 .profileEdit-bio {
   resize: none;
@@ -28,10 +28,13 @@
   width: 92vw;
 }
 .profileEdit-emailContainer {
-  margin-top: 4vh;
+  margin-top: 2vh;
 }
 .profileEdit-phoneContainer {
-  margin-top: 4vh;
+  margin-top: 2vh;
+}
+.profileEdit-zipContainer {
+  margin-top: 2vh;
 }
 .profileEdit-confirm {
   background-color: $color5;
@@ -45,6 +48,6 @@
   bottom: 4vh;
   width: 94%;
 }
-span {
+.profileEdit-span {
   font-size: 21px;
 }
