@@ -31,13 +31,18 @@
 }
 .profile-bio {
   position: relative;
-  padding: 5px;
-  margin: 10px;
-  background: lightgrey;
+  padding: 7px;
+  margin-top: 10px;
+  margin-bottom: 13px;
+  background: $color1;
   min-height: 12vh;
-  width: 91vw;
+  width: 88vw;
   word-wrap: break-word;
-  border-radius: 8px;
+  border-radius: 3px;
+  border: 2px outset gold;
+}
+.profile-bio span {
+  color: $color2;
 }
 .profile-addButton {
   font-size: 16px;
@@ -48,7 +53,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 10px;
 }
 .profile-toolsHeader {
   text-align: center;
@@ -82,11 +86,6 @@
   max-height: 38vh;
   display: flex;
 }
-.profile-tool {
-  height: 45%;
-  width: 45%;
-  background: grey;
-}
 .profile-timesRented {
   font-size: 14px;
 }
@@ -103,4 +102,10 @@
 }
 .profile-editButton img {
   height: 70%;
+}
+hr {
+  background-color: $color5;
+  height: 1px;
+  border: 0;
+  margin: 28px 16px;
 }

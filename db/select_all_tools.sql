@@ -1,1 +1,1 @@
-SELECT * FROM tools
+SELECT * FROM tools JOIN tags ON tools.tool_id = tags.tool_id;

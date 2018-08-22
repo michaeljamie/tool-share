@@ -351,8 +351,9 @@ a.animated-button.gibson-two:hover {
     border-bottom: 1px solid $color5;
     width: 100%;
     transition: .6s ease-in-out;
-    height: 2vh;
+    height: 2.3vh;
     margin-top: 0px;
+    color: $color3;
 }
 
 .home-input1::placeholder {
@@ -364,7 +365,7 @@ a.animated-button.gibson-two:hover {
     // transform: scaleY(3.5);
     margin-top: 30px;
     outline: none;
-    font-size: 23px;
+    font-size: 22px;
 }
 
 
