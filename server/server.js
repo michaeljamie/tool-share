@@ -118,8 +118,8 @@ app.get('/api/logout', (req, res) => {
 app.get('/api/userinfo', uc.read);
 app.get('/api/session', uc.getUserSession);
 app.post('/api/updateUser/:id', uc.update);
-app.get('/api/userData/:userid', uc.getUserData)
-app.put('/api/userData/:userid', uc.changeUserData)
+app.get('/api/userData/:userid', uc.getUserData);
+app.put('/api/userData/:userid', uc.changeUserData);
 
 // Tool Endpoints
 app.get('/api/tools', tc.select_all_tools);
@@ -127,13 +127,14 @@ app.get('/api/tools_by_tag', tc.select_tool_by_tags);
 app.get('/api/get_all_tools_with_tags', tc.get_all_tools_with_tags);
 app.get('api/get_current_tool_tag/:id', tc.get_current_tool_tag);
 app.get('/api/tool/:id', tc.select_tool_and_owner);
+app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting);
+app.get('/api/usersListedTools/:userid', tc.select_all_tools_user_has_listed);
+app.get('/api/tags/:id', tc.get_tool_tags)
 app.post('/api/post/tool', tc.post_tool);
-app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting)
-app.get('/api/usersListedTools/:userid', tc.select_all_tools_user_has_listed)
+app.post('/api/tooltags', tc.post_tags);
 
 // Message Enpoints
-app.put('/api/room', mc.create)
-app.get('/api/sendermessages/:id', mc.read_sender)
-app.get('/api/receivermessages/:id', mc.read_receiver)
-app.get('/api/messages/:messageid', mc.read)
-
+app.put('/api/room', mc.create);
+app.get('/api/sendermessages/:id', mc.read_sender);
+app.get('/api/receivermessages/:id', mc.read_receiver);
+app.get('/api/messages/:messageid', mc.read);

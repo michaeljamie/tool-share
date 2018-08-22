@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from "react-redux";
-const { REACT_APP_DOMAIN, REACT_APP_CLIENT_ID } = process.env;
+const {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID} = process.env;
 
 class PostTool extends Component {
     constructor(props) {
@@ -9,7 +9,8 @@ class PostTool extends Component {
         this.postNewTool = this.postNewTool.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.toogleBoolean = this.toogleBoolean.bind(this);
-        this.state ={
+        this.toogleTagBoolean = this.toogleTagBoolean.bind(this);
+        this.state = {
             owner: this.props.user.userid,
             name:'',
             type: '',
@@ -28,6 +29,24 @@ class PostTool extends Component {
             price: 0,
             deposit:  0,
             currently_available: true,
+            drill: false,
+            hammer: false,
+            hammer_drill: false,
+            jack_hammer: false,
+            sander: false,
+            grinder: false,
+            auger: false,
+            saw: false,
+            mower: false,
+            trimmer: false,
+            ladder: false,
+            welding: false,
+            air_compressor: false,
+            vacuum: false, 
+            pressure_washer: false,
+            ratchet: false,
+            wrench: false,
+            lawn_tool: false
         };
     };
 
@@ -62,14 +81,32 @@ class PostTool extends Component {
             fuel_type,
             tool_img,
             price,
-            deposit
+            deposit,
+            currently_available,
+            drill,
+            hammer,
+            hammer_drill,
+            jack_hammer,
+            sander,
+            grinder,
+            auger,
+            saw,
+            mower,
+            trimmer,
+            ladder,
+            welding,
+            air_compressor,
+            vacuum, 
+            pressure_washer,
+            ratchet,
+            wrench,
+            lawn_tool
         } = this.state
         const priceInt = parseInt(price)
         const depositInt = parseInt(deposit)
-        let tool_data = {
+        const tool_data = {
             owner,
             name,
-            type,
             description,
             times_rented,
             condition,
@@ -83,11 +120,34 @@ class PostTool extends Component {
             fuel_type,
             tool_img,
             priceInt,
-            depositInt
+            depositInt,
+            currently_available
         }
         axios.post(`/api/post/tool`, tool_data).then( (res) => {
-            console.log(res.data)
-            this.props.history.push(`/toolview/${res.data.tool_id}`)
+            const tool_id = res.data.tool_id;
+            const tool_ID_and_Tags = {
+                tool_id,
+                drill,
+                hammer,
+                hammer_drill,
+                jack_hammer,
+                sander,
+                grinder,
+                auger,
+                saw,
+                mower,
+                trimmer,
+                ladder,
+                welding,
+                air_compressor,
+                vacuum, 
+                pressure_washer,
+                ratchet,
+                wrench,
+                lawn_tool
+            }
+            console.log(tool_ID_and_Tags)
+            axios.post(`/api/tooltags`, tool_ID_and_Tags).then( () => this.props.history.push(`/toolview/${tool_id}`));
         });
     };
 
@@ -97,6 +157,10 @@ class PostTool extends Component {
 
     toogleBoolean(event) {
         this.setState({[event.target.name]: event.target.checked});
+    };
+
+    toogleTagBoolean(event) {
+        this.setState({[event.target.name]: !this.state[event.target.name]});
     };
 
     render() {
@@ -112,8 +176,27 @@ class PostTool extends Component {
                     <input type='text' className='post-tool-input' name='tool_img' onChange={this.handleChange}/>
                 </div>
                 <div className='post-tool-section'>
-                    <div>In a few words describe the type of tool.</div>               
-                    <input className='post-tool-input' name="type" onChange={this.handleChange}/>
+                    <div>Select a few tags describing the type of tool.</div>   
+                    <div>
+                        <button className={this.state.drill ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='drill' value={this.state.drill} onClick={this.toogleTagBoolean}>Drill</button>
+                        <button className={this.state.hammer ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='hammer' value={this.state.hammer} onClick={this.toogleTagBoolean}>Hammer</button>
+                        <button className={this.state.hammer_drill ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='hammer_drill' value={this.state.hammer_drill} onClick={this.toogleTagBoolean}>Hammer Drill</button>
+                        <button className={this.state.jack_hammer ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='jack_hammer' value={this.state.jack_hammer} onClick={this.toogleTagBoolean}>Jackhammer</button>
+                        <button className={this.state.sander ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='sander' value={this.state.sander} onClick={this.toogleTagBoolean}>Sander</button>
+                        <button className={this.state.saw ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='saw' value={this.state.saw} onClick={this.toogleTagBoolean}>Saw</button>
+                        <button className={this.state.auger ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='auger' value={this.state.auger} onClick={this.toogleTagBoolean}>Auger</button>
+                        <button className={this.state.grinder ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='grinder' value={this.state.grinder} onClick={this.toogleTagBoolean}>Grinder</button>
+                        <button className={this.state.mower ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='mower' value={this.state.mower} onClick={this.toogleTagBoolean}>Mower</button>
+                        <button className={this.state.trimmer ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='trimmer' value={this.state.trimmer} onClick={this.toogleTagBoolean}>Trimmer</button>
+                        <button className={this.state.ladder ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='ladder' value={this.state.ladder} onClick={this.toogleTagBoolean}>Ladder</button>
+                        <button className={this.state.welding ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='welding' value={this.state.welding} onClick={this.toogleTagBoolean}>Welding</button>
+                        <button className={this.state.air_compressor ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='air_compressor' value={this.state.air_compressor} onClick={this.toogleTagBoolean}>Air Comp.</button>
+                        <button className={this.state.vacuum ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='vacuum' value={this.state.vacuum} onClick={this.toogleTagBoolean}>Vacuum</button>
+                        <button className={this.state.pressure_washer ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='pressure_washer' value={this.state.pressure_washer} onClick={this.toogleTagBoolean}>Pressure Wash</button>
+                        <button className={this.state.ratchet ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='ratchet' value={this.state.ratchet} onClick={this.toogleTagBoolean}>Ratchet</button>
+                        <button className={this.state.wrench ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='wrench' value={this.state.wrench} onClick={this.toogleTagBoolean}>Wrench</button>
+                        <button className={this.state.lawn_tool ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='lawn_tool' value={this.state.lawn_tool} onClick={this.toogleTagBoolean}>Lawn Tool</button>
+                    </div>            
                 </div>
                 <div className='post-tool-section'>
                     <div>Provide a description of the tool. (Max 200)</div> 
@@ -201,3 +284,8 @@ function mapStateToProps(state) {
 };
 
 export default connect(mapStateToProps)(PostTool);
+
+
+
+// console.log(res.data)
+//             this.props.history.push(`/toolview/${res.data.tool_id}`)
