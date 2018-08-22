@@ -89,13 +89,13 @@ app.get('/auth/callback', async (req, res) => {
   );
   const db = req.app.get('db');
   console.log(userData)
-  let { sub, name, picture } = userData.data;
+  let { sub, name, picture, email } = userData.data;
   let userExists = await db.find_user([sub]);
   if (userExists[0]) {
     req.session.user = userExists[0];
     res.redirect(`${process.env.FRONTEND_DOMAIN}/#/profile/${req.session.user.userid}`);
   } else {
-    db.create_user([sub, name, picture]).then(createdUser => {
+    db.create_user([sub, name, picture, email]).then(createdUser => {
       req.session.user = createdUser[0];
       res.redirect(`${process.env.FRONTEND_DOMAIN}/#/profile/${req.session.user.userid}`);
     });

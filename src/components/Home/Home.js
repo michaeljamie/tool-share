@@ -144,32 +144,46 @@ export default class Home extends Component {
                 </div>
                 <div className = 'home-steps'>
                     <h1 className = 'steps-text'>HERE'S HOW IT WORKS:</h1>
+
                     <div className = 'steps-section'>
-            
+           
                         <img src={dude} className = 'home-dude' alt=""/>
-
-                        
-
-
+                        <div className = 'home-aboutText'>
+                            <h3>Jim wants to build a treehouse for his kids</h3>
+                        </div>
                         {/* <img src={arrowleft} className = 'steps-icon' alt=""/> */}
                     </div>
                     <div className = 'steps-section'>
                         <img src={car} className = 'home-car' alt=""/>
+                        <div className = 'home-aboutText'>
+                            <h3>Jim logs in to Tool Share, rents the tools he needs, and goes to meet the renter</h3>
+                        </div>
                     </div>
                     <div className = 'steps-section'>
-                        <img src={construction} className = 'home-dude' alt=""/>
+                        <img src={dude1} className = 'home-dude2' alt=""/>
+                        <div className = 'home-aboutText'>
+                            <h3>With his newly rented tools Jim is ready to begin</h3>
+                        </div>
+                    </div>
+                    <div className = 'steps-section'>
+                        <img src={construction} className = 'home-dude1' alt=""/>
+                        <div className = 'home-aboutText'>
+                            <h3>Jim writes up plans and gets to work</h3>
+                        </div>
                     </div>
             
+
                     <div className = 'steps-section'>
-                        <img src={dude1} className = 'home-lady' alt=""/>
-                        
+                        <img src={ladderguy} className = 'home-dude3' alt=""/>
+                        <div className = 'home-aboutText'>
+                            <h3>Jim wants to build a treehouse for his kids</h3>
+                        </div>
                     </div>
                     <div className = 'steps-section'>
-                        <img src={ladderguy} className = 'home-lady' alt=""/>
-                        
-                    </div>
-                    <div className = 'steps-section'>
-                        <img src={hammertime} className = 'home-dude' alt=""/>
+                        <img src={hammertime} className = 'home-dude4' alt=""/>
+                        <div className = 'home-aboutText'>
+                            <h3>Jim wants to build a treehouse for his kids</h3>
+                        </div>
                     </div>
 
                 </div>
