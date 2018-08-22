@@ -90,7 +90,6 @@ app.get('/auth/callback', async (req, res) => {
     }`
   );
   const db = req.app.get('db');
-  console.log(userData)
   let { sub, name, picture, email } = userData.data;
   let userExists = await db.find_user([sub]);
   if (userExists[0]) {
