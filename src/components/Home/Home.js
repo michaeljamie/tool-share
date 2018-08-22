@@ -13,11 +13,11 @@ import arrowleft from './../../assets/arrowleft.png';
 import arrowright from './../../assets/arrowright.png';
 import dude from './../../assets/dude.png';
 import dude1 from './../../assets/dude1.png';
-import lady from './../../assets/lady.png';
 import construction from './../../assets/construction.png';
 import hammertime from './../../assets/hammertime.png';
 import car from './../../assets/car.png';
 import ladderguy from './../../assets/ladderguy.png';
+import axios from 'axios';
 
 export default class Home extends Component {
     constructor(){
@@ -25,7 +25,11 @@ export default class Home extends Component {
 
         this.state = {
             zipCode: '',
-            toolSearch: ''
+            toolSearch: '',
+            formname: '',
+            formemail: '',
+            formphone: '',
+            formmessage: '',
         }
     }
 
@@ -41,6 +45,24 @@ export default class Home extends Component {
         this.setState({
       [property]: value
     })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const {formname, formemail, formphone, formmessage} = this.state;
+
+        axios.post('./api/send', {
+           formname,
+           formemail,
+           formphone,
+           formmessage 
+        });
+        this.setState({
+            formname: '',
+            formemail: '',
+            formphone: '',
+            formmessage: ''
+        })
     }
 
 
@@ -201,21 +223,21 @@ export default class Home extends Component {
                     <h3 className ='home-contactText'>CONTACT US:</h3>
                     <div className='home-contactDiv'>
                         <p className = 'home-inputText'>Name</p>
-                        <input className = 'home-input1' type="text" />
+                        <input className = 'home-input1' type="text" onChange = {(e) => {this.handleChange('formname', e.target.value)}} value = {this.state.formname}/>
                     </div>
                     <div className='home-contactDiv'>
                         <p className = 'home-inputText'>Email</p>
-                        <input className = 'home-input1' type="text" />
+                        <input className = 'home-input1' type="text" onChange = {(e) => {this.handleChange('formemail', e.target.value)}} value = {this.state.formemail}/>
                     </div>
                     <div className='home-contactDiv'>
                         <p className = 'home-inputText'>Phone Number</p>
-                        <input className = 'home-input1' type="text" />
+                        <input className = 'home-input1' type="text" onChange = {(e) => {this.handleChange('formphone', e.target.value)}} value = {this.state.formphone}/>
                     </div>
                     <div className='home-contactDiv'>
                         <p className = 'home-inputText'>Message</p>
-                        <input className = 'home-input1' type="text" />
+                        <input className = 'home-input1' type="text" onChange = {(e) => {this.handleChange('formmessage', e.target.value)}} value = {this.state.formmessage}/>
                     </div>
-                    <a href="#" className= 'btn btn-sm animated-button gibson-two'>Submit</a>
+                    <a href="#" className= 'btn btn-sm animated-button gibson-two' onClick={this.handleSubmit}>Submit</a>
                     
                 </div>
                 
