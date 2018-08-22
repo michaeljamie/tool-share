@@ -114,21 +114,17 @@ app.get('/api/user-data', ( req, res ) => {
   
 app.get('/api/logout', (req, res) => {
   req.session.destroy()
-  res.redirect(`${FRONTEND_DOMAIN}/#`)
+  res.redirect(`${process.env.FRONTEND_DOMAIN}/#/`)
 });
 
 // Profile Endpoints
 app.get('/api/userinfo', uc.read);
 app.get('/api/session', uc.getUserSession);
 app.post('/api/updateUser/:id', uc.update);
-<<<<<<< HEAD
-app.get('/api/userData/:userid', uc.getUserData);
-app.put('/api/userData/:userid', uc.changeUserData);
-=======
 app.get('/api/userData/:userid', uc.getUserData)
 app.put('/api/userData/:userid', uc.editUserData)
 app.put('/api/welcomeUserUpdate/:userid', uc.welcomeUpdate)
->>>>>>> master
+app.delete('/api/deleteUser', uc.deleteUser)
 
 // Tool Endpoints
 app.get('/api/tools', tc.select_all_tools);
@@ -142,13 +138,6 @@ app.get('/api/tags/:id', tc.get_tool_tags)
 app.post('/api/post/tool', tc.post_tool);
 app.post('/api/tooltags', tc.post_tags);
 
-<<<<<<< HEAD
-// Message Enpoints
-app.put('/api/room', mc.create);
-app.get('/api/sendermessages/:id', mc.read_sender);
-app.get('/api/receivermessages/:id', mc.read_receiver);
-app.get('/api/messages/:messageid', mc.read);
-=======
 // Message Endpoints
 app.put('/api/room', mc.create)
 app.get('/api/sendermessages/:id', mc.read_sender)
@@ -157,4 +146,4 @@ app.get('/api/messages/:messageid', mc.read)
 
 // Nodemailer Endpoints
 app.post('/api/send', nc.send)
->>>>>>> master
+

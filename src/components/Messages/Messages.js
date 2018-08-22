@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from "react-redux";
 import { getUserInfo, setRoomID } from './../../ducks/reducer';
 import { promises } from 'fs';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 class Messages extends Component {
     constructor() {
