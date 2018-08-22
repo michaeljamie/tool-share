@@ -22,15 +22,22 @@ class Messages extends Component {
         Promise.all([
             axios.get(`/api/sendermessages/${this.props.users.userid}`).then(res => {
                 console.log(res)
-                for (let i = 0; i < res.data.length; i++) {
-                    messagesArr.push(res.data[i])
+                for (let i = res.data.length-1; i >= 0; i--) {
+                    if(!messagesArr.find( message => {
+                        return message.room_id === res.data[i].room_id
+                    })){
+                        messagesArr.push(res.data[i])
+                    }      
                 }
             }),
             axios.get(`/api/receivermessages/${this.props.users.userid}`).then(res => {
                 console.log(res)
-                for (let i = 0; i < res.data.length; i++) {
-                    messagesArr.push(res.data[i])
+                for (let i = res.data.length-1; i >= 0; i--) {
+                    if(!messagesArr.find( message =>message.room_id === res.data[i].room_id) ){
+                        messagesArr.push(res.data[i])
+                    }      
                 }
+                
             })
         ]).then(() => {
             this.setState({messages: messagesArr})
@@ -47,8 +54,8 @@ class Messages extends Component {
             console.log('e is this yo =', e)
             return (
                 
-                <Link to={`/chat/${e.room_id}`} className="link_to_chat">
-                <div key={e.fullname + i} className="individual_message" onClick={() => this.joinRoom(e.room_id)}>
+                <Link to={`/chat/${e.room_id}`} className="link_to_chat" key={e.fullname + i}>
+                <div  className="individual_message" onClick={() => this.joinRoom(e.room_id)}>
                     <img className="messages_profile_icon" src={e.profile_pic} alt="profile_pic"/>
                     <div className="messages_name">{e.fullname}</div>
                     <div className='messages-side'>
