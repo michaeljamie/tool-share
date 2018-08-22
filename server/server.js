@@ -63,7 +63,7 @@ massive(CONNECTION_STRING).then(db => {
   console.log('Database ready')
 });
 
-app.use(uc.ignoreAuthInDevelopment)
+// app.use(uc.ignoreAuthInDevelopment)
 
 app.get('/auth/callback', async (req, res) => {
   // code from auth0 on req.query.code
