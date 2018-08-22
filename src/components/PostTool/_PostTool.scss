@@ -31,3 +31,25 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.post-tool-tag-bubble-on {
+    width: 110px;
+    height: 30px;
+    border: solid 1px white;
+    color: white;
+    background-color: blue;
+    outline: none;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.post-tool-tag-bubble-off {
+    width: 110px;
+    height: 30px;
+    border: solid 1px blue;
+    color: blue;
+    background-color: white;
+    outline: none;
+    border-radius: 10px;
+    font-size: 12px;
+}

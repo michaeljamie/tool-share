@@ -132,9 +132,11 @@ app.get('/api/tools_by_tag', tc.select_tool_by_tags);
 app.get('/api/get_all_tools_with_tags', tc.get_all_tools_with_tags);
 app.get('api/get_current_tool_tag/:id', tc.get_current_tool_tag);
 app.get('/api/tool/:id', tc.select_tool_and_owner);
+app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting);
+app.get('/api/usersListedTools/:userid', tc.select_all_tools_user_has_listed);
+app.get('/api/tags/:id', tc.get_tool_tags)
 app.post('/api/post/tool', tc.post_tool);
-app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting)
-app.get('/api/usersListedTools/:userid', tc.select_all_tools_user_has_listed)
+app.post('/api/tooltags', tc.post_tags);
 
 // Message Endpoints
 app.put('/api/room', mc.create)
@@ -144,3 +146,4 @@ app.get('/api/messages/:messageid', mc.read)
 
 // Nodemailer Endpoints
 app.post('/api/send', nc.send)
+
