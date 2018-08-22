@@ -73,6 +73,7 @@
     width: 80%;
     background: $color3;
     border-radius: 6px;
+    
 }
 
 .home-examplePic {
@@ -218,7 +219,7 @@ a.animated-button.gibson-two:hover {
 }
 
 .home-steps {
-    @include flexSetUp(space-around, center, column);
+    @include flexSetUp(flex-start, center, column);
     height: 400vh;
     width: 100%;
     background: linear-gradient(to top, $color2, $color1);
@@ -230,31 +231,73 @@ a.animated-button.gibson-two:hover {
     font-size: 30px;
 }
 
+.home-aboutText {
+    font-size: 22px;
+    width: 100%;
+    height: 50vh;
+    color: $color3;
+    @include flexSetUp(flex-start, center, column);
+    text-align: fill;
+}
+
+
 .steps-icon {
     height: 60px;
 }
 
 .home-dude {
-    height: 250px;
+    height: 280px;
     margin: 0;
+    padding: 0;
+    position: absolute;
+    margin-top: 25px;
+}
+
+.home-dude1 {
+    height: 195px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    animation: rotatedude 1.9s ease-in-out infinite;
+}
+
+.home-dude2 {
+    height: 215px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    animation: bouncedude 1.9s ease infinite;
+
+}
+
+.home-dude3 {
+    height: 215px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    animation: floatdude 2.2s ease-in-out infinite;
+}
+
+.home-dude4 {
+    height: 196px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    animation: hammerdude 2s ease-in-out infinite;
 }
 
 .home-car {
     height: 300px;
-    margin: 0;
+    margin-top: 38px;
     animation: floatcar 3.5s ease-in-out infinite;
     overflow-x: hidden;
-}
-
-.home-lady {
-    height: 180px;
-    margin: 0;
+    position: absolute;
 }
 
 .steps-section {
-    @include flexSetUp(space-around, center, row);
+    @include flexSetUp(flex-end, center, column);
     width: 90%;
-    
+    height: 50vh;
 }
 
 .home-signup {
@@ -414,5 +457,61 @@ a.animated-button.gibson-two:hover {
     100% {
       box-shadow: rgba(0,0,0,0.6);
       transform: translatex(20px);
+    }
+  }
+
+  @keyframes floatdude {
+    0% {
+      box-shadow: rgba(0,0,0,0.6);
+      transform: translatex(3px) translatey(2.5px) ;
+
+    }
+    50% {
+      box-shadow:  rgba(0,0,0,0.2);
+      transform: translatex(-3px) translatey(-2.5px) ;
+    }
+    100% {
+      box-shadow: rgba(0,0,0,0.6);
+      transform: translatex(3px) translatey(2.5px);
+
+    }
+  }
+
+  @keyframes hammerdude {
+    0% {
+        transform: translatex(2px) rotate(3deg);
+        
+    }
+    50% {
+        transform: translatex(-2px) rotate(-3deg);
+    }
+    100% {
+        transform: translatex(2px) rotate(3deg);
+    }
+  }
+
+  @keyframes rotatedude {
+    0% {
+        transform: rotate(2deg);
+        
+    }
+    50% {
+        transform: rotate(-2deg);
+    }
+    100% {
+        transform: rotate(2deg);
+    }
+  }
+
+  @keyframes bouncedude {
+    0% {
+        transform: translatey(0px);
+    }
+    50% {
+        transform: translatey(5px);
+    }
+    100% {
+        transform: translatey(0px);
+
     }
   }

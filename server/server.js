@@ -5,10 +5,13 @@ require('dotenv').config();
   const massive = require('massive');
   const axios = require('axios');
   const socket = require('socket.io');
+  const nodemailer = require('nodemailer');
   const uc = require('./userController/userController');
   const tc = require('./toolController/toolController');
   const mc = require('./messageController/messageController');
+  const nc = require('./nodemailerController/nodemailerController');
   const moment = require('moment');
+
 
 let {
   REACT_APP_CLIENT_ID,
@@ -63,6 +66,8 @@ massive(CONNECTION_STRING).then(db => {
   console.log('Database ready')
 });
 
+// app.use(uc.ignoreAuthInDevelopment)
+
 app.get('/auth/callback', async (req, res) => {
   // code from auth0 on req.query.code
   let payload = {
@@ -85,13 +90,13 @@ app.get('/auth/callback', async (req, res) => {
     }`
   );
   const db = req.app.get('db');
-  let { sub, name, picture } = userData.data;
+  let { sub, name, picture, email } = userData.data;
   let userExists = await db.find_user([sub]);
   if (userExists[0]) {
     req.session.user = userExists[0];
     res.redirect(`${process.env.FRONTEND_DOMAIN}/#/profile/${req.session.user.userid}`);
   } else {
-    db.create_user([sub, name, picture]).then(createdUser => {
+    db.create_user([sub, name, picture, email]).then(createdUser => {
       req.session.user = createdUser[0];
       res.redirect(`${process.env.FRONTEND_DOMAIN}/#/welcome/${req.session.user.userid}`);
     });
@@ -123,15 +128,18 @@ app.put('/api/welcomeUserUpdate/:userid', uc.welcomeUpdate)
 // Tool Endpoints
 app.get('/api/tools', tc.select_all_tools);
 app.get('/api/tools_by_tag', tc.select_tool_by_tags);
-app.get('/api/get_all_tools_with_tags', tc.get_all_tools_with_tags)
+app.get('/api/get_all_tools_with_tags', tc.get_all_tools_with_tags);
+app.get('api/get_current_tool_tag/:id', tc.get_current_tool_tag);
 app.get('/api/tool/:id', tc.select_tool_and_owner);
 app.post('/api/post/tool', tc.post_tool);
 app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting)
 app.get('/api/usersListedTools/:userid', tc.select_all_tools_user_has_listed)
 
-// Message Enpoints
+// Message Endpoints
 app.put('/api/room', mc.create)
 app.get('/api/sendermessages/:id', mc.read_sender)
 app.get('/api/receivermessages/:id', mc.read_receiver)
 app.get('/api/messages/:messageid', mc.read)
 
+// Nodemailer Endpoints
+app.post('/api/send', nc.send)

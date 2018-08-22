@@ -27,7 +27,6 @@ class Map extends Component {
             let lat = this.state.owner_lat
             let long = this.state.owner_long
             axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`).then(res=>{
-                console.log(res)
                 if(lat && long){
                     this.setState({
                         owner_city: res.data.postalCodes[0].placeName,
