@@ -15,6 +15,7 @@ export default class ProfileEdit extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0,0);
     axios.get(`/api/userData/${this.props.match.params.userid}`).then(res => {
       let {fullname, bio, profile_pic, email, phone, zipcode} = res.data[0]
       console.log(res.data[0])
