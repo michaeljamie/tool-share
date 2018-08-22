@@ -8,6 +8,7 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "firebase": "^5.4.0",
     "latlng-to-zip": "0.0.1",
     "massive": "^5.2.0",
     "moment": "^2.22.2",
@@ -24,11 +25,13 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
+    "react-stripe-checkout": "^2.6.3",
     "react-touch": "^0.4.4",
     "redux": "^4.0.0",
     "redux-promise-middleware": "^5.1.1",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
+    "stripe": "^6.7.0",
     "sweetalert2": "^7.26.11"
   },
   "scripts": {
