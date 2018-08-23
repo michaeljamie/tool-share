@@ -263,7 +263,7 @@ a.animated-button.gibson-two:hover {
 
 .home-dude2 {
     height: 215px;
-    margin: 0;
+    margin-top: 28px;
     padding: 0;
     position: absolute;
     animation: bouncedude 1.9s ease infinite;
@@ -284,6 +284,13 @@ a.animated-button.gibson-two:hover {
     padding: 0;
     position: absolute;
     animation: hammerdude 2s ease-in-out infinite;
+}
+
+.home-tree {
+    height: 225px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
 }
 
 .home-car {

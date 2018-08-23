@@ -10,6 +10,7 @@ require('dotenv').config();
   const tc = require('./toolController/toolController');
   const mc = require('./messageController/messageController');
   const nc = require('./nodemailerController/nodemailerController');
+  const rc = require('./reservationsController/reservationsController');
   const moment = require('moment');
 
 
@@ -114,7 +115,7 @@ app.get('/api/user-data', ( req, res ) => {
   
 app.get('/api/logout', (req, res) => {
   req.session.destroy()
-  res.redirect(`${FRONTEND_DOMAIN}/#`)
+  res.redirect(`${process.env.FRONTEND_DOMAIN}/#/`)
 });
 
 // Profile Endpoints
@@ -124,6 +125,7 @@ app.post('/api/updateUser/:id', uc.update);
 app.get('/api/userData/:userid', uc.getUserData)
 app.put('/api/userData/:userid', uc.editUserData)
 app.put('/api/welcomeUserUpdate/:userid', uc.welcomeUpdate)
+app.delete('/api/deleteUser', uc.deleteUser)
 
 // Tool Endpoints
 app.get('/api/tools', tc.select_all_tools);
@@ -131,9 +133,11 @@ app.get('/api/tools_by_tag', tc.select_tool_by_tags);
 app.get('/api/get_all_tools_with_tags', tc.get_all_tools_with_tags);
 app.get('api/get_current_tool_tag/:id', tc.get_current_tool_tag);
 app.get('/api/tool/:id', tc.select_tool_and_owner);
+app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting);
+app.get('/api/usersListedTools/:userid', tc.select_all_tools_user_has_listed);
+app.get('/api/tags/:id', tc.get_tool_tags)
 app.post('/api/post/tool', tc.post_tool);
-app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting)
-app.get('/api/usersListedTools/:userid', tc.select_all_tools_user_has_listed)
+app.post('/api/tooltags', tc.post_tags);
 
 // Message Endpoints
 app.put('/api/room', mc.create)
@@ -143,3 +147,7 @@ app.get('/api/messages/:messageid', mc.read)
 
 // Nodemailer Endpoints
 app.post('/api/send', nc.send)
+
+// Reservation Enpoints
+app.get('/api/dates/:tool_id', rc.read_reservation_dates)
+

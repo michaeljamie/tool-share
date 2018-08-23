@@ -5,10 +5,10 @@ module.exports = {
         return "test"
     },
     getUser: ()=>{
-        return axios.get('/api/user-data')
+        return axios.get('/api/user-data/')
         .then(res=>{
             return res.data
-        })
+        }).catch(err=>console.log(err))
     },
     getZip: ()=>{
        let zip
@@ -18,4 +18,13 @@ module.exports = {
         }).catch(err=>console.log(err))
         return zip
     },
+
+    getUserData: (id) => {
+        return axios.get('http://localhost:3005/api/userData/' + id)
+        .then(res => {
+            return res.data
+        }).catch(err=>console.log(err))   
+    }
+
+
 }

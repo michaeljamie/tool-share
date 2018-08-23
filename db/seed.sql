@@ -37,6 +37,30 @@ CREATE TABLE tools (
     currently_available BOOLEAN
 );
 
+CREATE TABLE search_tags (
+	tool_id INT REFERENCES tools(tool_id),
+	drill BOOLEAN,
+    hammer_drill BOOLEAN,
+    hammer BOOLEAN,
+    jack_hammer BOOLEAN,
+    sander BOOLEAN,
+    grinder BOOLEAN,
+    auger BOOLEAN,
+    saw BOOLEAN,
+    power_tool BOOLEAN,
+    mower BOOLEAN,
+    trimmer BOOLEAN,
+    hand_tool BOOLEAN,
+    ladder BOOLEAN,
+    welding BOOLEAN,
+    air_compressor BOOLEAN,
+    vacuum BOOLEAN, 
+    pressure_washer BOOLEAN,
+    ratchet BOOLEAN,
+    wrench BOOLEAN,
+    lawn_tool BOOLEAN
+);
+
 CREATE TABLE messages (
 	room_id TEXT PRIMARY KEY,
 	sender_id INT REFERENCES users(userid),

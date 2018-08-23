@@ -36,13 +36,18 @@ class CheckOut extends Component {
     };
 
     componentDidMount() {
-        axios.get('/api/session').then(res =>
-            res.data.user ?
-            console.log('User on Session')
-            : this.login()
-        );
+        // axios.get('/api/session').then(res =>
+        //     res.data.user ?
+        //     console.log('User on Session')
+        //     : this.login()
+        // );
         this.getToolAndOwner()
         window.scrollTo(0,0)
+    };
+
+    login = () => {
+        const redirectUri = encodeURIComponent(`${window.origin}/auth/callback`);
+        window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`
     };
 
     getToolAndOwner() {

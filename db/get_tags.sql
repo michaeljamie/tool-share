@@ -1,1 +1,0 @@
-select * from tags where tool_id = $1;

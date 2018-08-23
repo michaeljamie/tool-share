@@ -16,12 +16,11 @@ module.exports = {
         }).catch(err => console.log(err))
     },
 
-    get_tags: (req, res) => {
+    get_tool_tags: (req, res) => {
         const {id} = req.params;
-        req.app.get('db').get_tags([id])
-        .then( tags => {
-            res.status(200).send(tags)
-        }).catch(err => console.log(err))
+        req.app.get('db').get_tool_tags([id])
+        .then( tags => {res.status(200).send(tags)})
+        .catch(err => console.log(err))
     },
 
     get_all_tools_with_tags: (req, res) => {
@@ -52,7 +51,6 @@ module.exports = {
        const {
             owner,
             name,
-            type,
             description,
             times_rented,
             condition,
@@ -72,7 +70,6 @@ module.exports = {
         req.app.get('db').post_tool([
             owner,
             name,
-            type,
             description,
             times_rented,
             condition,
@@ -91,6 +88,55 @@ module.exports = {
         ])
         .then( (tool) => res.status(200).send(tool[0]) )
         .catch(err => console.log(err))
+    },
+
+    post_tags: (req, res, next) => {
+        console.log('tags method hit')
+        const {
+            tool_id,
+            drill,
+            hammer,
+            hammer_drill,
+            jack_hammer,
+            sander,
+            grinder,
+            auger,
+            saw,
+            mower,
+            trimmer,
+            ladder,
+            welding,
+            air_compressor,
+            vacuum, 
+            pressure_washer,
+            ratchet,
+            wrench,
+            lawn_tool
+         } = req.body
+         console.log(req.body)
+         req.app.get('db').post_tags([
+            tool_id,
+            drill,
+            hammer,
+            hammer_drill,
+            jack_hammer,
+            sander,
+            grinder,
+            auger,
+            saw,
+            mower,
+            trimmer,
+            ladder,
+            welding,
+            air_compressor,
+            vacuum, 
+            pressure_washer,
+            ratchet,
+            wrench,
+            lawn_tool
+         ])
+         .then( () => res.status(200).send('Tags Posted') )
+         .catch(err => console.log(err))
     },
 
     select_all_tools_user_is_renting: (req, res) => {
