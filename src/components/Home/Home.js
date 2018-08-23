@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Button from './HomeButton/Button';
 import whiteCard from './../../assets/whiteCard.png';
 import whiteClipboard from './../../assets/whiteClipboard.png';
@@ -17,7 +18,8 @@ import construction from './../../assets/construction.png';
 import hammertime from './../../assets/hammertime.png';
 import car from './../../assets/car.png';
 import ladderguy from './../../assets/ladderguy.png';
-import axios from 'axios';
+import treehouse from './../../assets/treehouse.png';
+
 
 export default class Home extends Component {
     constructor(){
@@ -181,6 +183,12 @@ export default class Home extends Component {
                     </div>
                     <div className = 'steps-section'>
                         <img src={hammertime} className = 'home-dude4' alt=""/>
+                        <div className = 'home-aboutText'>
+                            <h3>Jim wants to build a treehouse for his kids</h3>
+                        </div>
+                    </div>
+                    <div className = 'steps-section'>
+                        <img src={treehouse} className = 'home-tree' alt=""/>
                         <div className = 'home-aboutText'>
                             <h3>Jim wants to build a treehouse for his kids</h3>
                         </div>

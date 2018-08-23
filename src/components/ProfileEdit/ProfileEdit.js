@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default class ProfileEdit extends Component {
@@ -56,6 +57,10 @@ export default class ProfileEdit extends Component {
     this.props.history.push(`/profile/${this.props.match.params.userid}`);
   }
 
+  deleteAccount = () => {
+    axios.delete('/api/deleteUser')
+  }
+
   render() {
     return (
       <div className='profileEdit-page'>
@@ -91,6 +96,9 @@ export default class ProfileEdit extends Component {
         </div>
         <div className='profileEdit-buttonContainer'>
           <button className='profileEdit-confirm' onClick={() => this.confirmChanges()}>Confirm</button>
+        </div>
+        <div className='profileDelete-buttonContainer'>
+          <Link to='/'><button className='profileEdit-confirm' onClick={() => this.deleteAccount()}>Delete Account</button></Link>
         </div>
       </div>
     )
