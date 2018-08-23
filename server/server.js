@@ -10,6 +10,7 @@ require('dotenv').config();
   const tc = require('./toolController/toolController');
   const mc = require('./messageController/messageController');
   const nc = require('./nodemailerController/nodemailerController');
+  const rc = require('./reservationsController/reservationsController');
   const moment = require('moment');
 
 
@@ -146,4 +147,7 @@ app.get('/api/messages/:messageid', mc.read)
 
 // Nodemailer Endpoints
 app.post('/api/send', nc.send)
+
+// Reservation Enpoints
+app.get('/api/dates/:tool_id', rc.read_reservation_dates)
 
