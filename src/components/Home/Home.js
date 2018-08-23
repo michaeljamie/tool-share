@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Button from './HomeButton/Button';
 import whiteCard from './../../assets/whiteCard.png';
 import whiteClipboard from './../../assets/whiteClipboard.png';
@@ -17,7 +18,8 @@ import construction from './../../assets/construction.png';
 import hammertime from './../../assets/hammertime.png';
 import car from './../../assets/car.png';
 import ladderguy from './../../assets/ladderguy.png';
-import axios from 'axios';
+import treehouse from './../../assets/treehouse.png';
+
 
 export default class Home extends Component {
     constructor(){
@@ -149,26 +151,26 @@ export default class Home extends Component {
            
                         <img src={dude} className = 'home-dude' alt=""/>
                         <div className = 'home-aboutText'>
-                            <h3>Jim wants to build a treehouse for his kids</h3>
+                            <h3>Meet Jim</h3>
                         </div>
                         {/* <img src={arrowleft} className = 'steps-icon' alt=""/> */}
                     </div>
                     <div className = 'steps-section'>
                         <img src={car} className = 'home-car' alt=""/>
                         <div className = 'home-aboutText'>
-                            <h3>Jim logs in to Tool Share, rents the tools he needs, and goes to meet the renter</h3>
+                            <h3>Jim wants to build a treehouse for his kids</h3>
                         </div>
                     </div>
                     <div className = 'steps-section'>
                         <img src={dude1} className = 'home-dude2' alt=""/>
                         <div className = 'home-aboutText'>
-                            <h3>With his newly rented tools Jim is ready to begin</h3>
+                            <h3>Jim signs up for Tool Share, finds tools he needs, and goes to meet the renter</h3>
                         </div>
                     </div>
                     <div className = 'steps-section'>
                         <img src={construction} className = 'home-dude1' alt=""/>
                         <div className = 'home-aboutText'>
-                            <h3>Jim writes up plans and gets to work</h3>
+                            <h3>With his newly rented tools Jim is ready to begin</h3>
                         </div>
                     </div>
             
@@ -176,13 +178,19 @@ export default class Home extends Component {
                     <div className = 'steps-section'>
                         <img src={ladderguy} className = 'home-dude3' alt=""/>
                         <div className = 'home-aboutText'>
-                            <h3>Jim wants to build a treehouse for his kids</h3>
+                            <h3>He writes up plans and gets to work</h3>
                         </div>
                     </div>
                     <div className = 'steps-section'>
                         <img src={hammertime} className = 'home-dude4' alt=""/>
                         <div className = 'home-aboutText'>
-                            <h3>Jim wants to build a treehouse for his kids</h3>
+                            <h3>Jim's happy he's saving $100s instead of buying brand new tools</h3>
+                        </div>
+                    </div>
+                    <div className = 'steps-section'>
+                        <img src={treehouse} className = 'home-tree' alt=""/>
+                        <div className = 'home-aboutText'>
+                            <h3>Jim completes his project and returns the tools</h3>
                         </div>
                     </div>
 

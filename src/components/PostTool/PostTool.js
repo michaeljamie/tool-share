@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from "react-redux";
-const {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID} = process.env;
+import Dropzone from 'react-dropzone';
+import defaultTool from './../../assets/defaultTool.png';
+const {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID, REACT_APP_CLOUD_PRESET, REACT_APP_CLOUD_KEY, REACT_APP_CLOUD_NAME } = process.env;
 
 class PostTool extends Component {
     constructor(props) {
@@ -163,6 +165,24 @@ class PostTool extends Component {
         this.setState({[event.target.name]: !this.state[event.target.name]});
     };
 
+    onDrop = files => {
+        files.map(file => {
+            console.log(file)
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", REACT_APP_CLOUD_PRESET); 
+            formData.append("api_key", REACT_APP_CLOUD_KEY); 
+            formData.append("timestamp", (Date.now() / 1000) | 0);
+            formData.append("public_id", file.name);
+            return axios.post(`https://api.cloudinary.com/v1_1/${REACT_APP_CLOUD_NAME}/image/upload/`, formData, {headers: { "X-Requested-With": "XMLHttpRequest" }}).then(res => {
+                console.log(res.data)
+                this.setState({
+                    tool_img: res.data.url
+                })
+            })
+        });
+    }
+
     render() {
         return(
             <div className='post-tool-body'>
@@ -173,7 +193,21 @@ class PostTool extends Component {
                 </div>
                 <div className='post-tool-section'>
                     <div>Paste image address here.</div>
-                    <input type='text' className='post-tool-input' name='tool_img' onChange={this.handleChange}/>
+                    <Dropzone 
+                        onDrop={this.onDrop} 
+                        style={{
+                            width: "90%", 
+                            height: '400px', 
+                            border: "dashed 1px black", 
+                            display: "flex", 
+                            justifyContent: 'center', 
+                            alignItems: 'center',
+                            marginTop: '20px',
+                            cursor: 'pointer'
+                        }}>
+                        <p className='dropbox-title'>DRAG AND DROP FILES HERE OR CLICK TO UPLOAD</p>
+                    </Dropzone>
+                    <img src={this.state.tool_img ? this.state.tool_img : defaultTool} alt='tool' width='200px' height='200px' />
                 </div>
                 <div className='post-tool-section'>
                     <div>Select a few tags describing the type of tool.</div>   

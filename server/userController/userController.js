@@ -39,6 +39,7 @@ module.exports = {
     },
 
     getUserData: (req, res) => {
+        console.log('__________________get user data')
         const {userid} = req.params;
         req.app.get('db').get_user_data([userid])
         .then(data => {
@@ -62,6 +63,15 @@ module.exports = {
         .then(() => {
             res.end()
         })
-    }
+    },
+
+    deleteUser: (req, res) => {
+        console.log(req.session.user)
+        const { authid } = req.session.user;
+        req.app.get('db').delete_user([ authid ])
+        .catch( err => {
+            console.log(err)
+        })
+    }        
 
 }
