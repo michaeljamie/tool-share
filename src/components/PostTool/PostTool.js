@@ -15,7 +15,6 @@ class PostTool extends Component {
         this.state = {
             owner: this.props.user.userid,
             name:'',
-            type: '',
             description: '',
             times_rented: 0,
             condition: 'Good',
@@ -53,11 +52,11 @@ class PostTool extends Component {
     };
 
     componentDidMount() {
-        // axios.get('/api/session').then(res =>
-        //     res.data.user ?
-        //     console.log('User on Session')
-        //     : this.login()
-        // );
+        axios.get('/api/session').then(res =>
+            res.data.user ?
+            console.log('User on Session')
+            : this.login()
+        );
     };
 
     login = () => {
@@ -69,7 +68,6 @@ class PostTool extends Component {
         const {
             owner,
             name,
-            type,
             description,
             times_rented,
             condition,
@@ -184,6 +182,7 @@ class PostTool extends Component {
     }
 
     render() {
+        console.log(this.state)
         return(
             <div className='post-tool-body'>
                 <h1>Post New Tool</h1>

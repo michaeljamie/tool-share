@@ -42,20 +42,17 @@ class Toolview extends Component {
             tool_price: 0,
             available: '',
             currentToolTags: [],
-            allToolsAndTags: []
         };
     };
 
     componentDidMount() {
         this.getToolAndOwner();
-        // this.getTools();
         window.scrollTo(0,0);
     };
 
     componentDidUpdate (prevProps) {
         if(prevProps.match.params.id !== this.props.match.params.id){
-            this.getToolAndOwner()
-            
+            this.getToolAndOwner()  
         }
     };
 
@@ -92,21 +89,12 @@ class Toolview extends Component {
         ));
     };
 
-    // getTools = () => {
-    //     axios.get('api/get_all_tools_with_tags')
-    //     .then(res=>{
-    //         this.setState({
-    //             allToolsAndTags: res.data
-    //         })
-    //     })
-    // }
-
     latlongToZip = (lat, long) => {
         axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`)
         .then(res=>{
             let zip =res.data.postalCodes[0].postalCode
         })
-    }
+    };
 
     joinRoom = () => {
         let room
@@ -118,27 +106,14 @@ class Toolview extends Component {
         }
         axios.put('/api/room', { room: room, sender_id: this.props.user.userid, receiver_id: this.state.owner_id })
         this.props.setRoomID(room)
-    }
+    };
 
     render() {
-        console.log(this.state.currentToolTag)
-        let editButton = this.state.owner_id === this.props.user.userid ? <Link to={`/tooledit/${this.props.match.params.id}`}><button className='toolview-edit-button'>edit</button></Link> : null
-       
-        let toolsWithSameTags = this.state.allToolsAndTags.filter(tool=>{
-            if(this.props.search_tags){
-                return tool.tag === this.props.search_tags && tool.tool_id !== +this.props.match.params.id
-            } else {
-                return tool.tag === this.state.currentToolTag && tool.tool_id !== +this.props.match.params.id
-            }
-        })
+        // console.log(this.state)
 
-        let similarTools = toolsWithSameTags.map( (tool, index) => {
-            return (
-                <SimilarTools key={index} hello={'hello'} location={this.props.location} id={tool.tool_id} image={tool.tool_img} name={tool.tool_name} price={tool.tool_price} />
-            )
-        })
+        let editButton = this.state.owner_id === this.props.user.userid ? <button className='toolview-edit-button'>edit</button> : null
        
-        return(
+        return (
             <div>
                 <Link to='/search'><button className='toolview-back-button'>Back to Results</button></Link>
                 <div className = "toolview-top">
@@ -181,7 +156,7 @@ class Toolview extends Component {
                 
                 <div className = "toolview-bottom">
                     Similar Tools:  
-                   {similarTools}
+                    <SimilarTools tags={this.state.currentToolTags} />
                 </div>
             </div>
         );
@@ -190,9 +165,9 @@ class Toolview extends Component {
 
 function mapStateToProps(state) {
     return {
-      user: state.user,
-      search_tags: state.search_tags
+        user: state.user,
+        search_tags: state.search_tags
     };
-  }
-  
-  export default connect(mapStateToProps, { setRoomID })(Toolview);
+};
+
+export default connect(mapStateToProps, { setRoomID })(Toolview);
