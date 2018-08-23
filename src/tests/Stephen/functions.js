@@ -1,8 +1,11 @@
 const axios = require('axios')
 
 module.exports = {
-    test: ()=>{
-        return "test"
+    getTag: (id)=>{
+        axios.get(`api/get_current_tool_tag/${id}`)
+        .then(res=>{
+            return res.data.tag
+        }).catch(err=>console.log(err))
     },
     getUser: ()=>{
         return axios.get('/api/user-data')
@@ -18,4 +21,17 @@ module.exports = {
         }).catch(err=>console.log(err))
         return zip
     },
+    filter: ()=>{
+        let allTools = [{tool: 'hammer', type: 'handTool' }, {tool: 'drill', type: 'powerTool'}, {tool: 'saw', type: 'powerTool'}, {tool: 'screwdriver', type: 'handTool'}]
+        let toolsWithSameType = allTools.filter(tool=>{
+                return tool.type === 'handTool'
+        })
+        return toolsWithSameType;
+    },
+    modifyState: ()=>{
+        let state = {a: 1, b: 2, c: 3}
+        let updates = {b: 3, c: 4}
+        let newState = Object.assign(state, updates)
+        return newState;
+    }
 }

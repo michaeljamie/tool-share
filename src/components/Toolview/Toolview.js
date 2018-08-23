@@ -93,6 +93,7 @@ class Toolview extends Component {
     getTools = () => {
         axios.get('api/get_all_tools_with_tags')
         .then(res=>{
+            console.log(res.data)
             this.setState({
                 allToolsAndTags: res.data
             })

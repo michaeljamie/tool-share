@@ -36,11 +36,11 @@ class CheckOut extends Component {
     };
 
     componentDidMount() {
-        axios.get('/api/session').then(res =>
-            res.data.user ?
-            console.log('User on Session')
-            : this.login()
-        );
+        // axios.get('/api/session').then(res =>
+        //     res.data.user ?
+        //     console.log('User on Session')
+        //     : this.login()
+        // );
         this.getToolAndOwner()
         window.scrollTo(0,0)
     };

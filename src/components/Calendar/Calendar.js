@@ -1,17 +1,28 @@
 import React, {Component} from 'react';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
+import moment from 'moment';
 
 class Calendar extends Component {
     constructor(){
         super()
         this.state = {
-            startDate: null
+            startDate: null,
+            endDate: null,
+            datesList: [moment(), moment().add(1, 'days')]
         }
 
 
     }
+
+    isDayBlocked = (day) => {
+        return true
+    }
+
+    
+
     render(){
+        console.log(this.state.startDate, this.state.endDate)
 
       let datePicker =  <DateRangePicker
         startDate={this.state.startDate} // momentPropTypes.momentObj or null,
@@ -21,6 +32,7 @@ class Calendar extends Component {
         onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
         focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
         onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+        isDayBlocked={() => this.isDayBlocked(moment())}
     />
 
         return(

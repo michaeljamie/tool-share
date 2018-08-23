@@ -50,3 +50,5 @@ CREATE TABLE chats (
     message_date TEXT,
     message_time TEXT
 );
+
+create table reservations (id serial primary key, tool_id int references tools(tool_id), pickup_date varchar(10), return_date varchar(10), renter_id int references users(userid));

@@ -43,7 +43,7 @@ class ToolSearch extends Component {
   };
 
   render() {
-    console.log(this.state.tag)
+   
     const tagPropsToToolview = this.state.searchResults.map( (tool, index) => {
      
       return (
