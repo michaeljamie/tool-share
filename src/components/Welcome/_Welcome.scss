@@ -1,6 +1,5 @@
 .welcome-page {
   background: $color1;
-  height: 140vh;
   padding: 3vw;
   display: flex;
   flex-direction: column;
@@ -53,8 +52,7 @@
   font-size: 21px;
   border-radius: 20px;
   padding: 3px 12px;
-  position: absolute;
-  bottom: 3vh;
+  margin-top: 20px;
 }
 #welcome-zipReq {
   padding-top: 1px;

@@ -121,9 +121,8 @@ class Toolview extends Component {
     }
 
     render() {
-        console.log(this.state)
-
-        let editButton = this.state.owner_id === this.props.user.userid ? <button className='toolview-edit-button'>edit</button> : null
+        console.log(this.state.currentToolTag)
+        let editButton = this.state.owner_id === this.props.user.userid ? <Link to={`/tooledit/${this.props.match.params.id}`}><button className='toolview-edit-button'>edit</button></Link> : null
        
         let toolsWithSameTags = this.state.allToolsAndTags.filter(tool=>{
             if(this.props.search_tags){
