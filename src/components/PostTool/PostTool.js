@@ -53,11 +53,11 @@ class PostTool extends Component {
     };
 
     componentDidMount() {
-        axios.get('/api/session').then(res =>
-            res.data.user ?
-            console.log('User on Session')
-            : this.login()
-        );
+        // axios.get('/api/session').then(res =>
+        //     res.data.user ?
+        //     console.log('User on Session')
+        //     : this.login()
+        // );
     };
 
     login = () => {
@@ -192,17 +192,20 @@ class PostTool extends Component {
                     <input type='text' name='name' className='post-tool-input' onChange={this.handleChange}/>
                 </div>
                 <div className='post-tool-section'>
-                    <div>Paste image address here.</div>
+                    
                     <Dropzone 
                         onDrop={this.onDrop} 
                         style={{
-                            width: "90%", 
-                            height: '400px', 
-                            border: "dashed 1px black", 
+                            width: "80%", 
+                            height: '100px', 
+                            border: "dashed 1px #fdd947",
+                            borderRadius: '6px',
+                            textAlign: 'center', 
                             display: "flex", 
                             justifyContent: 'center', 
                             alignItems: 'center',
                             marginTop: '20px',
+                            marginBottom: '20px',
                             cursor: 'pointer'
                         }}>
                         <p className='dropbox-title'>DRAG AND DROP FILES HERE OR CLICK TO UPLOAD</p>

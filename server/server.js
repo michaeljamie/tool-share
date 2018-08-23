@@ -10,8 +10,10 @@ require('dotenv').config();
   const tc = require('./toolController/toolController');
   const mc = require('./messageController/messageController');
   const nc = require('./nodemailerController/nodemailerController');
+  const pc = require('./paymentController/paymentController');
   const rc = require('./reservationsController/reservationsController');
   const moment = require('moment');
+  
 
 
 let {
@@ -21,6 +23,7 @@ let {
   SERVER_PORT,
   SESSION_SECRET,
   CONNECTION_STRING,
+  STRIPE_SECRET
 } = process.env
 
 const app = express()
@@ -67,7 +70,7 @@ massive(CONNECTION_STRING).then(db => {
   console.log('Database ready')
 });
 
-// app.use(uc.ignoreAuthInDevelopment)
+app.use(uc.ignoreAuthInDevelopment)
 
 app.get('/auth/callback', async (req, res) => {
   // code from auth0 on req.query.code
@@ -150,4 +153,34 @@ app.post('/api/send', nc.send)
 
 // Reservation Enpoints
 app.get('/api/dates/:tool_id', rc.read_reservation_dates)
+app.post('/api/reservation', rc.add_reservation)
+
+// Stripe/Payment Endpoints 
+
+const stripe = require('stripe')(STRIPE_SECRET)
+
+app.put('/api/update_tool_data/:id', pc.updateTool)
+app.post('/api/payment', (req, res) => {
+  const {amount, token:{id}} = req.body
+  console.log(id)
+  stripe.charges.create(
+      {
+          amount: amount,
+          currency: "usd",
+          source: id,
+          description: "Tool Share Test Charge"
+      },
+      (err, charge) => {
+          if(err) {
+              console.log(err)
+              return res.status(500).send(err)
+          } else {
+              console.log('charge=', charge)
+              return res.status(200).send(charge)
+          }
+      }
+  )
+});
+
+
 

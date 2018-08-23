@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from "react-redux";
 import Calendar from '../Calendar/Calendar';
+import StripeCheckout from 'react-stripe-checkout';
 const { REACT_APP_DOMAIN, REACT_APP_CLIENT_ID } = process.env;
 
 class CheckOut extends Component {
@@ -31,7 +32,10 @@ class CheckOut extends Component {
             fuel_type: '',
             tool_img: '',
             tool_price: 0,
-            deposit: ''
+            deposit: '',
+            total: 2000,
+            start: null,
+            end: null
         };
     };
 
@@ -79,8 +83,34 @@ class CheckOut extends Component {
         });
     };
 
+    onToken = (token) => {
+        let datesObj = {
+            tool_id: this.state.tool_id,
+            pickup_date: this.state.start,
+            return_date: this.state.end
+        }
+        token.card = void 0
+        axios.post('/api/payment', {token, amount: this.state.total}).then(res => {
+            axios.put(`/api/update_tool_data/${this.state.tool_id}`, `${this.props.user.userid}`).then( () => {
+                console.log('Tool Rental Paid')
+                console.log(res)
+            })
+        })
+        axios.post('/api/reservation', datesObj)
+    }
+
+    updateStateFromCalendar = (start, end) => {
+        this.setState({
+            start: start,
+            end: end
+        })
+       
+    }
+
     render() {
-        // console.log(this.state)
+        console.log(this.state.start)
+        console.log(this.state.end)
+       
         return(
             <div>
                 <h1>Check Out</h1>
@@ -98,13 +128,20 @@ class CheckOut extends Component {
                 <div>
                 <div className = "toolview-calendar">
                             Rental Dates
-                            <Calendar/>
+                            <Calendar tool_id = {this.state.tool_id} updateCheckoutState={this.updateStateFromCalendar}/>
                         </div>
                     Total Price: {this.state.tool_price} 
                     Deposit: {this.state.deposit}
-                    dates
+                 
                 </div>
-                <button>Check Out</button>
+                <StripeCheckout
+                name="Tool Share"
+                description="Tool Rental Payment"
+                image=""
+                token= {this.onToken}
+                stripeKey={process.env.REACT_APP_STRIPE_KEY}
+                amount={this.state.total}
+                />
                 <button>Cancel</button>
             </div>
         );
