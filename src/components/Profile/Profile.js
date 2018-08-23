@@ -100,12 +100,12 @@ class Profile extends Component {
     //mapping out the entire arrays of tool cards
     let displayedRentedTools = this.state.rentedTools.map(tool => {
       return (
-        <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price}/>
+        <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price} currentlyAvailable={tool.currently_available}/>
       )
     })
     let displayedListedTools = this.state.listedTools.map(tool => {
       return (
-        <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price}/>
+        <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price} currentlyAvailable={tool.currently_available}/>
       )
     })
 
