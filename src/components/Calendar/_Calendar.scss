@@ -1,12 +1,4 @@
-.checkout-stripe {
-    margin: 30px;
-}
-
-.checkout-stripe-and-cancel {
-   
-}
-
-.checkout-cancel button {
+.calendar-start input, .calendar-end input  {
     border: none;
     font-family: sans-serif;
     font-weight: bold;
@@ -16,13 +8,20 @@
     width: 95px;
     font-size: 14px;
     border-radius: 4px;
-    background-image: linear-gradient(rgb(255, 166, 166), rgb(253, 72, 72) 85%, rgb(255, 20, 20));
+    background-image: linear-gradient(rgb(125, 197, 238), rgb(0, 140, 221) 85%, rgb(48, 162, 228));
     color: white;
     box-shadow: rgba(42, 255, 35, 0.25) 0px 1px 0px inset;
     text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
    
 }
 
-button {
-    margin: -35px 0px;
+.calendar-dates {
+    display: flex;
+    justify-content: space-around;
+    margin: 15px;
+}
+
+.calendar-start, .calendar-end {
+    font-style: italic;
+    font-family: sans-serif;
 }

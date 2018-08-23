@@ -125,24 +125,36 @@ class CheckOut extends Component {
                 <img src={this.state.owner_pic} height='200' width='200'/>
                 <hr/>
                 <h2>Summary</h2>
-                <div>
-                <div className = "toolview-calendar">
-                            Rental Dates
-                            <Calendar tool_id = {this.state.tool_id} updateCheckoutState={this.updateStateFromCalendar}/>
-                        </div>
-                    Total Price: {this.state.tool_price} 
-                    Deposit: {this.state.deposit}
-                 
+                <div className='checkout-select-dates'>
+                
+                    Select Dates:
+                    
+                    <div className = "checkout-calendar-">
+                  
+                                <Calendar tool_id = {this.state.tool_id} updateCheckoutState={this.updateStateFromCalendar}/>
+                            </div>
+                        Total Price: ${this.state.tool_price}
+                        <br/>
+                        Deposit: {this.state.deposit}
+                    
                 </div>
-                <StripeCheckout
-                name="Tool Share"
-                description="Tool Rental Payment"
-                image="https://www.iconsdb.com/icons/preview/color/252525/hammer-xxl.png"
-                token= {this.onToken}
-                stripeKey={process.env.REACT_APP_STRIPE_KEY}
-                amount={this.state.total}
-                />
-                <button>Cancel</button>
+               <div className='checkout-stripe-and-cancel'>
+                    <div className='checkout-stripe'>
+                    <StripeCheckout
+                    name="Tool Share"
+                    description="Tool Rental Payment"
+                    image=""
+                    token= {this.onToken}
+                    stripeKey={process.env.REACT_APP_STRIPE_KEY}
+                    amount={this.state.total}
+                    />
+                    
+
+                    </div>
+                    <div className='checkout-cancel'>
+                    <button onClick={()=>this.props.history.push(`/toolview/${this.props.match.params.id}`)}>Cancel</button>
+                    </div>
+                </div>
             </div>
         );
     };

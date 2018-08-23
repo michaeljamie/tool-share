@@ -66,7 +66,9 @@ class Calendar extends Component {
        
 
         return(
-            <div>
+            <div className='calendar-dates'>
+            <div className='calendar-start'>
+            Pick-up
             <DatePicker
                 selected={this.state.startDate}
                 selectsStart
@@ -76,7 +78,9 @@ class Calendar extends Component {
                 dateFormat={"MM/DD/YYYY"}
                 excludeDates={this.state.datesList}
                 />
-
+            </div>
+            <div className='calendar-end'>
+            Return
             <DatePicker
                 selected={this.state.endDate}
                 selectsEnd
@@ -86,6 +90,7 @@ class Calendar extends Component {
                 dateFormat={"MM/DD/YYYY"}
                 excludeDates={this.state.datesList}
             />
+            </div>
             </div>
         )
     }
