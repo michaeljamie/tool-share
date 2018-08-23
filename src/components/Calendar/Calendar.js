@@ -41,6 +41,12 @@ class Calendar extends Component {
 
    }
 
+   componentDidUpdate(prevProps, prevState){
+       if(prevState.startDate !== this.state.startDate || prevState.endDate !== this.state.endDate ){   
+    this.props.updateCheckoutState(this.state.startDate.format("MM/DD/YYYY"), this.state.endDate.format("MM/DD/YYYY"))
+   }
+}
+
    handleChangeStart=(value)=>{
         this.setState({
             startDate: value
@@ -50,8 +56,7 @@ class Calendar extends Component {
    handleChangeEnd=(value)=>{
        this.setState({
            endDate: value
-       })
-       console.log(this.state.endDate)
+       })  
    }
 
     

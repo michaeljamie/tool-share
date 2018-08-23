@@ -8,4 +8,18 @@ module.exports = {
         })
         .catch(console.log)
     },
+    add_reservation: (req, res) => {
+        console.log(req.session.user)
+        let {tool_id,
+            pickup_date,
+            return_date    
+        }   = req.body;
+        let {userid} = req.session.user;
+        req.app.get('db').create_reservation([tool_id, pickup_date, return_date, userid])
+        .then(res=>{
+            res.status(200).send(res)
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
 }
