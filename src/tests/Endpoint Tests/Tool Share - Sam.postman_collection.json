@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "4eb13ea5-50fc-4920-b968-5aaef0c1a760",
+		"name": "Tool Share - Sam",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3005/api/dates/2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "05f3b97c-fe8f-4d95-92c5-1fb920d765aa",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"pm.test('should return', () => {",
+							"    pm.expect(typeof pm.response.json()).to.eql('object')",
+							"})",
+							"",
+							"pm.test(\"Sends an object with right date according to tool_id (2)\", function () {",
+							"    let body = pm.response.json()",
+							"    pm.expect(body[0].pickup_date).to.eql(\"08/24/18\")",
+							"})",
+							"",
+							"pm.test(\"Sends an object with right date according to tool_id (2)\", function () {",
+							"    let body = pm.response.json()",
+							"    pm.expect(body[0].return_date).to.eql(\"08/26/18\")",
+							"})",
+							"",
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3005/api/dates/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"api",
+						"dates",
+						"2"
+					]
+				},
+				"description": "testing reservations table endpoints"
+			},
+			"response": []
+		}
+	]
+}
