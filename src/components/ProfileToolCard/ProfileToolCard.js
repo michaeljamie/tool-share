@@ -8,9 +8,7 @@ export default class ProfileToolCard extends Component {
     return (
       <div className='profileToolCard-card'>
         <img src={this.props.toolImg} alt='tool' className='profileToolCard-image'/>
-        <Link to={`/toolview/${this.props.toolId}`}>
-          <div className='profileToolCard-cardShade'/>
-        </Link>
+        <div className='profileToolCard-cardShade'/>
         {this.props.currentlyAvailable?
         <img src={check} alt='in' className='profileToolCard-ifAvailable'/>:
         <img src={x} alt='out' className='profileToolCard-ifAvailable'/>
