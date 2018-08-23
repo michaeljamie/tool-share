@@ -153,6 +153,7 @@ app.post('/api/send', nc.send)
 
 // Reservation Enpoints
 app.get('/api/dates/:tool_id', rc.read_reservation_dates)
+app.post('/api/reservation', rc.add_reservation)
 
 // Stripe/Payment Endpoints 
 

@@ -33,7 +33,9 @@ class CheckOut extends Component {
             tool_img: '',
             tool_price: 0,
             deposit: '',
-            total: 2000
+            total: 2000,
+            start: null,
+            end: null
         };
     };
 
@@ -82,6 +84,11 @@ class CheckOut extends Component {
     };
 
     onToken = (token) => {
+        let datesObj = {
+            tool_id: this.state.tool_id,
+            pickup_date: this.state.start,
+            return_date: this.state.end
+        }
         token.card = void 0
         axios.post('/api/payment', {token, amount: this.state.total}).then(res => {
             axios.put(`/api/update_tool_data/${this.state.tool_id}`, `${this.props.user.userid}`).then( () => {
@@ -89,11 +96,21 @@ class CheckOut extends Component {
                 console.log(res)
             })
         })
-        // axios.post('/api/reservation', dates)
+        axios.post('/api/reservation', datesObj)
+    }
+
+    updateStateFromCalendar = (start, end) => {
+        this.setState({
+            start: start,
+            end: end
+        })
+       
     }
 
     render() {
-        console.log(this.props.user)
+        console.log(this.state.start)
+        console.log(this.state.end)
+       
         return(
             <div>
                 <h1>Check Out</h1>
@@ -111,11 +128,11 @@ class CheckOut extends Component {
                 <div>
                 <div className = "toolview-calendar">
                             Rental Dates
-                            <Calendar tool_id = {this.state.tool_id}/>
+                            <Calendar tool_id = {this.state.tool_id} updateCheckoutState={this.updateStateFromCalendar}/>
                         </div>
                     Total Price: {this.state.tool_price} 
                     Deposit: {this.state.deposit}
-                    dates
+                 
                 </div>
                 <StripeCheckout
                 name="Tool Share"
