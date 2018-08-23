@@ -48,7 +48,7 @@ export default class ProfileEdit extends Component {
   }
 
   changeZip(value) {
-    this.setState({phone: value})
+    this.setState({zip: value})
   }
 
   confirmChanges = async () => {
