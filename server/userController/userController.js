@@ -39,6 +39,7 @@ module.exports = {
     },
 
     getUserData: (req, res) => {
+        console.log('__________________get user data')
         const {userid} = req.params;
         req.app.get('db').get_user_data([userid])
         .then(data => {
