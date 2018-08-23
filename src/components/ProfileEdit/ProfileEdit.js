@@ -52,8 +52,8 @@ export default class ProfileEdit extends Component {
   }
 
   confirmChanges = async () => {
-    let {fullName, bio, email, phone} = this.state
-    await axios.put(`/api/userData/${this.props.match.params.userid}`, {fullName, bio, email, phone});
+    let {fullName, bio, email, phone, zip} = this.state
+    await axios.put(`/api/userData/${this.props.match.params.userid}`, {fullName, bio, email, phone, zip});
     this.props.history.push(`/profile/${this.props.match.params.userid}`);
   }
 
