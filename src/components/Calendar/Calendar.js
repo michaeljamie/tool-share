@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
 import 'react-dates/initialize';
-import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
 import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class Calendar extends Component {
     constructor(){
         super()
         this.state = {
-            startDate: null,
-            endDate: null,
+            startDate: moment(),
+            endDate: moment().add(1, "days"),
             datesList: []
         }
 
@@ -40,29 +41,46 @@ class Calendar extends Component {
 
    }
 
-   isDayBlocked = () => {
-       const {datesList} = this.state;
-        
+   handleChangeStart=(value)=>{
+        this.setState({
+            startDate: value
+        })
    }
+
+   handleChangeEnd=(value)=>{
+       this.setState({
+           endDate: value
+       })
+       console.log(this.state.endDate)
+   }
+
     
 
     render(){
        this.getDates(this.props.tool_id)
-
-      let datePicker =  <DateRangePicker
-        startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-        startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-        endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-        endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-        onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
-        focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-        onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-        isDayBlocked={this.isDayBlocked}
-    />
+       
 
         return(
             <div>
-           {datePicker}
+            <DatePicker
+                selected={this.state.startDate}
+                selectsStart
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}
+                onChange={(e)=>this.handleChangeStart(e)}
+                dateFormat={"MM/DD/YYYY"}
+                excludeDates={this.state.datesList}
+                />
+
+            <DatePicker
+                selected={this.state.endDate}
+                selectsEnd
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}
+                onChange={(e)=>this.handleChangeEnd(e)}
+                dateFormat={"MM/DD/YYYY"}
+                excludeDates={this.state.datesList}
+            />
             </div>
         )
     }
