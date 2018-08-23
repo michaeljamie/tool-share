@@ -10,7 +10,9 @@ require('dotenv').config();
   const tc = require('./toolController/toolController');
   const mc = require('./messageController/messageController');
   const nc = require('./nodemailerController/nodemailerController');
+  const pc = require('./paymentController/paymentController');
   const moment = require('moment');
+  
 
 
 let {
@@ -20,6 +22,7 @@ let {
   SERVER_PORT,
   SESSION_SECRET,
   CONNECTION_STRING,
+  STRIPE_SECRET
 } = process.env
 
 const app = express()
@@ -147,3 +150,29 @@ app.get('/api/messages/:messageid', mc.read)
 // Nodemailer Endpoints
 app.post('/api/send', nc.send)
 
+// Stripe/Payment Endpoints 
+
+const stripe = require('stripe')(STRIPE_SECRET)
+
+app.put('/api/update_tool_data/:id', pc.updateTool)
+app.post('/api/payment', (req, res) => {
+  const {amount, token:{id}} = req.body
+  console.log(id)
+  stripe.charges.create(
+      {
+          amount: amount,
+          currency: "usd",
+          source: id,
+          description: "Tool Share Test Charge"
+      },
+      (err, charge) => {
+          if(err) {
+              console.log(err)
+              return res.status(500).send(err)
+          } else {
+              console.log('charge=', charge)
+              return res.status(200).send(charge)
+          }
+      }
+  )
+});

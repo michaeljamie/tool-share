@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from "react-redux";
 import Calendar from '../Calendar/Calendar';
+import StripeCheckout from 'react-stripe-checkout';
 const { REACT_APP_DOMAIN, REACT_APP_CLIENT_ID } = process.env;
 
 class CheckOut extends Component {
@@ -31,7 +32,8 @@ class CheckOut extends Component {
             fuel_type: '',
             tool_img: '',
             tool_price: 0,
-            deposit: ''
+            deposit: '',
+            total: 2000
         };
     };
 
@@ -79,8 +81,19 @@ class CheckOut extends Component {
         });
     };
 
+    onToken = (token) => {
+        token.card = void 0
+        axios.post('/api/payment', {token, amount: this.state.total}).then(res => {
+            axios.put(`/api/update_tool_data/${this.state.tool_id}`, `${this.props.user.userid}`).then( () => {
+                console.log('Tool Rental Paid')
+                console.log(res)
+            })
+        })
+        // axios.post('/api/reservation', dates)
+    }
+
     render() {
-        // console.log(this.state)
+        console.log(this.props.user)
         return(
             <div>
                 <h1>Check Out</h1>
@@ -104,7 +117,14 @@ class CheckOut extends Component {
                     Deposit: {this.state.deposit}
                     dates
                 </div>
-                <button>Check Out</button>
+                <StripeCheckout
+                name="Tool Share"
+                description="Tool Rental Payment"
+                image=""
+                token= {this.onToken}
+                stripeKey={process.env.REACT_APP_STRIPE_KEY}
+                amount={this.state.total}
+                />
                 <button>Cancel</button>
             </div>
         );
