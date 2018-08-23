@@ -30,6 +30,55 @@ module.exports = {
         }).catch(err=>console.log(err))
     },
 
+    get_matching_tags: (req, res) => {
+        console.log(req.body)
+        const {
+            tool_id,
+            drill,
+            hammer,
+            hammer_drill,
+            jack_hammer,
+            sander,
+            grinder,
+            auger,
+            saw,
+            mower,
+            trimmer,
+            ladder,
+            welding,
+            air_compressor,
+            vacuum, 
+            pressure_washer,
+            ratchet,
+            wrench,
+            lawn_tool
+        } = req.body
+        const id = tool_id
+        req.app.get('db').get_matching_tags([
+            id,
+            drill,
+            hammer,
+            hammer_drill,
+            jack_hammer,
+            sander,
+            grinder,
+            auger,
+            saw,
+            mower,
+            trimmer,
+            ladder,
+            welding,
+            air_compressor,
+            vacuum, 
+            pressure_washer,
+            ratchet,
+            wrench,
+            lawn_tool
+        ])
+        .then( (tools) => {res.status(200).send(tools)})
+        .catch( err => console.log(err))
+    },
+
     get_current_tool_tag: (req, res) => {
         console.log(req.params.id)
         const {id} = req.params;
