@@ -11,6 +11,7 @@ require('dotenv').config();
   const mc = require('./messageController/messageController');
   const nc = require('./nodemailerController/nodemailerController');
   const pc = require('./paymentController/paymentController');
+  const rc = require('./reservationsController/reservationsController');
   const moment = require('moment');
   
 
@@ -69,7 +70,7 @@ massive(CONNECTION_STRING).then(db => {
   console.log('Database ready')
 });
 
-// app.use(uc.ignoreAuthInDevelopment)
+app.use(uc.ignoreAuthInDevelopment)
 
 app.get('/auth/callback', async (req, res) => {
   // code from auth0 on req.query.code
@@ -150,6 +151,9 @@ app.get('/api/messages/:messageid', mc.read)
 // Nodemailer Endpoints
 app.post('/api/send', nc.send)
 
+// Reservation Enpoints
+app.get('/api/dates/:tool_id', rc.read_reservation_dates)
+
 // Stripe/Payment Endpoints 
 
 const stripe = require('stripe')(STRIPE_SECRET)
@@ -176,3 +180,6 @@ app.post('/api/payment', (req, res) => {
       }
   )
 });
+
+
+

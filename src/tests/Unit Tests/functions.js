@@ -24,7 +24,13 @@ module.exports = {
         .then(res => {
             return res.data
         }).catch(err=>console.log(err))   
-    }
+    },
 
+    getUsersListedTools: (id) => {
+        return axios.get('http://localhost:3005/api/usersListedTools/' + id)
+        .then(res => {
+            return res.data
+        }).catch(err=>console.log(err))
+    }
 
 }

@@ -56,3 +56,41 @@ describe('Michael Johnston Tests:', () => {
     })
 
 });
+
+describe("Sean Kidwell's Tests:", () => {
+
+    test('users listed tools should be defined', () => {
+        return fns.getUsersListedTools(4).then(data => {
+            expect(data).toBeDefined();
+        })
+    })
+
+    test('users listed tools should be an array', () => {
+        return fns.getUsersListedTools(4).then(data => {
+            expect(Array.isArray(data)).toEqual(true)
+        })
+    })
+
+    test('users listed tools should have a length', () => {
+        return fns.getUsersListedTools(4).then(data => {
+            expect.anything(data.length)
+        })
+    })
+
+    test('if user has a tool listed, tool should be an object', () => {
+        return fns.getUsersListedTools(4).then(data => {
+            if (data.length>=1) {
+                expect(typeof data[0]).toBe('object')
+            }
+        })
+    })
+
+    test('if user has a tool listed, tool should have tool_id property', () => {
+        return fns.getUsersListedTools(4).then(data => {
+            if (data.length>=1) {
+                expect(data[0].tool_id).toBeDefined();
+            }
+        })
+    })
+
+})
