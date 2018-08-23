@@ -146,7 +146,6 @@ class PostTool extends Component {
                 wrench,
                 lawn_tool
             }
-            console.log(tool_ID_and_Tags)
             axios.post(`/api/tooltags`, tool_ID_and_Tags).then( () => this.props.history.push(`/toolview/${tool_id}`));
         });
     };
@@ -165,7 +164,6 @@ class PostTool extends Component {
 
     onDrop = files => {
         files.map(file => {
-            console.log(file)
             const formData = new FormData();
             formData.append("file", file);
             formData.append("upload_preset", REACT_APP_CLOUD_PRESET); 
@@ -173,7 +171,6 @@ class PostTool extends Component {
             formData.append("timestamp", (Date.now() / 1000) | 0);
             formData.append("public_id", file.name);
             return axios.post(`https://api.cloudinary.com/v1_1/${REACT_APP_CLOUD_NAME}/image/upload/`, formData, {headers: { "X-Requested-With": "XMLHttpRequest" }}).then(res => {
-                console.log(res.data)
                 this.setState({
                     tool_img: res.data.url
                 })
@@ -182,7 +179,6 @@ class PostTool extends Component {
     }
 
     render() {
-        console.log(this.state)
         return(
             <div className='post-tool-body'>
                 <h1>Post New Tool</h1>
