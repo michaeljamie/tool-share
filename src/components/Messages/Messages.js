@@ -21,7 +21,6 @@ class Messages extends Component {
         })
         Promise.all([
             axios.get(`/api/sendermessages/${this.props.users.userid}`).then(res => {
-                console.log(res)
                 for (let i = res.data.length-1; i >= 0; i--) {
                     if(!messagesArr.find( message => {
                         return message.room_id === res.data[i].room_id
@@ -31,7 +30,6 @@ class Messages extends Component {
                 }
             }),
             axios.get(`/api/receivermessages/${this.props.users.userid}`).then(res => {
-                console.log(res)
                 for (let i = res.data.length-1; i >= 0; i--) {
                     if(!messagesArr.find( message =>message.room_id === res.data[i].room_id) ){
                         messagesArr.push(res.data[i])
@@ -49,9 +47,7 @@ class Messages extends Component {
     }
 
     render() {
-        console.log(this.state.messages)
         let messagesToDisplay = this.state.messages.map((e, i) => {
-            console.log('e is this yo =', e)
             return (
                 
                 <Link to={`/chat/${e.room_id}`} className="link_to_chat" key={e.fullname + i}>

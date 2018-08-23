@@ -1,10 +1,12 @@
 module.exports = {
     updateTool: (req, res) => {
-        // const {id} = req.params;
-        // const {userid} = req.body;
-        // req.app.get('db').([id, userid])
-        // .then( response => {
-        //     res.status(200)
-        // })
+        console.log('req.params=', req.params)
+        console.log('req.body=', req.body)
+        const {tool_id} = req.params;
+        const {renter_id} = req.body;
+        req.app.get('db').update_tool_data([tool_id, renter_id])
+        .then( response => {
+            res.status(200)
+        })
     }
 }
