@@ -183,17 +183,13 @@ class PostTool extends Component {
             <div className='post-tool-body'>
                 <h1>Post New Tool</h1>
                 <div className='post-tool-section'>
-                    <div>Provide brand name and model of tool.</div>
-                    <input type='text' name='name' className='post-tool-input' onChange={this.handleChange}/>
-                </div>
-                <div className='post-tool-section'>
                     
                     <Dropzone 
                         onDrop={this.onDrop} 
                         style={{
-                            width: "80%", 
-                            height: '100px', 
-                            border: "dashed 1px #fdd947",
+                            width: "75%", 
+                            height: "10%", 
+                            border: "solid 1px #fdd947",
                             borderRadius: '6px',
                             textAlign: 'center', 
                             display: "flex", 
@@ -203,13 +199,13 @@ class PostTool extends Component {
                             marginBottom: '20px',
                             cursor: 'pointer'
                         }}>
-                        <p className='dropbox-title'>DRAG AND DROP FILES HERE OR CLICK TO UPLOAD</p>
+                        <p className='dropbox-title'>Upload Image</p>
                     </Dropzone>
                     <img src={this.state.tool_img ? this.state.tool_img : defaultTool} alt='tool' width='200px' height='200px' />
                 </div>
                 <div className='post-tool-section'>
-                    <div>Select a few tags describing the type of tool.</div>   
-                    <div>
+                    <div className='post-tool-divider'>Select a few tags describing the type of tool.</div>   
+                    <div className='post-tool-buttons'>
                         <button className={this.state.drill ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='drill' value={this.state.drill} onClick={this.toogleTagBoolean}>Drill</button>
                         <button className={this.state.hammer ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='hammer' value={this.state.hammer} onClick={this.toogleTagBoolean}>Hammer</button>
                         <button className={this.state.hammer_drill ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='hammer_drill' value={this.state.hammer_drill} onClick={this.toogleTagBoolean}>Hammer Drill</button>
@@ -231,19 +227,31 @@ class PostTool extends Component {
                     </div>            
                 </div>
                 <div className='post-tool-section'>
-                    <div>Provide a description of the tool. (Max 200)</div> 
-                    <input type='text' className='post-tool-input' maxLength='200' name="description" onChange={this.handleChange}/>
+                    <div className ='post-toolDiv'>
+                        <p className = 'post-inputText'>Brand name and model</p>
+                        <input type='text' name='name' className='post-input' onChange={this.handleChange}/>
+                    </div>
                 </div>
                 <div className='post-tool-section'>
-                    <div>Select the price per diem for the tool.</div>
-                    <input type='number' className='post-tool-input' name='price' onChange={this.handleChange}/>
+                    <div className ='post-toolDiv'>
+                        <p className = 'post-inputText'>Description (Max 200)</p>
+                        <input type='text' className='post-input' maxLength='200' name="description" onChange={this.handleChange}/>
+                    </div>
                 </div>
                 <div className='post-tool-section'>
-                    <div>Select a deposit amount for the tool.</div>
-                    <input type='number' className='post-tool-input' name='deposit' onChange={this.handleChange}/>
+                    <div className ='post-toolDiv'>
+                        <p className = 'post-inputText'>Daily Rental Fee</p>
+                        <input type='number' className='post-input' name='price' onChange={this.handleChange}/>
+                    </div>
                 </div>
                 <div className='post-tool-section'>
-                    <div>Describe the condition of the tool.</div>
+                    <div className ='post-toolDiv'>
+                        <p className = 'post-inputText'>Security Deposit Amount</p>
+                        <input type='number' className='post-input' name='deposit' onChange={this.handleChange}/>
+                    </div>
+                </div>
+                <div className='post-tool-section'>
+                    <div className='post-tool-divider'>Describe the condition of the tool.</div>
                     <select className='post-tool-input' name="condition" onChange={this.handleChange}>
                         <option value="Excellent">Excellent</option>
                         <option value="Great">Great</option>
@@ -253,29 +261,34 @@ class PostTool extends Component {
                     </select>
                 </div>
                 <div className='post-tool-section'>
-                    <div>Will this tool be for rent?</div> 
-                    <div>{`Yes `}<input type='checkbox' name='for_rent' onClick={this.toogleBoolean}/></div>
+                    <div className='post-tool-divider'>Will this tool be for rent?</div> 
+                    <div className = 'tool-check'>{`Yes `}<label class="container"><input type='checkbox' name='for_rent' onClick={this.toogleBoolean}/><span class="checkmark"></span>
+                    </label></div>
                 </div>
                 <div className='post-tool-section'>
-                    <div>Will this tool be for sale?</div>
-                    <div>{`Yes `}<input type='checkbox' name='for_sale' onClick={this.toogleBoolean}/></div>
+                    <div className='post-tool-divider'>Will this tool be for sale?</div>
+                    <div className = 'tool-check'>{`Yes `}<label class="container"><input type='checkbox' name='for_sale' onClick={this.toogleBoolean}/><span class="checkmark"></span>
+                    </label></div>
                 </div>
                 <div className='post-tool-section'>
-                    <div>Will this tool be available for delivery?</div>
-                    <div>{`Yes `}<input type='checkbox' name='delivery_avail' onClick={this.toogleBoolean}/></div>
+                    <div className='post-tool-divider'>Will this tool be available for delivery?</div>
+                    <div className = 'tool-check'>{`Yes `}<label class="container"><input type='checkbox' name='delivery_avail' onClick={this.toogleBoolean}/><span class="checkmark"></span>
+                    </label></div>
                 </div>
                 <div className='post-tool-section'>
-                    <div>Will this tool be available for pick up?</div>
-                    <div>{`Yes `}<input type='checkbox' name='pickup_avail' onClick={this.toogleBoolean}/></div>
+                    <div className='post-tool-divider'>Will this tool be available for pick up?</div>
+                    <div className = 'tool-check'>{`Yes `}<label class="container"><input type='checkbox' name='pickup_avail' onClick={this.toogleBoolean}/><span class="checkmark"></span>
+                    </label></div>
                 </div>
                 <div className='post-tool-section'>
-                    <div>Is this a power tool?</div>
-                    <div>{`Yes `}<input type='checkbox' name='power_tool' onClick={this.toogleBoolean}/></div>
+                    <div className='post-tool-divider'>Is this a power tool?</div>
+                    <div className = 'tool-check'>{`Yes `}<label class="container"><input type='checkbox' name='power_tool' onClick={this.toogleBoolean}/><span class="checkmark"></span>
+                    </label></div>
                 </div>
                 { 
                     this.state.power_tool ?
                     <div className='post-tool-section'>
-                        <div>What type of power?</div> 
+                        <div className='post-tool-divider'>What type of power?</div> 
                         <select className='search-criteria-select' name="power_type" onChange={this.handleChange}>
                             <option selected value="null"></option>
                             <option value="electric">Electric</option>
@@ -286,13 +299,14 @@ class PostTool extends Component {
                     null
                 }
                 <div className='post-tool-section'>
-                    <div>Does this tool require fuel?</div>
-                    <div>{`Yes `}<input type='checkbox' name='requires_fuel' onClick={this.toogleBoolean}/></div>
+                    <div className='post-tool-divider'>Does this tool require fuel?</div>
+                    <div className = 'tool-check'>{`Yes `}<label class="container"><input type='checkbox' name='requires_fuel' onClick={this.toogleBoolean}/><span class="checkmark"></span>
+                    </label></div>
                 </div>
                 { 
                     this.state.requires_fuel ?
                     <div className='post-tool-section'>
-                        <div>What type of fuel?</div>
+                        <div className='post-tool-divider'>What type of fuel?</div>
                         <select className='search-criteria-select' name="fuel_type" defaultValue='' onChange={this.handleChange}>
                             <option selected value="null"></option>
                             <option value="gasoline">Gasoline</option>
@@ -303,7 +317,9 @@ class PostTool extends Component {
                     :
                     null
                 }
-                <button className='post-tool-button' onClick={this.postNewTool}>Post Tool</button>
+                <div className='post-tool-section'>
+                    <button className='post-tool-button' onClick={this.postNewTool}>Post Tool</button>
+                </div>
             </div>
         );
     };

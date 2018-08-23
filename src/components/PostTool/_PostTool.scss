@@ -4,52 +4,176 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
+    width: 100%;
 }
 
 .post-tool-input {
     border: solid 1px black;
-    width: 80%;
+    width: 60%;
 }
 
 .post-tool-body {
-    height: 100%;
-    width: 98%;
+    height: auto;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    background: $color1;
+    color: $color3;
 }
 
 .post-tool-button {
-    background-color: #fdd947;
+    background-color: $color1;
     outline: none;
-    border: none;
-    width: 40%;
-    height: 5%;
-    font-size: 100%;
-    font-weight: 600;
+    border: solid 1px $color5;
+    color: $color3;
+    width: 75%;
+    height: 8vh;
     margin-top: 10px;
     margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+.post-tool-divider {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+// width: "75%", 
+// height: "10%", 
+// border: "solid 1px #fdd947",
+// borderRadius: '6px',
+
+.post-tool-buttons {
+    text-align: center;
 }
 
 .post-tool-tag-bubble-on {
     width: 110px;
     height: 30px;
     border: solid 1px white;
-    color: white;
-    background-color: blue;
+    color: $color1;
+    background-color: $color5;
     outline: none;
     border-radius: 10px;
     font-size: 12px;
+    margin: 3px;
 }
 
 .post-tool-tag-bubble-off {
     width: 110px;
     height: 30px;
-    border: solid 1px blue;
-    color: blue;
-    background-color: white;
+    border: solid 1px $color5;
+    color: $color3;
+    background-color: $color1;
     outline: none;
     border-radius: 10px;
     font-size: 12px;
+    margin: 3px;
 }
+
+.search-criteria-select {
+    width: 60%;
+}
+
+.post-input {
+    border: none;
+    background: transparent;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $color5;
+    width: 100%;
+    transition: .6s ease-in-out;
+    height: 2.3vh;
+    margin-top: 0px;
+    color: $color3;
+}
+
+.post-input::placeholder {
+    color: $color3;
+}
+
+.post-input:focus {
+    color: $color3;
+    // transform: scaleY(3.5);
+    margin-top: 30px;
+    outline: none;
+    font-size: 22px;
+}
+
+.post-inputText {
+    color: $color3;
+    text-align: left;
+    margin-bottom: 0px;
+}
+
+.post-toolDiv {
+    width: 60%;
+}
+
+.tool-check {
+    @include flexSetUp(center, center, row);
+    margin: 5px;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    margin-left: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: $color5;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+

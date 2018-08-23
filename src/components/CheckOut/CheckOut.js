@@ -137,7 +137,7 @@ class CheckOut extends Component {
                 <StripeCheckout
                 name="Tool Share"
                 description="Tool Rental Payment"
-                image=""
+                image="https://www.iconsdb.com/icons/preview/color/252525/hammer-xxl.png"
                 token= {this.onToken}
                 stripeKey={process.env.REACT_APP_STRIPE_KEY}
                 amount={this.state.total}
