@@ -13,6 +13,7 @@ import CheckOut from './components/CheckOut/CheckOut';
 import ToS from './components/ToS/ToS';
 import RentalAgreement from './components/RentalAgreement/RentalAgreement';
 import Welcome from './components/Welcome/Welcome';
+import ToolEdit from './components/ToolEdit/ToolEdit';
 
 export default (
     <Switch>
@@ -29,5 +30,6 @@ export default (
         <Route component={ToS} path="/terms_and_conditions" />
         <Route component={RentalAgreement} path="/rental_agreement" />
         <Route component={Welcome} path="/welcome/:userid" />
+        <Route component={ToolEdit} path="/tooledit/:id" />
     </Switch>
 )

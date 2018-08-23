@@ -1,18 +1,18 @@
 module.exports = {
-    // leave this here and commented out...feel free to edit with your own info and uncomment so you don't have to keep logging in while you code. Comment out again before pushing to github.
-    // ignoreAuthInDevelopment: (req, res, next) => {
-    //     if(process.env.MODE === 'development' && !req.session.user){
-    //         req.session.user = {
-    //             id:1, 
-    //             auth_id:'google-oauth2|102948968802324753832', 
-    //             user_name: 'Stephen Pace',	
-    //             user_pic: 'https://lh5.googleusercontent.com/-sapgzN9K2rg/AAAAAAAAAAI/AAAAAAAAAwg/RLOCqjo6wDU/photo.jpg',
-    //         };
-    //         next();
-    //     } else {
-    //         next();
-    //     }
-    // },
+    //leave this here and commented out...feel free to edit with your own info and uncomment so you don't have to keep logging in while you code. Comment out again before pushing to github.
+    ignoreAuthInDevelopment: (req, res, next) => {
+        if(process.env.MODE === 'development' && !req.session.user){
+            req.session.user = {
+                id:1, 
+                auth_id:'google-oauth2|102948968802324753832', 
+                user_name: 'Stephen Pace',	
+                user_pic: 'https://lh5.googleusercontent.com/-sapgzN9K2rg/AAAAAAAAAAI/AAAAAAAAAwg/RLOCqjo6wDU/photo.jpg',
+            };
+            next();
+        } else {
+            next();
+        }
+    },
 
     read: ( req, res ) => {
         let { authID } = req.session.user

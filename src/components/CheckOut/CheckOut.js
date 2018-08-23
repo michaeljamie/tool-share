@@ -98,7 +98,7 @@ class CheckOut extends Component {
                 <div>
                 <div className = "toolview-calendar">
                             Rental Dates
-                            <Calendar/>
+                            <Calendar tool_id = {this.state.tool_id}/>
                         </div>
                     Total Price: {this.state.tool_price} 
                     Deposit: {this.state.deposit}
