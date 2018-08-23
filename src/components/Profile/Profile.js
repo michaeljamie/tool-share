@@ -25,6 +25,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0,0);
     this.getLocation();
     axios.get(`/api/userData/${this.props.match.params.userid}`).then(res => {
       let {fullname, bio, profile_pic, listerrating, renterrating} = res.data[0]

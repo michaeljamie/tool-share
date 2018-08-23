@@ -46,13 +46,31 @@ module.exports = {
         })
     },
 
-    changeUserData: (req, res) => {
+    editUserData: (req, res) => {
         const {userid} = req.params;
         const {fullName, bio, email, phone} = req.body;
         req.app.get('db').change_user_data([fullName, bio, email, phone, userid])
         .then(() => {
             res.end()
         })
-    }
+    },
+
+    welcomeUpdate: (req, res) => {
+        const {userid} = req.params;
+        const {zip, phone} = req.body;
+        req.app.get('db').welcome_update([zip, phone, userid])
+        .then(() => {
+            res.end()
+        })
+    },
+
+    deleteUser: (req, res) => {
+        console.log(req.session.user)
+        const { authid } = req.session.user;
+        req.app.get('db').delete_user([ authid ])
+        .catch( err => {
+            console.log(err)
+        })
+    }        
 
 }

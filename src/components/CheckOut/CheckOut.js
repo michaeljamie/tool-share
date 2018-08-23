@@ -45,6 +45,11 @@ class CheckOut extends Component {
         window.scrollTo(0,0)
     };
 
+    login = () => {
+        const redirectUri = encodeURIComponent(`${window.origin}/auth/callback`);
+        window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`
+    };
+
     getToolAndOwner() {
         axios.get(`/api/tool/${this.props.match.params.id}`).then( tool => {
             console.log(tool)

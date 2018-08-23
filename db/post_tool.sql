@@ -1,7 +1,6 @@
 INSERT INTO tools (
     tool_owner,
     tool_name,
-    tool_type,
     tool_descript,
     times_rented,
     tool_condition,
@@ -35,8 +34,7 @@ VALUES (
     $14,
     $15,
     $16,
-    $17,
-    $18
+    $17
 )
 
 RETURNING *
