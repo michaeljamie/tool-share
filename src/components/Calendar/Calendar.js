@@ -42,7 +42,7 @@ class Calendar extends Component {
 
    isDayBlocked = () => {
        const {datesList} = this.state;
-       return datesList
+        
    }
     
 

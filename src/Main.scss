@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
-@import url('https://fonts.googleapis.com/css?family=Lato');
-@import 'https://fonts.googleapis.com/css?family=Rubik+One';
-@import url('https://fonts.googleapis.com/css?family=Bangers');
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url("https://fonts.googleapis.com/css?family=Lato");
+@import "https://fonts.googleapis.com/css?family=Rubik+One";
+@import url("https://fonts.googleapis.com/css?family=Bangers");
 
 $color1: #252525;
 $color2: #979797;
@@ -9,8 +9,8 @@ $color3: #ffffff;
 $color4: #444444;
 $color5: #fdd947;
 
-$font1: 'Montserrat', sans-serif;
-$font2: 'Lato', sans-serif;
+$font1: "Montserrat", sans-serif;
+$font2: "Lato", sans-serif;
 
 @mixin width-height($width, $height) {
   width: $width;
@@ -21,7 +21,7 @@ $font2: 'Lato', sans-serif;
   display: flex;
   justify-content: $justify;
   align-items: $align;
-  flex-direction: $direction
+  flex-direction: $direction;
 }
 
 //implementation
@@ -37,7 +37,6 @@ $font2: 'Lato', sans-serif;
 //   @include width-height(120px, 120px);
 //   background: $primary-color;
 // }
-
 
 @import "components/FAQ/_FAQ.scss";
 @import "components/Home/_Home.scss";
@@ -61,9 +60,13 @@ $font2: 'Lato', sans-serif;
 @import "components/ToS/_ToS.scss";
 @import "components/RentalAgreement/_RentalAgreement.scss";
 @import "components/Welcome/_Welcome.scss";
-
+@import "components/ToolEdit/_ToolEdit.scss";
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
