@@ -21,6 +21,7 @@
     "react-dates": "^17.2.0",
     "react-day-picker": "^7.1.10",
     "react-dom": "^16.4.2",
+    "react-dropzone": "^5.0.1",
     "react-iframe": "^1.2.0",
     "react-moment": "^0.7.9",
     "react-redux": "^5.0.7",
