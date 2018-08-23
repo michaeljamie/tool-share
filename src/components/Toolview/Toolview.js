@@ -109,23 +109,30 @@ class Toolview extends Component {
     };
 
     render() {
-        // console.log(this.state)
+        console.log(this.state)
 
-        let editButton = this.state.owner_id === this.props.user.userid ? <button className='toolview-edit-button'>edit</button> : null
+        let editButton = this.state.owner_id === this.props.user.userid ? <button className='toolview-edit-button'>Edit Tool</button> : null
+        let returnButton = this.state.owner_id === this.props.user.userid && this.state.available === false ? <button className='toolview-edit-button'>Return Tool</button> : null
+        let rentButton = this.state.owner_id !== this.props.user.userid ? 
+            <Link to={`/checkout/${this.props.match.params.id}`}><button className='toolview-rent-button'>Rent</button></Link> :
+            null
+        let availabilityNotification = this.state.available === false ? <div>This tool is currently unavailable.</div> : null
        
         return (
             <div>
                 <Link to='/search'><button className='toolview-back-button'>Back to Results</button></Link>
                 <div className = "toolview-top">
                 {editButton}
+                {returnButton}
                     <h1 className = "toolview-top-title">{`${this.state.tool_name}`}</h1>
                     <div className = "toolview-pic"> 
                         <img src={this.state.tool_img} alt="table saw"/>
                     </div>
-                        <div className = "toolview-price-rent">
-                            <div>Price: {this.state.tool_price}/day</div>
-                            <Link to={`/checkout/${this.props.match.params.id}`}><button className='toolview-rent-button'>Rent</button></Link>
-                        </div>
+                    {availabilityNotification}
+                    <div className = "toolview-price-rent">
+                        <div>Price: {this.state.tool_price}/day</div>
+                        {rentButton}
+                    </div>
                 </div>
                 <div className = "toolview-description">
                     <div>{this.state.tool_descript}</div>

@@ -18,7 +18,7 @@ class SimilarTools extends Component {
 
     getToolsWithSameTags = () => {
         let tagsAndID = this.props.tags[0]
-        console.log(tagsAndID)
+        // console.log(tagsAndID)
         axios.post('/api/get_matching_tags', tagsAndID).then( res => {
             this.setState({
                 matchingTagsAndTools: res.data

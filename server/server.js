@@ -13,8 +13,6 @@ require('dotenv').config();
   const pc = require('./paymentController/paymentController');
   const rc = require('./reservationsController/reservationsController');
   const moment = require('moment');
-  
-
 
 let {
   REACT_APP_CLIENT_ID,
