@@ -30,51 +30,8 @@ module.exports = {
         }).catch(err=>console.log(err))
     },
 
-    get_matching_tags: (req, res) => {
-        console.log(req.body)
-        const {
-            tool_id,
-            drill,
-            hammer,
-            hammer_drill,
-            jack_hammer,
-            sander,
-            grinder,
-            auger,
-            saw,
-            mower,
-            trimmer,
-            ladder,
-            welding,
-            air_compressor,
-            vacuum, 
-            pressure_washer,
-            ratchet,
-            wrench,
-            lawn_tool
-        } = req.body
-        const id = tool_id
-        req.app.get('db').get_matching_tags([
-            id,
-            drill,
-            hammer,
-            hammer_drill,
-            jack_hammer,
-            sander,
-            grinder,
-            auger,
-            saw,
-            mower,
-            trimmer,
-            ladder,
-            welding,
-            air_compressor,
-            vacuum, 
-            pressure_washer,
-            ratchet,
-            wrench,
-            lawn_tool
-        ])
+    get_all_tags: (req, res) => {
+        req.app.get('db').get_all_tags()
         .then( (tools) => {res.status(200).send(tools)})
         .catch( err => console.log(err))
     },
@@ -85,6 +42,15 @@ module.exports = {
         req.app.get('db').get_current_tool_tag([id])
         .then ( tag => {
             res.status(200).send(tag)
+        }).catch(err=>console.log(err))
+    },
+
+    get_similar_tools: (req, res) => {
+        const {toolId} = req.body
+        
+        req.app.get('db').get_similar_tools(toolId)
+        .then (tools => {
+            res.status(200).send(tools)
         }).catch(err=>console.log(err))
     },
 
