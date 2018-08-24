@@ -202,6 +202,99 @@ module.exports = {
         .then(tools => {
             res.status(200).send(tools)
         })
-    }
+    },
+
+    update_tool: (req, res, next) => {
+        console.log('update_tool hit')
+        console.log('update_tool params:',req.params.id)
+        const {id} = req.params
+        const {
+            name,
+            image,
+            description,
+            priceInt,
+            depositInt,
+            condition,
+            forRent,
+            forSale,
+            delivery,
+            pickup,
+            powerTool,
+            powerType,
+            requiresFuel,
+            fuelType
+        } = req.body
+        console.log(req.body)
+        req.app.get('db').update_tool([
+            name,
+            image,
+            description,
+            priceInt,
+            depositInt,
+            condition,
+            forRent,
+            forSale,
+            delivery,
+            pickup,
+            powerTool,
+            powerType,
+            requiresFuel,
+            fuelType,
+            id
+        ])
+        .then( (tool) => res.status(200).send(tool[0]) )
+        .catch(err => console.log(err))
+    },
+
+    update_tags: (req, res, next) => {
+        console.log('update tags method hit')
+        const {id} = req.params;
+        const {
+            drill,
+            hammer,
+            hammer_drill,
+            jack_hammer,
+            sander,
+            grinder,
+            auger,
+            saw,
+            mower,
+            trimmer,
+            ladder,
+            welding,
+            air_compressor,
+            vacuum, 
+            pressure_washer,
+            ratchet,
+            wrench,
+            lawn_tool
+         } = req.body
+         console.log('just before sql file')
+         console.log(req.body)
+         console.log('update_tags params:',req.params.id)
+         req.app.get('db').update_tags([
+            drill,
+            hammer,
+            hammer_drill,
+            jack_hammer,
+            sander,
+            grinder,
+            auger,
+            saw,
+            mower,
+            trimmer,
+            ladder,
+            welding,
+            air_compressor,
+            vacuum, 
+            pressure_washer,
+            ratchet,
+            wrench,
+            lawn_tool,
+            id
+         ])
+         .then( () => res.status(200).send('Tags Updated') )
+         .catch(err => console.log(err))
+    },
     
 }

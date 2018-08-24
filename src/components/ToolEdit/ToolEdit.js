@@ -48,12 +48,13 @@ export default class ToolEdit extends Component {
   componentDidMount() {
     axios.get(`/api/tool/${this.props.match.params.id}`).then(res => {
       let { tool_name, tool_img, tool_descript, tool_price, deposit, tool_condition, for_rent, for_sale, delivery, pickup, power_tool, power_type, requires_fuel, fuel_type } = res.data
+      let finalDeposit = deposit.slice(1)
       this.setState({
         name: tool_name,
         image: tool_img,
         description: tool_descript,
         pricePerDay: tool_price,
-        deposit: deposit,
+        deposit: finalDeposit,
         condition: tool_condition,
         forRent: for_rent,
         forSale: for_sale,
@@ -93,7 +94,84 @@ export default class ToolEdit extends Component {
   };
 
   confirm() {
-    
+    console.log('start')
+    const {
+      name,
+      image,
+      description,
+      pricePerDay,
+      deposit,
+      condition,
+      forRent,
+      forSale,
+      delivery,
+      pickup,
+      powerTool,
+      powerType,
+      requiresFuel,
+      fuelType,
+      drill,
+      hammer,
+      hammer_drill,
+      jack_hammer,
+      sander,
+      grinder,
+      auger,
+      saw,
+      mower,
+      trimmer,
+      ladder,
+      welding,
+      air_compressor,
+      vacuum,
+      pressure_washer,
+      ratchet,
+      wrench,
+      lawn_tool
+    } = this.state
+    const priceInt = parseInt(pricePerDay)
+    const depositInt = parseInt(deposit)
+    const tool_data = {
+      name,
+      image,
+      description,
+      priceInt,
+      depositInt,
+      condition,
+      forRent,
+      forSale,
+      delivery,
+      pickup,
+      powerTool,
+      powerType,
+      requiresFuel,
+      fuelType
+    }
+    axios.put(`/api/edit/tool/${this.props.match.params.id}`, tool_data).then(() => {
+      console.log('tool edit start')
+      const tags = {
+        drill,
+        hammer,
+        hammer_drill,
+        jack_hammer,
+        sander,
+        grinder,
+        auger,
+        saw,
+        mower,
+        trimmer,
+        ladder,
+        welding,
+        air_compressor,
+        vacuum, 
+        pressure_washer,
+        ratchet,
+        wrench,
+        lawn_tool
+      }
+      axios.put(`/api/tooltags/${this.props.match.params.id}`, tags)
+      this.props.history.push(`/toolview/${this.props.match.params.id}`);
+    })
   }
 
   render() {
