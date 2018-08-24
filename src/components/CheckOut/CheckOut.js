@@ -91,9 +91,8 @@ class CheckOut extends Component {
         }
         token.card = void 0
         axios.post('/api/payment', {token, amount: this.state.total}).then(res => {
-            axios.put(`/api/update_tool_data/${this.state.tool_id}`, `${this.props.user.userid}`).then( () => {
+            axios.put(`/api/update_tool_data/${this.state.tool_id}`, {renter_id: this.props.user.userid}).then( () => {
                 console.log('Tool Rental Paid')
-                console.log(res)
             })
         })
         axios.post('/api/reservation', datesObj)
