@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Lister from './../Lister/Lister';
 import 'react-dates/lib/css/_datepicker.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
 import { handleSearchTags } from '../../ducks/reducer';
 import io from 'socket.io-client';
@@ -42,12 +42,15 @@ class Toolview extends Component {
             tool_price: 0,
             available: '',
             currentToolTags: [],
+            redirect: false,
+            roomToJoin: ''
         };
     };
 
     componentDidMount() {
         this.getToolAndOwner();
         window.scrollTo(0,0);
+        this.setState({redirect: false})
     };
 
     componentDidUpdate (prevProps) {
@@ -106,10 +109,13 @@ class Toolview extends Component {
         }
         axios.put('/api/room', { room: room, sender_id: this.props.user.userid, receiver_id: this.state.owner_id })
         this.props.setRoomID(room)
+        this.setState({roomToJoin: room, redirect: true})
     };
 
     render() {
-        console.log(this.state)
+        if(this.state.redirect){
+            return <Redirect push to = {`/chat/${this.state.roomToJoin}`}/>
+        }
 
         let editButton = this.state.owner_id === this.props.user.userid ? <button className='toolview-edit-button'>Edit Tool</button> : null
         let returnButton = this.state.owner_id === this.props.user.userid && this.state.available === false ? <button className='toolview-edit-button'>Return Tool</button> : null
@@ -152,9 +158,9 @@ class Toolview extends Component {
                         Additional:
                    
                         </div> 
-                        <Link to="/chat"><button onClick={ () => this.joinRoom() }>
+                        <button onClick={ () => this.joinRoom() }>
                             Message
-                        </button></Link>
+                        </button>
                     </div>
                 </div>
                     <div className = "toolview-map">
