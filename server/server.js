@@ -131,7 +131,8 @@ app.delete('/api/deleteUser', uc.deleteUser)
 // Tool Endpoints
 app.get('/api/tools', tc.select_all_tools);
 app.get('/api/tools_by_tag', tc.select_tool_by_tags);
-app.post('/api/get_matching_tags', tc.get_matching_tags);
+app.get('/api/get_all_tags', tc.get_all_tags);
+app.post('/api/get_similar_tools', tc.get_similar_tools)
 app.get('api/get_current_tool_tag/:id', tc.get_current_tool_tag);
 app.get('/api/tool/:id', tc.select_tool_and_owner);
 app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting);
