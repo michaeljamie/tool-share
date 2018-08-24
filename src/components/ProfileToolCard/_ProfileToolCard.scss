@@ -17,24 +17,31 @@
   border-radius: 10px;
   height: 100%;
   width: 100%;
-  background-image: radial-gradient(transparent 45%, #00000069 118%);
+  background-image: radial-gradient(transparent 45%, #000000c2 118%);
 }
 .profileToolCard-cardTitle {
   position: absolute;
   bottom: 0;
   left: 5px;
   font-size: 13px;
-  background-color: white;
+  color: white;
   border-radius: 13px;
 }
 .profileToolCard-cardPrice {
   position: absolute;
   left: 4px;
   top: 1px;
+  color: white;
 }
-.profileToolCard-ifRented {
+.profileToolCard-ifAvailable {
   position: absolute;
   right: 5px;
   top: 5px;
   height: 18%;
+}
+.profileToolCard-link {
+  position: absolute;
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
 }
