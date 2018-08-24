@@ -3,7 +3,7 @@ SET times_rented = times_rented + 1
 WHERE tool_id=$1;
 
 UPDATE tools
-set currently_available = false
+set currently_available = fralse
 WHERE tool_id=$1;
 
 UPDATE tools

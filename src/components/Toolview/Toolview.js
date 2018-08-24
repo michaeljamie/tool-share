@@ -109,8 +109,7 @@ class Toolview extends Component {
     };
 
     render() {
-        console.log(this.state)
-
+        console.log(this.state.currentToolTags)
         let editButton = this.state.owner_id === this.props.user.userid ? <button className='toolview-edit-button'>Edit Tool</button> : null
         let returnButton = this.state.owner_id === this.props.user.userid && this.state.available === false ? <button className='toolview-edit-button'>Return Tool</button> : null
         let rentButton = this.state.owner_id !== this.props.user.userid ? 
