@@ -4,13 +4,9 @@ import 'react-dates/lib/css/_datepicker.css';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
-import { handleSearchTags } from '../../ducks/reducer';
-import io from 'socket.io-client';
 import { setRoomID } from '../../ducks/reducer'
 import Map from './../../components/Map/Map';
 import SimilarTools from './../../components/SimilarTools/SimilarTools';
-import {withRouter} from 'react-router-dom';
-const socket = io(`http://localhost:3005`)
 const {REACT_APP_GOOGLE_API_KEY} = process.env
 
 class Toolview extends Component {

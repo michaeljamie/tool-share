@@ -16,8 +16,8 @@ module.exports = {
         }   = req.body;
         let {userid} = req.session.user;
         req.app.get('db').create_reservation([tool_id, pickup_date, return_date, userid])
-        .then(res=>{
-            res.status(200).send(res)
+        .then(result=>{
+            res.send(result)
         }).catch(err=>{
             console.log(err)
         })
