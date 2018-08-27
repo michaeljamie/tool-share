@@ -1,9 +1,92 @@
+.checkout-page {
+    background: $color1;
+    color: $color3;
+    margin: 0;
+    padding: 0;
+    height: 190vh;
+    width: 100%;
+    border-bottom: 1px solid $color5;
+}
+
+.checkout-title {
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    padding-top: 10px;
+    text-align: center;
+    background: $color1;
+}
+
+.cart-top {
+    @include flexSetUp(flex-start, center, column);
+    text-align: center;
+}
+
+.cart-mid {
+    @include flexSetUp(flex-start, center, column);
+    text-align: center;
+}
+
+.cart-top>h3 {
+    font-size: 25px;
+}
+
+.cart-mid>h3 {
+    font-size: 25px;
+}
+
+.cart-text {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.cart-lowerText {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.cart-lowerButton {
+    margin: 30px;
+    border: 1px solid $color5;
+    color: $color3;
+    background: $color1;
+    width:30%;
+    height: 8vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    outline: none;
+    font-size: 25px;
+}
+
+.cart-seller {
+    border: 1px solid $color5;
+    margin-top: 10px;
+    border-radius: 100px;
+}
+
+.cart-toolPic {
+    border: 1px solid $color5;
+    border-radius: 4px;
+}
+
 .checkout-stripe {
     margin: 30px;
+    border: 1px solid $color5;
+    color: $color3;
+    background: $color1;
+    width: 75%;
+    height: 8vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    outline: none;
+    font-size: 25px;
 }
 
 .checkout-stripe-and-cancel {
-   
+ 
+    
 }
 
 .checkout-cancel button {
@@ -20,8 +103,7 @@
     color: white;
     box-shadow: rgba(42, 255, 35, 0.25) 0px 1px 0px inset;
     text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
-    
-   
+
 }
 
 button {

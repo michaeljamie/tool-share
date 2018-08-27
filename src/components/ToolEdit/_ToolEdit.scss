@@ -1,20 +1,56 @@
 .toolEdit-page {
-  height: 170vh;
-  padding: 3vw;
+  height: auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  justify-content: space-between;
+  background: $color1;
+  color: $color3;
+  // height: auto;
+  // padding: 3vw;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: space-between;
 }
 .toolEdit-title p {
   font-size: 50px;
   margin: 10px;
 }
 .toolEdit-section {
-  display: flex;
+  display: flex;    
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
 }
 .toolEdit-input {
   border: 1px solid black;
+}
+.toolEdit-confirm {
+  background-color: $color1;
+  outline: none;
+  border: solid 1px $color5;
+  color: $color3;
+  width: 75%;
+  height: 8vh;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+.toolEdit-delete {
+  background-color: $color1;
+  outline: none;
+  border: solid 1px red;
+  color: $color3;
+  width: 75%;
+  height: 8vh;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
 }
