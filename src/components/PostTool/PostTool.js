@@ -57,6 +57,7 @@ class PostTool extends Component {
             console.log('User on Session')
             : this.login()
         );
+        window.scrollTo(0,0)
     };
 
     login = () => {

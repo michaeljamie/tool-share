@@ -19,6 +19,11 @@ export default class ProfileEdit extends Component {
   }
 
   componentDidMount() {
+    axios.get('/api/session').then(res =>
+      res.data.user ?
+      console.log('User on Session')
+      : this.login()
+    );
     window.scrollTo(0,0);
     axios.get(`/api/userData/${this.props.match.params.userid}`).then(res => {
       let {fullname, bio, profile_pic, email, phone, zipcode} = res.data[0]
@@ -33,6 +38,11 @@ export default class ProfileEdit extends Component {
       })
     })
   }
+
+  login = () => {
+    const redirectUri = encodeURIComponent(`${window.origin}/auth/callback`);
+    window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`
+  };
 
   changeName(value) {
     this.setState({fullName: value})
