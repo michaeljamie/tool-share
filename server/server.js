@@ -129,6 +129,7 @@ app.put('/api/welcomeUserUpdate/:userid', uc.welcomeUpdate)
 app.delete('/api/deleteUser', uc.deleteUser)
 
 // Tool Endpoints
+app.get('/api/get_tool_names', tc.get_tool_names);
 app.get('/api/tools', tc.select_all_tools);
 app.get('/api/tools_by_tag', tc.select_tool_by_tags);
 app.get('/api/get_all_tags', tc.get_all_tags);

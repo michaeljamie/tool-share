@@ -14,6 +14,7 @@ import {
   handleSearchMaxPrice
 } from '../../ducks/reducer';
 import Toolview from './../../components/Toolview/Toolview';
+import SearchBar from './../../components/SearchBar/SearchBar';
 
 class ToolSearch extends Component {
   constructor() {
@@ -61,9 +62,11 @@ class ToolSearch extends Component {
 
     return (
       <div className="tool-search-body">
-        <div className='search-bar'>
-          <input className='search-bar-input' placeholder="Search By Title" name='searchTitle' value={this.props.search_title} onChange={(e) => this.props.handleSearchTitle(e.target.value)}/>
-        </div>
+        {/* <div className='search-bar'>
+          <input className='search-bar-input' placeholder="Search By Title" name='searchTitle' value={this.props.search_title} onChange={(e) => this.props.handleSearchTitle(e.target.value)}/> */}
+         <SearchBar/>
+
+        {/* </div> */}
         <div className='search-criteria'>
           <div className='search-criteria-left-box'>
             <div className='search-criteria-minor-box'>

@@ -1,0 +1,1 @@
+select * from tools join search_tags on tools.tool_id = search_tags.tool_id;
