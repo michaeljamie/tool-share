@@ -1,54 +1,134 @@
-
-.toolview-top {
+.toolview-body {
+    width: 100%;
+    height: auto;
     display: flex;
-    justify-content: space-evenly;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    
+    margin: none;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('assets/woodbackground.jpeg');
+}
+
+.toolview-return-button {
+    cursor: pointer;
+    background-color: $color5;
+    color: black;
+    border-radius: 6px;
+    border: 1px solid #ffffff;
+    height: 20%;
+    width: 100%;
+}
+
+.toolview-top-button-section {
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toolview-back-button-parent-link {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .toolview-back-button {
     background-color: #444444;
     cursor: pointer;
     color: #ffffff;
+    margin-left: 5%;
+    border-radius: 6px;
+    border: 1px solid $color5;
+    background: $color1;
+    height: 3.5vh;
+    width: 70%;
 }
 
-.toolview-rent-button {
-    background-color: #fdd947;
-    cursor: pointer;
-    color: black;
+.toolview-top {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-}
-
-.toolview-edit-button {
-    background-color: #fdd947;
-    cursor: pointer;
-    color: black;
-    width: 40%;
+    height: 51vh;
+    color: #ffffff;
 }
 
 .toolview-top-title {
     display: flex; 
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    height: 2vh;
+    margin-top: 10%;
+    width: 100%;
 }
 
-.toolview-pic img {
+.toolview-pic-container img {
     display: flex;
-    width: 80vw;
+    width: 100%;
+    height: 40vh;
+}
+
+.toolview-rent-button-parent-link {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-decoration: none;
+}
+
+.toolview-rent-button {
+    cursor: pointer;
+    background-color: $color5;
+    color: black;
+    border-radius: 6px;
+    border: 1px solid #ffffff;
+    height: 80%;
+    width: 50%;
+    margin-right: 25%;
+}
+
+.toolview-edit-button {
+    cursor: pointer;
+    color: #ffffff;
+    margin-right: 5%;
+    border-radius: 6px;
+    border: 1px solid $color5;
+    background: $color1;
+    height: 3.5vh;
+    width: 20%;
+}
+
+.toolview-mid {
+    height: 30vh;
+    width: 95%;
+    margin-top: 4%;
+    background-color: $color1;
+}
+
+.toolview-description {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    height: 20vh;
+    margin: 0 auto;
+    margin-top: 5px;
+    color: #ffffff;
 }
 
 .toolview-price-rent {
     display: flex;
-    justify-content: space-evenly;
-    margin-top: 10px;
-    width: 100vw;
-    height: 30px;
-}
-
-.toolview-description {
-    width: 97vw;
-    height: 100px;
-    margin: 0 auto;
-    margin-top: 5px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4%;
+    margin-left: 4%;
+    width: 100%;
+    height: 20%;
+    color: #ffffff;
 }
 
 .toolview-additional {
@@ -67,7 +147,18 @@
 .toolview-lower {
     display: flex;
     justify-content: space-evenly;
-    margin-top: 10px;
+    background-color: $color1;
+    color: white;
+    height: 60vh;
+}
+
+.toolview-message-button {
+    cursor: pointer;
+    width: 100%;
+    background-color: $color5;
+    color: black;
+    border-radius: 6px;
+    border: 1px solid #ffffff;
 }
 
 .toolview-bottom {

@@ -199,6 +199,7 @@ export default class Home extends Component {
                             <h3>Jim completes his project and returns the tools</h3>
                         </div>
                     </div>
+                    <div className='FAQ-home'><h3>Please visit our <Link to="/FAQ"><a href="" className = 'home-rentalLink'>FAQs</a></Link> for additional information</h3></div>
 
                 </div>
                 <div className = 'home-signup'>

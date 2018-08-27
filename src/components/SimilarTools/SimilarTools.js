@@ -11,11 +11,11 @@ class SimilarTools extends Component {
         };
     };
 
-    componentDidUpdate(prevProps) {
-        if(prevProps.tags !== this.props.tags){
-            this.getToolsWithSameTags()
-        };
-    };
+    // componentDidUpdate(prevProps) {
+    //     if(prevProps.tags !== this.props.tags){
+    //         this.getToolsWithSameTags()
+    //     };
+    // };
 
     getSimilarTools = () => {
         let toolIds = this.state.matchingTags.map(tool=>{
@@ -66,7 +66,7 @@ class SimilarTools extends Component {
 
         return (
            <div>
-               {toolsWithSameTags}
+             
            </div>
         );
     };
