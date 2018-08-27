@@ -107,8 +107,6 @@ class CheckOut extends Component {
     }
 
     render() {
-        console.log(this.state.start)
-        console.log(this.state.end)
        
         return(
             <div className='checkout-page'>
