@@ -32,10 +32,10 @@ class CheckOut extends Component {
             fuel_type: '',
             tool_img: '',
             tool_price: 0,
-            deposit: 0,
-            total: 2000,
-            start: null,
-            end: null
+            deposit: '',
+            total: 0,
+            start: 0,
+            end: 0
         };
     };
 
@@ -78,7 +78,8 @@ class CheckOut extends Component {
                 fuel_type: tool.data.fuel_type,
                 tool_img: tool.data.tool_img,
                 tool_price: tool.data.tool_price,
-                deposit: tool.data.deposit
+                deposit: tool.data.deposit,
+                numDays: 0
             });
         });
     };
@@ -103,12 +104,22 @@ class CheckOut extends Component {
             start: start,
             end: end
         })
-       
+               
+    }
+
+    componentDidUpdate = (prevProps, prevState) => {
+        
+        if (prevState.start !== this.state.start) {
+            var diff =  Math.floor(( Date.parse(this.state.end) - Date.parse(this.state.start) ) / 86400000); 
+            this.setState({numDays: diff})
+        }
+        else if (prevState.end !== this.state.end) {
+            var diff =  Math.floor(( Date.parse(this.state.end) - Date.parse(this.state.start) ) / 86400000); 
+            this.setState({numDays: diff})
+        }
     }
 
     render() {
-        console.log(this.state.start)
-        console.log(this.state.end)
        
         return(
             <div className='checkout-page'>
@@ -127,7 +138,9 @@ class CheckOut extends Component {
                     <img className = 'cart-seller' src={this.state.owner_pic} height='200' width='200'/>
                 </div>
                 <hr/>
-                <h2>Summary</h2>
+                <div className='cart-midTitle'>
+                    <h2>Cart Summary:</h2>
+                </div>
                 <div className='checkout-select-dates'>
                     <div className='cart-lowerText'>
                     Select Dates:
@@ -137,13 +150,25 @@ class CheckOut extends Component {
                                 <Calendar tool_id = {this.state.tool_id} updateCheckoutState={this.updateStateFromCalendar}/>
                             </div>
                         <div className='cart-lowerText'>
-                            Rental Fee:
+                            <div className='cart-lowerSection'>
+                                <div>Rental Fee:</div>
+                                <div>${this.state.tool_price * this.state.numDays}</div>
+                            </div>
                             <br/>
-                            Service Charge:
+                            <div className='cart-lowerSection'>
+                            <div>Service Charge:</div>
+                            <div>${this.state.tool_price * this.state.numDays * .2}</div>
+                            </div>
                             <br/>
-                            Security Deposit: ${this.state.deposit}
+                            <div className='cart-lowerSection'>
+                            <div>Security Deposit:</div>
+                            <div>${+this.state.deposit.slice(1)}</div>
+                            </div>
                             <br/>
-                            Total Price: ${this.state.tool_price}
+                            <div className='cart-lowerSection'>
+                            <div>Total Price:</div>
+                            <div>${(this.state.tool_price * this.state.numDays) + (this.state.tool_price * this.state.numDays * .2) + +this.state.deposit.slice(1)}</div>
+                            </div>
                         </div>
                 </div>
                <div className='checkout-stripe-and-cancel'>
@@ -154,7 +179,7 @@ class CheckOut extends Component {
                         image=""
                         token= {this.onToken}
                         stripeKey={process.env.REACT_APP_STRIPE_KEY}
-                        amount={this.state.total}
+                        amount={100*((this.state.tool_price * this.state.numDays) + (this.state.tool_price * this.state.numDays * .2) + +this.state.deposit.slice(1))}
                         >
                         <button className='checkout-stripe'>Checkout</button>
                         </StripeCheckout>
