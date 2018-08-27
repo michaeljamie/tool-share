@@ -36,7 +36,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     @include flexSetUp(space-around, center, column);
-    height: 100vh;
+    height: 90vh;
     width: 100%;
     color: white;
     margin: 0;
@@ -220,7 +220,7 @@ a.animated-button.gibson-two:hover {
 
 .home-steps {
     @include flexSetUp(flex-start, center, column);
-    height: 400vh;
+    height: 390vh;
     width: 100%;
     background: linear-gradient(to top, $color2, $color1);
     margin: 0;
@@ -443,6 +443,12 @@ a.animated-button.gibson-two:hover {
 
 .home-contactDiv {
     width: 60%;
+}
+
+.FAQ-home {
+    font-size: 22px;
+    color: $color3;
+    margin-top: 20px;
 }
 
 
