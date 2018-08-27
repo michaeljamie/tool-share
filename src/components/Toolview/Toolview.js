@@ -12,6 +12,7 @@ const {REACT_APP_GOOGLE_API_KEY} = process.env
 class Toolview extends Component {
     constructor(props) {
         super(props);
+        this.returnTool = this.returnTool.bind(this);
         this.state ={
             owner_name: '',
             owner_id: 0,
@@ -88,6 +89,13 @@ class Toolview extends Component {
         ));
     };
 
+    returnTool = () => {
+        axios.put(`/api/return/${this.props.match.params.id}`)
+        .then(res => {
+            console.log(res)
+        })
+    };
+
     latlongToZip = (lat, long) => {
         axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`)
         .then(res=>{
@@ -114,30 +122,34 @@ class Toolview extends Component {
         }
 
         let editButton = this.state.owner_id === this.props.user.userid ? <button className='toolview-edit-button'>Edit Tool</button> : null
-        let returnButton = this.state.owner_id === this.props.user.userid && this.state.available === false ? <button className='toolview-edit-button'>Return Tool</button> : null
+        let returnButton = this.state.owner_id === this.props.user.userid && this.state.available === false ? <button className='toolview-return-button' onClick={this.returnTool}>Return Tool</button> : null
         let rentButton = this.state.owner_id !== this.props.user.userid ? 
-            <Link to={`/checkout/${this.props.match.params.id}`}><button className='toolview-rent-button'>Rent</button></Link> :
+            <Link to={`/checkout/${this.props.match.params.id}`} className='toolview-rent-button-parent-link'><button className='toolview-rent-button'>Rent</button></Link> :
             null
         let availabilityNotification = this.state.available === false ? <div>This tool is currently unavailable.</div> : null
        
         return (
-            <div>
-                <Link to='/search'><button className='toolview-back-button'>Back to Results</button></Link>
+            <div className='toolview-body'>
+                <div className='toolview-top-button-section'>
+                    <Link to='/search' className='toolview-back-button-parent-link' ><button className='toolview-back-button'>Return to Search</button></Link>
+                    {editButton}
+                </div>
                 <div className = "toolview-top">
-                {editButton}
-                {returnButton}
                     <h1 className = "toolview-top-title">{`${this.state.tool_name}`}</h1>
-                    <div className = "toolview-pic"> 
+                    <div className = "toolview-pic-container"> 
                         <img src={this.state.tool_img} alt="table saw"/>
                     </div>
-                    {availabilityNotification}
+                </div>
+                <div className='toolview-mid'>
                     <div className = "toolview-price-rent">
                         <div>Price: {this.state.tool_price}/day</div>
+                        {returnButton}
                         {rentButton}
                     </div>
-                </div>
-                <div className = "toolview-description">
-                    <div>{this.state.tool_descript}</div>
+                    <div className = "toolview-description">
+                        {availabilityNotification}
+                        {this.state.tool_descript}
+                    </div>
                 </div>
                 <div className = "toolview-lower">
                     <div className = "toolview-lister">
@@ -152,17 +164,16 @@ class Toolview extends Component {
                         </div>
                         <div>
                         Additional:
-                   
+                
                         </div> 
-                        <button onClick={ () => this.joinRoom() }>
+                        <button className='toolview-message-button' onClick={ () => this.joinRoom() }>
                             Message
                         </button>
                     </div>
                 </div>
-                    <div className = "toolview-map">
-                        <Map id={this.props.match.params.id}/>
-                    </div>
-                
+                <div className = "toolview-map">
+                    <Map id={this.props.match.params.id}/>
+                </div>
                 <div className = "toolview-bottom">
                     Similar Tools:  
                     <SimilarTools tags={this.state.currentToolTags} />

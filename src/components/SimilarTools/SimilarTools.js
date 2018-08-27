@@ -6,7 +6,8 @@ class SimilarTools extends Component {
     constructor() {
         super();
         this.state = {
-            matchingTagsAndTools: []
+            matchingTags: [],
+            matchingTools: []
         };
     };
 
@@ -16,23 +17,52 @@ class SimilarTools extends Component {
     //     };
     // };
 
-    // getToolsWithSameTags = () => {
-    //     let tagsAndID = this.props.tags[0]
-    //     console.log(tagsAndID)
-    //     axios.post('/api/get_matching_tags', tagsAndID).then( res => {
-    //         this.setState({
-    //             matchingTagsAndTools: res.data
-    //         });
-    //     });
-    // };
+    getSimilarTools = () => {
+        let toolIds = this.state.matchingTags.map(tool=>{
+            axios.post('/api/get_similar_tools', {toolId: tool.tool_id})
+            .then(res=>{
+               this.setState({
+                   matchingTools: [...this.state.matchingTools, ...res.data]
+               })
+            }).catch(console.log)
+            
+        })
+       
+    }
+
+    getToolsWithSameTags = () => {
+        axios.get('/api/get_all_tags').then( res => {
+          let matchingTags = res.data.filter(e=>{
+                for(var key in e){
+                        if(e[key] === this.props.tags[0][key] && e[key] !== false && res.data[0].tool_id !== e.tool_id){
+                           return true
+                        } 
+                } 
+                return false
+            })
+            this.setState({
+                matchingTags: matchingTags
+            })
+          
+        }).then(()=>{
+            this.getSimilarTools()
+        })
+    };
+
+
 
     render() {
-
-        // let toolsWithSameTags = this.state.matchingTagsAndTools.map( tool => {
-        //     return (
-        //         <div>{tool.tool_name}</div>
-        //     );
-        // });
+        console.log(this.state.matchingTools)
+        let toolsWithSameTags = this.state.matchingTools.map( tool => {
+            console.log(tool)
+            return (
+                <div>
+                    <div>{tool.tool_name}</div>
+                    <div>${tool.tool_price}</div>
+                    <img src={`${tool.tool_img}`} alt="tool image"/>
+                </div>
+            );
+        });
 
         return (
            <div>

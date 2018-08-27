@@ -1,0 +1,1 @@
+select * from tools where tool_id = $1

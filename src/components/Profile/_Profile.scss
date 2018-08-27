@@ -5,6 +5,7 @@
   background-position-y: top;
   background-size: auto;
   background-attachment: fixed;
+  min-height: 68.7vh;
 }
 .profile-userInfo {
   position: relative;
@@ -42,7 +43,7 @@
   border: 2px outset gold;
 }
 .profile-bio span {
-  color: $color2;
+  color: $color3;
 }
 .profile-addButton {
   font-size: 16px;
