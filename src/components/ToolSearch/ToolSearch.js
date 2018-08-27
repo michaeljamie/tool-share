@@ -14,6 +14,7 @@ import {
   handleSearchMaxPrice
 } from '../../ducks/reducer';
 import Toolview from './../../components/Toolview/Toolview';
+import SearchBar from './../../components/SearchBar/SearchBar';
 
 class ToolSearch extends Component {
   constructor() {
@@ -42,7 +43,27 @@ class ToolSearch extends Component {
     })
   };
 
+  handleSearchFromSearchBar = (value) => {
+    this.setState({
+      searchResults: []
+    })
+    let ids = this.state.searchResults.filter(tools=>{
+      return tools[value] === true
+    })
+    
+    let displayedTools = ids.map(tool=>{
+      axios.post('api/get_tools_by_search', {tool_id: tool.tool_id})
+      .then(res=>{
+        this.setState({
+          searchResults: [...this.state.searchResults, ...res.data]
+        })
+      })
+    })
+
+  }
+
   render() {
+    console.log(this.state.searchResults)
    
     const tagPropsToToolview = this.state.searchResults.map( (tool, index) => {
      
@@ -61,9 +82,11 @@ class ToolSearch extends Component {
 
     return (
       <div className="tool-search-body">
-        <div className='search-bar'>
-          <input className='search-bar-input' placeholder="Search By Title" name='searchTitle' value={this.props.search_title} onChange={(e) => this.props.handleSearchTitle(e.target.value)}/>
-        </div>
+        {/* <div className='search-bar'>
+          <input className='search-bar-input' placeholder="Search By Title" name='searchTitle' value={this.props.search_title} onChange={(e) => this.props.handleSearchTitle(e.target.value)}/> */}
+        <SearchBar handleSearch={this.handleSearchFromSearchBar}/>
+
+        {/* </div> */}
         <div className='search-criteria'>
           <div className='search-criteria-left-box'>
             <div className='search-criteria-minor-box'>
