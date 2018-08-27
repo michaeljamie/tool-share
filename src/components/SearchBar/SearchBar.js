@@ -210,7 +210,12 @@ class SearchBar extends React.Component {
     });
   };
 
+  handleValueChange = (value) => {
+   this.props.handleSearch(value)
+  }
+
   render() {
+    console.log(this.state.suggestions)
     const { value, suggestions } = this.state;
     const inputProps = {
       placeholder: "Start typing a keyword",
@@ -219,6 +224,7 @@ class SearchBar extends React.Component {
     };
 
     return (
+      <div className='auto-suggest'>
       <Autosuggest 
         suggestions={suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -226,6 +232,8 @@ class SearchBar extends React.Component {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps} />
+        <button onClick={()=>this.handleValueChange(value)}>Search</button>
+        </div>
     );
   }
 }
