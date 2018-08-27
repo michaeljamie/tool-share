@@ -2,9 +2,10 @@
 .FAQ-component {
     width: 100%;
     min-height: 72vh;
-    background: $color4;
+    background: $color1;
     height: auto;
     @include flexSetUp(flex-start, center, column);
+    border-bottom: 1 px solid $color5;
 }
 .FAQ-header {
     font-size: 24px;
