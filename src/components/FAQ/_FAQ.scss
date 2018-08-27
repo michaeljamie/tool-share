@@ -2,6 +2,7 @@
 .FAQ-component {
     width: 100%;
     min-height: 72vh;
+    background: $color4;
     height: auto;
     @include flexSetUp(flex-start, center, column);
 }
@@ -11,7 +12,10 @@
     justify-content: center;
     align-items: center;
     font-weight: bolder;
-    padding: 10px;
+    background-color: $color1;
+    color: $color3;
+    width: 100%;
+    height: 10vh;    
 }
 .FAQ-questions {
     display: flex;
@@ -20,7 +24,7 @@
     align-items: center;
 }
 .FAQ-individual-questions {
-    height: 30%;
+    height: auto;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -28,6 +32,8 @@
     margin-top: 25px;
     margin-bottom: 25px;
     font-size: 18px;
+
+    
 }
 .FAQ-individual-questions:hover {
     cursor: pointer;
@@ -36,26 +42,70 @@
     height: 25px;
     width: 25px;
 }
+
+
 .Q {
     height: 50px;
     width: 50px;
 }
 .actual-question {
-    height: 80%;
-    width: 60%;
+    height: auto;
+    width: 77%;
+    z-index: 0;
+    background: #fdd947;
+    border-radius: 5px;
+    padding: 12px;
+    font-weight: bold;
 }
+
+.line {
+    width: 80%;
+    height: 1px;
+    background-color: black;
+    z-index: -1;
+}
+
 .answer-displayed {
-    height: 10%;
-    width: 100%;
+    height: 125px;
+    width: 75%;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: fill;
     font-size: 18px;
-    font-weight: bold;
+    // font-weight: bold;
+    opacity: 1;
+    animation: dropdown .5s ease-in-out;
+    margin-left: -40px;
+    color: $color3;
+    // z-index: -1;
+    
 }
+
 .answer-not-displayed {
-    display: none
+    display: none;
+    animation: dropup .5s ;
 }
+
 .tac_link {
     margin: 2vh;
+    text-decoration: underline;
+    outline: none;
+    color: $color3;
 }
+
+.fa-question {
+    z-index: 2;
+    color: #fdd947;
+}
+
+
+@keyframes dropdown {
+    from  {height: 0px; opacity: 0;}
+    to {height: 125px; opacity: 1;}
+ }
+ 
+ @keyframes dropup {
+     from {height: 125px; opacity: 1;}
+     to {height: 0px; opacity: 0;}
+ }
