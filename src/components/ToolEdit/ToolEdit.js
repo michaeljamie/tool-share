@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
 import defaultTool from './../../assets/defaultTool.png';
+const {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID} = process.env;
 
 export default class ToolEdit extends Component {
   constructor() {
@@ -46,6 +47,12 @@ export default class ToolEdit extends Component {
   }
 
   componentDidMount() {
+    axios.get('/api/session').then(res =>
+      res.data.user ?
+      console.log('User on Session')
+      : this.login()
+    );
+    window.scrollTo(0,0);
     axios.get(`/api/tool/${this.props.match.params.id}`).then(res => {
       let { tool_name, tool_img, tool_descript, tool_price, deposit, tool_condition, for_rent, for_sale, delivery, pickup, power_tool, power_type, requires_fuel, fuel_type } = res.data
       let finalDeposit = deposit.slice(1)
@@ -90,6 +97,11 @@ export default class ToolEdit extends Component {
       })
     })
   }
+
+  login = () => {
+    const redirectUri = encodeURIComponent(`${window.origin}/auth/callback`);
+    window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`
+  };
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });

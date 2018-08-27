@@ -36,6 +36,10 @@ export default class Home extends Component {
         }
     }
 
+    componentDidMount() {
+        window.scrollTo(0,0);
+    }
+
     login = () => {
         const { REACT_APP_DOMAIN, REACT_APP_CLIENT_ID } = process.env;
 

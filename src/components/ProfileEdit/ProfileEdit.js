@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
-const {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID, REACT_APP_CLOUD_PRESET, REACT_APP_CLOUD_KEY, REACT_APP_CLOUD_NAME } = process.env;
+const {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID} = process.env;
 
 export default class ProfileEdit extends Component {
   constructor() {
@@ -18,6 +18,11 @@ export default class ProfileEdit extends Component {
   }
 
   componentDidMount() {
+    axios.get('/api/session').then(res =>
+      res.data.user ?
+      console.log('User on Session')
+      : this.login()
+    );
     window.scrollTo(0,0);
     axios.get(`/api/userData/${this.props.match.params.userid}`).then(res => {
       let {fullname, bio, profile_pic, email, phone, zipcode} = res.data[0]
@@ -32,6 +37,11 @@ export default class ProfileEdit extends Component {
       })
     })
   }
+
+  login = () => {
+    const redirectUri = encodeURIComponent(`${window.origin}/auth/callback`);
+    window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`
+  };
 
   changeName(value) {
     this.setState({fullName: value})
