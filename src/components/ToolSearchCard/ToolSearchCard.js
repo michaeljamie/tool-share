@@ -5,13 +5,13 @@ import {Link} from 'react-router-dom';
 class ToolSearchCard extends Component {
     render() {
         return (
-            <Link to={`/toolview/${this.props.id}`}>
+            <Link className="card-link" to={`/toolview/${this.props.id}`}>
                 <div className="toolsearch-card">
-                    <img src={this.props.image} alt='tool_pic' height='100%' width='40%'/>
-                    <div>
-                        <div>{this.props.title}</div>
-                        <div>${this.props.price}</div>
-                        <div>{this.props.condition}</div>
+                    <img src={this.props.image} alt='tool_pic' height='100%' width='50%'/>
+                    <div className="card-info-div">
+                        <div className="card-title">{this.props.title}</div>
+                        <div className="card-price">${this.props.price}/day</div>
+                        <div className="card-condition">Condition: {this.props.condition}</div>
                     </div>
                 </div>
             </Link>

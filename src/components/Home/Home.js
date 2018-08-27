@@ -19,6 +19,7 @@ import hammertime from './../../assets/hammertime.png';
 import car from './../../assets/car.png';
 import ladderguy from './../../assets/ladderguy.png';
 import treehouse from './../../assets/treehouse.png';
+import fireworks from './../../assets/fireworks.gif';
 
 
 export default class Home extends Component {
@@ -189,6 +190,7 @@ export default class Home extends Component {
                     </div>
                     <div className = 'steps-section'>
                         <img src={treehouse} className = 'home-tree' alt=""/>
+                        <img src={fireworks} className = 'home-fireworks' alt=""/>
                         <div className = 'home-aboutText'>
                             <h3>Jim completes his project and returns the tools</h3>
                         </div>

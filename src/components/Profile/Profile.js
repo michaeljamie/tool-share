@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { Swipeable } from "react-touch";
 import {Link} from 'react-router-dom';
 import edit from '../../assets/cogIcon.png';
+import userAvatar from './../../assets/userAvatar.jpg';
 
 class Profile extends Component {
   constructor() {
@@ -100,12 +101,12 @@ class Profile extends Component {
     //mapping out the entire arrays of tool cards
     let displayedRentedTools = this.state.rentedTools.map(tool => {
       return (
-        <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price} currentlyAvailable={tool.currently_available}/>
+        <ProfileToolCard key={Math.random()} toolId={tool.tool_id} renterId={tool.renter_id} profileId={this.props.match.params.userid} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price} currentlyAvailable={tool.currently_available}/>
       )
     })
     let displayedListedTools = this.state.listedTools.map(tool => {
       return (
-        <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price} currentlyAvailable={tool.currently_available}/>
+        <ProfileToolCard key={Math.random()} toolId={tool.tool_id} renterId={tool.renter_id} profileId={this.props.match.params.userid} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price} currentlyAvailable={tool.currently_available}/>
       )
     })
 
@@ -153,9 +154,9 @@ class Profile extends Component {
             <img
               className="profile-userPic"
               alt="profilePic"
-              src={profilePic}
+              src={profilePic ? profilePic : userAvatar}
             />
-            <span className="profile-userName">{userName}</span>
+            <span className="profile-userName">{userName ? userName : 'New User'}</span>
             <div className="profile-bio">
               <span>{bio}</span>
             </div>
@@ -165,6 +166,7 @@ class Profile extends Component {
             <StarRating rateType={"Renter"} rating={renterRating} />
           </div>
           <hr/>
+          {rentTools.length>0?
           <div className="profile-rentContainer">
             <div className="profile-toolsHeader">
               <span>Currently Rented Tools</span>
@@ -179,7 +181,9 @@ class Profile extends Component {
                 </div>
               </div>
             </Swipeable>
-          </div>
+          </div>:
+          null}
+          {listTools.length>0?
           <div className="profile-rentContainer">
             <div className="profile-toolsHeader">
               <span>Listed Tools</span>
@@ -202,7 +206,8 @@ class Profile extends Component {
               </div>
             </div>
             </Swipeable>
-          </div>
+          </div>:
+          null}
         </div>
       </div>
     );

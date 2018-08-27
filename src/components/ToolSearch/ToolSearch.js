@@ -118,10 +118,8 @@ class ToolSearch extends Component {
             </div>
           </div>
         </div>
-        <div className='tool-search-submit-box'>
-          <button className='tool-search-button' onClick={this.handleSearch}>Search</button>
-        </div>
         <div className='search-filter-box'>
+          <button className='tool-search-button' onClick={this.handleSearch}>Search</button>
           <button className='search-filter-button'>Filter</button>
           <button className='search-filter-button'>Sort</button>
         </div>

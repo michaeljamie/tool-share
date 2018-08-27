@@ -1,9 +1,36 @@
 .toolsearch-card {
     height: 30vh;
-    width: 45%;
+    width: 98%;
     display: flex;
     border: solid 1px black;
     margin-bottom: 2%;
     margin-top: 1%;
     background: white;
+}
+
+.card-link {
+    text-decoration: none;
+}
+
+.card-info-div {
+    @include flexSetUp(center, center, column);
+    flex-wrap: wrap;
+    width: 100%;
+    font-size: 20px;
+    box-shadow: 3px 3px gray;
+}
+
+.card-title {
+    color: $color4;
+    text-align: center;
+}
+
+.card-price {
+    color: $color4;
+    text-align: center;
+}
+
+.card-condition {
+    color: $color4;
+    text-align: center;
 }

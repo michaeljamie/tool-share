@@ -1,18 +1,18 @@
 require('dotenv').config();
-  const express = require('express');
-  const bodyParser = require('body-parser');
-  const session = require('express-session');
-  const massive = require('massive');
-  const axios = require('axios');
-  const socket = require('socket.io');
-  const nodemailer = require('nodemailer');
-  const uc = require('./userController/userController');
-  const tc = require('./toolController/toolController');
-  const mc = require('./messageController/messageController');
-  const nc = require('./nodemailerController/nodemailerController');
-  const pc = require('./paymentController/paymentController');
-  const rc = require('./reservationsController/reservationsController');
-  const moment = require('moment');
+const express = require('express');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const massive = require('massive');
+const axios = require('axios');
+const socket = require('socket.io');
+const nodemailer = require('nodemailer');
+const uc = require('./userController/userController');
+const tc = require('./toolController/toolController');
+const mc = require('./messageController/messageController');
+const nc = require('./nodemailerController/nodemailerController');
+const pc = require('./paymentController/paymentController');
+const rc = require('./reservationsController/reservationsController');
+const moment = require('moment');
 
 let {
   REACT_APP_CLIENT_ID,
@@ -25,32 +25,32 @@ let {
 } = process.env
 
 const app = express()
-    , io = socket(app.listen(SERVER_PORT, () => console.log(`Till ${SERVER_PORT}, I got your back, we can do this! - Childish Gambino`)))
+  , io = socket(app.listen(SERVER_PORT, () => console.log(`Till ${SERVER_PORT}, I got your back, we can do this! - Childish Gambino`)))
 
-    io.on('connection', socket => {
-      console.log('User Connected');
-    
-    socket.on('message sent', data => {
-      console.log(data);
-      let { userid, message, profile_pic, username, current_room } = data
-      let date = moment().format('l')
-      let time = moment().format('h:mm a')
-      const response ={
-        userid,
-        message,
-        profile_pic,
-        username,
-        date,
-        time
-      }
-      const db = app.get('db')
-      db.submit_message([current_room, JSON.stringify(response), date, time])
-      io.emit(`message dispatched-${current_room}`, response)
-    })
+io.on('connection', socket => {
+  console.log('User Connected');
 
-    socket.on('disconnect', () => {
-        console.log('User Disconnected');
-    })
+  socket.on('message sent', data => {
+    console.log(data);
+    let { userid, message, profile_pic, username, current_room } = data
+    let date = moment().format('l')
+    let time = moment().format('h:mm a')
+    const response = {
+      userid,
+      message,
+      profile_pic,
+      username,
+      date,
+      time
+    }
+    const db = app.get('db')
+    db.submit_message([current_room, JSON.stringify(response), date, time])
+    io.emit(`message dispatched-${current_room}`, response)
+  })
+
+  socket.on('disconnect', () => {
+    console.log('User Disconnected');
+  })
 })
 
 
@@ -88,7 +88,7 @@ app.get('/auth/callback', async (req, res) => {
   // use token to get user data of whom just logged in
   let userData = await axios.get(
     `https://${REACT_APP_DOMAIN}/userinfo?access_token=${
-      responseWithToken.data.access_token
+    responseWithToken.data.access_token
     }`
   );
   const db = req.app.get('db');
@@ -104,8 +104,8 @@ app.get('/auth/callback', async (req, res) => {
     });
   };
 });
-  
-app.get('/api/user-data', ( req, res ) => {
+
+app.get('/api/user-data', (req, res) => {
   if (req.session.user) {
     res.status(200).send(req.session.user)
   }
@@ -113,7 +113,7 @@ app.get('/api/user-data', ( req, res ) => {
     res.status(401).send('Unauthorized')
   }
 });
-  
+
 app.get('/api/logout', (req, res) => {
   req.session.destroy()
   res.redirect(`${process.env.FRONTEND_DOMAIN}/#/`)
@@ -131,7 +131,8 @@ app.delete('/api/deleteUser', uc.deleteUser)
 // Tool Endpoints
 app.get('/api/tools', tc.select_all_tools);
 app.get('/api/tools_by_tag', tc.select_tool_by_tags);
-app.post('/api/get_matching_tags', tc.get_matching_tags);
+app.get('/api/get_all_tags', tc.get_all_tags);
+app.post('/api/get_similar_tools', tc.get_similar_tools)
 app.get('api/get_current_tool_tag/:id', tc.get_current_tool_tag);
 app.get('/api/tool/:id', tc.select_tool_and_owner);
 app.get('/api/usersRentedTools/:userid', tc.select_all_tools_user_is_renting);
@@ -139,6 +140,10 @@ app.get('/api/usersListedTools/:userid', tc.select_all_tools_user_has_listed);
 app.get('/api/tags/:id', tc.get_tool_tags)
 app.post('/api/post/tool', tc.post_tool);
 app.post('/api/tooltags', tc.post_tags);
+app.put('/api/edit/tool/:id', tc.update_tool);
+app.put('/api/tooltags/:id', tc.update_tags);
+app.delete('/api/delete/tool/:id', tc.delete_tool);
+app.delete('/api/tooltags/:id', tc.delete_tags);
 
 // Message Endpoints
 app.put('/api/room', mc.create)
@@ -159,24 +164,24 @@ const stripe = require('stripe')(STRIPE_SECRET)
 
 app.put('/api/update_tool_data/:id', pc.updateTool)
 app.post('/api/payment', (req, res) => {
-  const {amount, token:{id}} = req.body
+  const { amount, token: { id } } = req.body
   console.log(id)
   stripe.charges.create(
-      {
-          amount: amount,
-          currency: "usd",
-          source: id,
-          description: "Tool Share Test Charge"
-      },
-      (err, charge) => {
-          if(err) {
-              console.log(err)
-              return res.status(500).send(err)
-          } else {
-              console.log('charge=', charge)
-              return res.status(200).send(charge)
-          }
+    {
+      amount: amount,
+      currency: "usd",
+      source: id,
+      description: "Tool Share Test Charge"
+    },
+    (err, charge) => {
+      if (err) {
+        console.log(err)
+        return res.status(500).send(err)
+      } else {
+        console.log('charge=', charge)
+        return res.status(200).send(charge)
       }
+    }
   )
 });
 
