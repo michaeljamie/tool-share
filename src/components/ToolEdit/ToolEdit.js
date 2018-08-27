@@ -66,12 +66,33 @@ export default class ToolEdit extends Component {
         fuelType: fuel_type
       });
     });
-    console.log(this.state)
+    axios.get(`/api/tags/${this.props.match.params.id}`).then(res => {
+      let {drill, hammer, hammer_drill, jack_hammer, sander, grinder, auger, saw, mower, trimmer, ladder, welding, air_compressor, vacuum, pressure_washer, ratchet, wrench, lawn_tool} = res.data[0]
+      this.setState({
+        drill: drill,
+        hammer: hammer,
+        hammer_drill: hammer_drill,
+        jack_hammer: jack_hammer,
+        sander: sander,
+        grinder: grinder,
+        auger: auger,
+        saw: saw,
+        mower: mower,
+        trimmer: trimmer,
+        ladder: ladder,
+        welding: welding,
+        air_compressor: air_compressor,
+        vacuum: vacuum,
+        pressure_washer: pressure_washer,
+        ratchet: ratchet,
+        wrench: wrench,
+        lawn_tool: lawn_tool
+      })
+    })
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
-    console.log(this.state)
   };
 
   toggleBoolean(event) {
@@ -86,7 +107,6 @@ export default class ToolEdit extends Component {
     } else {
       this.setState({ fuelType: 'gasoline'})
     }
-    console.log(this.state)
   };
 
   toogleTagBoolean(event) {
@@ -94,7 +114,6 @@ export default class ToolEdit extends Component {
   };
 
   confirm() {
-    console.log('start')
     const {
       name,
       image,
@@ -148,7 +167,6 @@ export default class ToolEdit extends Component {
       fuelType
     }
     axios.put(`/api/edit/tool/${this.props.match.params.id}`, tool_data).then(() => {
-      console.log('tool edit start')
       const tags = {
         drill,
         hammer,
@@ -174,36 +192,40 @@ export default class ToolEdit extends Component {
     })
   }
 
+  delete() {
+    axios.delete(`/api/delete/tool/${this.props.match.params.id}`)
+    axios.delete(`/api/tooltags/${this.props.match.params.id}`)
+    this.props.history.push('/search');
+  }
+
   render() {
     let { name, image, description, pricePerDay, deposit, condition, forRent, forSale, delivery, pickup, powerTool, powerType, requiresFuel, fuelType } = this.state;
     return (
       <div className='toolEdit-page'>
-        <div className='toolEdit-title'>
-          <p>Tool Edit</p>
-        </div>
+        <h1>Tool Edit</h1>
         <div className='toolEdit-section'>
-          <span>Name of Tool</span>
-          <input className='toolEdit-input' value={name} name='name' onChange={this.handleChange} />
-        </div>
-        <div className='toolEdit-section'>
-          <div>Click the Image to Select a New One</div>
-          <Dropzone
-            onDrop={this.onDrop}
+          <Dropzone 
+            onDrop={this.onDrop} 
             style={{
-              width: "200px",
-              height: '200px',
-              border: "dashed 1px black",
-              display: "flex",
-              justifyContent: 'center',
-              alignItems: 'center',
-              cursor: 'pointer'
+                width: "75%", 
+                height: "10%", 
+                border: "solid 1px #fdd947",
+                borderRadius: '6px',
+                textAlign: 'center', 
+                display: "flex", 
+                justifyContent: 'center', 
+                alignItems: 'center',
+                marginTop: '20px',
+                marginBottom: '20px',
+                cursor: 'pointer'
             }}>
-            <img src={image ? image : defaultTool} alt='tool' width='200px' height='200px' />
+            <p className='dropbox-title'>Upload Image</p>
           </Dropzone>
+          <img src={image ? image : defaultTool} alt='tool' width='200px' height='200px' />
         </div>
         <div className='toolEdit-section'>
-          <div>Tags that apply to tool</div>
-          <div>
+          <div className='post-tool-divider'>Select a few tags describing the type of tool.</div>   
+          <div className='post-tool-buttons'>
             <button className={this.state.drill ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='drill' value={this.state.drill} onClick={this.toogleTagBoolean}>Drill</button>
             <button className={this.state.hammer ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='hammer' value={this.state.hammer} onClick={this.toogleTagBoolean}>Hammer</button>
             <button className={this.state.hammer_drill ? 'post-tool-tag-bubble-on' : 'post-tool-tag-bubble-off'} name='hammer_drill' value={this.state.hammer_drill} onClick={this.toogleTagBoolean}>Hammer Drill</button>
@@ -225,20 +247,32 @@ export default class ToolEdit extends Component {
           </div>
         </div>
         <div className='toolEdit-section'>
-          <span>Description of Tool</span>
-          <input className='toolEdit-input' value={description} name='description' onChange={this.handleChange} maxLength='200' />
+          <div className ='post-toolDiv'>
+            <p className = 'post-inputText'>Brand name and model</p>
+            <input type='text' name='name' className='post-input' value={name} onChange={this.handleChange}/>
+          </div>
         </div>
-        <div className='toolEdit-section'>
-          <span>Price per Day</span>
-          <input className='toolEdit-input' value={pricePerDay} name='pricePerDay' onChange={this.handleChange} />
+        <div className='post-tool-section'>
+          <div className ='post-toolDiv'>
+            <p className = 'post-inputText'>Description (Max 200)</p>
+            <input type='text' className='post-input' maxLength='200' name="description" value={description} onChange={this.handleChange}/>
+          </div>
         </div>
-        <div className='toolEdit-section'>
-          <span>Deposit Amount</span>
-          <input className='toolEdit-input' value={deposit} name='deposit' onChange={this.handleChange} />
+        <div className='post-tool-section'>
+          <div className ='post-toolDiv'>
+            <p className = 'post-inputText'>Daily Rental Fee</p>
+            <input type='number' className='post-input' name='pricePerDay' value={pricePerDay} onChange={this.handleChange}/>
+          </div>
         </div>
-        <div className='toolEdit-section'>
-          <span>Condition of tool</span>
-          <select className='toolEdit-input' value={condition} name='condition' onChange={this.handleChange}>
+        <div className='post-tool-section'>
+          <div className ='post-toolDiv'>
+            <p className = 'post-inputText'>Security Deposit Amount</p>
+            <input type='number' className='post-input' name='deposit' value={deposit} onChange={this.handleChange}/>
+          </div>
+        </div>
+        <div className='post-tool-section'>
+          <div className='post-tool-divider'>Describe the condition of the tool.</div>
+          <select className='post-tool-input' value={condition} name="condition" onChange={this.handleChange}>
             <option value="Excellent">Excellent</option>
             <option value="Great">Great</option>
             <option value="Good">Good</option>
@@ -246,32 +280,36 @@ export default class ToolEdit extends Component {
             <option value="Poor">Poor</option>
           </select>
         </div>
-        <div className='toolEdit-section'>
-          <div>Will this tool be for rent?</div>
-          <div>{`Yes `}<input type='checkbox' checked={forRent} name='forRent' onClick={this.toggleBoolean} /></div>
+        <div className='post-tool-section'>
+            <div className='post-tool-divider'>Will this tool be for rent?</div> 
+            <div className = 'tool-check'>{`Yes `}<label class="container"><input type='checkbox' checked={forRent} name='forRent' onClick={this.toggleBoolean}/><span class="checkmark"></span>
+            </label></div>
         </div>
-        <div className='toolEdit-section'>
-          <div>Will this tool be for sale?</div>
-          <div>{`Yes `}<input type='checkbox' checked={forSale} name='forSale' onClick={this.toggleBoolean} /></div>
+        <div className='post-tool-section'>
+            <div className='post-tool-divider'>Will this tool be for sale?</div>
+            <div className = 'tool-check'>{`Yes `}<label class="container"><input type='checkbox' checked={forSale} name='forSale' onClick={this.toggleBoolean}/><span class="checkmark"></span>
+            </label></div>
         </div>
-        <div className='toolEdit-section'>
-          <div>Will this tool be available for delivery?</div>
-          <div>{`Yes `}<input type='checkbox' checked={delivery} name='delivery' onClick={this.toggleBoolean} /></div>
+        <div className='post-tool-section'>
+            <div className='post-tool-divider'>Will this tool be available for delivery?</div>
+            <div className = 'tool-check'>{`Yes `}<label class="container"><input type='checkbox' checked={delivery} name='delivery' onClick={this.toggleBoolean}/><span class="checkmark"></span>
+            </label></div>
         </div>
-        <div className='toolEdit-section'>
-          <div>Will this tool be available for pick up?</div>
-          <div>{`Yes `}<input type='checkbox' checked={pickup} name='pickup' onClick={this.toggleBoolean} /></div>
+        <div className='post-tool-section'>
+            <div className='post-tool-divider'>Will this tool be available for pick up?</div>
+            <div className = 'tool-check'>{`Yes `}<label class="container"><input type='checkbox' checked={pickup} name='pickup' onClick={this.toggleBoolean}/><span class="checkmark"></span>
+            </label></div>
         </div>
-        <div className='toolEdit-section'>
-          <div>Is this a power tool?</div>
-          <div>{`Yes `}<input type='checkbox' checked={powerTool} name='powerTool' onClick={this.toggleBoolean} /></div>
+        <div className='post-tool-section'>
+            <div className='post-tool-divider'>Is this a power tool?</div>
+            <div className = 'tool-check'>{`Yes `}<label class="container"><input type='checkbox' checked={powerTool} name='powerTool' onClick={this.toggleBoolean}/><span class="checkmark"></span>
+            </label></div>
         </div>
         {
           powerTool ?
-            <div className='toolEdit-section'>
-              <div>What type of power?</div>
+            <div className='post-tool-section'>
+              <div className='post-tool-divider'>What type of power?</div>
               <select className='search-criteria-select' value={powerType} name='powerType' onChange={this.handleChange}>
-                {/* <option value="null"></option> */}
                 <option value="electric">Electric</option>
                 <option value="pneumatic">Pneumatic</option>
               </select>
@@ -279,16 +317,16 @@ export default class ToolEdit extends Component {
             :
             null
         }
-        <div className='toolEdit-section'>
-          <div>Does this tool require fuel?</div>
-          <div>{`Yes `}<input type='checkbox' checked={requiresFuel} name='requiresFuel' onClick={this.toggleBoolean} /></div>
+        <div className='post-tool-section'>
+          <div className='post-tool-divider'>Does this tool require fuel?</div>
+          <div className = 'tool-check'>{`Yes `}<label class="container"><input type='checkbox' checked={requiresFuel} name='requiresFuel' onClick={this.toggleBoolean}/><span class="checkmark"></span>
+          </label></div>
         </div>
         {
           requiresFuel ?
-            <div className='toolEdit-section'>
-              <div>What type of fuel?</div>
+            <div className='post-tool-section'>
+              <div className='post-tool-divider'>What type of fuel?</div>
               <select className='search-criteria-select' value={fuelType} name='fuelType' onChange={this.handleChange}>
-                {/* <option value="null"></option> */}
                 <option value="gasoline">Gasoline</option>
                 <option value="diesel">Diesel</option>
                 <option value="ethanol">Ethanol</option>
@@ -297,7 +335,10 @@ export default class ToolEdit extends Component {
             :
             null
         }
-        <button className='toolEdit-confirm' onClick={() => this.confirm()}>Confirm</button>
+        <div className='toolEdit-section'>
+          <button className='toolEdit-confirm' onClick={() => this.confirm()}>Confirm</button>
+          <button className='toolEdit-delete' onClick={() => this.delete()}>Delete</button>
+        </div>
       </div>
     )
   }
