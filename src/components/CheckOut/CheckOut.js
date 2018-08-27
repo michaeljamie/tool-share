@@ -32,7 +32,7 @@ class CheckOut extends Component {
             fuel_type: '',
             tool_img: '',
             tool_price: 0,
-            deposit: 0,
+            deposit: '',
             total: 0,
             start: null,
             end: null
@@ -78,7 +78,8 @@ class CheckOut extends Component {
                 fuel_type: tool.data.fuel_type,
                 tool_img: tool.data.tool_img,
                 tool_price: tool.data.tool_price,
-                deposit: tool.data.deposit
+                deposit: tool.data.deposit,
+                numDays: 0
             });
         });
     };
@@ -103,7 +104,19 @@ class CheckOut extends Component {
             start: start,
             end: end
         })
-       
+               
+    }
+
+    componentDidUpdate = (prevProps, prevState) => {
+        
+        if (prevState.start !== this.state.start) {
+            var diff =  Math.floor(( Date.parse(this.state.end) - Date.parse(this.state.start) ) / 86400000); 
+            this.setState({numDays: diff})
+        }
+        else if (prevState.end !== this.state.end) {
+            var diff =  Math.floor(( Date.parse(this.state.end) - Date.parse(this.state.start) ) / 86400000); 
+            this.setState({numDays: diff})
+        }
     }
 
     render() {
@@ -139,22 +152,22 @@ class CheckOut extends Component {
                         <div className='cart-lowerText'>
                             <div className='cart-lowerSection'>
                                 <div>Rental Fee:</div>
-                                <div>${this.state.tool_price}</div>
+                                <div>${this.state.tool_price * this.state.numDays}</div>
                             </div>
                             <br/>
                             <div className='cart-lowerSection'>
                             <div>Service Charge:</div>
-                            <div>fee</div>
+                            <div>${this.state.tool_price * this.state.numDays * .2}</div>
                             </div>
                             <br/>
                             <div className='cart-lowerSection'>
                             <div>Security Deposit:</div>
-                            <div>{this.state.deposit}</div>
+                            <div>${+this.state.deposit.slice(1)}</div>
                             </div>
                             <br/>
                             <div className='cart-lowerSection'>
                             <div>Total Price:</div>
-                            <div>${this.state.total}</div>
+                            <div>${(this.state.tool_price * this.state.numDays) + (this.state.tool_price * this.state.numDays * .2) + +this.state.deposit.slice(1)}</div>
                             </div>
                         </div>
                 </div>
@@ -166,7 +179,7 @@ class CheckOut extends Component {
                         image=""
                         token= {this.onToken}
                         stripeKey={process.env.REACT_APP_STRIPE_KEY}
-                        amount={this.state.total}
+                        amount={100*((this.state.tool_price * this.state.numDays) + (this.state.tool_price * this.state.numDays * .2) + +this.state.deposit.slice(1))}
                         >
                         <button className='checkout-stripe'>Checkout</button>
                         </StripeCheckout>
