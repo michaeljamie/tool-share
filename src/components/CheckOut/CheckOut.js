@@ -32,7 +32,7 @@ class CheckOut extends Component {
             fuel_type: '',
             tool_img: '',
             tool_price: 0,
-            deposit: '',
+            deposit: 0,
             total: 2000,
             start: null,
             end: null
@@ -111,48 +111,57 @@ class CheckOut extends Component {
         console.log(this.state.end)
        
         return(
-            <div>
-                <h1>Check Out</h1>
+            <div className='checkout-page'>
+                <h1 className = 'checkout-title'>Checkout</h1>
+                <div className='cart-top'>
                 <h3>You are renting:</h3>
                 <div>
-                    <div>{this.state.tool_name}</div>
-                    <img src={this.state.tool_img} height='200' width='200'/>
+                    <div className='cart-text'>{this.state.tool_name}</div>
+                        <img src={this.state.tool_img} height='200' width='200' className='cart-toolPic'/>
+                    </div>
                 </div>
                 <hr/>
-                <h3>Renting from:</h3>
-                <div>{this.state.owner_name}</div>
-                <img src={this.state.owner_pic} height='200' width='200'/>
+                <div className='cart-mid'>
+                    <h3>Renting from:</h3>
+                    <div className='cart-text'>{this.state.owner_name}</div>
+                    <img className = 'cart-seller' src={this.state.owner_pic} height='200' width='200'/>
+                </div>
                 <hr/>
                 <h2>Summary</h2>
                 <div className='checkout-select-dates'>
-                
+                    <div className='cart-lowerText'>
                     Select Dates:
-                    
+                    </div>
                     <div className = "checkout-calendar-">
                   
                                 <Calendar tool_id = {this.state.tool_id} updateCheckoutState={this.updateStateFromCalendar}/>
                             </div>
-                        Total Price: ${this.state.tool_price}
-                        <br/>
-                        Deposit: {this.state.deposit}
-                    
+                        <div className='cart-lowerText'>
+                            Rental Fee:
+                            <br/>
+                            Service Charge:
+                            <br/>
+                            Security Deposit: ${this.state.deposit}
+                            <br/>
+                            Total Price: ${this.state.tool_price}
+                        </div>
                 </div>
                <div className='checkout-stripe-and-cancel'>
-                    <div className='checkout-stripe'>
-                    <StripeCheckout
-                    name="Tool Share"
-                    description="Tool Rental Payment"
-                    image=""
-                    token= {this.onToken}
-                    stripeKey={process.env.REACT_APP_STRIPE_KEY}
-                    amount={this.state.total}
-                    />
+                    <div>
+                        <StripeCheckout
+                        name="Tool Share"
+                        description="Tool Rental Payment"
+                        image=""
+                        token= {this.onToken}
+                        stripeKey={process.env.REACT_APP_STRIPE_KEY}
+                        amount={this.state.total}
+                        >
+                        <button className='checkout-stripe'>Checkout</button>
+                        </StripeCheckout>
+                    </div>
                     
+                    <button className='checkout-stripe' onClick={()=>this.props.history.push(`/toolview/${this.props.match.params.id}`)}>Cancel</button>
 
-                    </div>
-                    <div className='checkout-cancel'>
-                    <button onClick={()=>this.props.history.push(`/toolview/${this.props.match.params.id}`)}>Cancel</button>
-                    </div>
                 </div>
             </div>
         );
