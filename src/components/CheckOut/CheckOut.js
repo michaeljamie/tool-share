@@ -6,7 +6,6 @@ import StripeCheckout from 'react-stripe-checkout';
 import {Link} from 'react-router-dom';
 const { REACT_APP_DOMAIN, REACT_APP_CLIENT_ID } = process.env;
 
-
 class CheckOut extends Component {
     constructor(props) {
         super(props);
@@ -42,11 +41,11 @@ class CheckOut extends Component {
     };
 
     componentDidMount() {
-        // axios.get('/api/session').then(res =>
-        //     res.data.user ?
-        //     console.log('User on Session')
-        //     : this.login()
-        // );
+        axios.get('/api/session').then(res =>
+            res.data.user ?
+            console.log('User on Session')
+            : this.login()
+        );
         this.getToolAndOwner()
         window.scrollTo(0,0)
     };
@@ -93,12 +92,14 @@ class CheckOut extends Component {
             return_date: this.state.end
         }
         token.card = void 0
-        axios.post('/api/payment', {token, amount: this.state.total}).then(res => {
+        let amount = 100*((this.state.tool_price * this.state.numDays) + (this.state.tool_price * this.state.numDays * .2) + +this.state.deposit.slice(1))
+        axios.post('/api/payment', {token, amount}).then(res => {
             axios.put(`/api/update_tool_data/${this.state.tool_id}`, {renter_id: this.props.user.userid}).then( () => {
                 console.log('Tool Rental Paid')
             })
         })
         axios.post('/api/reservation', datesObj)
+        this.props.history.push("/profile")
     }
 
     updateStateFromCalendar = (start, end) => {
