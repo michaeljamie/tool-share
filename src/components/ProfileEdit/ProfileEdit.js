@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
-const {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID} = process.env;
+import swal from 'sweetalert2';
+const {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID, REACT_APP_CLOUD_PRESET, REACT_APP_CLOUD_KEY, REACT_APP_CLOUD_NAME } = process.env;
 
 export default class ProfileEdit extends Component {
   constructor() {
@@ -70,8 +71,43 @@ export default class ProfileEdit extends Component {
   }
 
   deleteAccount = () => {
-    axios.delete('/api/deleteUser')
-    this.props.history.push('/')
+    const swalWithBootstrapButtons = swal.mixin({
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false,
+
+    })
+
+    swalWithBootstrapButtons({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      background: '#252525',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        axios.delete('/api/deleteUser')
+        this.props.history.push('/')
+        swalWithBootstrapButtons({
+          title: 'Deleted!',
+          text: 'Your account has been deleted.',
+          type: 'success',
+          background: '#252525'
+        })
+      } else if (
+        result.dismiss === swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons({
+          title: 'Cancelled',
+          text: 'Your account is safe.',
+          type: 'error',
+          background: '#252525'
+        })
+      }
+    })
   }
 
   render() {
