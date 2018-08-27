@@ -33,7 +33,7 @@ class CheckOut extends Component {
             tool_img: '',
             tool_price: 0,
             deposit: 0,
-            total: 2000,
+            total: 0,
             start: null,
             end: null
         };
@@ -127,7 +127,9 @@ class CheckOut extends Component {
                     <img className = 'cart-seller' src={this.state.owner_pic} height='200' width='200'/>
                 </div>
                 <hr/>
-                <h2>Summary</h2>
+                <div className='cart-midTitle'>
+                    <h2>Cart Summary:</h2>
+                </div>
                 <div className='checkout-select-dates'>
                     <div className='cart-lowerText'>
                     Select Dates:
@@ -137,13 +139,25 @@ class CheckOut extends Component {
                                 <Calendar tool_id = {this.state.tool_id} updateCheckoutState={this.updateStateFromCalendar}/>
                             </div>
                         <div className='cart-lowerText'>
-                            Rental Fee:
+                            <div className='cart-lowerSection'>
+                                <div>Rental Fee:</div>
+                                <div>${this.state.tool_price}</div>
+                            </div>
                             <br/>
-                            Service Charge:
+                            <div className='cart-lowerSection'>
+                            <div>Service Charge:</div>
+                            <div>fee</div>
+                            </div>
                             <br/>
-                            Security Deposit: ${this.state.deposit}
+                            <div className='cart-lowerSection'>
+                            <div>Security Deposit:</div>
+                            <div>{this.state.deposit}</div>
+                            </div>
                             <br/>
-                            Total Price: ${this.state.tool_price}
+                            <div className='cart-lowerSection'>
+                            <div>Total Price:</div>
+                            <div>${this.state.total}</div>
+                            </div>
                         </div>
                 </div>
                <div className='checkout-stripe-and-cancel'>
