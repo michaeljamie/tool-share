@@ -263,6 +263,13 @@ module.exports = {
          .catch(err => console.log(err))
     },
     
+    return_tool: (req, res) => {
+        const {id} = req.params;
+        req.app.get('db').return_tool([id])
+        .then( () => res.status(200).send('Tool Returned:', id) )
+        .catch(err => console.log(err))
+    },
+
     delete_tool: (req, res) => {
         const {id} = req.params;
         req.app.get('db').delete_tool([id]).then(() => {
