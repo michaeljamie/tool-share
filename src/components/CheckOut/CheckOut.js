@@ -3,7 +3,9 @@ import axios from 'axios';
 import {connect} from "react-redux";
 import Calendar from '../Calendar/Calendar';
 import StripeCheckout from 'react-stripe-checkout';
+import {Link} from 'react-router-dom';
 const { REACT_APP_DOMAIN, REACT_APP_CLIENT_ID } = process.env;
+
 
 class CheckOut extends Component {
     constructor(props) {
@@ -161,7 +163,7 @@ class CheckOut extends Component {
                             </div>
                             <br/>
                             <div className='cart-lowerSection'>
-                            <div>Security Deposit:</div>
+                            <div>Security Deposit*:</div>
                             <div>${+this.state.deposit.slice(1)}</div>
                             </div>
                             <br/>
@@ -186,7 +188,8 @@ class CheckOut extends Component {
                     </div>
                     
                     <button className='checkout-stripe' onClick={()=>this.props.history.push(`/toolview/${this.props.match.params.id}`)}>Cancel</button>
-
+                <div className='cart-terms'>*Security deposit will be refunded upon tool return</div>
+                <div className='cart-terms'>See <Link to="/rental_agreement"><a href="" className = 'home-rentalLink'>Terms and Conditions</a></Link> for additional details</div>
                 </div>
             </div>
         );
