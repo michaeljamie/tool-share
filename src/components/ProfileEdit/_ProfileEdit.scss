@@ -39,6 +39,7 @@
   font-size: 20px;
   height: 30vh;
   width: 100%;
+  outline: none;
 }
 .profileEdit-confirm {
   background-color: $color1;
@@ -77,4 +78,30 @@
     color: $color3;
     text-align: left;
     margin-bottom: 0px;
+}
+.btn-danger {
+  background-color: $color1;
+  border-radius: 8px;
+  border: 1px solid red;
+  padding: 8px 12px;
+  margin: 4px;
+  outline: none;
+  color: $color3;
+  font-size: 16px;
+}
+.btn-success {
+  background-color: $color1;
+  border-radius: 8px;
+  border: 1px solid $color5;
+  padding: 8px 12px;
+  margin: 4px;
+  outline: none;
+  color: $color3;
+  font-size: 16px;
+}
+#swal2-title {
+  color: $color3;
+}
+#swal2-content {
+  color: $color3;
 }
