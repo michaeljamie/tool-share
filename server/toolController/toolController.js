@@ -263,4 +263,18 @@ module.exports = {
          .catch(err => console.log(err))
     },
     
+    delete_tool: (req, res) => {
+        const {id} = req.params;
+        req.app.get('db').delete_tool([id]).then(() => {
+            res.end();
+        })
+    },
+
+    delete_tags: (req, res) => {
+        const {id} = req.params;
+        req.app.get('db').delete_tags([id]).then(() => {
+            res.end();
+        })
+    }
+
 }

@@ -142,6 +142,8 @@ app.post('/api/post/tool', tc.post_tool);
 app.post('/api/tooltags', tc.post_tags);
 app.put('/api/edit/tool/:id', tc.update_tool);
 app.put('/api/tooltags/:id', tc.update_tags);
+app.delete('/api/delete/tool/:id', tc.delete_tool);
+app.delete('/api/tooltags/:id', tc.delete_tags);
 
 // Message Endpoints
 app.put('/api/room', mc.create)

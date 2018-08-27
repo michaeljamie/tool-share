@@ -100,12 +100,12 @@ class Profile extends Component {
     //mapping out the entire arrays of tool cards
     let displayedRentedTools = this.state.rentedTools.map(tool => {
       return (
-        <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price} currentlyAvailable={tool.currently_available}/>
+        <ProfileToolCard key={Math.random()} toolId={tool.tool_id} renterId={tool.renter_id} profileId={this.props.match.params.userid} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price} currentlyAvailable={tool.currently_available}/>
       )
     })
     let displayedListedTools = this.state.listedTools.map(tool => {
       return (
-        <ProfileToolCard key={Math.random()} toolId={tool.tool_id} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price} currentlyAvailable={tool.currently_available}/>
+        <ProfileToolCard key={Math.random()} toolId={tool.tool_id} renterId={tool.renter_id} profileId={this.props.match.params.userid} toolName={tool.tool_name} toolImg={tool.tool_img} toolPrice={tool.tool_price} currentlyAvailable={tool.currently_available}/>
       )
     })
 
@@ -165,6 +165,7 @@ class Profile extends Component {
             <StarRating rateType={"Renter"} rating={renterRating} />
           </div>
           <hr/>
+          {rentTools.length>0?
           <div className="profile-rentContainer">
             <div className="profile-toolsHeader">
               <span>Currently Rented Tools</span>
@@ -179,7 +180,9 @@ class Profile extends Component {
                 </div>
               </div>
             </Swipeable>
-          </div>
+          </div>:
+          null}
+          {listTools.length>0?
           <div className="profile-rentContainer">
             <div className="profile-toolsHeader">
               <span>Listed Tools</span>
@@ -202,7 +205,8 @@ class Profile extends Component {
               </div>
             </div>
             </Swipeable>
-          </div>
+          </div>:
+          null}
         </div>
       </div>
     );
