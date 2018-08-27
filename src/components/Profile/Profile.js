@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { Swipeable } from "react-touch";
 import {Link} from 'react-router-dom';
 import edit from '../../assets/cogIcon.png';
+import userAvatar from './../../assets/userAvatar.jpg';
 
 class Profile extends Component {
   constructor() {
@@ -153,9 +154,9 @@ class Profile extends Component {
             <img
               className="profile-userPic"
               alt="profilePic"
-              src={profilePic}
+              src={profilePic ? profilePic : userAvatar}
             />
-            <span className="profile-userName">{userName}</span>
+            <span className="profile-userName">{userName ? userName : 'New User'}</span>
             <div className="profile-bio">
               <span>{bio}</span>
             </div>

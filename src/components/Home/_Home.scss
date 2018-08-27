@@ -291,6 +291,15 @@ a.animated-button.gibson-two:hover {
     margin: 0;
     padding: 0;
     position: absolute;
+    z-index: 10;
+}
+
+.home-fireworks {
+    height: 180px;
+    padding-bottom: 100px;
+    padding-left: 20px;
+    position: absolute;
+    z-index: 1;
 }
 
 .home-car {
