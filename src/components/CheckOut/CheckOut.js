@@ -34,8 +34,8 @@ class CheckOut extends Component {
             tool_price: 0,
             deposit: '',
             total: 0,
-            start: null,
-            end: null
+            start: 0,
+            end: 0
         };
     };
 
