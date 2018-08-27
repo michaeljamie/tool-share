@@ -1,24 +1,22 @@
 .calendar-start input, .calendar-end input  {
-    border: none;
-    font-family: sans-serif;
-    font-weight: bold;
-    height: 25px;
-    display: flex;
-    padding-left: 29px;
-    width: 95px;
-    font-size: 14px;
-    border-radius: 4px;
-    background-image: linear-gradient(rgb(125, 197, 238), rgb(0, 140, 221) 85%, rgb(48, 162, 228));
-    color: white;
-    box-shadow: rgba(42, 255, 35, 0.25) 0px 1px 0px inset;
-    text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
-   
+    @include flexSetUp(flex-start, center, column);
+    border: 1px solid $color5;
+    color: $color3;
+    background: $color1;
+    width: 80%;
+    height: 7vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    outline: none;
+    font-size: 20px;
+    text-align: center;
 }
 
 .calendar-dates {
-    display: flex;
-    justify-content: space-around;
-    margin: 15px;
+    @include flexSetUp(center, center, column);
+    margin: 10px;
+    width: 100%
 }
 
 .calendar-start, .calendar-end {

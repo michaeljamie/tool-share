@@ -3,6 +3,7 @@ import axios from 'axios';
 import {connect} from "react-redux";
 import Calendar from '../Calendar/Calendar';
 import StripeCheckout from 'react-stripe-checkout';
+import {Link} from 'react-router-dom';
 const { REACT_APP_DOMAIN, REACT_APP_CLIENT_ID } = process.env;
 
 class CheckOut extends Component {
@@ -32,19 +33,19 @@ class CheckOut extends Component {
             fuel_type: '',
             tool_img: '',
             tool_price: 0,
-            deposit: 0,
-            total: 2000,
-            start: null,
-            end: null
+            deposit: '',
+            total: 0,
+            start: 0,
+            end: 0
         };
     };
 
     componentDidMount() {
-        // axios.get('/api/session').then(res =>
-        //     res.data.user ?
-        //     console.log('User on Session')
-        //     : this.login()
-        // );
+        axios.get('/api/session').then(res =>
+            res.data.user ?
+            console.log('User on Session')
+            : this.login()
+        );
         this.getToolAndOwner()
         window.scrollTo(0,0)
     };
@@ -78,7 +79,8 @@ class CheckOut extends Component {
                 fuel_type: tool.data.fuel_type,
                 tool_img: tool.data.tool_img,
                 tool_price: tool.data.tool_price,
-                deposit: tool.data.deposit
+                deposit: tool.data.deposit,
+                numDays: 0
             });
         });
     };
@@ -90,12 +92,14 @@ class CheckOut extends Component {
             return_date: this.state.end
         }
         token.card = void 0
-        axios.post('/api/payment', {token, amount: this.state.total}).then(res => {
+        let amount = 100*((this.state.tool_price * this.state.numDays) + (this.state.tool_price * this.state.numDays * .2) + +this.state.deposit.slice(1))
+        axios.post('/api/payment', {token, amount}).then(res => {
             axios.put(`/api/update_tool_data/${this.state.tool_id}`, {renter_id: this.props.user.userid}).then( () => {
                 console.log('Tool Rental Paid')
             })
         })
         axios.post('/api/reservation', datesObj)
+        this.props.history.push("/profile")
     }
 
     updateStateFromCalendar = (start, end) => {
@@ -103,12 +107,22 @@ class CheckOut extends Component {
             start: start,
             end: end
         })
-       
+               
+    }
+
+    componentDidUpdate = (prevProps, prevState) => {
+        
+        if (prevState.start !== this.state.start) {
+            var diff =  Math.floor(( Date.parse(this.state.end) - Date.parse(this.state.start) ) / 86400000); 
+            this.setState({numDays: diff})
+        }
+        else if (prevState.end !== this.state.end) {
+            var diff =  Math.floor(( Date.parse(this.state.end) - Date.parse(this.state.start) ) / 86400000); 
+            this.setState({numDays: diff})
+        }
     }
 
     render() {
-        console.log(this.state.start)
-        console.log(this.state.end)
        
         return(
             <div className='checkout-page'>
@@ -127,7 +141,9 @@ class CheckOut extends Component {
                     <img className = 'cart-seller' src={this.state.owner_pic} height='200' width='200'/>
                 </div>
                 <hr/>
-                <h2>Summary</h2>
+                <div className='cart-midTitle'>
+                    <h2>Cart Summary:</h2>
+                </div>
                 <div className='checkout-select-dates'>
                     <div className='cart-lowerText'>
                     Select Dates:
@@ -137,13 +153,25 @@ class CheckOut extends Component {
                                 <Calendar tool_id = {this.state.tool_id} updateCheckoutState={this.updateStateFromCalendar}/>
                             </div>
                         <div className='cart-lowerText'>
-                            Rental Fee:
+                            <div className='cart-lowerSection'>
+                                <div>Rental Fee:</div>
+                                <div>${this.state.tool_price * this.state.numDays}</div>
+                            </div>
                             <br/>
-                            Service Charge:
+                            <div className='cart-lowerSection'>
+                            <div>Service Charge:</div>
+                            <div>${this.state.tool_price * this.state.numDays * .2}</div>
+                            </div>
                             <br/>
-                            Security Deposit: ${this.state.deposit}
+                            <div className='cart-lowerSection'>
+                            <div>Security Deposit*:</div>
+                            <div>${+this.state.deposit.slice(1)}</div>
+                            </div>
                             <br/>
-                            Total Price: ${this.state.tool_price}
+                            <div className='cart-lowerSection'>
+                            <div>Total Price:</div>
+                            <div>${(this.state.tool_price * this.state.numDays) + (this.state.tool_price * this.state.numDays * .2) + +this.state.deposit.slice(1)}</div>
+                            </div>
                         </div>
                 </div>
                <div className='checkout-stripe-and-cancel'>
@@ -154,14 +182,15 @@ class CheckOut extends Component {
                         image=""
                         token= {this.onToken}
                         stripeKey={process.env.REACT_APP_STRIPE_KEY}
-                        amount={this.state.total}
+                        amount={100*((this.state.tool_price * this.state.numDays) + (this.state.tool_price * this.state.numDays * .2) + +this.state.deposit.slice(1))}
                         >
                         <button className='checkout-stripe'>Checkout</button>
                         </StripeCheckout>
                     </div>
                     
                     <button className='checkout-stripe' onClick={()=>this.props.history.push(`/toolview/${this.props.match.params.id}`)}>Cancel</button>
-
+                <div className='cart-terms'>*Security deposit will be refunded upon tool return</div>
+                <div className='cart-terms'>See <Link to="/rental_agreement"><a href="" className = 'home-rentalLink'>Terms and Conditions</a></Link> for additional details</div>
                 </div>
             </div>
         );
