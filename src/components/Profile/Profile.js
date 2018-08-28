@@ -26,10 +26,10 @@ class Profile extends Component {
     };
   }
 
-  pageLoad() {
+  pageLoad = async () => {
     window.scrollTo(0,0);
     this.getLocation();
-    axios.get(`/api/userData/${this.props.match.params.userid}`).then(res => {
+    await axios.get(`/api/userData/${this.props.match.params.userid}`).then(res => {
       let {fullname, bio, profile_pic, listerrating, renterrating} = res.data[0]
       this.setState({
         userName: fullname,
@@ -39,16 +39,27 @@ class Profile extends Component {
         renterRating: renterrating
       })
     })
-    axios.get(`/api/usersRentedTools/${this.props.match.params.userid}`).then(res => {
+    await axios.get(`/api/usersRentedTools/${this.props.match.params.userid}`).then(res => {
       this.setState({ rentedTools: res.data });
     });
-    axios.get(`/api/usersListedTools/${this.props.match.params.userid}`).then(res => {
+    await axios.get(`/api/usersListedTools/${this.props.match.params.userid}`).then(res => {
       this.setState({ listedTools: res.data });
     });
+    console.log('the state:',this.state)
   }
 
   componentDidMount() {
     this.pageLoad()
+    console.log('COMPONENT MOUNTED!!!1!')
+  }
+
+  componentDidUpdate = async (prevProps, prevState) => {
+    if (prevProps.match.params.userid===this.props.match.params.userid) {
+      null
+    } else {
+      await this.pageLoad()
+      console.log('props updated state:',this.state)
+    }
   }
 
   rentedSwipeLeft() {
