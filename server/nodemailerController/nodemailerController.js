@@ -6,17 +6,16 @@ module.exports = {
         const output = `
         <div style = 'margin: 0px; height: 750px; width: 450px; background: #444444';>
     
-            <img style = 'height: 140px; margin-left: 140px; margin-top: 30px;' src='https://www.iconsdb.com/icons/preview/white/hammer-xxl.png' alt="avatar"/>
+            <img style = 'height: 180px; margin-left: 140px; margin-top: 30px;' src='https://www.iconsdb.com/icons/preview/white/hammer-xxl.png' alt="avatar"/>
             <h3 style = 'color: #fdd947; font-size: 50px; margin-left: 65px;'>Tool Share</h3>
             <p style = 'color: white; font-size: 25px;'>You have a new contact request: </p>
             <h3 style = 'color: white; font-size: 25px;'>Contact Details</h3>
             <ul>
                 <li style = 'color: white; font-size: 30px;'>Name: ${formname}</li>
                 <li style = 'color: white; font-size: 30px;'>Email: ${formemail}</li>
-                <li style = 'color: white; font-size: 30px;'>Subject: ${formphone}</li>
+                <li style = 'color: white; font-size: 30px;'>Phone Number: ${formphone}</li>
             </ul>
-            <h3 style = 'color: #fdd947; font-size: 25px;'>Message</h3>
-            <p style = 'color: white; font-size: 30px;'>${formmessage}</p>
+            <h3 style = 'color: white; font-size: 25px;'>Message: ${formmessage}</h3>
         </div>
         `;
 

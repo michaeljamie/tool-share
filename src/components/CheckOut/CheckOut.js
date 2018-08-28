@@ -36,7 +36,8 @@ class CheckOut extends Component {
             deposit: '',
             total: 0,
             start: 0,
-            end: 0
+            end: 0,
+            numDays: 1
         };
     };
 
@@ -57,7 +58,6 @@ class CheckOut extends Component {
 
     getToolAndOwner() {
         axios.get(`/api/tool/${this.props.match.params.id}`).then( tool => {
-            console.log(tool)
             this.setState({
                 owner_name: tool.data.fullname,
                 owner_pic: tool.data.profile_pic,
@@ -80,7 +80,7 @@ class CheckOut extends Component {
                 tool_img: tool.data.tool_img,
                 tool_price: tool.data.tool_price,
                 deposit: tool.data.deposit,
-                numDays: 0
+                numDays: 1
             });
         });
     };
