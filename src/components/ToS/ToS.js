@@ -1,8 +1,12 @@
 import React from 'react';
+import ToolBrosLogo from './../../assets/ToolBrosLogo.png';
 
 export default function ToS (){
     return (
         <div className='terms-body'>
+            <div className ='terms-top'>
+                <img src={ToolBrosLogo} alt="logo" className='rental-logo'/>
+            </div>
             <h1>Terms and Conditions</h1>
             <h2>General</h2>
             <p>
