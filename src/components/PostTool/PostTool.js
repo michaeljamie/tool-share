@@ -333,8 +333,3 @@ function mapStateToProps(state) {
 };
 
 export default connect(mapStateToProps)(PostTool);
-
-
-
-// console.log(res.data)
-//             this.props.history.push(`/toolview/${res.data.tool_id}`)

@@ -57,7 +57,6 @@ class CheckOut extends Component {
 
     getToolAndOwner() {
         axios.get(`/api/tool/${this.props.match.params.id}`).then( tool => {
-            console.log(tool)
             this.setState({
                 owner_name: tool.data.fullname,
                 owner_pic: tool.data.profile_pic,
