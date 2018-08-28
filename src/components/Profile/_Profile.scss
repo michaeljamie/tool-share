@@ -45,10 +45,18 @@
 .profile-bio span {
   color: $color3;
 }
-.profile-addButton {
-  font-size: 16px;
+.profile-addTool {
+  position: absolute;
+  top: 15%;
+  right: 4%;
+  height: 7vh;
+  width: 7vh;
+  border-radius: 50%;
   background: $color5;
-  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 13px 0px gold;
 }
 .profile-ratingsContainer {
   display: flex;
@@ -62,11 +70,13 @@
   background: $color1;
   border-top: 5px solid $color4;
   border-radius: 25px 25px 0 0;
+  position: relative;
 }
-.profile-toolsHeader span {
+.profile-toolsHeader p {
   font-family: $font1;
-  font-size: 24px;
-  color: $color5
+  font-size: 4vh;
+  color: $color5;
+  margin-top: 14px;
 }
 .profile-toolsOuterContainer {
   background: linear-gradient($color5, rgba(0, 0, 0, 0) 95%);
@@ -100,8 +110,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 0 13px 0px gold;
 }
 .profile-editButton img {
+  height: 70%;
+}
+.profile-addTool img {
   height: 70%;
 }
 hr {

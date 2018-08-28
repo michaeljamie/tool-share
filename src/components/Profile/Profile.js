@@ -8,6 +8,7 @@ import { Swipeable } from "react-touch";
 import {Link} from 'react-router-dom';
 import edit from '../../assets/cogIcon.png';
 import userAvatar from './../../assets/userAvatar.jpg';
+import plus from '../../assets/plus.png';
 
 class Profile extends Component {
   constructor() {
@@ -169,7 +170,7 @@ class Profile extends Component {
           {rentTools.length>0?
           <div className="profile-rentContainer">
             <div className="profile-toolsHeader">
-              <span>Currently Rented Tools</span>
+              <p>Currently Rented Tools</p>
             </div>
             <Swipeable
               onSwipeLeft={() => this.rentedSwipeLeft()}
@@ -186,25 +187,24 @@ class Profile extends Component {
           {listTools.length>0?
           <div className="profile-rentContainer">
             <div className="profile-toolsHeader">
-              <span>Listed Tools</span>
-              <br />
+              <p>Listed Tools</p>
               {userid===parseInt(this.props.match.params.userid)?
-              <Link to={`/post`}><button className="profile-addButton">Add Tool</button></Link>:
+              <Link to={`/post`}>
+                <div className='profile-addTool'>
+                  <img src={plus}/>
+                </div>
+              </Link>:
               null}
-              <select className="profile-timesRented">
-                <option value="MostToLeast">Most to Least Rented</option>
-                <option value="LeastToMost">Least to Most Rented</option>
-              </select>
             </div>
             <Swipeable
             onSwipeLeft={() => this.listedSwipeLeft()}
             onSwipeRight={() => this.listedSwipeRight()}
             >
-            <div className="profile-toolsOuterContainer">
-              <div className='profile-pageSlider'>
-                {listTools}
+              <div className="profile-toolsOuterContainer">
+                <div className='profile-pageSlider'>
+                  {listTools}
+                </div>
               </div>
-            </div>
             </Swipeable>
           </div>:
           null}
