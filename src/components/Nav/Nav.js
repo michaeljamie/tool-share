@@ -63,7 +63,7 @@ class Nav extends Component {
                         <Link to="/search" className="nav-links" ><li onClick={ () => this.changeMenu() }>Tool Search</li></Link>
                         <Link to="/faq" className="nav-links" ><li onClick={ () => this.changeMenu() }>FAQ</li></Link>
                         { this.props.users.username ? <Link to="/post" className="nav-links" ><li onClick={ () => this.changeMenu() }>Add Tool</li></Link>  : '' }
-                        { this.props.users.username ? <Link to="/messages" className="nav-links" ><li onClick={ this.updateProfileNav }>Messages</li></Link>  : '' }
+                        { this.props.users.username ? <Link to="/messages" className="nav-links" ><li onClick={ () => this.changeMenu() }>Messages</li></Link>  : '' }
                         { this.props.users.username ? <Link to="/" className="nav-links" ><li onClick={ this.logout }>Logout</li></Link> : '' }
                     </ul>
                 </div>
