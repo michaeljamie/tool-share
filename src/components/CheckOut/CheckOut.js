@@ -85,7 +85,7 @@ class CheckOut extends Component {
         });
     };
 
-    onToken = (token) => {
+    onToken = async (token) => {
         let datesObj = {
             tool_id: this.state.tool_id,
             pickup_date: this.state.start,
@@ -93,12 +93,12 @@ class CheckOut extends Component {
         }
         token.card = void 0
         let amount = 100*((this.state.tool_price * this.state.numDays) + (this.state.tool_price * this.state.numDays * .2) + +this.state.deposit.slice(1))
-        axios.post('/api/payment', {token, amount}).then(res => {
+        await axios.post('/api/payment', {token, amount}).then(res => {
             axios.put(`/api/update_tool_data/${this.state.tool_id}`, {renter_id: this.props.user.userid}).then( () => {
                 console.log('Tool Rental Paid')
             })
         })
-        axios.post('/api/reservation', datesObj)
+        await axios.post('/api/reservation', datesObj)
         this.props.history.push(`/profile/${this.props.user.userid}`)
     }
 
