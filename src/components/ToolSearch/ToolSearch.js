@@ -45,13 +45,20 @@ class ToolSearch extends Component {
   };
 
   handleSearchFromSearchBar = (value) => {
+    let searchResults = null
     this.setState({
       searchResults: []
     })
-    let ids = this.state.searchResults.filter(tools=>{
+    axios.get('/api/tools').then( res => {
+      
+        searchResults = res.data
+      
+    }).then(()=>{
+    
+    let ids = searchResults.filter(tools=>{
       return tools[value] === true
     })
-    
+   
     let displayedTools = ids.map(tool=>{
       axios.post('api/get_tools_by_search', {tool_id: tool.tool_id})
       .then(res=>{
@@ -60,7 +67,7 @@ class ToolSearch extends Component {
         })
       })
     })
-
+  })
   }
 
   render() {
