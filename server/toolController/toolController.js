@@ -1,4 +1,20 @@
 module.exports = {
+    get_tool_names: (req, res) => {
+        req.app.get('db').get_tool_names()
+        .then(tools => {
+            
+            res.status(200).send(tools)
+        })
+        .catch(err => console.log(err))
+    },
+
+    get_tools_by_search: (req, res) => {
+        const {tool_id} = req.body;
+        req.app.get('db').get_tools_by_search([tool_id])
+        .then( tools=>{
+            res.status(200).send(tools)
+        }).catch(err=>console.log(err))
+    },
 
     select_all_tools: ( req, res ) => {
         req.app.get('db').select_all_tools()
