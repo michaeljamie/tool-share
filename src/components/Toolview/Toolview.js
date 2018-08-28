@@ -37,6 +37,7 @@ class Toolview extends Component {
             fuel_type: '',
             tool_img: '',
             tool_price: 0,
+            deposit: 0,
             available: '',
             currentToolTags: [],
             redirect: false,
@@ -79,7 +80,8 @@ class Toolview extends Component {
                 tool_img: tool.data.tool_img,
                 tool_price: tool.data.tool_price,
                 power_type: tool.data.power_type,
-                available: tool.data.currently_available
+                available: tool.data.currently_available,
+                deposit: tool.data.deposit
             });
         }).then(
         axios.get(`/api/tags/${+this.props.match.params.id}`).then( tags => {
@@ -117,11 +119,13 @@ class Toolview extends Component {
     };
 
     render() {
+        console.log(this.state)
+
         if(this.state.redirect){
             return <Redirect push to = {`/chat/${this.state.roomToJoin}`}/>
         }
 
-        let editButton = this.state.owner_id === this.props.user.userid ? <button className='toolview-edit-button'>Edit Tool</button> : null
+        let editButton = this.state.owner_id === this.props.user.userid ? <Link to={`/tooledit/${this.props.match.params.id}`} className='toolview-edit-button-parent-link'><button className='toolview-edit-button'>Edit Tool</button></Link> : null
         let returnButton = this.state.owner_id === this.props.user.userid && this.state.available === false ? <button className='toolview-return-button' onClick={this.returnTool}>Return Tool</button> : null
         let rentButton = this.state.owner_id !== this.props.user.userid ? 
             <Link to={`/checkout/${this.props.match.params.id}`} className='toolview-rent-button-parent-link'><button className='toolview-rent-button'>Rent</button></Link> :
@@ -141,30 +145,44 @@ class Toolview extends Component {
                     </div>
                 </div>
                 <div className='toolview-mid'>
-                    <div className = "toolview-price-rent">
-                        <div>Price: {this.state.tool_price}/day</div>
+                    <div className = "toolview-price-rent-section">
+                        <div className = "toolview-price">${this.state.tool_price} per day</div>
                         {returnButton}
                         {rentButton}
                     </div>
+                    <hr className='toolview-hr'/>
                     <div className = "toolview-description">
                         {availabilityNotification}
                         {this.state.tool_descript}
+                        
+                        
+                    </div>
+                    <hr className='toolview-hr'/>
+                    <div className = "toolview-details">
+                        <div className = "toolview-details-sub">
+                            <div className='toolview-details-sub-detail'>Deposit: {this.state.deposit}</div>
+                            <div className='toolview-details-sub-detail'>Condition: {this.state.tool_condition}</div>
+                            <div className='toolview-details-sub-detail'>{this.state.delivery ? <div>Delivery: Yes</div> : <div>Delivery: No</div>}</div>
+                            <div className='toolview-details-sub-detail'>{this.state.pick_up ? <div>Pick Up: Yes</div> : <div>Pick Up: No</div>}</div>
+                        </div>
+                        <div className = "toolview-details-sub">
+                            <div className='toolview-details-sub-detail'>{this.state.power_tool ? <div>Power Tool: Yes</div> : <div>Power Tool: No</div>}</div>
+                            <div className='toolview-details-sub-detail'>{this.state.power_type ? <div>Power Type: {this.state.power_type}</div> : <div>Power Type: None</div>}</div>
+                            <div className='toolview-details-sub-detail'>{this.state.requires_fuel ? <div>Requires Fuel: Yes</div> : <div>Requires Fuel: No</div>}</div>
+                            <div className='toolview-details-sub-detail'>{this.state.fuel_type ? <div>Fuel: {this.state.fuel_type}</div> : <div>Fuel: None</div>}</div>
+                        </div>
                     </div>
                 </div>
                 <div className = "toolview-lower">
-                    <div className = "toolview-lister">
-                        <Lister name={this.state.owner_name} pic={this.state.owner_pic}/>
-                    </div>
-          
-                        <button className='toolview-message-button' onClick={ () => this.joinRoom() }>
-                            Message
-                        </button>
+                    <Lister name={this.state.owner_name} pic={this.state.owner_pic}/>
+                    <button className='toolview-message-button' onClick={ () => this.joinRoom() }>
+                        Message
+                    </button>
                 </div>
                 <div className = "toolview-map">
                     <Map id={this.props.match.params.id}/>
                 </div>
                 <div className = "toolview-bottom">
-                    Similar Tools:  
                     <SimilarTools tags={this.state.currentToolTags} />
                 </div>
             </div>
