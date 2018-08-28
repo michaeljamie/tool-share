@@ -281,8 +281,9 @@ module.exports = {
     
     return_tool: (req, res) => {
         const {id} = req.params;
+        console.log(id)
         req.app.get('db').return_tool([id])
-        .then( () => res.status(200).send('Tool Returned:', id) )
+        .then( () => res.status(200).send('Tool Returned') )
         .catch(err => console.log(err))
     },
 

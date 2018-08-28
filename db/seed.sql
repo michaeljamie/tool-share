@@ -23,7 +23,7 @@ CREATE TABLE tools (
     deposit MONEY,
     tool_submitted TIMESTAMP DEFAULT NOW(),
     currently_available BOOLEAN,
-    current_renter_id INT REFERENCES users(userID),
+    renter_id INT,
     tool_img VARCHAR (250),
     tool_condition VARCHAR (50),
     times_rented INT,
