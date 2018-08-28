@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
 import themeable from 'react-themeable';
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
+
 
 const languages = [
   {
@@ -95,7 +98,9 @@ class SearchBar extends React.Component {
 
     this.state = {
       value: '',
-      suggestions: []
+      suggestions: [],
+      price: { min: 0, max: 0},
+      distance: 0
     };    
   }
 
@@ -126,7 +131,7 @@ class SearchBar extends React.Component {
     const theme = themeable(this.props.theme);
     const { value, suggestions } = this.state;
     const inputProps = {
-      placeholder: "Start typing a keyword",
+      placeholder: "",
       value,
       onChange: this.onChange
     };
@@ -142,6 +147,27 @@ class SearchBar extends React.Component {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps} />
+        <p className = 'home-inputText'>Max Daily Price</p>
+          <InputRange
+          draggableTrack
+          maxValue={200}
+          minValue={0}
+          value={this.state.price}
+          onChange={price => this.setState({ price })}
+          onChangeComplete={value => console.log(value)}
+          value={this.state.value5}/>
+          {/* <input className='range-slider__range' type="range" value="$50" min="$0" max="$100"/> */}
+        <p className = 'home-inputText'>Max Distance (Miles)</p>
+          <InputRange
+          draggableTrack
+          maxValue={100}
+          minValue={0}
+          value={this.state.distance}
+          onChange={distance => this.setState({ distance })}
+          onChangeComplete={value => console.log(value)}
+          value={this.state.value5}/>
+          {/* <input className='range-slider__range' type="range" value="50" min="0" max="100"/> */}
+          <br/>
         <button className='search-bar-button' onClick={()=>this.handleValueChange(value)}>Search</button>
         </div>
     );
