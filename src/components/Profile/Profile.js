@@ -49,38 +49,32 @@ class Profile extends Component {
 
   rentedSwipeLeft() {
     this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle -= 94) });
-    console.log(this.state.rentedToolsStyle);
     return this.state.rentedToolsStyle.toString();
   }
 
   rentedSwipeRight() {
     if (this.state.rentedToolsStyle < 0) {
       this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle += 94) });
-      console.log(this.state.rentedToolsStyle);
       return this.state.rentedToolsStyle.toString();
     }
   }
 
   listedSwipeLeft() {
     this.setState({ listedToolsStyle: (this.state.listedToolsStyle -= 94) });
-    console.log(this.state.listedToolsStyle);
     return this.state.listedToolsStyle.toString();
   }
 
   listedSwipeRight() {
     if (this.state.listedToolsStyle < 0) {
       this.setState({ listedToolsStyle: (this.state.listedToolsStyle += 94) });
-      console.log(this.state.listedToolsStyle);
       return this.state.listedToolsStyle.toString();
     }
   }
 
   showPosition = position => {
-    console.log(position)
     let lat = position.coords.latitude
     let long = position.coords.longitude
     let {userid} = this.props.users
-    console.log(userid)
     axios.post(`api/updateUser/${userid}`, {lat, long}).then(res=>{
       console.log('posted')
     })
