@@ -26,7 +26,7 @@ class Profile extends Component {
     };
   }
 
-  componentDidMount() {
+  pageLoad() {
     window.scrollTo(0,0);
     this.getLocation();
     axios.get(`/api/userData/${this.props.match.params.userid}`).then(res => {
@@ -45,6 +45,10 @@ class Profile extends Component {
     axios.get(`/api/usersListedTools/${this.props.match.params.userid}`).then(res => {
       this.setState({ listedTools: res.data });
     });
+  }
+
+  componentDidMount() {
+    this.pageLoad()
   }
 
   rentedSwipeLeft() {
