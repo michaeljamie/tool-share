@@ -165,7 +165,7 @@ class Toolview extends Component {
                 </div>
                 <div className = "toolview-bottom">
                     Similar Tools:  
-                    <SimilarTools tags={this.state.currentToolTags} />
+                    <SimilarTools params={this.props.match.params.id} history={this.props.history} tags={this.state.currentToolTags} />
                 </div>
             </div>
         );
