@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { setRoomID } from '../../ducks/reducer'
 import Map from './../../components/Map/Map';
 import SimilarTools from './../../components/SimilarTools/SimilarTools';
-const {REACT_APP_GOOGLE_API_KEY} = process.env
 
 class Toolview extends Component {
     constructor(props) {
@@ -93,16 +92,16 @@ class Toolview extends Component {
 
     returnTool = () => {
         axios.put(`/api/return/${this.props.match.params.id}`)
-        .then(res => {
-            console.log(res)
-        })
+        .then( () => {
+            this.props.history.push(`/profile/${this.props.user.userid}`)
+        });
     };
 
     latlongToZip = (lat, long) => {
         axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${lat}&lng=${long}&username=stepace`)
         .then(res=>{
             let zip =res.data.postalCodes[0].postalCode
-        })
+        });
     };
 
     joinRoom = () => {
@@ -119,18 +118,16 @@ class Toolview extends Component {
     };
 
     render() {
-        console.log(this.state)
-
         if(this.state.redirect){
             return <Redirect push to = {`/chat/${this.state.roomToJoin}`}/>
         }
 
         let editButton = this.state.owner_id === this.props.user.userid ? <Link to={`/tooledit/${this.props.match.params.id}`} className='toolview-edit-button-parent-link'><button className='toolview-edit-button'>Edit Tool</button></Link> : null
-        let returnButton = this.state.owner_id === this.props.user.userid && this.state.available === false ? <button className='toolview-return-button' onClick={this.returnTool}>Return Tool</button> : null
+        let returnButton = this.state.owner_id === this.props.user.userid && this.state.available === false ? <button className='toolview-return-button' onClick={this.returnTool}>Mark Returned</button> : null
         let rentButton = this.state.owner_id !== this.props.user.userid ? 
             <Link to={`/checkout/${this.props.match.params.id}`} className='toolview-rent-button-parent-link'><button className='toolview-rent-button'>Rent</button></Link> :
             null
-        let availabilityNotification = this.state.available === false ? <div>This tool is currently unavailable.</div> : null
+        let availabilityNotification = this.state.available === false ? <div className='toolview-availability'>This tool is currently unavailable.</div> : null
        
         return (
             <div className='toolview-body'>
@@ -139,9 +136,9 @@ class Toolview extends Component {
                     {editButton}
                 </div>
                 <div className = "toolview-top">
-                    <h1 className = "toolview-top-title">{`${this.state.tool_name}`}</h1>
+                    <div className = "toolview-top-title">{`${this.state.tool_name}`}</div>
                     <div className = "toolview-pic-container"> 
-                        <img src={this.state.tool_img} alt="table saw"/>
+                        <img src={this.state.tool_img} alt="tool pic"/>
                     </div>
                 </div>
                 <div className='toolview-mid'>
@@ -173,12 +170,16 @@ class Toolview extends Component {
                         </div>
                     </div>
                 </div>
-                <div className = "toolview-lower">
-                    <Lister name={this.state.owner_name} pic={this.state.owner_pic}/>
-                    <button className='toolview-message-button' onClick={ () => this.joinRoom() }>
-                        Message
-                    </button>
-                </div>
+                {
+                    this.state.owner_id !== this.props.user.userid ?
+                    <div className = "toolview-lower">
+                        <Lister name={this.state.owner_name} pic={this.state.owner_pic} ownerid={this.state.owner_id} />
+                        <button className='toolview-message-button' onClick={ () => this.joinRoom() }>
+                            Message
+                        </button>
+                    </div>
+                    : null
+                }
                 <div className = "toolview-map">
                     <Map id={this.props.match.params.id}/>
                 </div>
