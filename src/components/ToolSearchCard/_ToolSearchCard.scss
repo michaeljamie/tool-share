@@ -5,7 +5,7 @@
     border: solid 1px black;
     margin-bottom: 2%;
     margin-top: 1%;
-    background: white;
+    background: $color1;
 }
 
 .card-link {
@@ -17,20 +17,19 @@
     flex-wrap: wrap;
     width: 100%;
     font-size: 20px;
-    box-shadow: 3px 3px gray;
 }
 
 .card-title {
-    color: $color4;
+    color: $color5;
     text-align: center;
 }
 
 .card-price {
-    color: $color4;
+    color: $color5;
     text-align: center;
 }
 
 .card-condition {
-    color: $color4;
+    color: $color5;
     text-align: center;
 }
