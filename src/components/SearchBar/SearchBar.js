@@ -1,100 +1,7 @@
 import React, {Component} from 'react';
 import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
-
-// class SearchBar extends Component {
-//     constructor (){
-//         super()
-//         this.state = {
-//           all_tools: [],
-//           tool_tags: [],
-//           value: '',
-//           suggestions: []
-//         }
-//     }
-
-//     getSuggestions = value => {
-//       const inputValue = value.trim().toLowerCase();
-//       const inputLength = inputValue.length;
-//       return inputLength === 0 ? [] : this.state.tool_tags.filter(tag=>{
-//         tag.toLowerCase().includes(inputValue) 
-//       })
-//     }
-
-//     getSuggestionValue = suggestion => suggestion
-
-//     renderSuggestion = suggestion => {
-//         return (
-//         <div>
-//           {suggestion}
-//         </div>
-//         )
-//     }
-
-//     onChange = (event, { newValue }) => {
-//       this.setState({
-//         value: newValue
-//       })
-//     }
-
-//     onSuggestionsFetchRequested = ({ value }) => {
-//       this.setState({
-//         suggestions: this.getSuggestions(value)
-//       })
-//     }
-
-//     onSuggestionsClearRequested = () => {
-//       this.setState({
-//         suggestions: []
-//       })
-//     }
-
-//     componentDidMount(){
-//         axios.get('api/get_tool_names')
-//         .then(res=>{
-//             let toolNames = res.data.filter(tool=>{  
-//               this.setState({all_tools: res.data})
-//             })          
-//         }).then(()=>{   
-//           this.state.all_tools.forEach(tool=>{
-//             for(var key in tool){
-//               if(tool[key] === true){
-//               this.setState({
-//                 tool_tags: [...this.state.tool_tags, key]
-//               })
-//               }
-//             }
-//         })
-//         })
-//     }
-
-
-//     render (){
-      
-//       const {value, suggestions} = this.state;
-//       console.log(suggestions)
-//       const inputProps = {
-//         placeholder: 'Type a tool',
-//         value,
-//         onChange: this.onChange
-//       }
-
-//         return(
-//             <div>
-//               <Autosuggest
-//               suggestions={suggestions}
-//               onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-//               onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-//               getSuggestionValue={this.getSuggestionValue}
-//               renderSuggestion={this.renderSuggestion}
-//               inputProps={inputProps}
-//               />
-//             </div>
-//         )
-//     }
-// }
-
-// export default SearchBar;
+import themeable from 'react-themeable';
 
 const languages = [
   {
@@ -192,6 +99,7 @@ class SearchBar extends React.Component {
     };    
   }
 
+
   onChange = (event, { newValue, method }) => {
     this.setState({
       value: newValue
@@ -215,7 +123,7 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    console.log(this.state.suggestions)
+    const theme = themeable(this.props.theme);
     const { value, suggestions } = this.state;
     const inputProps = {
       placeholder: "Start typing a keyword",
@@ -225,14 +133,16 @@ class SearchBar extends React.Component {
 
     return (
       <div className='auto-suggest'>
+
       <Autosuggest 
+        theme={this.theme}
         suggestions={suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps} />
-        <button onClick={()=>this.handleValueChange(value)}>Search</button>
+        <button className='search-bar-button' onClick={()=>this.handleValueChange(value)}>Search</button>
         </div>
     );
   }
