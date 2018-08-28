@@ -1,1 +1,1 @@
-select * from tags join tools on tags.tool_id = tools.tool_id where tags.tag = $1;
+select * from search_tags join tools on search_tags.tool_id = tools.tool_id where search_tags.tag = $1;
