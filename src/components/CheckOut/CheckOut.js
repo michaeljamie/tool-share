@@ -99,7 +99,7 @@ class CheckOut extends Component {
             })
         })
         axios.post('/api/reservation', datesObj)
-        this.props.history.push("/profile")
+        this.props.history.push(`/profile/${this.props.user.userid}`)
     }
 
     updateStateFromCalendar = (start, end) => {
