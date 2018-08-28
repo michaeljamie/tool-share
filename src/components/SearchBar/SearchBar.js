@@ -147,7 +147,7 @@ class SearchBar extends React.Component {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps} />
-        <p className = 'home-inputText'>Max Daily Price</p>
+        {/* <p className = 'home-inputText'>Max Daily Price</p>
           <InputRange
           draggableTrack
           maxValue={200}
@@ -155,9 +155,9 @@ class SearchBar extends React.Component {
           value={this.state.price}
           onChange={price => this.setState({ price })}
           onChangeComplete={value => console.log(value)}
-          value={this.state.value5}/>
+          value={this.state.value5}/> */}
           {/* <input className='range-slider__range' type="range" value="$50" min="$0" max="$100"/> */}
-        <p className = 'home-inputText'>Max Distance (Miles)</p>
+        {/* <p className = 'home-inputText'>Max Distance (Miles)</p>
           <InputRange
           draggableTrack
           maxValue={100}
@@ -165,9 +165,9 @@ class SearchBar extends React.Component {
           value={this.state.distance}
           onChange={distance => this.setState({ distance })}
           onChangeComplete={value => console.log(value)}
-          value={this.state.value5}/>
+          value={this.state.value5}/> */}
           {/* <input className='range-slider__range' type="range" value="50" min="0" max="100"/> */}
-          <br/>
+          {/* <br/> */}
         <button className='search-bar-button' onClick={()=>this.handleValueChange(value)}>Search</button>
         </div>
     );
