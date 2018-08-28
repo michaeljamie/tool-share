@@ -107,47 +107,54 @@ export default class Home extends Component {
                     {/* <input type="text" placeholder ='Zip Code'/>
                     <input type="text" placeholder ='ex. Hammer Drill, Jack Hammer, Plate Compactor, etc'/> */}
                     <a  href="#" className= 'btn btn-sm animated-button gibson-two'>Search Your Area</a>
-                    <div className='home-exampleCard'>
-                        <img src={ex1} className='home-examplePic' alt=""/>
-                        <div className='home-exampleRight'>
-                            <div className='home-titleBox'>
-                                <h3 className='home-exampleTitle'>$25/Day</h3>
-                            </div>                      
-                            <p className='home-tool1'>Lawnmower</p>
-                            <p className='home-tool'>Honda</p>
-                        </div>
-                    </div>
-                    <div className='home-exampleCard'>
-                        <img src={ex2} className='home-examplePic' alt=""/>
-                        <div className='home-exampleRight'>
-                            <div className='home-titleBox'>
-                                <h3 className='home-exampleTitle'>$38/Day</h3>
+                    <Link className='home-toolLink' to ='/toolview/29'>
+                        <div className='home-exampleCard'>
+                            <img src={ex1} className='home-examplePic' alt=""/>
+                            <div className='home-exampleRight'>
+                                <div className='home-titleBox'>
+                                    <h3 className='home-exampleTitle'>$25/Day</h3>
+                                </div>                      
+                                <p className='home-tool1'>Lawnmower</p>
+                                <p className='home-tool'>Honda</p>
                             </div>
-                            <p className='home-tool1'>Power Auger</p>
-                            <p className='home-tool'>Southland</p>
                         </div>
-                    </div>
-                    <div className='home-exampleCard'>
-                        <img src={ex3} className='home-examplePic' alt=""/>
-                        <div className='home-exampleRight'>
-                            <div className='home-titleBox'>
-                                <h3 className='home-exampleTitle'>$20/Day</h3>
+                    </Link>
+                    <Link className='home-toolLink' to ='/toolview/33'>
+                        <div className='home-exampleCard'>
+                            <img src={ex2} className='home-examplePic' alt=""/>
+                            <div className='home-exampleRight'>
+                                <div className='home-titleBox'>
+                                    <h3 className='home-exampleTitle'>$38/Day</h3>
+                                </div>
+                                <p className='home-tool1'>Power Auger</p>
+                                <p className='home-tool'>Southland</p>
                             </div>
-                            <p className='home-tool1'>Chainsaw</p>
-                            <p className='home-tool'>Homelite</p>
                         </div>
-                    </div>
-                    <div className='home-exampleCard'>
-                        <img src={ex4} className='home-examplePic' alt=""/>
-                        <div className='home-exampleRight'>
-                            <div className='home-titleBox'>
-                                <h3 className='home-exampleTitle'>$7/Day</h3>
+                    </Link>
+                    <Link className='home-toolLink' to ='/toolview/3'>
+                        <div className='home-exampleCard'>
+                            <img src={ex3} className='home-examplePic' alt=""/>
+                            <div className='home-exampleRight'>
+                                <div className='home-titleBox'>
+                                    <h3 className='home-exampleTitle'>$25/Day</h3>
+                                </div>
+                                <p className='home-tool1'>Chainsaw</p>
+                                <p className='home-tool'>Homelite</p>
                             </div>
-                            <p className='home-tool1'>Power Drill</p>
-                            <p className='home-tool'>Craftsman</p>
                         </div>
-                    </div>
-
+                    </Link>
+                    <Link className='home-toolLink' to ='/toolview/35'>
+                        <div className='home-exampleCard'>
+                            <img src={ex4} className='home-examplePic' alt=""/>
+                            <div className='home-exampleRight'>
+                                <div className='home-titleBox'>
+                                    <h3 className='home-exampleTitle'>$7/Day</h3>
+                                </div>
+                                <p className='home-tool1'>Power Drill</p>
+                                <p className='home-tool'>Craftsman</p>
+                            </div>
+                        </div>
+                    </Link>
                 </div>
                 <div className = 'home-steps'>
                     <h1 className = 'steps-text'>HERE'S HOW IT WORKS:</h1>

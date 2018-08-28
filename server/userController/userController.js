@@ -48,8 +48,8 @@ module.exports = {
 
     editUserData: (req, res) => {
         const {userid} = req.params;
-        const {fullName, bio, email, phone, zip} = req.body;
-        req.app.get('db').change_user_data([fullName, bio, email, phone, zip, userid])
+        const {fullName, bio, profilePic, email, phone, zip} = req.body;
+        req.app.get('db').change_user_data([fullName, bio, profilePic, email, phone, zip, userid])
         .then(() => {
             res.end()
         })

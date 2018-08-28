@@ -99,7 +99,7 @@ class CheckOut extends Component {
             })
         })
         axios.post('/api/reservation', datesObj)
-        this.props.history.push("/profile")
+        this.props.history.push(`/profile/${this.props.user.userid}`)
     }
 
     updateStateFromCalendar = (start, end) => {
@@ -113,11 +113,11 @@ class CheckOut extends Component {
     componentDidUpdate = (prevProps, prevState) => {
         
         if (prevState.start !== this.state.start) {
-            var diff =  Math.floor(( Date.parse(this.state.end) - Date.parse(this.state.start) ) / 86400000); 
+            let diff =  Math.floor(( Date.parse(this.state.end) - Date.parse(this.state.start) ) / 86400000); 
             this.setState({numDays: diff})
         }
         else if (prevState.end !== this.state.end) {
-            var diff =  Math.floor(( Date.parse(this.state.end) - Date.parse(this.state.start) ) / 86400000); 
+            let diff =  Math.floor(( Date.parse(this.state.end) - Date.parse(this.state.start) ) / 86400000); 
             this.setState({numDays: diff})
         }
     }
