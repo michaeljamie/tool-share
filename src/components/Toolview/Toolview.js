@@ -141,7 +141,7 @@ class Toolview extends Component {
                 <div className = "toolview-top">
                     <h1 className = "toolview-top-title">{`${this.state.tool_name}`}</h1>
                     <div className = "toolview-pic-container"> 
-                        <img src={this.state.tool_img} alt="table saw"/>
+                        <img src={this.state.tool_img} alt="tool pic"/>
                     </div>
                 </div>
                 <div className='toolview-mid'>
