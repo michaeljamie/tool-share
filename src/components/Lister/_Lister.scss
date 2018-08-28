@@ -1,5 +1,28 @@
+.lister_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
 .lister-pic {
     border-radius: 100px;
-    width: 80px;
-    height: 12vh;   
+    width: 100px;
+}
+
+.lister-reviews {
+    margin-top: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.lister-name {
+    width: 100%;
+    margin-bottom: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
