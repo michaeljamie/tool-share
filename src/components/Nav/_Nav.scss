@@ -219,6 +219,18 @@ body {
   z-index: 999;
 }
 
+.nav-logoIcon {
+  height: 45px;
+  
+}
+
+// .nav-logoContain {
+//   height: 45px;
+//   background: $color3;
+//   border-radius: 50px;
+//   margin-right: 5px;
+// }
+
 .nav_profile_icon:hover {
   cursor: pointer;
 }
@@ -245,5 +257,6 @@ body {
   width: 83vw;
   position: absolute;
   text-align: center;
+  @include flexSetUp(center, center, row);
 }
 
