@@ -155,21 +155,10 @@ class Toolview extends Component {
                     <div className = "toolview-lister">
                         <Lister name={this.state.owner_name} pic={this.state.owner_pic}/>
                     </div>
-                    <div className = "toolview-additional">
-                        <div>
-                        Deposit: {this.state.tool_condition}
-                        </div>
-                        <div>
-                        Condition: {this.state.tool_condition}
-                        </div>
-                        <div>
-                        Additional:
-                
-                        </div> 
+          
                         <button className='toolview-message-button' onClick={ () => this.joinRoom() }>
                             Message
                         </button>
-                    </div>
                 </div>
                 <div className = "toolview-map">
                     <Map id={this.props.match.params.id}/>
