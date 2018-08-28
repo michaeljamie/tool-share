@@ -14,9 +14,16 @@
     background-color: $color5;
     color: black;
     border-radius: 6px;
-    border: 1px solid #ffffff;
-    height: 20%;
-    width: 100%;
+    border: none;
+    height: 65%;
+    width: 45%;
+    font-size: 100%;
+    font-weight: 500;
+}
+
+.toolview-availability {
+    color: red;
+    margin-bottom: 1%;
 }
 
 .toolview-top-button-section {
@@ -52,9 +59,9 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 51vh;
+    height: 45vh;
     color: #ffffff;
-    margin-top: -5%;
+    margin-top: 3%;
 }
 
 .toolview-top-title {
@@ -62,15 +69,18 @@
     position: relative;
     justify-content: center;
     align-items: center;
-    height: 2vh;
-    margin-top: 10%;
+    height: 6vh;
     width: 100%;
+    font-size: 100%;
+    font-weight: 550;
 }
 
 .toolview-pic-container img {
     display: flex;
     width: 100%;
     height: 40vh;
+    border-bottom: $color5 1px solid;
+    border-top: $color5 1px solid;
 }
 
 .toolview-rent-button-parent-link {
@@ -87,10 +97,21 @@
     background-color: $color5;
     color: black;
     border-radius: 6px;
-    border: 1px solid #ffffff;
-    height: 80%;
-    width: 50%;
-    margin-right: 25%;
+    border: none;
+    height: 65%;
+    width: 55%;
+    font-size: 100%;
+    font-weight: 500;
+}
+
+.toolview-edit-button-parent-link {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-decoration: none;
+    margin-right: 2%;
 }
 
 .toolview-edit-button {
@@ -101,11 +122,14 @@
     border: 1px solid $color5;
     background: $color1;
     height: 3.5vh;
-    width: 20%;
+    width: 50%;
 }
 
 .toolview-mid {
-    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 45vh;
     width: 95%;
     margin-top: 4%;
     background-color: $color1;
@@ -116,29 +140,58 @@
 .toolview-description {
     display: flex;
     justify-content: flex-start;
-    width: 100%;
-    height: 20vh;
-    margin: 0 auto;
-    margin-top: 5px;
+    flex-direction: column;
+    width: 80%;
+    height: 35%;
+    margin-top: 2%;
     color: #ffffff;
 }
 
-.toolview-price-rent {
+.toolview-price-rent-section {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    margin-top: 4%;
-    margin-left: 4%;
     width: 100%;
-    height: 20%;
+    height: 18%;
     color: #ffffff;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
-.toolview-additional {
+.toolview-price {
+    font-size: 120%
+}
+
+.toolview-hr {
+    height: 0.4%;
+    width: 80%;
+    margin: 1%
+}
+
+.toolview-details {
+    width: 80%;
+    height: 30%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 2%;
+}
+
+.toolview-details-sub {
+    width: 50%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    font-size: 10px;
+    align-items: center;
+}
+
+.toolview-details-sub-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    font-size: 90%;
 }
 
 .toolview-map {
@@ -149,12 +202,11 @@
 
 .toolview-lower {
     display: flex;
-    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     background-color: $color1;
     color: white;
-    height: 40vh;
+    height: 25vh;
     width: 95%;
     margin-top: 4%;
     border-radius: 6px;
@@ -167,7 +219,9 @@
     background-color: $color5;
     color: black;
     border-radius: 6px;
-    border: 1px solid #ffffff;
+    border: none;
+    height: 20%;
+    font-size: 100%;
 }
 
 .toolview-bottom {

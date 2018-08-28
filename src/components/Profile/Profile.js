@@ -8,6 +8,7 @@ import { Swipeable } from "react-touch";
 import {Link} from 'react-router-dom';
 import edit from '../../assets/cogIcon.png';
 import userAvatar from './../../assets/userAvatar.jpg';
+import plus from '../../assets/plus.png';
 
 class Profile extends Component {
   constructor() {
@@ -25,10 +26,10 @@ class Profile extends Component {
     };
   }
 
-  componentDidMount() {
+  pageLoad = async () => {
     window.scrollTo(0,0);
     this.getLocation();
-    axios.get(`/api/userData/${this.props.match.params.userid}`).then(res => {
+    await axios.get(`/api/userData/${this.props.match.params.userid}`).then(res => {
       let {fullname, bio, profile_pic, listerrating, renterrating} = res.data[0]
       this.setState({
         userName: fullname,
@@ -38,48 +39,57 @@ class Profile extends Component {
         renterRating: renterrating
       })
     })
-    axios.get(`/api/usersRentedTools/${this.props.match.params.userid}`).then(res => {
+    await axios.get(`/api/usersRentedTools/${this.props.match.params.userid}`).then(res => {
       this.setState({ rentedTools: res.data });
     });
-    axios.get(`/api/usersListedTools/${this.props.match.params.userid}`).then(res => {
+    await axios.get(`/api/usersListedTools/${this.props.match.params.userid}`).then(res => {
       this.setState({ listedTools: res.data });
     });
+    console.log('the state:',this.state)
+  }
+
+  componentDidMount() {
+    this.pageLoad()
+    console.log('COMPONENT MOUNTED!!!1!')
+  }
+
+  componentDidUpdate = async (prevProps, prevState) => {
+    if (prevProps.match.params.userid===this.props.match.params.userid) {
+      null
+    } else {
+      await this.pageLoad()
+      console.log('props updated state:',this.state)
+    }
   }
 
   rentedSwipeLeft() {
     this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle -= 94) });
-    console.log(this.state.rentedToolsStyle);
     return this.state.rentedToolsStyle.toString();
   }
 
   rentedSwipeRight() {
     if (this.state.rentedToolsStyle < 0) {
       this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle += 94) });
-      console.log(this.state.rentedToolsStyle);
       return this.state.rentedToolsStyle.toString();
     }
   }
 
   listedSwipeLeft() {
     this.setState({ listedToolsStyle: (this.state.listedToolsStyle -= 94) });
-    console.log(this.state.listedToolsStyle);
     return this.state.listedToolsStyle.toString();
   }
 
   listedSwipeRight() {
     if (this.state.listedToolsStyle < 0) {
       this.setState({ listedToolsStyle: (this.state.listedToolsStyle += 94) });
-      console.log(this.state.listedToolsStyle);
       return this.state.listedToolsStyle.toString();
     }
   }
 
   showPosition = position => {
-    console.log(position)
     let lat = position.coords.latitude
     let long = position.coords.longitude
     let {userid} = this.props.users
-    console.log(userid)
     axios.post(`api/updateUser/${userid}`, {lat, long}).then(res=>{
       console.log('posted')
     })
@@ -169,7 +179,7 @@ class Profile extends Component {
           {rentTools.length>0?
           <div className="profile-rentContainer">
             <div className="profile-toolsHeader">
-              <span>Currently Rented Tools</span>
+              <p>Currently Rented Tools</p>
             </div>
             <Swipeable
               onSwipeLeft={() => this.rentedSwipeLeft()}
@@ -186,25 +196,24 @@ class Profile extends Component {
           {listTools.length>0?
           <div className="profile-rentContainer">
             <div className="profile-toolsHeader">
-              <span>Listed Tools</span>
-              <br />
+              <p>Listed Tools</p>
               {userid===parseInt(this.props.match.params.userid)?
-              <Link to={`/post`}><button className="profile-addButton">Add Tool</button></Link>:
+              <Link to={`/post`}>
+                <div className='profile-addTool'>
+                  <img src={plus}/>
+                </div>
+              </Link>:
               null}
-              <select className="profile-timesRented">
-                <option value="MostToLeast">Most to Least Rented</option>
-                <option value="LeastToMost">Least to Most Rented</option>
-              </select>
             </div>
             <Swipeable
             onSwipeLeft={() => this.listedSwipeLeft()}
             onSwipeRight={() => this.listedSwipeRight()}
             >
-            <div className="profile-toolsOuterContainer">
-              <div className='profile-pageSlider'>
-                {listTools}
+              <div className="profile-toolsOuterContainer">
+                <div className='profile-pageSlider'>
+                  {listTools}
+                </div>
               </div>
-            </div>
             </Swipeable>
           </div>:
           null}

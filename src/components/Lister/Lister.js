@@ -1,12 +1,12 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 export default function Lister (props) {
     return (
-        <div>
-            {/* below is placeholder, need to import same lister info displayed on profile page */}
-            <div>{props.name}</div>
-            <img className="lister-pic" src={props.pic}/>
-            <div>Reviews</div>
+        <div className='lister-body'>
+            <div className='lister-name'>{props.name}</div>
+            <Link to={`/profile/${props.ownerid}`}><img className="lister-pic" src={props.pic}/></Link>
+            <div className='lister-reviews'>Reviews</div>
         </div>
     )
 }

@@ -1,8 +1,12 @@
 import React from 'react';
+import ToolBrosLogo from './../../assets/ToolBrosLogo.png';
 
 export default function RentalAgreement (){
     return (
         <div className='terms-body'>
+            <div className ='terms-top'>
+            <img src={ToolBrosLogo} alt="logo" className='rental-logo'/>
+            </div>
             <h1>Rental Agreement</h1>
             <h2>IMPORTANT – PLEASE READ THIS CAREFULLY BEFORE AGREEING TO RENT A TOOL.</h2>
             <p>

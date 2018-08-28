@@ -1,0 +1,9 @@
+.rental-logo {
+    height: 150px;
+    margin-top: 20px;
+    
+}
+
+.terms-top {
+    @include flexSetUp(center, center, column);
+}

@@ -36,7 +36,8 @@ class CheckOut extends Component {
             deposit: '',
             total: 0,
             start: 0,
-            end: 0
+            end: 0,
+            numDays: 1
         };
     };
 
@@ -57,7 +58,6 @@ class CheckOut extends Component {
 
     getToolAndOwner() {
         axios.get(`/api/tool/${this.props.match.params.id}`).then( tool => {
-            console.log(tool)
             this.setState({
                 owner_name: tool.data.fullname,
                 owner_pic: tool.data.profile_pic,
@@ -80,12 +80,12 @@ class CheckOut extends Component {
                 tool_img: tool.data.tool_img,
                 tool_price: tool.data.tool_price,
                 deposit: tool.data.deposit,
-                numDays: 0
+                numDays: 1
             });
         });
     };
 
-    onToken = (token) => {
+    onToken = async (token) => {
         let datesObj = {
             tool_id: this.state.tool_id,
             pickup_date: this.state.start,
@@ -93,13 +93,13 @@ class CheckOut extends Component {
         }
         token.card = void 0
         let amount = 100*((this.state.tool_price * this.state.numDays) + (this.state.tool_price * this.state.numDays * .2) + +this.state.deposit.slice(1))
-        axios.post('/api/payment', {token, amount}).then(res => {
+        await axios.post('/api/payment', {token, amount}).then(res => {
             axios.put(`/api/update_tool_data/${this.state.tool_id}`, {renter_id: this.props.user.userid}).then( () => {
                 console.log('Tool Rental Paid')
             })
         })
-        axios.post('/api/reservation', datesObj)
-        this.props.history.push("/profile")
+        await axios.post('/api/reservation', datesObj)
+        this.props.history.push(`/profile/${this.props.user.userid}`)
     }
 
     updateStateFromCalendar = (start, end) => {
@@ -113,11 +113,11 @@ class CheckOut extends Component {
     componentDidUpdate = (prevProps, prevState) => {
         
         if (prevState.start !== this.state.start) {
-            var diff =  Math.floor(( Date.parse(this.state.end) - Date.parse(this.state.start) ) / 86400000); 
+            let diff =  Math.floor(( Date.parse(this.state.end) - Date.parse(this.state.start) ) / 86400000); 
             this.setState({numDays: diff})
         }
         else if (prevState.end !== this.state.end) {
-            var diff =  Math.floor(( Date.parse(this.state.end) - Date.parse(this.state.start) ) / 86400000); 
+            let diff =  Math.floor(( Date.parse(this.state.end) - Date.parse(this.state.start) ) / 86400000); 
             this.setState({numDays: diff})
         }
     }

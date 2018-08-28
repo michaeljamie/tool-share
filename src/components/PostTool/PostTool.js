@@ -230,7 +230,7 @@ class PostTool extends Component {
                 <div className='post-tool-section'>
                     <div className ='post-toolDiv'>
                         <p className = 'post-inputText'>Brand name and model</p>
-                        <input type='text' name='name' className='post-input' onChange={this.handleChange}/>
+                        <input type='text' name='name' maxLength='40' className='post-input' onChange={this.handleChange}/>
                     </div>
                 </div>
                 <div className='post-tool-section'>
@@ -242,13 +242,13 @@ class PostTool extends Component {
                 <div className='post-tool-section'>
                     <div className ='post-toolDiv'>
                         <p className = 'post-inputText'>Daily Rental Fee</p>
-                        <input type='number' className='post-input' name='price' onChange={this.handleChange}/>
+                        <input type='number' className='post-input' name='price' maxLength='3' pattern="[0-9]" onChange={this.handleChange}/>
                     </div>
                 </div>
                 <div className='post-tool-section'>
                     <div className ='post-toolDiv'>
                         <p className = 'post-inputText'>Security Deposit Amount</p>
-                        <input type='number' className='post-input' name='deposit' onChange={this.handleChange}/>
+                        <input type='number' className='post-input' name='deposit' maxLength='5' pattern="[0-9]" onChange={this.handleChange}/>
                     </div>
                 </div>
                 <div className='post-tool-section'>
@@ -333,8 +333,3 @@ function mapStateToProps(state) {
 };
 
 export default connect(mapStateToProps)(PostTool);
-
-
-
-// console.log(res.data)
-//             this.props.history.push(`/toolview/${res.data.tool_id}`)

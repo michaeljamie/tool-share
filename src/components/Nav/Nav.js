@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import { getUserInfo } from './../../ducks/reducer';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import ToolBrosLogo from './../../assets/ToolBrosLogo.png';
 
 class Nav extends Component {
     constructor() {
@@ -58,22 +59,28 @@ class Nav extends Component {
                     <span></span>
 
                     <ul id="menu">
+                        
                         <Link to="/" className="nav-links" ><li onClick={ () => this.changeMenu() }>Home</li></Link>
                         <Link to="/search" className="nav-links" ><li onClick={ () => this.changeMenu() }>Tool Search</li></Link>
-                        <Link to="/post" className="nav-links" ><li onClick={ () => this.changeMenu() }>Add Tool</li></Link>
                         <Link to="/faq" className="nav-links" ><li onClick={ () => this.changeMenu() }>FAQ</li></Link>
+                        { this.props.users.username ? <Link to="/post" className="nav-links" ><li onClick={ () => this.changeMenu() }>Add Tool</li></Link>  : '' }
+                        { this.props.users.username ? <Link to="/messages" className="nav-links" ><li onClick={ () => this.changeMenu() }>Messages</li></Link>  : '' }
+                        { this.props.users.username ? <Link to="/" className="nav-links" ><li onClick={ this.logout }>Logout</li></Link> : '' }
                     </ul>
                 </div>
                 <div className='middle-nav'>
+                    <div className='nav-logoContain'>
+                        <img src={ToolBrosLogo} className='nav-logoIcon' alt="logo"/>
+                    </div>
                     <h2 className='nav-title'>Tool Share</h2>
                 </div>
-                { this.props.users.username ? <img onClick={this.updateProfileNav} className="nav_profile_icon" src={this.props.users.profile_pic} alt="profile icon"/> : <h3 onClick={this.login} className="nav_register_link">Login</h3> }
+                { this.props.users.username ? <Link to={`/profile/${this.props.users.userid}`} className="nav-links" ><img className="nav_profile_icon" src={this.props.users.profile_pic} alt="profile icon"/></Link> : <h3 onClick={this.login} className="nav_register_link">Login</h3> }
 
-                <ul id={ this.state.showProfileNav ? "profile-menu-show" : "profile-menu-disable" }>
+                {/* <ul id={ this.state.showProfileNav ? "profile-menu-show" : "profile-menu-disable" }>
                     <Link to={`/profile/${this.props.users.userid}`} className="nav-profile-links" ><li onClick={ this.updateProfileNav }>Profile</li></Link>
                     <Link to="/messages" className="nav-profile-links" ><li onClick={ this.updateProfileNav }>Messages</li></Link>
                     <Link to="/" className="nav-profile-links" ><li onClick={ this.logout }>Logout</li></Link>
-                </ul>
+                </ul> */}
             </div>            
         );
     };

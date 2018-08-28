@@ -18,14 +18,11 @@ class Chat extends Component {
     }
 
     componentDidMount = () => {
-        console.log('this.props.match.params=', this.props.match.params)
         axios.get(`/api/messages/${this.props.match.params.messageid}`).then(res => {
-            console.log(res)
             const messages = [ ...this.state.messages, ...res.data.map(e => e)]
             this.setState({messages})
         })
         socket.on(`message dispatched-${this.props.current_room}`, data => {
-            console.log('frontend receiving data =', data)
             const messages = [ ...this.state.messages, data]
             this.setState({messages})
         })
@@ -36,7 +33,6 @@ class Chat extends Component {
     }
 
     sendMessage = () => {
-        console.log(this.props)
         var obj={
             userid: this.props.user.userid,
             message: this.refs.message.value,
@@ -44,7 +40,6 @@ class Chat extends Component {
             username: this.props.user.username,
             current_room: this.props.current_room
         }
-        console.log(obj)
         socket.emit('message sent', obj)
         this.refs.message.value = '';
     }
@@ -65,7 +60,6 @@ class Chat extends Component {
 
 
     render(){
-        console.log(this.state.messages)
         const messages = this.state.messages.map((e,i) => {
             return(
                 <Chatbox
