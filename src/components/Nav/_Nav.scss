@@ -216,6 +216,7 @@ body {
   border-radius: 40px;
   margin: 15px;
   border: 1px solid $color1;
+  z-index: 999;
 }
 
 .nav_profile_icon:hover {
@@ -225,6 +226,7 @@ body {
 .nav_register_link {
   color: $color1;
   padding: 15px;
+  z-index: 999;
 }
 
 .nav_register_link:hover {
