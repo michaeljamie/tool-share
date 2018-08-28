@@ -2,8 +2,9 @@
     min-height: 72vh;
     width: 100%;
     height: auto;
-    background-color: $color2;
-    color: $color1
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./assets/messageBkgd.jpg');
+    background-color: $color1;
+    color: $color3;
 }
 
 .Messages_header {
@@ -12,7 +13,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    font-family: $font2;
+    // text-decoration: underline;
+    // text-decoration-color: $color5;
+}
+
+.Messages_header>h3 {
+    border-bottom: 2px solid $color5;
+    padding-bottom: 5px;
 }
 
 .Message_list {
@@ -33,14 +41,20 @@
 }
 
 .individual_message {
+    @include flexSetUp(space-around, center, row)
+}
+
+.individual_message1 {
+    color: $color3;
+    opacity: 0.95;
+    background-color: $color1;
     height: 15vh;
     width: 95%;
-    background-color: whitesmoke;
     border: 1px solid $color1;
+    border-radius: 6px;
     margin: 2.5vw;
     box-shadow: 3px 3px 5px $color4;
     outline: none;
-    @include flexSetUp(space-around, center, row)
 }
 
 .link_to_chat {

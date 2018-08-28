@@ -1,8 +1,9 @@
 .chat-body {
     width: 100%;
     height: 95vh;
-    background: $color2;
+    background: $color1;
     @include flexSetUp(flex-start, center, column);
+    border-bottom: 2px solid $color5;
 }
 
 .chat-messages {
