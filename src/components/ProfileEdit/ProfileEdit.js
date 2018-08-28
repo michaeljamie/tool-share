@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import swal from 'sweetalert2';
+import userAvatar from './../../assets/userAvatar.jpg';
 const {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID, REACT_APP_CLOUD_PRESET, REACT_APP_CLOUD_KEY, REACT_APP_CLOUD_NAME } = process.env;
 
 export default class ProfileEdit extends Component {
@@ -11,7 +12,7 @@ export default class ProfileEdit extends Component {
     this.state = {
       fullName: '',
       bio: '',
-      profilePic: null,
+      profilePic: '',
       email: '',
       phone: '',
       zip: ''
@@ -65,8 +66,8 @@ export default class ProfileEdit extends Component {
   }
 
   confirmChanges = async () => {
-    let {fullName, bio, email, phone, zip} = this.state
-    await axios.put(`/api/userData/${this.props.match.params.userid}`, {fullName, bio, email, phone, zip});
+    let {fullName, bio, profilePic, email, phone, zip} = this.state
+    await axios.put(`/api/userData/${this.props.match.params.userid}`, {fullName, bio, profilePic, email, phone, zip});
     this.props.history.push(`/profile/${this.props.match.params.userid}`);
   }
 
@@ -110,12 +111,49 @@ export default class ProfileEdit extends Component {
     })
   }
 
+  onDrop = files => {
+    files.map(file => {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", REACT_APP_CLOUD_PRESET); 
+      formData.append("api_key", REACT_APP_CLOUD_KEY); 
+      formData.append("timestamp", (Date.now() / 1000) | 0);
+      formData.append("public_id", file.name);
+      return axios.post(`https://api.cloudinary.com/v1_1/${REACT_APP_CLOUD_NAME}/image/upload/`, formData, {headers: { "X-Requested-With": "XMLHttpRequest" }}).then(res => {
+        this.setState({
+          profilePic: res.data.url
+        })
+      })
+    });
+  }
+
   render() {
+    let {profilePic} = this.state;
     return (
       <div className='profileEdit-page'>
         <div className='profileEdit-section'>
-          <div className='profileEdit-sectionDiv'>
+          <div className='profileEdit-pictureDiv'>
             <p className='profileEdit-inputText'>Profile Picture:</p>
+            <img src={profilePic ? profilePic : userAvatar} alt='tool' width='200px' height='200px' style={{marginTop: '8px'}}/>
+            <Dropzone 
+            onDrop={this.onDrop} 
+            style={{
+                width: "75%", 
+                height: "10%", 
+                border: "solid 1px #fdd947",
+                borderRadius: '6px',
+                textAlign: 'center', 
+                display: "flex", 
+                justifyContent: 'center', 
+                alignItems: 'center',
+                marginTop: '20px',
+                marginBottom: '20px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                cursor: 'pointer'
+            }}>
+            <p className='dropbox-title'>Upload Image</p>
+            </Dropzone>
           </div>
         </div>
         <div className='profileEdit-section'>

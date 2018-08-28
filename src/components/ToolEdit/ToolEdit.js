@@ -3,7 +3,7 @@ import axios from 'axios';
 import Dropzone from 'react-dropzone';
 import swal from 'sweetalert2';
 import defaultTool from './../../assets/defaultTool.png';
-const {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID} = process.env;
+const {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID, REACT_APP_CLOUD_PRESET, REACT_APP_CLOUD_KEY, REACT_APP_CLOUD_NAME} = process.env;
 
 export default class ToolEdit extends Component {
   constructor() {
@@ -125,6 +125,22 @@ export default class ToolEdit extends Component {
   toogleTagBoolean(event) {
     this.setState({ [event.target.name]: !this.state[event.target.name] });
   };
+
+  onDrop = files => {
+    files.map(file => {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", REACT_APP_CLOUD_PRESET); 
+      formData.append("api_key", REACT_APP_CLOUD_KEY); 
+      formData.append("timestamp", (Date.now() / 1000) | 0);
+      formData.append("public_id", file.name);
+      return axios.post(`https://api.cloudinary.com/v1_1/${REACT_APP_CLOUD_NAME}/image/upload/`, formData, {headers: { "X-Requested-With": "XMLHttpRequest" }}).then(res => {
+        this.setState({
+          image: res.data.url
+        })
+      })
+    });
+  }
 
   confirm() {
     const {
