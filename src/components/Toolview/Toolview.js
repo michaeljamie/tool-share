@@ -184,7 +184,8 @@ class Toolview extends Component {
                     <Map id={this.props.match.params.id}/>
                 </div>
                 <div className = "toolview-bottom">
-                    <SimilarTools tags={this.state.currentToolTags} />
+                    Similar Tools:  
+                    <SimilarTools params={this.props.match.params.id} history={this.props.history} tags={this.state.currentToolTags} />
                 </div>
             </div>
         );
