@@ -221,15 +221,7 @@ body {
 
 .nav-logoIcon {
   height: 45px;
-  
 }
-
-// .nav-logoContain {
-//   height: 45px;
-//   background: $color3;
-//   border-radius: 50px;
-//   margin-right: 5px;
-// }
 
 .nav_profile_icon:hover {
   cursor: pointer;
@@ -254,10 +246,10 @@ body {
 }
 
 .middle-nav {
-  width: 53vw;
-  position: sticky;
+  width: 83vw;
   text-align: center;
-  z-index: 1;
+  position: absolute;
   @include flexSetUp(center, center, row);
 }
+
 

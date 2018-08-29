@@ -75,18 +75,10 @@ class Nav extends Component {
                     </ul>
                 </div>
                 <div className='middle-nav'>
-                    <div className='nav-logoContain'>
-                        <img src={ToolBrosLogo} className='nav-logoIcon' alt="logo"/>
-                    </div>
                     <h2 className='nav-title'>Tool Share</h2>
                 </div>
                 { this.props.show_profile_nav ? <Link to={`/profile/${this.props.users.userid}`} className="nav-links" ><img className="nav_profile_icon" src={this.props.users.profile_pic} alt="profile icon"/></Link> : <h3 onClick={this.login} className="nav_register_link">Login</h3> }
 
-                {/* <ul id={ this.state.showProfileNav ? "profile-menu-show" : "profile-menu-disable" }>
-                    <Link to={`/profile/${this.props.users.userid}`} className="nav-profile-links" ><li onClick={ this.updateProfileNav }>Profile</li></Link>
-                    <Link to="/messages" className="nav-profile-links" ><li onClick={ this.updateProfileNav }>Messages</li></Link>
-                    <Link to="/" className="nav-profile-links" ><li onClick={ this.logout }>Logout</li></Link>
-                </ul> */}
             </div>            
         );
     };
