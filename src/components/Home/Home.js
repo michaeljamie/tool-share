@@ -33,6 +33,8 @@ export default class Home extends Component {
             formemail: '',
             formphone: '',
             formmessage: '',
+            zipcode: null,
+            keyword: ''
         }
     }
 
@@ -72,8 +74,26 @@ export default class Home extends Component {
         })
     }
 
+    handleZipChange = (value) => {
+        this.setState({
+            zipcode: value
+        })
+    }
+
+    handleKeywordChange = (value) => {
+        this.setState({
+           keyword: value
+        })
+    }
+
+    handleSearchClick = () => {
+
+        console.log(this.state.zipcode, this.state.keyword)
+    }
+
 
     render() {
+        console.log(this.state.zipcode)
         return(
             <div className='home-main'>
                 <div className='home-header'>
@@ -97,16 +117,16 @@ export default class Home extends Component {
                 <div className = 'home-searchBar'>
                     <h3 className='home-searchTop'>Start Searching:</h3>
                     <div className='home-contactDiv'>
-                        <p className = 'home-inputText'>Zip Code</p>
+                        <p value={this.state.zipcode} onChange={(e)=>this.handleZipChange(e.target.value)} className = 'home-inputText'>Zip Code</p>
                         <input className = 'home-input1' type="text" />
                     </div>
                     <div className='home-contactDiv'>
-                        <p className = 'home-inputText'>Keyword</p>
+                        <p value={this.state.keyword} onChange={(e)=>this.handleKeywordChange(e.target.value)} className = 'home-inputText'>Keyword</p>
                         <input className = 'home-input1' type="text"/>
                     </div>
                     {/* <input type="text" placeholder ='Zip Code'/>
                     <input type="text" placeholder ='ex. Hammer Drill, Jack Hammer, Plate Compactor, etc'/> */}
-                    <a  href="#" className= 'btn btn-sm animated-button gibson-two'>Search Your Area</a>
+                    <a  onClick={()=>this.handleSearchClick()} href="#" className= 'btn btn-sm animated-button gibson-two'>Search Your Area</a>
                     <Link className='home-toolLink' to ='/toolview/29'>
                         <div className='home-exampleCard'>
                             <img src={ex1} className='home-examplePic' alt=""/>
