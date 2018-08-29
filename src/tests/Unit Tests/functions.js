@@ -37,7 +37,7 @@ module.exports = {
     },
     
     getAllUsers: () => {
-        axios.get('/api/users').then( res => {
+       return axios.get('http://localhost:3005/api/users').then( res => {
             return res.data
         }).catch(err=>console.log(err))
     }

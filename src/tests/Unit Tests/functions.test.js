@@ -97,8 +97,8 @@ describe("Sean Kidwell's Tests:", () => {
 
 describe('Eric Olsen Tests:', () => {
     test('Fetch All Users & Data', () => {
-        return fns.getAllUsers().then(answer => {
-        expect(answer[0]).toBeDefined();
+        return fns.getAllUsers().then(data => {
+        expect(data[0]).toBeDefined();
         })
     })
     
