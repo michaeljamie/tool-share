@@ -43,6 +43,8 @@ class ToolSearch extends Component {
     })
   };
 
+  
+
   handleSearchFromSearchBar = (value) => {
     let searchResults = null
     this.setState({

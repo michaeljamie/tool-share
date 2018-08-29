@@ -1,9 +1,11 @@
 const axios = require('axios')
 
 module.exports = {
+
     test: ()=>{
         return "test"
     },
+
     getUser: ()=>{
         return axios.get('/api/user-data/')
         .then(res=>{
@@ -36,6 +38,11 @@ module.exports = {
         .then(res => {
             return res.data
         }).catch(err=>console.log(err))
+    },
+    
+    getAllUsers: () => {
+       return axios.get('http://localhost:3005/api/users').then( res => {
+            return res.data
+        }).catch(err=>console.log(err))
     }
-
 }

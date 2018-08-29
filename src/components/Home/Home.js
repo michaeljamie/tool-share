@@ -56,6 +56,7 @@ export default class Home extends Component {
     })
     }
 
+
     handleSubmit = (e) => {
         e.preventDefault()
         const {formname, formemail, formphone, formmessage} = this.state;

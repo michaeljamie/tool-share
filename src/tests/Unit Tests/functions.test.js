@@ -111,4 +111,41 @@ describe("Sean Kidwell's Tests:", () => {
         })
     })
 
-})
+});
+
+describe('Eric Olsen Tests:', () => {
+    test('Fetch All Users & Data', () => {
+        return fns.getAllUsers().then(data => {
+        expect(data[0]).toBeDefined();
+        })
+    })
+    
+    test('getAllUsers should retrieve array', () => {
+        return fns.getAllUsers().then(data => {
+        expect(Array.isArray(data)).toEqual(true);
+        })
+    })
+
+    test('getAllUsers test array should have length', () => {
+        return fns.getAllUsers().then(data => {
+            expect.anything(data.length);
+        })
+    })
+
+    test('getAllUsers test should return username', () => {
+        return fns.getAllUsers().then(data => {
+            if (data.length>=1) {
+                expect(typeof data[0]).toBe('object')
+            };
+        })
+    })
+
+    test('getAllUsers test should return fullname', () => {
+        return fns.getAllUsers().then(data => {
+            if (data.length>=1) {
+                expect(data[0].userid).toBeDefined();
+            };
+        })
+    })
+
+});

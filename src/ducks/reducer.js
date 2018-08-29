@@ -9,6 +9,7 @@ const initialState = {
     search_max_price: 0,
     search_max_distance: 0,
     current_room: '',
+    show_profile_nav: false
 };
 
 const USER_DATA = 'USER_DATA';
@@ -21,6 +22,7 @@ const SEARCH_SALE_OPTION = 'SEARCH_SALE_OPTION';
 const SEARCH_MAX_PRICE = 'SEARCH_MAX_PRICE';
 const SEARCH_MAX_DISTANCE= 'SEARCH_MAX_DISTANCE';
 const SET_ROOM_ID = 'SET_ROOM_ID';
+const PROFILE_NAV = 'PROFILE_NAV';
 
 
 export function setRoomID (room) {
@@ -91,6 +93,12 @@ export function handleSearchMaxDistance (distance) {
     };
 };
 
+export function updateProfileNav () {
+    return {
+        type: PROFILE_NAV
+    };
+};
+
 
 export default function reducer (state=initialState, action){
     switch(action.type){
@@ -124,6 +132,9 @@ export default function reducer (state=initialState, action){
 
         case SET_ROOM_ID:
         return Object.assign({}, state, {current_room: action.payload})
+
+        case PROFILE_NAV:
+        return Object.assign({}, state, {show_profile_nav: !state.show_profile_nav})
         
         default: return state;
     };
