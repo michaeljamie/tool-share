@@ -71,6 +71,16 @@ module.exports = {
         .catch( err => {
             console.log(err)
         })
-    }        
+    },
+    
+    getAllUsers: (req, res) => {
+        req.app.get('db').select_all_users()
+        .then( users => {
+            res.sendStatus(200).send(users)
+        })
+        .catch( err => {
+            console.log(err)
+        })
+    },
 
 }
