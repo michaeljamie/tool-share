@@ -190,7 +190,7 @@ class CheckOut extends Component {
                     
                     <button className='checkout-stripe' onClick={()=>this.props.history.push(`/toolview/${this.props.match.params.id}`)}>Cancel</button>
                 <div className='cart-terms'>*Security deposit will be refunded upon tool return</div>
-                <div className='cart-terms'>See <Link to="/rental_agreement"><a href="" className = 'home-rentalLink'>Terms and Conditions</a></Link> for additional details</div>
+                <div className='cart-terms'>See <Link to="/terms_and_conditions"><a href="" className = 'home-rentalLink'>Terms and Conditions</a></Link> for additional details</div>
                 </div>
             </div>
         );
