@@ -1,0 +1,29 @@
+.similar-tools {
+    height: 30vh;
+    width: 90%;
+    display: flex;
+    border: solid 1px black;
+    margin-bottom: 2%;
+    margin-top: 1%;
+    background: white;
+    justify-content: space-around;
+    background-color: #252525;
+    border-radius: 6px;
+    border: 1px solid #fdd947;
+    color: white;
+}
+
+.similar-tools-pic {
+    width: 65%;
+}
+
+.similar-tools-name {
+    display: flex;
+    align-items: center;
+}
+
+.similar-tools-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

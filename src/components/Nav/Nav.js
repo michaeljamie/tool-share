@@ -1,24 +1,24 @@
 import React, {Component} from 'react';
 import './_Nav.scss';
 import {Link} from 'react-router-dom';
-import { getUserInfo } from './../../ducks/reducer';
+import { getUserInfo, updateProfileNav } from './../../ducks/reducer';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import ToolBrosLogo from './../../assets/ToolBrosLogo.png';
 
 class Nav extends Component {
-    constructor() {
-        super();
+    // constructor() {
+    //     super();
 
-        this.state = {
-            showProfileNav: false
-        }
-    }
+    //     this.state = {
+    //         showProfileNav: false
+    //     }
+    // }
 
-    updateProfileNav = () => {
-        let boolVal = !this.state.showProfileNav
-        this.setState({ showProfileNav : boolVal })
-    }
+    // updateProfileNav = () => {
+    //     let boolVal = !this.state.showProfileNav
+    //     this.setState({ showProfileNav : boolVal })
+    // }
 
     changeMenu = () => {
         const checkbox = document.getElementById('nav_checkbox')
@@ -28,8 +28,15 @@ class Nav extends Component {
     componentDidMount = () => {
         axios.get('/api/user-data').then(res=>{
             this.props.getUserInfo(res.data)
-           
         })
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.users===this.props.users) {
+            null
+        } else {
+            this.props.updateProfileNav()
+        }
     }
 
     login = () => {
@@ -41,11 +48,10 @@ class Nav extends Component {
     }
 
     logout = () => {
-        this.updateProfileNav()
         axios.get('/api/logout').then(
             this.props.users.username = false
         )
-        
+        this.props.updateProfileNav()
     }
 
     render() {
@@ -69,18 +75,10 @@ class Nav extends Component {
                     </ul>
                 </div>
                 <div className='middle-nav'>
-                    <div className='nav-logoContain'>
-                        <img src={ToolBrosLogo} className='nav-logoIcon' alt="logo"/>
-                    </div>
                     <h2 className='nav-title'>Tool Share</h2>
                 </div>
-                { this.props.users.username ? <Link to={`/profile/${this.props.users.userid}`} className="nav-links" ><img className="nav_profile_icon" src={this.props.users.profile_pic} alt="profile icon"/></Link> : <h3 onClick={this.login} className="nav_register_link">Login</h3> }
+                { this.props.show_profile_nav ? <Link to={`/profile/${this.props.users.userid}`} className="nav-links" ><img className="nav_profile_icon" src={this.props.users.profile_pic} alt="profile icon"/></Link> : <h3 onClick={this.login} className="nav_register_link">Login</h3> }
 
-                {/* <ul id={ this.state.showProfileNav ? "profile-menu-show" : "profile-menu-disable" }>
-                    <Link to={`/profile/${this.props.users.userid}`} className="nav-profile-links" ><li onClick={ this.updateProfileNav }>Profile</li></Link>
-                    <Link to="/messages" className="nav-profile-links" ><li onClick={ this.updateProfileNav }>Messages</li></Link>
-                    <Link to="/" className="nav-profile-links" ><li onClick={ this.logout }>Logout</li></Link>
-                </ul> */}
             </div>            
         );
     };
@@ -88,8 +86,9 @@ class Nav extends Component {
 
 function mapStateToProps (state) {
     return {
-        users: state.user
+        users: state.user,
+        show_profile_nav: state.show_profile_nav
     }
 }
 
-export default connect (mapStateToProps, {getUserInfo})(Nav);
+export default connect (mapStateToProps, {getUserInfo, updateProfileNav})(Nav);

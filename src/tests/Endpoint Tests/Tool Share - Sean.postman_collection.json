@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "aa0d0a0e-eaef-43d4-9112-cfa56e3cdac7",
+		"name": "Tool Share - Sean",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "d49e34f6-a325-4e53-aa35-aedd1eb6f536",
+			"name": "http://localhost:3005/api/usersRentedTools/4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9a0c3f6f-c363-4f14-86d2-7f16f8fae9d9",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('status code is 200', () => {",
+							"    pm.expect(pm.response).to.have.status(200);",
+							"})",
+							"pm.test('should return', () => {",
+							"    pm.expect(typeof pm.response.json()).to.eql('object');",
+							"})",
+							"pm.test('should be an array', () => {",
+							"    pm.expect(Array.isArray(pm.response.json())).to.eql(true)",
+							"})",
+							"pm.test('should have a length', () => {",
+							"    pm.expect(pm.response.json().length>=0).to.eql(true)",
+							"})",
+							"pm.test('element should be an object', () => {",
+							"    pm.expect(typeof pm.response.json()[0]).to.eql('object')",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3005/api/usersRentedTools/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"api",
+						"usersRentedTools",
+						"4"
+					]
+				},
+				"description": "testing rented tools"
+			},
+			"response": []
+		}
+	]
+}

@@ -11,13 +11,16 @@ class SimilarTools extends Component {
         };
     };
 
-    // componentDidUpdate(prevProps) {
-    //     if(prevProps.tags !== this.props.tags){
-    //         this.getToolsWithSameTags()
-    //     };
-    // };
+    componentDidUpdate(prevProps) {
+        if(prevProps.tags !== this.props.tags){
+            this.getToolsWithSameTags()
+        };
+    };
 
     getSimilarTools = () => {
+        this.setState({
+            matchingTools: []
+        })
         let toolIds = this.state.matchingTags.map(tool=>{
             axios.post('/api/get_similar_tools', {toolId: tool.tool_id})
             .then(res=>{
@@ -27,14 +30,14 @@ class SimilarTools extends Component {
             }).catch(console.log)
             
         })
-       
+       window.scrollTo(0,0)
     }
 
     getToolsWithSameTags = () => {
         axios.get('/api/get_all_tags').then( res => {
           let matchingTags = res.data.filter(e=>{
                 for(var key in e){
-                        if(e[key] === this.props.tags[0][key] && e[key] !== false && res.data[0].tool_id !== e.tool_id){
+                        if(e[key] === this.props.tags[0][key] && e[key] !== false && this.props.tags[0].tool_id !== e.tool_id){
                            return true
                         } 
                 } 
@@ -52,21 +55,19 @@ class SimilarTools extends Component {
 
 
     render() {
-        console.log(this.state.matchingTools)
+   
         let toolsWithSameTags = this.state.matchingTools.map( tool => {
-            console.log(tool)
             return (
-                <div>
-                    <div>{tool.tool_name}</div>
-                    <div>${tool.tool_price}</div>
-                    <img src={`${tool.tool_img}`} alt="tool image"/>
+                <div key={Math.random()} onClick={()=>this.props.history.push(`/toolview/${tool.tool_id}`)} className='similar-tools'>
+                    <div className='similar-tools-name'>{tool.tool_name}</div>
+                    <img className='similar-tools-pic' src={`${tool.tool_img}`} alt="tool image"/>
                 </div>
             );
         });
 
         return (
-           <div>
-             
+           <div className ='similar-tools-container'>
+             {toolsWithSameTags}
            </div>
         );
     };

@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import swal from 'sweetalert2';
+import { connect } from 'react-redux';
+import {updateProfileNav} from '../../ducks/reducer';
 import userAvatar from './../../assets/userAvatar.jpg';
 const {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID, REACT_APP_CLOUD_PRESET, REACT_APP_CLOUD_KEY, REACT_APP_CLOUD_NAME } = process.env;
 
-export default class ProfileEdit extends Component {
+class ProfileEdit extends Component {
   constructor() {
     super();
     this.state = {
@@ -28,7 +30,6 @@ export default class ProfileEdit extends Component {
     window.scrollTo(0,0);
     axios.get(`/api/userData/${this.props.match.params.userid}`).then(res => {
       let {fullname, bio, profile_pic, email, phone, zipcode} = res.data[0]
-      console.log(res.data[0])
       this.setState({
         fullName: fullname,
         bio: bio,
@@ -91,6 +92,7 @@ export default class ProfileEdit extends Component {
     }).then((result) => {
       if (result.value) {
         axios.delete('/api/deleteUser')
+        this.props.updateProfileNav()
         this.props.history.push('/')
         swalWithBootstrapButtons({
           title: 'Deleted!',
@@ -194,3 +196,11 @@ export default class ProfileEdit extends Component {
     )
   }
 }
+
+function mapStateToProps (state) {
+    return {
+        show_profile_nav: state.show_profile_nav
+    }
+}
+
+export default connect (mapStateToProps, {updateProfileNav})(ProfileEdit);
