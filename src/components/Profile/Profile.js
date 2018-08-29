@@ -45,12 +45,10 @@ class Profile extends Component {
     await axios.get(`/api/usersListedTools/${this.props.match.params.userid}`).then(res => {
       this.setState({ listedTools: res.data });
     });
-    console.log('the state:',this.state)
   }
 
   componentDidMount() {
     this.pageLoad()
-    console.log('COMPONENT MOUNTED!!!1!')
   }
 
   componentDidUpdate = async (prevProps, prevState) => {
@@ -58,7 +56,6 @@ class Profile extends Component {
       null
     } else {
       await this.pageLoad()
-      console.log('props updated state:',this.state)
     }
   }
 
