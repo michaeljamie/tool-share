@@ -246,10 +246,9 @@ body {
 }
 
 .middle-nav {
-  width: 53vw;
-  position: sticky;
+  width: 83vw;
   text-align: center;
-  z-index: 1;
+  position: absolute;
   @include flexSetUp(center, center, row);
 }
 
