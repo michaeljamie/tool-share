@@ -12,9 +12,27 @@ describe('Stephen Pace Tests:', () => {
         expect(answer).toBeDefined()
     })
 
-    test('zipcode should be 5 digits', ()=>{
-        let answer = fns.getZip();
-        expect(answer.length).toBe(5)
+    test('tags should exist', ()=>{
+        let answer = fns.getTags();
+        expect(answer).toBeDefined()
+    })
+
+    test('tag should be object', ()=>{
+        let answer = fns.getTags();
+        expect(typeof answer).toBe('object')
+    })
+
+    test('tag should be type boolean', ()=>{
+        expect.assertions(1);
+        return fns.getTagById(1).then(answer=>{
+            expect(typeof answer[0].drill).toBe('boolean')
+        })
+    })
+    test('tag drill should be true', ()=>{
+        expect.assertions(1);
+        return fns.getTagById(8).then(answer=>{
+            expect(answer[0].drill).toBe(true)
+        })
     })
 
 });

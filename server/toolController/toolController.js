@@ -53,7 +53,7 @@ module.exports = {
     },
 
     get_current_tool_tag: (req, res) => {
-        console.log(req.params.id)
+       
         const {id} = req.params;
         req.app.get('db').get_current_tool_tag([id])
         .then ( tag => {
