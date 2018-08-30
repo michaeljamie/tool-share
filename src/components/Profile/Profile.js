@@ -51,13 +51,13 @@ class Profile extends Component {
     this.pageLoad()
   }
 
-  componentDidUpdate = async (prevProps, prevState) => {
-    if (prevProps.match.params.userid===this.props.match.params.userid) {
-      null
-    } else {
-      await this.pageLoad()
-    }
-  }
+  // componentDidUpdate = async (prevProps, prevState) => {
+  //   if (prevProps.match.params.userid===this.props.match.params.userid) {
+  //     null
+  //   } else {
+  //     await this.pageLoad()
+  //   }
+  // }
 
   rentedSwipeLeft() {
     this.setState({ rentedToolsStyle: (this.state.rentedToolsStyle -= 94) });
