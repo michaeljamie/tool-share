@@ -12,14 +12,18 @@ module.exports = {
             return res.data
         }).catch(err=>console.log(err))
     },
-
-    getZip: ()=>{
-       let zip
-        axios.get(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=38.964340&lng=-0.559150&username=stepace`)
+    getTags: ()=>{
+        return axios.get('/api/get_all_tags/')
         .then(res=>{
-            zip =res.data.postalCodes[0].postalCode
+            return res.data
         }).catch(err=>console.log(err))
-        return zip
+    },
+
+    getTagById: (id)=>{
+        return axios.get('http://localhost:3005/api/get_current_tool_tag/' + id)
+        .then(res=>{
+            return res.data
+        }).catch(err=>console.log(err))   
     },
 
     getUserData: (id) => {

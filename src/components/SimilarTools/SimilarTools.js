@@ -35,6 +35,7 @@ class SimilarTools extends Component {
 
     getToolsWithSameTags = () => {
         axios.get('/api/get_all_tags').then( res => {
+            console.log(res.data)
           let matchingTags = res.data.filter(e=>{
                 for(var key in e){
                         if(e[key] === this.props.tags[0][key] && e[key] !== false && this.props.tags[0].tool_id !== e.tool_id){

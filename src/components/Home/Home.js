@@ -20,6 +20,7 @@ import car from './../../assets/car.png';
 import ladderguy from './../../assets/ladderguy.png';
 import treehouse from './../../assets/treehouse.png';
 import fireworks from './../../assets/fireworks.gif';
+import SearchBar from './../../components/SearchBar/SearchBar';
 
 
 export default class Home extends Component {
@@ -33,6 +34,8 @@ export default class Home extends Component {
             formemail: '',
             formphone: '',
             formmessage: '',
+            keyword: '',
+            
         }
     }
 
@@ -73,8 +76,48 @@ export default class Home extends Component {
         })
     }
 
+    handleZipChange = (value) => {
+        console.log(value)
+        this.setState({
+            zipCode: value
+        })
+    }
+
+    handleSearchClick = () => {
+        return this.props.history.push('/toolsearch')
+       
+    }
+
+
+  handleSearchFromSearchBar = (value) => {
+    let searchResults = null
+    this.setState({
+      searchResults: []
+    })
+    axios.get('/api/tools').then( res => {
+      
+        searchResults = res.data
+      
+    }).then(()=>{
+    
+    let ids = searchResults.filter(tools=>{
+      return tools[value] === true
+    })  
+   
+    let displayedTools = ids.map(tool=>{
+      axios.post('api/get_tools_by_search', {tool_id: tool.tool_id})
+      .then(res=>{
+        this.setState({
+          searchResults: [...this.state.searchResults, ...res.data]
+        })
+      })
+    })
+  })
+  }
+
 
     render() {
+
         return(
             <div className='home-main'>
                 <div className='home-header'>
@@ -99,15 +142,15 @@ export default class Home extends Component {
                     <h3 className='home-searchTop'>Start Searching:</h3>
                     <div className='home-contactDiv'>
                         <p className = 'home-inputText'>Zip Code</p>
-                        <input className = 'home-input1' type="text" />
+                        <input className = 'home-input1' onChange={(e)=>this.handleZipChange(e.target.value)} type="text" />
                     </div>
                     <div className='home-contactDiv'>
-                        <p className = 'home-inputText'>Keyword</p>
-                        <input className = 'home-input1' type="text"/>
+                        <p  className = 'home-inputText'>Keyword</p>
+                        <SearchBar history={this.props.history} location={this.props.location} handleSearch={this.handleSearchFromSearchBar}/>
                     </div>
                     {/* <input type="text" placeholder ='Zip Code'/>
                     <input type="text" placeholder ='ex. Hammer Drill, Jack Hammer, Plate Compactor, etc'/> */}
-                    <a  href="#" className= 'btn btn-sm animated-button gibson-two'>Search Your Area</a>
+                    <a  onClick={()=>this.handleSearchClick()} href="#" className= 'btn btn-sm animated-button gibson-two'>Search Your Area</a>
                     <Link className='home-toolLink' to ='/toolview/29'>
                         <div className='home-exampleCard'>
                             <img src={ex1} className='home-examplePic' alt=""/>
