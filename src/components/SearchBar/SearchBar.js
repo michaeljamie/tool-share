@@ -124,10 +124,18 @@ class SearchBar extends React.Component {
   };
 
   handleValueChange = (value) => {
-   this.props.handleSearch(value)
+    
+   if(this.props.location.pathname === '/'){
+    this.props.handleSearch(value)
+    this.props.history.push('/search')
+   } else if (this.props.location.pathname === '/search'){
+      this.props.handleSearch(value)
+   }
+  
   }
 
   render() {
+    
     const theme = themeable(this.props.theme);
     const { value, suggestions } = this.state;
     const inputProps = {

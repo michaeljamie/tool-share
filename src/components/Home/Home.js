@@ -20,6 +20,7 @@ import car from './../../assets/car.png';
 import ladderguy from './../../assets/ladderguy.png';
 import treehouse from './../../assets/treehouse.png';
 import fireworks from './../../assets/fireworks.gif';
+import SearchBar from './../../components/SearchBar/SearchBar';
 
 
 export default class Home extends Component {
@@ -33,8 +34,8 @@ export default class Home extends Component {
             formemail: '',
             formphone: '',
             formmessage: '',
-            zipcode: null,
-            keyword: ''
+            keyword: '',
+            
         }
     }
 
@@ -76,25 +77,47 @@ export default class Home extends Component {
     }
 
     handleZipChange = (value) => {
+        console.log(value)
         this.setState({
-            zipcode: value
-        })
-    }
-
-    handleKeywordChange = (value) => {
-        this.setState({
-           keyword: value
+            zipCode: value
         })
     }
 
     handleSearchClick = () => {
-
-        console.log(this.state.zipcode, this.state.keyword)
+        return this.props.history.push('/toolsearch')
+       
     }
 
 
+  handleSearchFromSearchBar = (value) => {
+    let searchResults = null
+    this.setState({
+      searchResults: []
+    })
+    axios.get('/api/tools').then( res => {
+      
+        searchResults = res.data
+      
+    }).then(()=>{
+    
+    let ids = searchResults.filter(tools=>{
+      return tools[value] === true
+    })  
+   
+    let displayedTools = ids.map(tool=>{
+      axios.post('api/get_tools_by_search', {tool_id: tool.tool_id})
+      .then(res=>{
+        this.setState({
+          searchResults: [...this.state.searchResults, ...res.data]
+        })
+      })
+    })
+  })
+  }
+
+
     render() {
-        console.log(this.state.zipcode)
+
         return(
             <div className='home-main'>
                 <div className='home-header'>
@@ -118,12 +141,12 @@ export default class Home extends Component {
                 <div className = 'home-searchBar'>
                     <h3 className='home-searchTop'>Start Searching:</h3>
                     <div className='home-contactDiv'>
-                        <p value={this.state.zipcode} onChange={(e)=>this.handleZipChange(e.target.value)} className = 'home-inputText'>Zip Code</p>
-                        <input className = 'home-input1' type="text" />
+                        <p className = 'home-inputText'>Zip Code</p>
+                        <input className = 'home-input1' onChange={(e)=>this.handleZipChange(e.target.value)} type="text" />
                     </div>
                     <div className='home-contactDiv'>
-                        <p value={this.state.keyword} onChange={(e)=>this.handleKeywordChange(e.target.value)} className = 'home-inputText'>Keyword</p>
-                        <input className = 'home-input1' type="text"/>
+                        <p  className = 'home-inputText'>Keyword</p>
+                        <SearchBar history={this.props.history} location={this.props.location} handleSearch={this.handleSearchFromSearchBar}/>
                     </div>
                     {/* <input type="text" placeholder ='Zip Code'/>
                     <input type="text" placeholder ='ex. Hammer Drill, Jack Hammer, Plate Compactor, etc'/> */}
