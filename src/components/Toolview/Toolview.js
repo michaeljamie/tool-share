@@ -61,6 +61,7 @@ class Toolview extends Component {
             this.setState({
                 owner_name: tool.data.fullname,
                 owner_pic: tool.data.profile_pic,
+                owner_rating: tool.data.listerrating,
                 owner_id: tool.data.tool_owner,
                 owner_lat: tool.data.latitude,
                 owner_long: tool.data.longitude,
@@ -118,7 +119,6 @@ class Toolview extends Component {
     };
 
     render() {
-       
         if(this.state.redirect){
             return <Redirect push to = {`/chat/${this.state.roomToJoin}`}/>
         }
@@ -174,7 +174,7 @@ class Toolview extends Component {
                 {
                     this.state.owner_id !== this.props.user.userid ?
                     <div className = "toolview-lower">
-                        <Lister name={this.state.owner_name} pic={this.state.owner_pic} ownerid={this.state.owner_id} />
+                        <Lister name={this.state.owner_name} pic={this.state.owner_pic} ownerid={this.state.owner_id} rating={this.state.owner_rating}/>
                         <button className='toolview-message-button' onClick={ () => this.joinRoom() }>
                             Message
                         </button>
