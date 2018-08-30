@@ -31,13 +31,13 @@ class Nav extends Component {
         })
     }
 
-    componentDidUpdate(prevProps) {
-        if (prevProps.users===this.props.users) {
-            null
-        } else {
-            this.props.updateProfileNav()
-        }
-    }
+    // componentDidUpdate(prevProps) {
+    //     if (prevProps.users===this.props.users) {
+    //         null
+    //     } else {
+    //         this.props.updateProfileNav()
+    //     }
+    // }
 
     login = () => {
         const { REACT_APP_DOMAIN, REACT_APP_CLIENT_ID } = process.env;
