@@ -39,6 +39,7 @@
     height: 100%;
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 
 .toolview-back-button {
@@ -202,11 +203,12 @@
 
 .toolview-lower {
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     background-color: $color1;
     color: white;
-    height: 25vh;
+    height: 45vh;
     width: 95%;
     margin-top: 4%;
     border-radius: 6px;
@@ -215,12 +217,12 @@
 
 .toolview-message-button {
     cursor: pointer;
-    width: 30%;
+    width: 35%;
     background-color: $color5;
     color: black;
     border-radius: 6px;
     border: none;
-    height: 20%;
+    height: 12%;
     font-size: 100%;
 }
 
