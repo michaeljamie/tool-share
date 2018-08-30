@@ -1,0 +1,29 @@
+.toolshare-desktop-body {
+    height: 100vh;
+    width: 100vw;
+    padding-top: 100px;
+    background-color: #252525;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.toolshare-desktop-title {
+    font-size: 48px;
+    color: #fdd947;
+    margin-bottom: 50px;
+}
+
+.toolshare-desktop-content {
+    font-size: 22px;
+    color: white;
+}
+
+.toolshare-desktop-logo {
+    height: 300px;
+    width: 300px;
+    background-color: white;
+    border-radius: 150px;
+    margin-bottom: 50px;
+}
