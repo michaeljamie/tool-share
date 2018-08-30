@@ -78,7 +78,7 @@ class Nav extends Component {
                 <div className='middle-nav'>
                     <h2 className='nav-title'>Tool Share</h2>
                 </div>
-                { this.props.show_profile_nav ? <Link to={`/profile/${this.props.users.userid}`} className="nav-links" ><img className="nav_profile_icon" src={this.props.users.profile_pic} alt="profile icon"/></Link> : <h3 onClick={this.login} className="nav_register_link">Login</h3> }
+                { this.props.users.username ? <Link to={`/profile/${this.props.users.userid}`} className="nav-links" ><img className="nav_profile_icon" src={this.props.users.profile_pic} alt="profile icon"/></Link> : <h3 onClick={this.login} className="nav_register_link">Login</h3> }
 
             </div>            
         );
