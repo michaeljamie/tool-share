@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "9c3fde78-e44c-4466-b48a-8264c315b4dc",
+		"name": "Michael Johnston Endpoint Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:3005/api/tools",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "681abcb1-6c72-467a-85d9-97e864ff99a0",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 200', () => {",
+							"    pm.expect(pm.response).to.have.status(200);",
+							"})",
+							"",
+							"pm.test('Should return tools correct amount of tools', () => {",
+							"    let body = pm.response;",
+							"    let parsedBody = body.json();",
+							"    ",
+							"    pm.expect(pm.response.json().length).to.eql(43);",
+							"})",
+							"",
+							"pm.test('Should return specific tool ID', () => {",
+							"    let body = pm.response;",
+							"    let parsedBody = body.json();",
+							"    ",
+							"    pm.expect(pm.response.json()[0].tool_id).to.eql(7);",
+							"})",
+							"",
+							"pm.test('Should return specific tool name', () => {",
+							"    let body = pm.response;",
+							"    let parsedBody = body.json();",
+							"    ",
+							"    pm.expect(pm.response.json()[1].tool_name).to.eql(\"Stanley 18 in Bolt Cutters\");",
+							"})",
+							"",
+							"pm.test('Should return correct date submitted', () => {",
+							"    let body = pm.response;",
+							"    let parsedBody = body.json();",
+							"    ",
+							"    pm.expect(pm.response.json()[2].tool_submitted).to.eql(\"2018-08-24T06:41:29.365Z\");",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3005/api/tools",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"api",
+						"tools"
+					]
+				},
+				"description": "Checking body from tools to verify correct info is being received."
+			},
+			"response": []
+		}
+	]
+}
