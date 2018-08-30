@@ -149,3 +149,40 @@ describe('Eric Olsen Tests:', () => {
     })
 
 });
+
+describe('Sam Johnston Tests:', () => {
+    test('Fetch Dates for tool with id 6', () => {
+        return fns.getDates().then(data => {
+        expect(data[0]).toBeDefined();
+        })
+    })
+    
+    test('Check that data is an array', () => {
+        return fns.getDates().then(data => {
+        expect(Array.isArray(data)).toEqual(true);
+        })
+    })
+
+    test('Data array should have length', () => {
+        return fns.getDates().then(data => {
+            expect.anything(data.length);
+        })
+    })
+
+    test('Data returned should be an array with at least one object', () => {
+        return fns.getDates().then(data => {
+            if (data.length>=1) {
+                expect(typeof data[0]).toBe('object')
+            };
+        })
+    })
+
+    test('Make sure data is returning object with correct key', () => {
+        return fns.getDates().then(data => {
+            if (data.length>=1) {
+                expect(data[0].return_date).toBeDefined();
+            };
+        })
+    })
+
+});
