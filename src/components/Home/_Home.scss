@@ -421,8 +421,9 @@ a.animated-button:link, a.animated-button:visited {
     width: 100%;
     transition: .6s ease-in-out;
     height: 2.3vh;
-    margin-top: 0px;
+    padding-top: 10px;
     color: $color3;
+    font-size: 12px;
 }
 
 .home-input1::placeholder {
@@ -432,9 +433,9 @@ a.animated-button:link, a.animated-button:visited {
 .home-input1:focus {
     color: $color3;
     // transform: scaleY(3.5);
-    margin-top: 30px;
+    padding-top: 30px;
     outline: none;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 
@@ -442,7 +443,8 @@ a.animated-button:link, a.animated-button:visited {
 .home-inputText {
     color: $color3;
     text-align: left;
-    margin-bottom: 0px;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 
