@@ -91,9 +91,9 @@ class ToolSearch extends Component {
 
     return (
       <div className="tool-search-body">
-        <div className='search-logoContain'>
+        {/* <div className='search-logoContain'>
           <img src={ToolBrosLogo} className='search-logoIcon' alt="logo"/>
-        </div>
+        </div> */}
         
         {/* <div className='search-bar'>
           <input className='search-bar-input' placeholder="Search By Title" name='searchTitle' value={this.props.search_title} onChange={(e) => this.props.handleSearchTitle(e.target.value)}/> */}
