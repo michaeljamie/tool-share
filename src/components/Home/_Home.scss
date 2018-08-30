@@ -68,12 +68,18 @@
     border-radius: 50px;
 }
 .home-exampleCard {
-    @include flexSetUp(space-around, center, row);
-    background: $color3;
+    height: 20vh;
+    width: 90%;
+    display: flex;
+    border: solid 1px black;
+    margin-bottom: 2%;
+    margin-top: 1%;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #252525;
     border-radius: 6px;
-    padding: 10px;
-    height: 100%;
-    width: 100%;
+    border: 1px solid #fdd947;
+    color: white;
 }
 
 .home-toolLink {
@@ -95,7 +101,7 @@
 .home-exampleTitle {
     font-size: 23px;
     margin: 5px;
-    color: $color1;
+    color: white;
     border-bottom: solid 2px $color5;
 }
 
@@ -107,10 +113,12 @@
 
 .home-tool {
     font-size: 16px;
+    color: white;
 }
 
 .home-tool1 {
     font-size: 18px;
+    color: white;
 }
 
 .home-exampleRight {
@@ -120,7 +128,7 @@
 
 .home-searchBar {
     @include flexSetUp(space-around, center, column);
-    height: 270vh;
+    height: 137vh;
     width: 100%;
     background: $color1;
     margin: 0;
@@ -421,8 +429,9 @@ a.animated-button:link, a.animated-button:visited {
     width: 100%;
     transition: .6s ease-in-out;
     height: 2.3vh;
-    margin-top: 0px;
+    padding-top: 10px;
     color: $color3;
+    font-size: 12px;
 }
 
 .home-input1::placeholder {
@@ -432,9 +441,9 @@ a.animated-button:link, a.animated-button:visited {
 .home-input1:focus {
     color: $color3;
     // transform: scaleY(3.5);
-    margin-top: 30px;
+    padding-top: 30px;
     outline: none;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 
@@ -442,7 +451,8 @@ a.animated-button:link, a.animated-button:visited {
 .home-inputText {
     color: $color3;
     text-align: left;
-    margin-bottom: 0px;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 

@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ToolBrosLogo from './../../assets/ToolBrosLogo.png';
 
-export default function ToS (){
+export default class ToS extends Component {
+
+    componentDidMount() {
+        window.scrollTo(0,0);
+    }
+
+    render() {
     return (
         <div className='terms-body'>
             <div className ='terms-top'>
@@ -170,4 +176,5 @@ Any relevant terms and conditions, policies and notices shall be governed by and
             
         </div>
     )
+}
 }
