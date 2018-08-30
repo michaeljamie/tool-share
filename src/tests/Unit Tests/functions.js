@@ -44,5 +44,11 @@ module.exports = {
        return axios.get('http://localhost:3005/api/users').then( res => {
             return res.data
         }).catch(err=>console.log(err))
+    },
+
+    getDates: () => {
+        return axios.get(`http://localhost:3005/api/dates/6`).then ( res => {
+            return res.data
+        }).catch(console.log)
     }
 }

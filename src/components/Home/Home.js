@@ -139,7 +139,7 @@ export default class Home extends Component {
                     </div>
                 </div>
                 <div className = 'home-searchBar'>
-                    <h3 className='home-searchTop'>Start Searching:</h3>
+                    {/* <h3 className='home-searchTop'>Start Searching:</h3>
                     <div className='home-contactDiv'>
                         <p className = 'home-inputText'>Zip Code</p>
                         <input className = 'home-input1' onChange={(e)=>this.handleZipChange(e.target.value)} type="text" />
@@ -150,7 +150,7 @@ export default class Home extends Component {
                     </div>
                     {/* <input type="text" placeholder ='Zip Code'/>
                     <input type="text" placeholder ='ex. Hammer Drill, Jack Hammer, Plate Compactor, etc'/> */}
-                    <a  onClick={()=>this.handleSearchClick()} href="#" className= 'btn btn-sm animated-button gibson-two'>Search Your Area</a>
+                    
                     <Link className='home-toolLink' to ='/toolview/29'>
                         <div className='home-exampleCard'>
                             <img src={ex1} className='home-examplePic' alt=""/>
@@ -199,6 +199,7 @@ export default class Home extends Component {
                             </div>
                         </div>
                     </Link>
+                    <Link to='/search' href="#" className= 'btn btn-sm animated-button gibson-two'>Find More Tools</Link>
                 </div>
                 <div className = 'home-steps'>
                     <h1 className = 'steps-text'>HERE'S HOW IT WORKS:</h1>
@@ -220,7 +221,7 @@ export default class Home extends Component {
                     <div className = 'steps-section'>
                         <img src={dude1} className = 'home-dude2' alt=""/>
                         <div className = 'home-aboutText'>
-                            <h3>Jim signs up for Tool Share, finds tools he needs, and goes to meet the renter</h3>
+                            <h3>Jim signs up for Tool Share, finds tools he needs, and goes to meet the lister</h3>
                         </div>
                     </div>
                     <div className = 'steps-section'>

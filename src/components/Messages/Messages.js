@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from "react-redux";
-import { getUserInfo, setRoomID } from './../../ducks/reducer';
+import { getUserInfo, setRoomID, updateProfileNav } from './../../ducks/reducer';
 import { promises } from 'fs';
 import { Link } from 'react-router-dom';
 import messageBkgd from './../../assets/messageBkgd.jpg';
@@ -16,6 +16,7 @@ class Messages extends Component {
     }
 
     componentDidMount() {
+        this.props.updateProfileNav();
         let messagesArr = []
         axios.get('/api/user-data').then(res=>{
             this.props.getUserInfo(res.data) 
@@ -78,8 +79,9 @@ class Messages extends Component {
 
 function mapStateToProps(state) {
     return {
-      users: state.user
+      users: state.user,
+      show_profile_nav: state.show_profile_nav
     };
   }
   
-  export default connect(mapStateToProps, {getUserInfo, setRoomID})(Messages);
+  export default connect(mapStateToProps, {getUserInfo, setRoomID, updateProfileNav})(Messages);
