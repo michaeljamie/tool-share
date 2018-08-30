@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Button from './HomeButton/Button';
 import whiteCard from './../../assets/whiteCard.png';
 import whiteClipboard from './../../assets/whiteClipboard.png';
 import whiteShield from './../../assets/whiteShield.png';
