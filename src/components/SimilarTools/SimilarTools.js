@@ -68,6 +68,7 @@ class SimilarTools extends Component {
 
         return (
            <div className ='similar-tools-container'>
+           {this.state.matchingTools.length < 1 ? null : <div className='similar-tools-title'>Similar Tools</div>}
              {toolsWithSameTags}
            </div>
         );
