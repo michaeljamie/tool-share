@@ -221,7 +221,7 @@ export default class Home extends Component {
                     <div className = 'steps-section'>
                         <img src={dude1} className = 'home-dude2' alt=""/>
                         <div className = 'home-aboutText'>
-                            <h3>Jim signs up for Tool Share, finds tools he needs, and goes to meet the renter</h3>
+                            <h3>Jim signs up for Tool Share, finds tools he needs, and goes to meet the lister</h3>
                         </div>
                     </div>
                     <div className = 'steps-section'>

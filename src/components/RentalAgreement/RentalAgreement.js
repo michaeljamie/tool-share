@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ToolBrosLogo from './../../assets/ToolBrosLogo.png';
 
-export default function RentalAgreement (){
+export default class RentalAgreement extends Component {
+
+    componentDidMount() {
+        window.scrollTo(0,0);
+    }
+
+    render() {
     return (
         <div className='terms-body'>
             <div className ='terms-top'>
@@ -67,4 +73,5 @@ export default function RentalAgreement (){
             
         </div>
     )
+}
 }
