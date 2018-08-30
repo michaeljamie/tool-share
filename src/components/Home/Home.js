@@ -10,8 +10,6 @@ import ex2 from './../../assets/ex2.jpg';
 import ex3 from './../../assets/ex3.jpg';
 import ex4 from './../../assets/ex4.jpg';
 import whiteArrow from './../../assets/whiteArrow.png';
-import arrowleft from './../../assets/arrowleft.png';
-import arrowright from './../../assets/arrowright.png';
 import dude from './../../assets/dude.png';
 import dude1 from './../../assets/dude1.png';
 import construction from './../../assets/construction.png';
@@ -21,6 +19,7 @@ import ladderguy from './../../assets/ladderguy.png';
 import treehouse from './../../assets/treehouse.png';
 import fireworks from './../../assets/fireworks.gif';
 import SearchBar from './../../components/SearchBar/SearchBar';
+import ToolBrosLogoYellow from './../../assets/ToolBrosLogoYellow.png'
 
 
 export default class Home extends Component {
@@ -122,6 +121,7 @@ export default class Home extends Component {
             <div className='home-main'>
                 <div className='home-header'>
                     <div className='home-headerText'>
+                        <img src={ToolBrosLogoYellow} alt="logo" className='header-logo'/>
                         <h1 className='home-header-1'>RENT TOOLS</h1>
                         <h2 className='home-header-2'>FROM YOUR NEIGHBOR'S GARAGE</h2>
 
