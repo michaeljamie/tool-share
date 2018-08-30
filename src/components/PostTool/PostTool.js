@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from "react-redux";
 import Dropzone from 'react-dropzone';
+import swal from 'sweetalert2';
 import defaultTool from './../../assets/defaultTool.png';
 const {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID, REACT_APP_CLOUD_PRESET, REACT_APP_CLOUD_KEY, REACT_APP_CLOUD_NAME } = process.env;
 
@@ -65,6 +66,21 @@ class PostTool extends Component {
         window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`
     };
 
+    postToolWarning() { 
+        const swalWithBootstrapButtons = swal.mixin({
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons({
+            type: 'error',
+            title: 'Oops...',
+            text: "One or more required fields weren't filled out",
+            background: '#252525'
+        })
+    }
+
     postNewTool() {
         const {
             owner,
@@ -124,31 +140,44 @@ class PostTool extends Component {
             depositInt,
             currently_available
         }
-        axios.post(`/api/post/tool`, tool_data).then( (res) => {
-            const tool_id = res.data.tool_id;
-            const tool_ID_and_Tags = {
-                tool_id,
-                drill,
-                hammer,
-                hammer_drill,
-                jack_hammer,
-                sander,
-                grinder,
-                auger,
-                saw,
-                mower,
-                trimmer,
-                ladder,
-                welding,
-                air_compressor,
-                vacuum, 
-                pressure_washer,
-                ratchet,
-                wrench,
-                lawn_tool
+        if (name && description && condition && tool_img && price && deposit) {
+            if (for_rent || for_sale) {
+                console.log('this is the state:',this.state)
+                if (delivery_avail || pickup_avail) {
+                    axios.post(`/api/post/tool`, tool_data).then( (res) => {
+                        const tool_id = res.data.tool_id;
+                        const tool_ID_and_Tags = {
+                            tool_id,
+                            drill,
+                            hammer,
+                            hammer_drill,
+                            jack_hammer,
+                            sander,
+                            grinder,
+                            auger,
+                            saw,
+                            mower,
+                            trimmer,
+                            ladder,
+                            welding,
+                            air_compressor,
+                            vacuum, 
+                            pressure_washer,
+                            ratchet,
+                            wrench,
+                            lawn_tool
+                        }
+                        axios.post(`/api/tooltags`, tool_ID_and_Tags).then( () => this.props.history.push(`/toolview/${tool_id}`));
+                    });
+                } else {
+                    this.postToolWarning()
+                }
+            } else {
+                this.postToolWarning()
             }
-            axios.post(`/api/tooltags`, tool_ID_and_Tags).then( () => this.props.history.push(`/toolview/${tool_id}`));
-        });
+        } else {
+            this.postToolWarning()
+        }
     };
 
     handleChange(event) {
