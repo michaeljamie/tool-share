@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "e6c306c3-a80e-43dd-ae7b-747b8dd076c6",
+		"name": "ToolShare - Eric Olsen",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3005/api/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "42a054f2-ef44-49b5-a671-9d3667046529",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200)",
+							"})",
+							"",
+							"pm.test('should return object', () => {",
+							"   pm.expect(typeof pm.response.json()).to.eql('object')",
+							"})",
+							"",
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"   pm.expect(pm.response.responseTime).to.be.below(1000)",
+							"})",
+							"",
+							"pm.test('should be an array', () => {",
+							"\tpm.expect(Array.isArray(pm.response.json())).to.eql(true)",
+							"})",
+							"",
+							"pm.test('should have a length', () => {",
+							"\tpm.expect(pm.response.json().length>=0).to.eql(true)",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3005/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
