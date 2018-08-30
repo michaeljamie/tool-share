@@ -72,7 +72,7 @@ class ToolSearch extends Component {
   }
 
   render() {
-    console.log(this.state.searchResults)
+  
    
     const tagPropsToToolview = this.state.searchResults.map( (tool, index) => {
      
@@ -101,7 +101,7 @@ class ToolSearch extends Component {
                         <p className = 'home-inputText'>Start typing a keyword</p>
                         {/* <input className = 'home-input1' type="text" onChange = {(e) => {this.handleChange('formmessage', e.target.value)}} value = {this.state.formmessage}/> */}
                         <div className='search-dude'>
-                        <SearchBar handleSearch={this.handleSearchFromSearchBar}/>
+                        <SearchBar location={this.props.location} history={this.props.history} handleSearch={this.handleSearchFromSearchBar}/>
                         </div>
                     </div>
         {/* </div> */}
