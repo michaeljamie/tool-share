@@ -240,8 +240,9 @@ export default class ToolEdit extends Component {
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-        axios.delete(`/api/delete/tool/${this.props.match.params.id}`)
-        axios.delete(`/api/tooltags/${this.props.match.params.id}`)
+        axios.delete(`/api/tooltags/${this.props.match.params.id}`).then(() => {
+          axios.delete(`/api/delete/tool/${this.props.match.params.id}`)
+        })
         this.props.history.push('/search');
         swalWithBootstrapButtons({
           title: 'Deleted!',
