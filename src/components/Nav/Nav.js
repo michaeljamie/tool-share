@@ -48,6 +48,7 @@ class Nav extends Component {
     }
 
     logout = () => {
+        this.changeMenu()
         axios.get('/api/logout').then(
             this.props.users.username = false
         )

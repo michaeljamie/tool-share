@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import contact from './../../assets/contact.png';
-import swal from 'sweetalert2'
+import axios from 'axios';
 
 export default class Contact extends Component {
     constructor(){
@@ -8,9 +8,10 @@ export default class Contact extends Component {
 
         this.state = {
             render: false,
-            formName: '',
-            formEmail: '',
-            formMessage: ''
+            formname: '',
+            formemail: '',
+            formphone: '',
+            formmessage: ''
         }
     }
 
@@ -22,8 +23,23 @@ export default class Contact extends Component {
         }
     }
 
-    sendForm = () => {
-        this.setState({render:false})
+    sendForm = (e) => {
+        e.preventDefault()
+        const {formname, formemail, formphone, formmessage} = this.state;
+
+        axios.post('./api/send', {
+           formname,
+           formemail,
+           formphone,
+           formmessage 
+        });
+        this.setState({
+            formname: '',
+            formemail: '',
+            formphone: '',
+            formmessage: '',
+            render:false
+        })
     }
 
     handleChange = (property, value) => {
@@ -46,10 +62,12 @@ export default class Contact extends Component {
             { this.state.render ? 
             <div className='contact-form'>
                 <div className='contact-insideForm'>
-                    <h2 className='contact-formText'>Contact Us Now:</h2>
-                    <input type="text" className='contact-formInput' onChange = {(e) => {this.handleChange('formName', e.target.value)}} placeholder='Name'/>
-                    <input type="text" className='contact-formInput'onChange = {(e) => {this.handleChange('formEmail', e.target.value)}} placeholder='Email'/>
-                    <input type="text" className='contact-formInput'onChange = {(e) => {this.handleChange('formMessage', e.target.value)}} placeholder='Message'/>
+                    
+                    <h2 className='contact-formText'>Request More Info:</h2>
+                    <input type="text" className='contact-formInput' onChange = {(e) => {this.handleChange('formname', e.target.value)}} placeholder='Name' value = {this.state.formname}/>
+                    <input type="text" className='contact-formInput'onChange = {(e) => {this.handleChange('formemail', e.target.value)}} placeholder='Email' value = {this.state.formemail}/>
+                    <input type="text" className='contact-formInput'onChange = {(e) => {this.handleChange('formphone', e.target.value)}} placeholder='Phone' value = {this.state.formphone}/>
+                    <input type="text" className='contact-formInput'onChange = {(e) => {this.handleChange('formmessage', e.target.value)}} placeholder='Message' value = {this.state.formmessage}/>
                     <button className='contact-formButton' onClick={this.sendForm}>Submit</button>
                 </div>
 

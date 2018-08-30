@@ -48,7 +48,7 @@
     position: fixed;
     bottom: 14%;
     right: 3%;
-    height: 300px;
+    height: 320px;
     width: 200px;
     background: $color5;
     border-radius: 8px;
@@ -89,10 +89,11 @@
     border-radius: 6px;
     background: $color5;
     color: $color1;
-    height: 35px;
+    height: 25px;
     width: 160px;
     color: white;
     font-size: 21px;
+    margin-top: 5px;
     transition: 0.3s ease-in-out;
 }
 
