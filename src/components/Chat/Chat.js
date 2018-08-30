@@ -5,7 +5,7 @@ import whiteMessage from './../../assets/whiteMessage.png';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-const socket = io(`http://localhost:3005`)
+const socket = io()
 
 class Chat extends Component {
     constructor(){
