@@ -4,6 +4,10 @@
 
 #### [Live Site](https://toolshare.pro/ "ToolShare.Pro")
 
+### Technologies Used:
+
+#### React | Redux | HTML | CSS | Javascript | Node | Express | PostgreSQL | Massive | Socket IO | Nodemailer | Cloudinary | Jest | Postman 
+
 ### Contributors:
 
 #### [Michael Johnston](https://github.com/michaeljamie "Michael Johnston")
