@@ -1,12 +1,12 @@
 # ToolShare.Pro
 
-#### Tool Share is an app that allows its users to complete their home projects without draining their wallets.  Rather than having to buy a brand new saw for one time use for a specific project, you can rent it at a daily rate, saving you considerable money and storage space.  If you already have tools that you don't often use, you can list them as available to rent and make money on the side.  
+Tool Share is an app that allows its users to complete their home projects without draining their wallets.  Rather than having to buy a brand new saw for one time use for a specific project, you can rent it at a daily rate, saving you considerable money and storage space.  If you already have tools that you don't often use, you can list them as available to rent and make money on the side.  
 
-#### [Live Site](https://toolshare.pro/ "ToolShare.Pro")
+[Live Site](https://toolshare.pro/ "ToolShare.Pro")
 
 ### Technologies Used:
 
-#### React | Redux | HTML | CSS | Javascript | Node | Express | PostgreSQL | Massive | Socket IO | Nodemailer | Cloudinary | Jest | Postman 
+React | Redux | HTML | CSS | Javascript | Node | Express | PostgreSQL | Massive | Socket IO | Nodemailer | Cloudinary | Jest | Postman 
 
 ### Contributors:
 
