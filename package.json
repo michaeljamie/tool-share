@@ -35,7 +35,7 @@
     "react-themeable": "^1.1.0",
     "react-touch": "^0.4.4",
     "redux": "^4.0.0",
-    "redux-promise-middleware": "^5.1.1",
+    "redux-promise-middleware": "^6.1.0",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
     "stripe": "^6.7.0",
