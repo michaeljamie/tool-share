@@ -38,7 +38,7 @@
     "redux-promise-middleware": "^5.1.1",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
-    "stripe": "^6.7.0",
+    "stripe": "^7.1.0",
     "sweetalert2": "^7.26.11"
   },
   "scripts": {
