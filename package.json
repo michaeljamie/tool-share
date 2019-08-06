@@ -39,7 +39,7 @@
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
     "stripe": "^7.4.0",
-    "sweetalert2": "^7.26.11"
+    "sweetalert2": "^8.15.2"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
