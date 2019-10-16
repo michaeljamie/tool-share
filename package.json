@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@google-cloud/storage": "^1.7.0",
+    "@google-cloud/storage": "^3.5.0",
     "axios": "^0.19.0",
     "body-parser": "^1.18.3",
     "dotenv": "^8.0.0",
