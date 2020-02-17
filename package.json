@@ -21,7 +21,7 @@
     "react": "^16.4.2",
     "react-autosuggest": "^9.4.0",
     "react-datepicker": "^2.8.0",
-    "react-dates": "^18.0.0",
+    "react-dates": "^21.8.0",
     "react-day-picker": "^7.1.10",
     "react-dom": "^16.4.2",
     "react-dropzone": "^10.1.5",
