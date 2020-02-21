@@ -9,7 +9,7 @@
     "dotenv": "^8.0.0",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
-    "firebase": "^6.3.4",
+    "firebase": "^7.9.0",
     "latlng-to-zip": "0.0.2",
     "massive": "^5.2.0",
     "moment": "^2.22.2",
