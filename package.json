@@ -60,7 +60,7 @@
   },
   "main": "./server/server.js",
   "devDependencies": {
-    "jest": "^24.8.0"
+    "jest": "^26.4.2"
   },
   "jest": {
     "testEnvironment": "node"
