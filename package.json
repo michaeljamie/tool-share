@@ -36,7 +36,7 @@
     "react-touch": "^0.4.4",
     "redux": "^4.0.0",
     "redux-promise-middleware": "^6.1.1",
-    "socket.io": "^2.1.1",
+    "socket.io": "^3.0.4",
     "socket.io-client": "^2.1.1",
     "stripe": "^8.92.0",
     "sweetalert2": "^8.15.2"
